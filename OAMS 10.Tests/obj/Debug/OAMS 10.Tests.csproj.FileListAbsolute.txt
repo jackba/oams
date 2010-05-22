@@ -6,3 +6,11 @@ C:\Documents and Settings\Administrator\Desktop\OAMS 10\OAMS 10.Tests\bin\Debug\
 C:\Documents and Settings\Administrator\Desktop\OAMS 10\OAMS 10.Tests\obj\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\Administrator\Desktop\OAMS 10\OAMS 10.Tests\obj\Debug\OAMS 10.Tests.dll
 C:\Documents and Settings\Administrator\Desktop\OAMS 10\OAMS 10.Tests\obj\Debug\OAMS 10.Tests.pdb
+C:\Documents and Settings\Administrator\Desktop\oams\OAMS 10.Tests\bin\Debug\OAMS 10.Tests.dll.config
+C:\Documents and Settings\Administrator\Desktop\oams\OAMS 10.Tests\bin\Debug\OAMS 10.Tests.dll
+C:\Documents and Settings\Administrator\Desktop\oams\OAMS 10.Tests\bin\Debug\OAMS 10.Tests.pdb
+C:\Documents and Settings\Administrator\Desktop\oams\OAMS 10.Tests\bin\Debug\OAMS 10.dll
+C:\Documents and Settings\Administrator\Desktop\oams\OAMS 10.Tests\bin\Debug\OAMS 10.pdb
+C:\Documents and Settings\Administrator\Desktop\oams\OAMS 10.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\Desktop\oams\OAMS 10.Tests\obj\Debug\OAMS 10.Tests.dll
+C:\Documents and Settings\Administrator\Desktop\oams\OAMS 10.Tests\obj\Debug\OAMS 10.Tests.pdb

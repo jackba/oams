@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OAMSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="OAMSModelStoreContainer">
+    <EntitySet Name="CodeMaster" EntityType="OAMSModel.Store.CodeMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Contract" EntityType="OAMSModel.Store.Contract" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContractDetail" EntityType="OAMSModel.Store.ContractDetail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Contractor" EntityType="OAMSModel.Store.Contractor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Geo" EntityType="OAMSModel.Store.Geo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Site" EntityType="OAMSModel.Store.Site" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Contract_Contractor" Association="OAMSModel.Store.FK_Contract_Contractor">
+      <End Role="Contractor" EntitySet="Contractor" />
+      <End Role="Contract" EntitySet="Contract" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContractDetail_Contract" Association="OAMSModel.Store.FK_ContractDetail_Contract">
+      <End Role="Contract" EntitySet="Contract" />
+      <End Role="ContractDetail" EntitySet="ContractDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContractDetail_Site" Association="OAMSModel.Store.FK_ContractDetail_Site">
+      <End Role="Site" EntitySet="Site" />
+      <End Role="ContractDetail" EntitySet="ContractDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Geo_Geo" Association="OAMSModel.Store.FK_Geo_Geo">
+      <End Role="Geo" EntitySet="Geo" />
+      <End Role="Geo1" EntitySet="Geo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Site_Geo1" Association="OAMSModel.Store.FK_Site_Geo1">
+      <End Role="Geo" EntitySet="Geo" />
+      <End Role="Site" EntitySet="Site" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Site_Geo2" Association="OAMSModel.Store.FK_Site_Geo2">
+      <End Role="Geo" EntitySet="Geo" />
+      <End Role="Site" EntitySet="Site" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Site_Geo3" Association="OAMSModel.Store.FK_Site_Geo3">
+      <End Role="Geo" EntitySet="Geo" />
+      <End Role="Site" EntitySet="Site" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CodeMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="nvarchar(max)" />
+    <Property Name="Code" Type="nvarchar(max)" />
+    <Property Name="Note" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Contract">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="EffectiveDate" Type="date" />
+    <Property Name="TermDate" Type="date" />
+    <Property Name="ContractorID" Type="int" />
+  </EntityType>
+  <EntityType Name="ContractDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ContractID" Type="int" />
+    <Property Name="Price" Type="money" />
+    <Property Name="ProductionPrice" Type="money" />
+    <Property Name="PaymentTerm" Type="nvarchar(max)" />
+    <Property Name="EffectiveDate" Type="date" />
+    <Property Name="TermDate" Type="date" />
+    <Property Name="SiteID" Type="int" />
+  </EntityType>
+  <EntityType Name="Contractor">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Geo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="ParentID" Type="uniqueidentifier" />
+    <Property Name="Level" Type="int" />
+    <Property Name="FullName" Type="nvarchar(max)" />
+    <Property Name="FullNameNoDiacritics" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Site">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Geo1ID" Type="uniqueidentifier" />
+    <Property Name="Geo2ID" Type="uniqueidentifier" />
+    <Property Name="Geo3ID" Type="uniqueidentifier" />
+    <Property Name="Style" Type="nvarchar(max)" />
+    <Property Name="Code" Type="nvarchar(max)" />
+    <Property Name="Material" Type="nvarchar(max)" />
+    <Property Name="CBDViewed" Type="nvarchar(max)" />
+    <Property Name="Height" Type="decimal" Scale="2" />
+    <Property Name="Width" Type="decimal" Scale="2" />
+    <Property Name="Size" Type="decimal" Precision="37" Scale="4" StoreGeneratedPattern="Computed" />
+    <Property Name="Grade" Type="nvarchar(max)" />
+    <Property Name="RoadType" Type="nvarchar(max)" />
+    <Property Name="TrafficSpeed" Type="nvarchar(max)" />
+    <Property Name="Illumination" Type="int" />
+    <Property Name="DistanceFromRoadside" Type="int" />
+    <Property Name="AboveStreet" Type="int" />
+    <Property Name="DurationOfView" Type="int" />
+    <Property Name="AngleOfVision" Type="int" />
+    <Property Name="VisualClutter" Type="int" />
+    <Property Name="CloseToAirport" Type="bit" />
+    <Property Name="CloseToFactory" Type="bit" />
+    <Property Name="CloseToGasStation" Type="bit" />
+    <Property Name="CloseToHopistal" Type="bit" />
+    <Property Name="CloseToMarket" Type="bit" />
+    <Property Name="CloseToOffice" Type="bit" />
+    <Property Name="CloseToParking" Type="bit" />
+    <Property Name="CloseToResident" Type="bit" />
+    <Property Name="CloseToSchool" Type="bit" />
+    <Property Name="CloseToShopping" Type="bit" />
+    <Property Name="CloseToStadium" Type="bit" />
+    <Property Name="CloseToStation" Type="bit" />
+    <Property Name="CloseToTownCenter" Type="bit" />
+    <Property Name="CloseToUniversity" Type="bit" />
+    <Property Name="NumberOfPanel" Type="int" />
+    <Property Name="PanelCode" Type="nvarchar(max)" />
+    <Property Name="Longitude" Type="float" />
+    <Property Name="Latitude" Type="float" />
+    <Property Name="StreetLight" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Contract_Contractor">
+    <End Role="Contractor" Type="OAMSModel.Store.Contractor" Multiplicity="0..1" />
+    <End Role="Contract" Type="OAMSModel.Store.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="ContractorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContractDetail_Contract">
+    <End Role="Contract" Type="OAMSModel.Store.Contract" Multiplicity="0..1" />
+    <End Role="ContractDetail" Type="OAMSModel.Store.ContractDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contract">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContractDetail">
+        <PropertyRef Name="ContractID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContractDetail_Site">
+    <End Role="Site" Type="OAMSModel.Store.Site" Multiplicity="0..1" />
+    <End Role="ContractDetail" Type="OAMSModel.Store.ContractDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Site">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContractDetail">
+        <PropertyRef Name="SiteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Geo_Geo">
+    <End Role="Geo" Type="OAMSModel.Store.Geo" Multiplicity="0..1" />
+    <End Role="Geo1" Type="OAMSModel.Store.Geo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Geo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Geo1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Site_Geo1">
+    <End Role="Geo" Type="OAMSModel.Store.Geo" Multiplicity="0..1" />
+    <End Role="Site" Type="OAMSModel.Store.Site" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Geo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Site">
+        <PropertyRef Name="Geo1ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Site_Geo2">
+    <End Role="Geo" Type="OAMSModel.Store.Geo" Multiplicity="0..1" />
+    <End Role="Site" Type="OAMSModel.Store.Site" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Geo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Site">
+        <PropertyRef Name="Geo2ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Site_Geo3">
+    <End Role="Geo" Type="OAMSModel.Store.Geo" Multiplicity="0..1" />
+    <End Role="Site" Type="OAMSModel.Store.Site" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Geo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Site">
+        <PropertyRef Name="Geo3ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
