@@ -3,3 +3,8 @@ C:\Documents and Settings\Administrator\Desktop\OAMS 10\OAMS 10\bin\OAMS 10.pdb
 C:\Documents and Settings\Administrator\Desktop\OAMS 10\OAMS 10\obj\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\Administrator\Desktop\OAMS 10\OAMS 10\obj\Debug\OAMS 10.dll
 C:\Documents and Settings\Administrator\Desktop\OAMS 10\OAMS 10\obj\Debug\OAMS 10.pdb
+C:\Documents and Settings\Administrator\Desktop\oams\OAMS 10\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\Desktop\oams\OAMS 10\obj\Debug\OAMS 10.dll
+C:\Documents and Settings\Administrator\Desktop\oams\OAMS 10\obj\Debug\OAMS 10.pdb
+C:\Documents and Settings\Administrator\Desktop\oams\OAMS 10\bin\OAMS 10.dll
+C:\Documents and Settings\Administrator\Desktop\oams\OAMS 10\bin\OAMS 10.pdb
