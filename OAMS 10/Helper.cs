@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Reflection;
 
 
-public class OAMSSetting
+public class OAMSSetting 
 {
     static public Message messageL = new Message();
 }
