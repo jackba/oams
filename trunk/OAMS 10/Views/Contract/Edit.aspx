@@ -164,6 +164,23 @@
             </tr>
             <% } %>
         </table>
+        <br />
+        <table>
+            <tr>
+                <th>
+                    Effective Date
+                </th>
+            </tr>
+            <% for (int i = 0; i < Model.Details.Count; i++)
+               {
+            %>
+            <tr>
+                <td>
+                    <%: Html.EditorFor(r => r.Details[i].EffectiveDate )%>
+                </td>
+            </tr>
+            <% } %>
+        </table>
     </div>
     <p>
         <input type="submit" value="Save" />

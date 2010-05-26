@@ -10,6 +10,10 @@ namespace OAMS_10.Models
     [MetadataType(typeof(ContractNotaion))]
     public partial class Contract
     {
+        public List<ContractDetail> Details
+        {
+            get { return ContractDetails.ToList(); }
+        }
 
     }
     public class ContractNotaion
