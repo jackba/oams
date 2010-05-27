@@ -51,6 +51,15 @@
             // Bind the marker position property to the DistanceWidget position
             // property
             marker.bindTo('position', this);
+
+            // Create a new radius widget
+            var radiusWidget = new RadiusWidget();
+
+            // Bind the radiusWidget map to the DistanceWidget map
+            radiusWidget.bindTo('map', this);
+
+            // Bind the radiusWidget center to the DistanceWidget position
+            radiusWidget.bindTo('center', this, 'position');
         }
         DistanceWidget.prototype = new google.maps.MVCObject();
 
@@ -66,7 +75,7 @@
             });
 
             // Set the distance property value, default to 50km.
-            this.set('distance', 50);
+            this.set('distance', 2);
 
             // Bind the RadiusWidget bounds property to the circle bounds property.
             this.bindTo('bounds', circle);
@@ -79,6 +88,8 @@
 
             // Bind the circle radius property to the RadiusWidget radius property
             circle.bindTo('radius', this);
+
+            this.addSizer_(); 
         }
         RadiusWidget.prototype = new google.maps.MVCObject();
 
@@ -88,6 +99,41 @@
         */
         RadiusWidget.prototype.distance_changed = function () {
             this.set('radius', this.get('distance') * 1000);
+        };
+
+
+        /**
+        * Add the sizer marker to the map.
+        *
+        * @private
+        */
+        RadiusWidget.prototype.addSizer_ = function () {
+            var sizer = new google.maps.Marker({
+                draggable: true,
+                title: 'Drag me!'
+            });
+
+            sizer.bindTo('map', this);
+            sizer.bindTo('position', this, 'sizer_position');
+        };
+
+        /**
+        * Update the center of the circle and position the sizer back on the line.
+        *
+        * Position is bound to the DistanceWidget so this is expected to change when
+        * the position of the distance widget is changed.
+        */
+        RadiusWidget.prototype.center_changed = function () {
+            var bounds = this.get('bounds');
+
+            // Bounds might not always be set so check that it exists first.
+            if (bounds) {
+                var lng = bounds.getNorthEast().lng();
+
+                // Put the sizer at center, right on the circle.
+                var position = new google.maps.LatLng(this.get('center').lat(), lng);
+                this.set('sizer_position', position);
+            }
         };
 
     </script>
