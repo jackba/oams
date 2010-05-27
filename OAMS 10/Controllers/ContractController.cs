@@ -72,15 +72,13 @@ namespace OAMS_10.Controllers
         // POST: /Contractor/Edit/5
 
         [HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        public ActionResult Edit(Contract c)
+        public ActionResult Edit(int id, FormCollection collection)
         {
-            // TODO: Add update logic here
-            //var v = repo.Get(id);
+            var v = repo.Get(id);
 
-            //UpdateModel(v);
+            UpdateModel(v);
 
-            //repo.Save();
+            repo.Save();
 
             return RedirectToAction("Index");
         }

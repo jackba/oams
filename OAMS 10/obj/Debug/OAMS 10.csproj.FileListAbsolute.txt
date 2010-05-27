@@ -13,3 +13,8 @@ D:\ghostnguyen\oams\OAMS 10\bin\OAMS 10.pdb
 D:\ghostnguyen\oams\OAMS 10\obj\Debug\ResolveAssemblyReference.cache
 D:\ghostnguyen\oams\OAMS 10\obj\Debug\OAMS 10.dll
 D:\ghostnguyen\oams\OAMS 10\obj\Debug\OAMS 10.pdb
+D:\Doc.amnguyen\OAMS\OAMS 10\bin\OAMS 10.dll
+D:\Doc.amnguyen\OAMS\OAMS 10\bin\OAMS 10.pdb
+D:\Doc.amnguyen\OAMS\OAMS 10\obj\Debug\ResolveAssemblyReference.cache
+D:\Doc.amnguyen\OAMS\OAMS 10\obj\Debug\OAMS 10.dll
+D:\Doc.amnguyen\OAMS\OAMS 10\obj\Debug\OAMS 10.pdb
