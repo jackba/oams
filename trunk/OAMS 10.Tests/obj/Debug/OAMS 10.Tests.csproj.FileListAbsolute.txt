@@ -22,3 +22,11 @@ D:\ghostnguyen\oams\OAMS 10.Tests\bin\Debug\OAMS 10.pdb
 D:\ghostnguyen\oams\OAMS 10.Tests\obj\Debug\ResolveAssemblyReference.cache
 D:\ghostnguyen\oams\OAMS 10.Tests\obj\Debug\OAMS 10.Tests.dll
 D:\ghostnguyen\oams\OAMS 10.Tests\obj\Debug\OAMS 10.Tests.pdb
+D:\Doc.amnguyen\OAMS\OAMS 10.Tests\bin\Debug\OAMS 10.Tests.dll.config
+D:\Doc.amnguyen\OAMS\OAMS 10.Tests\bin\Debug\OAMS 10.Tests.dll
+D:\Doc.amnguyen\OAMS\OAMS 10.Tests\bin\Debug\OAMS 10.Tests.pdb
+D:\Doc.amnguyen\OAMS\OAMS 10.Tests\bin\Debug\OAMS 10.dll
+D:\Doc.amnguyen\OAMS\OAMS 10.Tests\bin\Debug\OAMS 10.pdb
+D:\Doc.amnguyen\OAMS\OAMS 10.Tests\obj\Debug\ResolveAssemblyReference.cache
+D:\Doc.amnguyen\OAMS\OAMS 10.Tests\obj\Debug\OAMS 10.Tests.dll
+D:\Doc.amnguyen\OAMS\OAMS 10.Tests\obj\Debug\OAMS 10.Tests.pdb

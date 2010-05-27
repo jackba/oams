@@ -104,5 +104,11 @@ namespace OAMS_10.Controllers
             return Json(result);
         }
 
+
+        public ActionResult Find()
+        {
+            return View();
+        }
+
     }
 }

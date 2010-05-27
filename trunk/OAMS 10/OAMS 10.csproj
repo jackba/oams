@@ -132,9 +132,11 @@
     <Content Include="Views\Geo\Edit.aspx" />
     <Content Include="Views\Geo\Index.aspx" />
     <Content Include="Views\Shared\EditorTemplates\AutoCompleteCodeMaster.ascx" />
+    <Content Include="Views\Shared\EditorTemplates\ContractDetail.ascx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Views\Site\Create.aspx" />
     <Content Include="Views\Site\Edit.aspx" />
+    <Content Include="Views\Site\Find.aspx" />
     <Content Include="Views\Site\GMap.ascx" />
     <Content Include="Views\Site\Index.aspx" />
     <Content Include="Web.config" />

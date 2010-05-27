@@ -103,24 +103,26 @@
                     Latitude
                 </th>
             </tr>
-            <% for (int i = 0; i < Model.ContractDetails.ToList().Count; i++)
-               {
-                   var item = Model.ContractDetails.ToList()[i];%>
+            <%   foreach (var item in Model.ContractDetails)
+                 {
+                     int index = Model.ContractDetails.ToList().IndexOf(item);
+            %>
             <tr>
                 <td>
                     <%: Html.ActionLink("Edit Financial", "Edit","ContractDetail", new { id=item.ID },null) %>
                 </td>
                 <td>
-                    <%: Html.EditorFor(r => r.ContractDetails.ToList()[i].EffectiveDate )%>
+                    <%: Html.EditorFor(r => r.Details[index])%>
+                    <%: string.Format("{0:d}", item.EffectiveDate )%>
                 </td>
                 <td>
-                    <%: item.TermDate %>
+                    <%: string.Format("{0:d}", item.TermDate )%>
                 </td>
                 <td>
-                    <%: item.Price %>
+                    <%: string.Format("{0:c}", item.Price )%>
                 </td>
                 <td>
-                    <%: item.ProductionPrice %>
+                    <%: string.Format("{0:c}", item.ProductionPrice )%>
                 </td>
                 <td>
                     <%: item.PaymentTerm %>
@@ -160,23 +162,6 @@
                 </td>
                 <td>
                     <%: item.Site.Latitude%>
-                </td>
-            </tr>
-            <% } %>
-        </table>
-        <br />
-        <table>
-            <tr>
-                <th>
-                    Effective Date
-                </th>
-            </tr>
-            <% for (int i = 0; i < Model.Details.Count; i++)
-               {
-            %>
-            <tr>
-                <td>
-                    <%: Html.EditorFor(r => r.Details[i].EffectiveDate )%>
                 </td>
             </tr>
             <% } %>
