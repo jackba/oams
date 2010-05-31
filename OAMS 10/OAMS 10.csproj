@@ -73,6 +73,7 @@
     <Compile Include="Controllers\ContractController.cs" />
     <Compile Include="Controllers\ContractorController.cs" />
     <Compile Include="Controllers\ContractDetailController.cs" />
+    <Compile Include="Controllers\FindSiteController.cs" />
     <Compile Include="Controllers\GeoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingController.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Models\ContractorRepository.cs" />
     <Compile Include="Models\ContractRepository.cs" />
     <Compile Include="Models\Annotation\ContractAnnotation.cs" />
+    <Compile Include="Models\FindSite.cs" />
     <Compile Include="Models\SiteRepository.cs" />
     <Compile Include="Models\GeoRepository.cs" />
     <Compile Include="Models\OAMS1.Designer.cs">
@@ -103,6 +105,7 @@
     <Content Include="App_Data\OAMS_log.ldf">
       <DependentUpon>OAMS.MDF</DependentUpon>
     </Content>
+    <Content Include="Content\Image\resize-off.png" />
     <Content Include="Content\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -128,15 +131,16 @@
     <Content Include="Views\Contract\Create.aspx" />
     <Content Include="Views\Contract\Edit.aspx" />
     <Content Include="Views\Contract\Index.aspx" />
+    <Content Include="Views\FindSite\Find.aspx" />
     <Content Include="Views\Geo\Create.aspx" />
     <Content Include="Views\Geo\Edit.aspx" />
     <Content Include="Views\Geo\Index.aspx" />
     <Content Include="Views\Shared\EditorTemplates\AutoCompleteCodeMaster.ascx" />
     <Content Include="Views\Shared\EditorTemplates\ContractDetail.ascx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
+    <Content Include="Content\Image\resize.png" />
     <Content Include="Views\Site\Create.aspx" />
     <Content Include="Views\Site\Edit.aspx" />
-    <Content Include="Views\Site\Find.aspx" />
     <Content Include="Views\Site\GMap.ascx" />
     <Content Include="Views\Site\Index.aspx" />
     <Content Include="Web.config" />
