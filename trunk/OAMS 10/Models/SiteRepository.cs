@@ -5,7 +5,7 @@ using System.Web;
 
 namespace OAMS_10.Models
 {
-    public class SiteRepository
+    public class SiteRepository : BaseRepository<SiteRepository>
     {
         private OAMSEntities db = new OAMSEntities();
 
