@@ -411,6 +411,11 @@ public static class dotNetExt
         return l.ToList().Select(r => new SelectListItem() { Value = r.ID.ToString(), Text = r.Name }).AsQueryable();
     }
 
+    public static IQueryable<SelectListItem> ToSelectListItem(this IQueryable<Client> l)
+    {
+        return l.ToList().Select(r => new SelectListItem() { Value = r.ID.ToString(), Text = r.Name }).AsQueryable();
+    }
+
     public static MvcHtmlString CodeMasterDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
     {
         return htmlHelper.DropDownListFor(expression, CodeMasterRepository.Get(expression.Body).ToSelectListItem(), OAMSSetting.messageL.SelectNone);

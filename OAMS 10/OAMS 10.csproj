@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\ContractController.cs" />
     <Compile Include="Controllers\ContractorController.cs" />
     <Compile Include="Controllers\ContractDetailController.cs" />
@@ -85,6 +86,8 @@
     <Compile Include="Helper.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BaseRepository.cs" />
+    <Compile Include="Models\CampaignRepository.cs" />
+    <Compile Include="Models\ClientRepository.cs" />
     <Compile Include="Models\CodeMasterRepository.cs" />
     <Compile Include="Models\ContractDetailRepository.cs" />
     <Compile Include="Models\ContractorRepository.cs" />
@@ -121,8 +124,12 @@
     <Content Include="Content\smoothness\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\smoothness\jquery-ui-1.8.1.custom.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\grid.base.js" />
     <Content Include="Scripts\jquery-1.4.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.1.custom.min.js" />
+    <Content Include="Views\Campaign\Create.aspx" />
+    <Content Include="Views\Campaign\Edit.aspx" />
+    <Content Include="Views\Campaign\Index.aspx" />
     <Content Include="Views\ContractDetail\Edit.aspx" />
     <Content Include="Views\Contractor\Create.aspx" />
     <Content Include="Views\Contractor\Details.aspx" />
@@ -136,7 +143,6 @@
     <Content Include="Views\Geo\Edit.aspx" />
     <Content Include="Views\Geo\Index.aspx" />
     <Content Include="Views\Shared\EditorTemplates\AutoCompleteCodeMaster.ascx" />
-    <Content Include="Views\Shared\EditorTemplates\ContractDetail.ascx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Content\Image\resize.png" />
     <Content Include="Views\Site\Create.aspx" />

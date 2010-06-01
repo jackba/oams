@@ -17,22 +17,16 @@ namespace OAMS_10.Controllers
             return View(repo.Get(id));
         }
 
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    var v = repo.Get(id);
-
-        //    UpdateModel(v);
-
-        //    repo.Save();
-
-        //    return RedirectToAction("Index");
-        //}
-
         [HttpPost]
-        public ActionResult Edit(ContractDetail e)
+        public ActionResult Edit(int id, FormCollection collection)
         {
-            return RedirectToAction("Index");
+            var v = repo.Get(id);
+
+            UpdateModel(v);
+
+            repo.Save();
+
+            return RedirectToAction("Edit", "Contract", new { id = v.ContractID });
         }
     }
 }

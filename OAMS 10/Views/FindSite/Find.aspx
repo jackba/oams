@@ -8,57 +8,107 @@
         Find Site</h2>
     <% using (Html.BeginForm())
        {%>
+    <%: Html.HiddenFor(r => r.CampaignID) %>
     <%: Html.CodeMasterDropDownListFor(r => r.Material) %>
     <%: Html.CodeMasterDropDownListFor(r => r.Style) %>
     <%: Html.EditorFor(r => r.Distance) %>
     <%: Html.HiddenFor(r => r.Lat) %>
     <%: Html.HiddenFor(r => r.Long) %>
-    <input type="button" onclick="search1(this)" value="Find" />
-    <div id="map" style="width: 500px; height: 500px;">
-    </div>
-    <div id="results">
-    </div>
-    <div style="overflow: auto;">
-        <table id="tblResult">
-            <thead>
-                <tr>
-                    <th>
-                        Code
-                    </th>
-                    <th>
-                        Style
-                    </th>
-                    <th>
-                        Material
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        Code
-                    </td>
-                    <td>
-                        Style
-                    </td>
-                    <td>
-                        Material
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <input type="button" onclick="search(this)" value="Find" />
+    <table>
+        <tr>
+            <td>
+                <div id="map" style="width: 500px; height: 500px;">
+                </div>
+            </td>
+            <td style="vertical-align: top;">
+                <table id="tblResult">
+                    <thead>
+                        <tr>
+                            <td>
+                                Code
+                            </td>
+                            <td>
+                                Style
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
     <% } %>
     <script type="text/javascript" src="http://www.google.com/jsapi?autoload={'modules':[{name:'maps',version:3,other_params:'sensor=false'},{'name':'jquery','version':'1.4.2'}]}"></script>
     <script type="text/javascript">
 
+        function addResults(json) {
+
+            var tbl = $('#tblResult tbody');
+            tbl.innerHTML = '';
+            html = [];
+
+            if (json.length) {
+                for (var i = 0, site; site = json[i]; i++) {
+
+                    //  var image = new google.maps.MarkerImage(profileImageUrl,
+                    //          new google.maps.Size(48, 48),
+                    //          new google.maps.Point(0, 0),
+                    //          new google.maps.Point(24, 24),
+                    //          new google.maps.Size(24, 24));
 
 
+                    var pos = new google.maps.LatLng(site.Latitude, site.Longitude);
+
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: pos,
+                        //icon: image,
+                        zIndex: 10
+                    });
 
 
+                    profileMarkers.push(marker);
+
+                    bindInfoWindow(marker, map, infoWindow, site.Code);
 
 
+                    var rSel = document.createElement('tr');
+                    tbl.append(rSel);
 
+                    var cSel = document.createElement('td');
+                    rSel.appendChild(cSel);
+
+                    var aSel = document.createElement('a');
+                    aSel.href = 'javascript:void(0);';
+                    aSel.innerHTML = site.Code;
+                    aSel.onclick = generateTriggerCallback(marker, 'click');
+                    cSel.appendChild(aSel);
+
+                    var cStyle = document.createElement('td');
+                    cStyle.innerHTML = site.Style;
+                    rSel.appendChild(cStyle);
+
+                    var cAdd2Cam = document.createElement('td');
+                    rSel.appendChild(cAdd2Cam);
+
+                    var aAdd2Cam = document.createElement('a');
+                    aAdd2Cam.href = 'javascript:void(0);';
+                    aAdd2Cam.innerHTML = 'Add to Campaign';
+                    cAdd2Cam.appendChild(aAdd2Cam);
+
+                    aAdd2Cam.onclick = Add2Campaign(aAdd2Cam, $("#CampaignID").val());
+
+                }
+            }
+            else {
+                tbl.push('No site found.');
+            }
+
+            //$(results).html(html.join(''));
+            //$('#results-wrapper').show();
+        }
 
 
 
@@ -154,9 +204,27 @@
         }
 
 
-        function search(e) {
+        function Add2Campaign(link, campaignID, siteDetailID) {
+
+            $.ajax({
+                url: '/Campaign/AddSiteDetail?CampaingID=' + campaignID + '&SiteDetailID=' + siteDetailID, type: "POST", dataType: "json",
+                success: function (data) {
+
+                    alert(data);
+                    //clearMarkers();
+
+                    //addResults(data);
+
+                    //                    $.map(data, function (item) {
+                    //                        var latlng = new google.maps.LatLng(item.Latitude, item.Longitude);
+                    //                        var marker = new google.maps.Marker({ position: latlng, map: map, title: item.Code });
+                    //                        bindInfoWindow(marker, map, infoWindow, item.Note);
+                    //                    })
+                }
+            })
         }
-        function search1(e) {
+
+        function search(e) {
 
             var tdata = $("form").serialize();
 
@@ -218,96 +286,11 @@
             marker.click();
         }
 
-        function addResults(json) {
-            var results = $('#results');
-            results.innerHTML = '';
-            html = [];
 
-            if (json.length) {
-                for (var i = 0, site; site = json[i]; i++) {
-
-                    //  var image = new google.maps.MarkerImage(profileImageUrl,
-                    //          new google.maps.Size(48, 48),
-                    //          new google.maps.Point(0, 0),
-                    //          new google.maps.Point(24, 24),
-                    //          new google.maps.Size(24, 24));
-
-
-                    var pos = new google.maps.LatLng(site.Latitude, site.Longitude);
-
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: pos,
-                        //icon: image,
-                        zIndex: 10
-                    });
-
-
-
-                    profileMarkers.push(marker);
-
-                    bindInfoWindow(marker, map, infoWindow, site.Code);
-
-
-                    //var showInfo = '<a>' + site.Code + '</a>';
-                    //onclick = "clickMarker(' + marker + ')"
-                    //$('#tblResult tbody:last').append('<tr><td>' + showInfo + '</td><td>...</td><td>...</td></tr>');
-                    var body = $('#tblResult');
-
-                    var aSel = document.createElement('a');
-                    aSel.href = 'javascript:void(0);';
-                    aSel.innerHTML = site.Code;
-                    aSel.onclick = generateTriggerCallback(marker, 'click');
-                    //li.appendChild(aSel);
-                    //ul.appendChild(li);
-                    body.append(aSel);
-                    //var linka = $('#tblResult tbody:last a:last');
-
-                    //linka.onclick = generateTriggerCallback(marker, 'click');
-
-//                    google.maps.event.addListener(linka, 'click', function () {
-//                        //                infoWindow.setContent(html);
-//                        //                infoWindow.open(map, marker);
-//                        alert('aa');
-//                    });
-
-                    //alert(linka);
-                    //                    linka.click(function () {
-                    //                        
-                    //                        infoWindow.setContent('as');
-                    //                        infoWindow.open(map, marker);
-                    //                    });
-
-                    //bindInfoWindowToA(marker, map, infoWindow, site.Code, linka);
-
-                    //.click(function () {  });
-
-
-
-                }
-
-                //                    html.push('<div class="tweet"><span class="thumb">');
-                //                    html.push('<a href="http://twitter.com/' + from + '">');
-                //                    html.push('<img src="' + profileImageUrl + '"/></a></span>');
-                //                    html.push('<div class="body"<a href="http://twitter.com/' + from);
-                //                    html.push('"></a>');
-                //                    html.push(tweet.text);
-                //                    html.push('</div><div class="body location">From: ' + from);
-                //                    html.push(', near ' + loc);
-                //                    html.push('</div></div>');
-            }
-            //} 
-            //            else {
-            //                html.push('<div class="no-tweets">No tweets found.</div>');
-            //            }
-
-            $(results).html(html.join(''));
-            $('#results-wrapper').show();
-        }
 
         google.maps.event.addDomListener(window, 'load', init);
 
-        function generateTriggerCallback (object, eventType) {
+        function generateTriggerCallback(object, eventType) {
             //alert("as");
             return function () {
                 google.maps.event.trigger(object, eventType);

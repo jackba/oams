@@ -17,27 +17,28 @@ namespace OAMS_10.Controllers
             return View();
         }
 
-        public ActionResult Find()
+        public ActionResult Find(int campaignID)
         {
             FindSite e = new FindSite();
+            e.CampaignID = campaignID;
             e.Results = new List<Site>();
             return View(e);
         }
 
-        [HttpPost]
-        public ActionResult Find(FindSite e)
-        {
-            e.Results = SiteRepository.Repo.GetAll().ToList();
+        //[HttpPost]
+        //public ActionResult Find(FindSite e)
+        //{
+        //    e.Results = SiteRepository.Repo.GetAll().ToList();
 
-            return View(e);
-        }
+        //    return View(e);
+        //}
 
         [HttpPost]
         public JsonResult FindJson(FindSite e)
         {
             e.Results = SiteRepository.Repo.GetAll().Where(r => r.Style == e.Style).ToList();
 
-            return Json(e.Results.Select(r => new { r.Latitude, r.Longitude, r.Code, r.Material, r.Style }));
+            return Json(e.Results.Select(r => new { r.ID, r.Latitude, r.Longitude, r.Code, r.Material, r.Style }));
         }
     }
 }

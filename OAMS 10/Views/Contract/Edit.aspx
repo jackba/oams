@@ -112,7 +112,6 @@
                     <%: Html.ActionLink("Edit Financial", "Edit","ContractDetail", new { id=item.ID },null) %>
                 </td>
                 <td>
-                    <%: Html.EditorFor(r => r.Details[index])%>
                     <%: string.Format("{0:d}", item.EffectiveDate )%>
                 </td>
                 <td>
