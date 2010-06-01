@@ -12,6 +12,11 @@ namespace OAMS_10.Models
             return db.ContractDetails.SingleOrDefault(r => r.ID == id);
         }
 
+        public IQueryable<ContractDetail> GetAll()
+        {
+            return db.ContractDetails;
+        }
+
         public void Save()
         {
             db.SaveChanges();

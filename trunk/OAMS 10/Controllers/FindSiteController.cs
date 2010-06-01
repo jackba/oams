@@ -21,7 +21,6 @@ namespace OAMS_10.Controllers
         {
             FindSite e = new FindSite();
             e.CampaignID = campaignID;
-            e.Results = new List<Site>();
             return View(e);
         }
 
@@ -36,9 +35,10 @@ namespace OAMS_10.Controllers
         [HttpPost]
         public JsonResult FindJson(FindSite e)
         {
-            e.Results = SiteRepository.Repo.GetAll().Where(r => r.Style == e.Style).ToList();
+            List<Site> l = SiteRepository.Repo.GetAll().Where(r => r.Style == e.Style).ToList();
 
-            return Json(e.Results.Select(r => new { r.ID, r.Latitude, r.Longitude, r.Code, r.Material, r.Style }));
+            return Json(l.Select(r => new { r.ID, r.Latitude, r.Longitude, r.Code, r.Material, r.Style, ContractDetailID = r.ContractDetails.LastOrDefault().ID }));
+            //return Json(e.Results.Select(r => new { r.ID, r.Latitude, r.Longitude, r.Code, r.Material, r.Style, ContractDetailID = 100 }));
         }
     }
 }
