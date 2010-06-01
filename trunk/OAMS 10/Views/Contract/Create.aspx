@@ -43,7 +43,7 @@
             <%: Html.LabelFor(model => model.ContractorID) %>
         </div>
         <div class="editor-field">
-            <%: Html.DropDownListFor(model => model.ContractorID, (IEnumerable<SelectListItem>)ViewData["ContractorList"],"--none--") %>
+            <%: Html.DropDownListFor(model => model.ContractorID, OAMS_10.Models.ContractorRepository.GetAll().ToSelectListItem() , OAMSSetting.messageL.SelectNone)%>
         </div>
         <p>
             <input type="submit" value="Create" />
