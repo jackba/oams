@@ -56,9 +56,17 @@ namespace OAMS_10.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddSiteDetail(int campaignID, int siteDetailID)
+        public JsonResult AddSiteDetail(int campaignID, int contractDetailID)
         {
-            return Json("done");
+            CampaignDetailRepository cdr = new CampaignDetailRepository();
+            CampaignDetail e = cdr.Create(campaignID, contractDetailID);
+            if (e != null)
+            {
+                cdr.Save();
+
+                return Json(e.ID);
+            }
+            else { return Json(0); }
         }
     }
 }

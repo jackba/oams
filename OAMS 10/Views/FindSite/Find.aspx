@@ -31,6 +31,9 @@
                             <td>
                                 Style
                             </td>
+                            <td>
+                                
+                            </td>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,9 +48,7 @@
 
         function addResults(json) {
 
-            var tbl = $('#tblResult tbody');
-            tbl.innerHTML = '';
-            html = [];
+
 
             if (json.length) {
                 for (var i = 0, site; site = json[i]; i++) {
@@ -73,10 +74,14 @@
 
                     bindInfoWindow(marker, map, infoWindow, site.Code);
 
+                    var tbl = $('#tblResult tbody');
+                    tbl.innerHTML = '';
+                    html = [];
 
                     var rSel = document.createElement('tr');
                     tbl.append(rSel);
 
+                    //Code
                     var cSel = document.createElement('td');
                     rSel.appendChild(cSel);
 
@@ -84,21 +89,27 @@
                     aSel.href = 'javascript:void(0);';
                     aSel.innerHTML = site.Code;
                     aSel.onclick = generateTriggerCallback(marker, 'click');
+                    //aSel.onclick = function () { google.maps.event.trigger(marker, 'click'); };
+
                     cSel.appendChild(aSel);
 
+                    //Style
                     var cStyle = document.createElement('td');
                     cStyle.innerHTML = site.Style;
                     rSel.appendChild(cStyle);
 
+                    //Add2Campaign
                     var cAdd2Cam = document.createElement('td');
                     rSel.appendChild(cAdd2Cam);
 
                     var aAdd2Cam = document.createElement('a');
                     aAdd2Cam.href = 'javascript:void(0);';
                     aAdd2Cam.innerHTML = 'Add to Campaign';
+
+                    //aAdd2Cam.onclick = Add2Campaign1();
                     cAdd2Cam.appendChild(aAdd2Cam);
 
-                    aAdd2Cam.onclick = Add2Campaign(aAdd2Cam, $("#CampaignID").val());
+                    aAdd2Cam.onclick = Add2Campaign(aAdd2Cam, $("#CampaignID").val(), site.ContractDetailID);
 
                 }
             }
@@ -203,25 +214,42 @@
             });
         }
 
+        function Add2Campaign(link, campaignID, contractDetailID) {
 
-        function Add2Campaign(link, campaignID, siteDetailID) {
+            var url = '/Campaign/AddSiteDetail?CampaignID=' + campaignID + '&ContractDetailID=' + contractDetailID;
 
-            $.ajax({
-                url: '/Campaign/AddSiteDetail?CampaingID=' + campaignID + '&SiteDetailID=' + siteDetailID, type: "POST", dataType: "json",
-                success: function (data) {
+            return function () {
+                $.ajax({
+                    url: url, type: "POST", dataType: "json",
+                    success: function (data) {
 
-                    alert(data);
-                    //clearMarkers();
+                        //aAdd2Cam.setAttribute('visible', 'invisible');
 
-                    //addResults(data);
+                        link.innerHTML = 'Added';
+                        link.onclick = null;
+                        link.setAttribute('visible', 'invisible');
 
-                    //                    $.map(data, function (item) {
-                    //                        var latlng = new google.maps.LatLng(item.Latitude, item.Longitude);
-                    //                        var marker = new google.maps.Marker({ position: latlng, map: map, title: item.Code });
-                    //                        bindInfoWindow(marker, map, infoWindow, item.Note);
-                    //                    })
-                }
-            })
+                        //link.visible = false;
+
+                        //                        if (data == 0) {
+                        //                            alert('Added.');
+                        //                        }
+                        //                        else { 
+
+                        //                        }
+
+                        //clearMarkers();
+
+                        //addResults(data);
+
+                        //                    $.map(data, function (item) {
+                        //                        var latlng = new google.maps.LatLng(item.Latitude, item.Longitude);
+                        //                        var marker = new google.maps.Marker({ position: latlng, map: map, title: item.Code });
+                        //                        bindInfoWindow(marker, map, infoWindow, item.Note);
+                        //                    })
+                    }
+                });
+            };
         }
 
         function search(e) {

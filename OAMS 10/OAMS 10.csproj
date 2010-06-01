@@ -86,6 +86,7 @@
     <Compile Include="Helper.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BaseRepository.cs" />
+    <Compile Include="Models\CampaignDetailRepository.cs" />
     <Compile Include="Models\CampaignRepository.cs" />
     <Compile Include="Models\ClientRepository.cs" />
     <Compile Include="Models\CodeMasterRepository.cs" />
