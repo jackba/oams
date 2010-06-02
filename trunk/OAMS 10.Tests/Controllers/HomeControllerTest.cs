@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OAMS_10;
-using OAMS_10.Controllers;
+using OAMS;
+using OAMS.Controllers;
 
-namespace OAMS_10.Tests.Controllers
+namespace OAMS.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest

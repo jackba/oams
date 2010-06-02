@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace OAMS_10.Models
+namespace OAMS.Models
 {
     public class ContractDetailRepository : BaseRepository<ContractDetailRepository>
     {

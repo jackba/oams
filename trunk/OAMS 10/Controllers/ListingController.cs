@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using OAMS_10.Models;
+using OAMS.Models;
 
-namespace OAMS_10.Controllers
+namespace OAMS.Controllers
 {
     public class ListingController : Controller
     {

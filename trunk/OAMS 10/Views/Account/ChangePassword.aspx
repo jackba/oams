@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<OAMS_10.Models.ChangePasswordModel>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<OAMS.Models.ChangePasswordModel>" %>
 
 <asp:Content ID="changePasswordTitle" ContentPlaceHolderID="TitleContent" runat="server">
     Change Password

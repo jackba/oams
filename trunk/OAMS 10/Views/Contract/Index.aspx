@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<OAMS_10.Models.Contract>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<OAMS.Models.Contract>>" %>
 
-<%@ Import Namespace="OAMS_10.Models" %>
+<%@ Import Namespace="OAMS.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Index
 </asp:Content>
