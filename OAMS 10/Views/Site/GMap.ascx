@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<OAMS_10.Models.Site>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<OAMS.Models.Site>" %>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <div id="map_canvas" style="width: 500px; height: 500px;">

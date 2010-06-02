@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using OAMS_10.Models;
+using OAMS.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace OAMS_10.Models
+namespace OAMS.Models
 {
     [MetadataType(typeof(ContractNotaion))]
     public partial class Contract

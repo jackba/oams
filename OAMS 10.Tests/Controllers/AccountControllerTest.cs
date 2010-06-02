@@ -5,11 +5,11 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OAMS_10;
-using OAMS_10.Controllers;
-using OAMS_10.Models;
+using OAMS;
+using OAMS.Controllers;
+using OAMS.Models;
 
-namespace OAMS_10.Tests.Controllers
+namespace OAMS.Tests.Controllers
 {
 
     [TestClass]

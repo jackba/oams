@@ -7,9 +7,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using OAMS_10.Models;
+using OAMS.Models;
 
-namespace OAMS_10.Controllers
+namespace OAMS.Controllers
 {
 
     [HandleError]

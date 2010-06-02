@@ -18,20 +18,20 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Geo_Geo", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS_10.Models.Geo), "Geo1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS_10.Models.Geo), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Contract_Contractor", "Contractor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS_10.Models.Contractor), "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS_10.Models.Contract), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Contract", "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS_10.Models.Contract), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS_10.Models.ContractDetail), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Site", "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS_10.Models.Site), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS_10.Models.ContractDetail), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo1", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS_10.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS_10.Models.Site), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo2", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS_10.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS_10.Models.Site), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo3", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS_10.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS_10.Models.Site), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Campaign_Client", "Client", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS_10.Models.Client), "Campaign", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS_10.Models.Campaign), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_CampaignDetail_Campaign", "Campaign", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS_10.Models.Campaign), "CampaignDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS_10.Models.CampaignDetail), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_CampaignDetail_ContractDetail", "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS_10.Models.ContractDetail), "CampaignDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS_10.Models.CampaignDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Geo_Geo", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Geo1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Geo), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Contract_Contractor", "Contractor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contractor), "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Contract), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Contract", "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contract), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Site", "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Site), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo1", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo2", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo3", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Campaign_Client", "Client", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Client), "Campaign", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Campaign), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_CampaignDetail_Campaign", "Campaign", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Campaign), "CampaignDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.CampaignDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_CampaignDetail_ContractDetail", "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.ContractDetail), "CampaignDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.CampaignDetail), true)]
 
 #endregion
 
-namespace OAMS_10.Models
+namespace OAMS.Models
 {
     #region Contexts
     

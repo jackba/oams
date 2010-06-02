@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Linq.Expressions;
 
-namespace OAMS_10.Models
+namespace OAMS.Models
 {
     public class CodeMasterRepository
     {

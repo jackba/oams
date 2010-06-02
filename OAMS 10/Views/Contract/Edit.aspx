@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<OAMS_10.Models.Contract>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<OAMS.Models.Contract>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Edit Contract
@@ -37,7 +37,7 @@
             <%: "Contractor Name" %>
         </div>
         <div class="editor-field">
-            <%: Html.DropDownListFor(model => model.ContractorID, OAMS_10.Models.ContractorRepository.GetAll().ToSelectListItem() , OAMSSetting.messageL.SelectNone)%>
+            <%: Html.DropDownListFor(model => model.ContractorID, OAMS.Models.ContractorRepository.GetAll().ToSelectListItem() , OAMSSetting.messageL.SelectNone)%>
             <%: Html.ValidationMessageFor(model => model.ContractorID) %>
         </div>
         <div>

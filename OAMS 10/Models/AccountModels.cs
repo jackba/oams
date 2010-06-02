@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace OAMS_10.Models
+namespace OAMS.Models
 {
 
     #region Models
