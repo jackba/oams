@@ -29,14 +29,14 @@
             <%: Html.LabelFor(model => model.EffectiveDate) %>
         </div>
         <div class="editor-field">
-            <%: Html.TextBoxFor(model => model.EffectiveDate) %>
+            <%: Html.EditorFor(model => model.EffectiveDate) %>
             <%: Html.ValidationMessageFor(model => model.EffectiveDate) %>
         </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.TermDate) %>
         </div>
         <div class="editor-field">
-            <%: Html.TextBoxFor(model => model.TermDate) %>
+            <%: Html.EditorFor(model => model.TermDate)%>
             <%: Html.ValidationMessageFor(model => model.TermDate) %>
         </div>
         <div class="editor-label">

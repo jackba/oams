@@ -33,7 +33,6 @@ namespace OAMS_10.Controllers
 
         public ActionResult Create()
         {
-
             return View(new Contractor());
         }
 

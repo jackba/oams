@@ -9,11 +9,20 @@
     <% using (Html.BeginForm())
        {%>
     <%: Html.HiddenFor(r => r.CampaignID) %>
+    Material:
     <%: Html.CodeMasterDropDownListFor(r => r.Material) %>
+    Style:
     <%: Html.CodeMasterDropDownListFor(r => r.Style) %>
+    Within
     <%: Html.EditorFor(r => r.Distance) %>
+    km
     <%: Html.HiddenFor(r => r.Lat) %>
     <%: Html.HiddenFor(r => r.Long) %>
+    <br />
+    Available from
+    <%: Html.EditorFor(r => r.From) %>
+    to
+    <%: Html.EditorFor(r => r.To) %>
     <input type="button" onclick="search(this)" value="Find" />
     <table>
         <tr>
@@ -32,7 +41,6 @@
                                 Style
                             </td>
                             <td>
-                                
                             </td>
                         </tr>
                     </thead>
