@@ -34,11 +34,9 @@ namespace OAMS_10.Controllers
 
         public ActionResult Create()
         {
-            ContractorRepository contractorRepo = new ContractorRepository();
-
-            ViewData["ContractorList"] = ContractorRepository.GetAll().ToSelectListItem();
-
-            return View(new Contract());
+            Contract e = new Contract();
+            e.EffectiveDate = DateTime.Now;
+            return View(e);
         }
 
         //
