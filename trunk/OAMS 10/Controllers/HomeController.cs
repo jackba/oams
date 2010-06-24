@@ -11,7 +11,7 @@ namespace OAMS.Controllers
     {
         public ActionResult Index()
         {
-            ViewData["Message"] = "Welcome to ASP.NET MVC!";
+            ViewData["Message"] = "Welcome to Outdoor Advertising Managerment System.";
 
             return View();
         }
