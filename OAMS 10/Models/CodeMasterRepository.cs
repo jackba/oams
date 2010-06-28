@@ -17,11 +17,18 @@ namespace OAMS.Models
             string type = PropertyName.GetMemberName(expression);
             return db.CodeMasters.Where(r => r.Type == type);
         }
+
+        public static IQueryable<CodeMaster> Get(string type)
+        {
+            OAMSEntities db = new OAMSEntities();
+
+            return db.CodeMasters.Where(r => r.Type == type);
+        }
     }
 
     public class CodeMasterType
     {
-        public string Style { get; set; }
+        public string Style = "Style";
         public string Material { get; set; }
         public string CBDViewed { get; set; }
         public string Grade { get; set; }

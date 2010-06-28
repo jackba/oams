@@ -48,25 +48,13 @@
                 Grade
             </th>
             <th>
-                RoadType
-            </th>
-            <th>
-                TrafficSpeed
-            </th>
-            <th>
-                Illumination
-            </th>
-            <th>
                 DistanceFromRoadside
             </th>
             <th>
                 AboveStreet
             </th>
             <th>
-                DurationOfView
-            </th>
-            <th>
-                AngleOfVision
+                ViewingDistance
             </th>
             <th>
                 VisualClutter
@@ -175,25 +163,13 @@
                 <%: item.Grade %>
             </td>
             <td>
-                <%: item.RoadType %>
-            </td>
-            <td>
-                <%: item.TrafficSpeed %>
-            </td>
-            <td>
-                <%: item.Illumination %>
-            </td>
-            <td>
                 <%: item.DistanceFromRoadside %>
             </td>
             <td>
                 <%: item.AboveStreet %>
             </td>
             <td>
-                <%: item.DurationOfView %>
-            </td>
-            <td>
-                <%: item.AngleOfVision %>
+                <%: item.ViewingDistance %>
             </td>
             <td>
                 <%: item.VisualClutter %>

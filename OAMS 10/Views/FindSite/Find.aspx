@@ -9,43 +9,114 @@
     <% using (Html.BeginForm())
        {%>
     <%: Html.HiddenFor(r => r.CampaignID) %>
-    Material:
-    <%: Html.CodeMasterDropDownListFor(r => r.Material) %>
-    Style:
-    <%: Html.CodeMasterDropDownListFor(r => r.Style) %>
-    Within
-    <%: Html.EditorFor(r => r.Distance) %>
-    km
-    <%: Html.HiddenFor(r => r.Lat) %>
-    <%: Html.HiddenFor(r => r.Long) %>
-    <br />
-    Available from
-    <%: Html.EditorFor(r => r.From) %>
-    to
-    <%: Html.EditorFor(r => r.To) %>
-    <input type="button" onclick="search(this)" value="Find" />
     <table>
         <tr>
             <td>
-                <div id="map" style="width: 500px; height: 500px;">
-                </div>
+                Style List:
+                <br />
+                <%
+                    foreach (var category in OAMS.Models.CodeMasterRepository.Get((new OAMS.Models.CodeMasterType()).Style))
+                    {
+                %>
+                <input type="checkbox" name="StyleList" value="<%= category.Code %>" />
+                <%: category.Note %>
+                <br />
+                <%
+                    }
+                %>
+                <br />
+                <%: Html.LabelFor(r => r.Material) %>
+                <br />
+                <%: Html.CodeMasterDropDownListFor(r => r.Material) %>
+                <br />
+                <%: Html.LabelFor(r => r.RoadType1) %>
+                <br />
+                <%: Html.CodeMasterDropDownListFor(r => r.RoadType2) %>
+                <br />
+                <%: Html.LabelFor(r => r.InstallationPosition1) %>
+                <br />
+                <%: Html.CodeMasterDropDownListFor(r => r.InstallationPosition2) %>
+                <br />
+                <%: Html.LabelFor(r => r.ViewingDistance) %>
+                <br />
+                <%: Html.CodeMasterDropDownListFor(r => r.ViewingDistance) %>
+                <br />
+                <%: Html.LabelFor(r => r.VisibilityBuilding) %>
+                <br />
+                <%: Html.CodeMasterDropDownListFor(r => r.VisibilityBuilding) %>
+                <br />
+                <%: Html.LabelFor(r => r.VisibilityTrees) %>
+                <br />
+                <%: Html.CodeMasterDropDownListFor(r => r.VisibilityTrees) %>
+                <br />
+                <%: Html.LabelFor(r => r.VisibilityBridgeWalkway) %>
+                <br />
+                <%: Html.CodeMasterDropDownListFor(r => r.VisibilityBridgeWalkway) %>
+                <br />
+                <%: Html.LabelFor(r => r.VisibilityElectricityPolesOther) %>
+                <br />
+                <%: Html.CodeMasterDropDownListFor(r => r.VisibilityElectricityPolesOther) %>
+                <br />
+                <%: Html.LabelFor(r => r.ViewingSpeed) %>
+                <br />
+                <%: Html.CodeMasterDropDownListFor(r => r.ViewingSpeed)%>
+                <br />
+                <%: Html.LabelFor(r => r.AboveStreet) %>
+                <br />
+                <%: Html.CodeMasterDropDownListFor(r => r.AboveStreet)%>
+                <br />
+                <%: Html.LabelFor(model => model.DirectionalTrafficPublicTransport) %>
+                <br />
+                <%: Html.CodeMasterDropDownListFor(model => model.DirectionalTrafficPublicTransport)%>
+                <br />
+                <%: Html.LabelFor(model => model.ShopSignsBillboards) %>
+                <br />
+                <%: Html.CodeMasterDropDownListFor(model => model.ShopSignsBillboards)%>
+                <br />
+                <%: Html.LabelFor(model => model.FlagsTemporaryBannersPromotionalItems) %>
+                <br />
+                <%: Html.CodeMasterDropDownListFor(model => model.FlagsTemporaryBannersPromotionalItems)%>
+                <br />
+                <%: Html.LabelFor(model => model.CompetitiveProductSigns) %>
+                <br />
+                <%: Html.CodeMasterDropDownListFor(model => model.CompetitiveProductSigns)%>
+                <br />
+                Within
+                <%: Html.EditorFor(r => r.Distance) %>
+                km
+                <%: Html.HiddenFor(r => r.Lat) %>
+                <%: Html.HiddenFor(r => r.Long) %>
+                <br />
             </td>
-            <td style="vertical-align: top;">
-                <table id="tblResult">
-                    <thead>
-                        <tr>
-                            <td>
-                                Code
-                            </td>
-                            <td>
-                                Style
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
+            <td valign="top">
+                <input type="button" onclick="search(this)" value="Find" />
+                <table>
+                    <tr>
+                        <td>
+                            <div id="map" style="width: 500px; height: 500px;">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top;">
+                            <table id="tblResult">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            Code
+                                        </td>
+                                        <td>
+                                            Style
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
                 </table>
             </td>
         </tr>

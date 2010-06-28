@@ -17,13 +17,17 @@ namespace OAMS.Models
         public Site Get(int id)
         {
             return db.Sites.Where(r => r.ID == id).SingleOrDefault();
+
         }
 
-        public Site Add(Site e, int contractID)
+        public Site Add(Site e, int? contractID)
         {
             db.Sites.AddObject(e);
 
-            new ContractDetail() { Site = e, ContractID = contractID };
+            if (contractID != null && contractID == 0)
+            {
+                new ContractDetail() { Site = e, ContractID = contractID };
+            }
 
             return e;
         }

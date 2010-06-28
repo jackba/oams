@@ -36,11 +36,39 @@ namespace OAMS.Controllers
         [HttpPost]
         public JsonResult FindJson(FindSite e)
         {
-            List<Site> l = SiteRepository.Repo.GetAll().Where(r => r.Style == e.Style).ToList()
-                .Where(r => Helper.DistanceBetweenPoints(r.Latitude,r.Longitude,e.Lat,e.Long) <= e.Distance)
+            List<Site> l = SiteRepository.Repo.GetAll().ToList()
+                .Where(r => e.StyleList.Contains(r.Style)
+                && (string.IsNullOrEmpty(e.Material) || r.Material == e.Material)
+                && (string.IsNullOrEmpty(e.RoadType1) || r.RoadType1 == e.RoadType1.ToInt())
+                && (string.IsNullOrEmpty(e.RoadType2) || r.RoadType2 == e.RoadType2.ToInt())
+                && (string.IsNullOrEmpty(e.InstallationPosition1) || r.InstallationPosition1 == e.InstallationPosition1.ToInt())
+                && (string.IsNullOrEmpty(e.InstallationPosition2) || r.InstallationPosition2 == e.InstallationPosition2.ToInt())
+                && (string.IsNullOrEmpty(e.ViewingDistance) || r.ViewingDistance == e.ViewingDistance.ToInt())
+                && (string.IsNullOrEmpty(e.VisibilityBuilding) || r.VisibilityBuilding == e.VisibilityBuilding.ToInt())
+
+                && (string.IsNullOrEmpty(e.VisibilityBuilding) || r.VisibilityBuilding == e.VisibilityBuilding.ToInt())
+                && (string.IsNullOrEmpty(e.VisibilityTrees) || r.VisibilityTrees == e.VisibilityTrees.ToInt())
+                && (string.IsNullOrEmpty(e.VisibilityBridgeWalkway) || r.VisibilityBridgeWalkway == e.VisibilityBridgeWalkway.ToInt())
+                && (string.IsNullOrEmpty(e.VisibilityElectricityPolesOther) || r.VisibilityElectricityPolesOther == e.VisibilityElectricityPolesOther.ToInt())
+                && (string.IsNullOrEmpty(e.ViewingSpeed) || r.ViewingSpeed == e.ViewingSpeed.ToInt())
+
+                && (string.IsNullOrEmpty(e.AboveStreet) || r.AboveStreet == e.AboveStreet.ToInt())
+                && (string.IsNullOrEmpty(e.DirectionalTrafficPublicTransport) || r.DirectionalTrafficPublicTransport == e.DirectionalTrafficPublicTransport.ToInt())
+                && (string.IsNullOrEmpty(e.ShopSignsBillboards) || r.ShopSignsBillboards == e.ShopSignsBillboards.ToInt())
+                && (string.IsNullOrEmpty(e.FlagsTemporaryBannersPromotionalItems) || r.FlagsTemporaryBannersPromotionalItems == e.FlagsTemporaryBannersPromotionalItems.ToInt())
+                && (string.IsNullOrEmpty(e.CompetitiveProductSigns) || r.CompetitiveProductSigns == e.CompetitiveProductSigns.ToInt())
+
+
+
+
+
+
+
+                ).ToList()
+                .Where(r => Helper.DistanceBetweenPoints(r.Latitude, r.Longitude, e.Lat, e.Long) <= e.Distance)
                 .ToList();
 
-            
+
             return Json(l.Select(r => new { r.ID, r.Latitude, r.Longitude, r.Code, r.Material, r.Style, ContractDetailID = r.ContractDetails.LastOrDefault().ID }));
             //return Json(e.Results.Select(r => new { r.ID, r.Latitude, r.Longitude, r.Code, r.Material, r.Style, ContractDetailID = 100 }));
         }

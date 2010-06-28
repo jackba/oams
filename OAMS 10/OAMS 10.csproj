@@ -116,6 +116,9 @@
     <Content Include="App_Data\OAMS_log.ldf">
       <DependentUpon>OAMS.MDF</DependentUpon>
     </Content>
+    <Content Include="Content\Image\bg1.png" />
+    <Content Include="Content\Image\bg2.png" />
+    <Content Include="Content\Image\logo.png" />
     <Content Include="Content\Image\resize-off.png" />
     <Content Include="Content\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
