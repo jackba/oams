@@ -2415,78 +2415,6 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String RoadType
-        {
-            get
-            {
-                return _RoadType;
-            }
-            set
-            {
-                OnRoadTypeChanging(value);
-                ReportPropertyChanging("RoadType");
-                _RoadType = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("RoadType");
-                OnRoadTypeChanged();
-            }
-        }
-        private global::System.String _RoadType;
-        partial void OnRoadTypeChanging(global::System.String value);
-        partial void OnRoadTypeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String TrafficSpeed
-        {
-            get
-            {
-                return _TrafficSpeed;
-            }
-            set
-            {
-                OnTrafficSpeedChanging(value);
-                ReportPropertyChanging("TrafficSpeed");
-                _TrafficSpeed = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("TrafficSpeed");
-                OnTrafficSpeedChanged();
-            }
-        }
-        private global::System.String _TrafficSpeed;
-        partial void OnTrafficSpeedChanging(global::System.String value);
-        partial void OnTrafficSpeedChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> Illumination
-        {
-            get
-            {
-                return _Illumination;
-            }
-            set
-            {
-                OnIlluminationChanging(value);
-                ReportPropertyChanging("Illumination");
-                _Illumination = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Illumination");
-                OnIlluminationChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _Illumination;
-        partial void OnIlluminationChanging(Nullable<global::System.Int32> value);
-        partial void OnIlluminationChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Int32> DistanceFromRoadside
         {
             get
@@ -2529,54 +2457,6 @@ namespace OAMS.Models
         private Nullable<global::System.Int32> _AboveStreet;
         partial void OnAboveStreetChanging(Nullable<global::System.Int32> value);
         partial void OnAboveStreetChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> DurationOfView
-        {
-            get
-            {
-                return _DurationOfView;
-            }
-            set
-            {
-                OnDurationOfViewChanging(value);
-                ReportPropertyChanging("DurationOfView");
-                _DurationOfView = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("DurationOfView");
-                OnDurationOfViewChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _DurationOfView;
-        partial void OnDurationOfViewChanging(Nullable<global::System.Int32> value);
-        partial void OnDurationOfViewChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> AngleOfVision
-        {
-            get
-            {
-                return _AngleOfVision;
-            }
-            set
-            {
-                OnAngleOfVisionChanging(value);
-                ReportPropertyChanging("AngleOfVision");
-                _AngleOfVision = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("AngleOfVision");
-                OnAngleOfVisionChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _AngleOfVision;
-        partial void OnAngleOfVisionChanging(Nullable<global::System.Int32> value);
-        partial void OnAngleOfVisionChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3057,6 +2937,486 @@ namespace OAMS.Models
         private Nullable<global::System.Boolean> _StreetLight;
         partial void OnStreetLightChanging(Nullable<global::System.Boolean> value);
         partial void OnStreetLightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Direction
+        {
+            get
+            {
+                return _Direction;
+            }
+            set
+            {
+                OnDirectionChanging(value);
+                ReportPropertyChanging("Direction");
+                _Direction = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Direction");
+                OnDirectionChanged();
+            }
+        }
+        private global::System.String _Direction;
+        partial void OnDirectionChanging(global::System.String value);
+        partial void OnDirectionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Frontlit
+        {
+            get
+            {
+                return _Frontlit;
+            }
+            set
+            {
+                OnFrontlitChanging(value);
+                ReportPropertyChanging("Frontlit");
+                _Frontlit = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Frontlit");
+                OnFrontlitChanged();
+            }
+        }
+        private global::System.String _Frontlit;
+        partial void OnFrontlitChanging(global::System.String value);
+        partial void OnFrontlitChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Backlit
+        {
+            get
+            {
+                return _Backlit;
+            }
+            set
+            {
+                OnBacklitChanging(value);
+                ReportPropertyChanging("Backlit");
+                _Backlit = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Backlit");
+                OnBacklitChanged();
+            }
+        }
+        private global::System.String _Backlit;
+        partial void OnBacklitChanging(global::System.String value);
+        partial void OnBacklitChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> FrontlitNumerOfLamps
+        {
+            get
+            {
+                return _FrontlitNumerOfLamps;
+            }
+            set
+            {
+                OnFrontlitNumerOfLampsChanging(value);
+                ReportPropertyChanging("FrontlitNumerOfLamps");
+                _FrontlitNumerOfLamps = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FrontlitNumerOfLamps");
+                OnFrontlitNumerOfLampsChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _FrontlitNumerOfLamps;
+        partial void OnFrontlitNumerOfLampsChanging(Nullable<global::System.Int32> value);
+        partial void OnFrontlitNumerOfLampsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> RoadType1
+        {
+            get
+            {
+                return _RoadType1;
+            }
+            set
+            {
+                OnRoadType1Changing(value);
+                ReportPropertyChanging("RoadType1");
+                _RoadType1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RoadType1");
+                OnRoadType1Changed();
+            }
+        }
+        private Nullable<global::System.Int32> _RoadType1;
+        partial void OnRoadType1Changing(Nullable<global::System.Int32> value);
+        partial void OnRoadType1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> RoadType2
+        {
+            get
+            {
+                return _RoadType2;
+            }
+            set
+            {
+                OnRoadType2Changing(value);
+                ReportPropertyChanging("RoadType2");
+                _RoadType2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RoadType2");
+                OnRoadType2Changed();
+            }
+        }
+        private Nullable<global::System.Int32> _RoadType2;
+        partial void OnRoadType2Changing(Nullable<global::System.Int32> value);
+        partial void OnRoadType2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> RoadTypePoint
+        {
+            get
+            {
+                return _RoadTypePoint;
+            }
+            set
+            {
+                OnRoadTypePointChanging(value);
+                ReportPropertyChanging("RoadTypePoint");
+                _RoadTypePoint = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RoadTypePoint");
+                OnRoadTypePointChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _RoadTypePoint;
+        partial void OnRoadTypePointChanging(Nullable<global::System.Int32> value);
+        partial void OnRoadTypePointChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> InstallationPosition1
+        {
+            get
+            {
+                return _InstallationPosition1;
+            }
+            set
+            {
+                OnInstallationPosition1Changing(value);
+                ReportPropertyChanging("InstallationPosition1");
+                _InstallationPosition1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("InstallationPosition1");
+                OnInstallationPosition1Changed();
+            }
+        }
+        private Nullable<global::System.Int32> _InstallationPosition1;
+        partial void OnInstallationPosition1Changing(Nullable<global::System.Int32> value);
+        partial void OnInstallationPosition1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> InstallationPosition2
+        {
+            get
+            {
+                return _InstallationPosition2;
+            }
+            set
+            {
+                OnInstallationPosition2Changing(value);
+                ReportPropertyChanging("InstallationPosition2");
+                _InstallationPosition2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("InstallationPosition2");
+                OnInstallationPosition2Changed();
+            }
+        }
+        private Nullable<global::System.Int32> _InstallationPosition2;
+        partial void OnInstallationPosition2Changing(Nullable<global::System.Int32> value);
+        partial void OnInstallationPosition2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> InstallationPositionPoint
+        {
+            get
+            {
+                return _InstallationPositionPoint;
+            }
+            set
+            {
+                OnInstallationPositionPointChanging(value);
+                ReportPropertyChanging("InstallationPositionPoint");
+                _InstallationPositionPoint = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("InstallationPositionPoint");
+                OnInstallationPositionPointChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _InstallationPositionPoint;
+        partial void OnInstallationPositionPointChanging(Nullable<global::System.Int32> value);
+        partial void OnInstallationPositionPointChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ViewingDistance
+        {
+            get
+            {
+                return _ViewingDistance;
+            }
+            set
+            {
+                OnViewingDistanceChanging(value);
+                ReportPropertyChanging("ViewingDistance");
+                _ViewingDistance = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ViewingDistance");
+                OnViewingDistanceChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ViewingDistance;
+        partial void OnViewingDistanceChanging(Nullable<global::System.Int32> value);
+        partial void OnViewingDistanceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> VisibilityBuilding
+        {
+            get
+            {
+                return _VisibilityBuilding;
+            }
+            set
+            {
+                OnVisibilityBuildingChanging(value);
+                ReportPropertyChanging("VisibilityBuilding");
+                _VisibilityBuilding = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VisibilityBuilding");
+                OnVisibilityBuildingChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _VisibilityBuilding;
+        partial void OnVisibilityBuildingChanging(Nullable<global::System.Int32> value);
+        partial void OnVisibilityBuildingChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> VisibilityTrees
+        {
+            get
+            {
+                return _VisibilityTrees;
+            }
+            set
+            {
+                OnVisibilityTreesChanging(value);
+                ReportPropertyChanging("VisibilityTrees");
+                _VisibilityTrees = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VisibilityTrees");
+                OnVisibilityTreesChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _VisibilityTrees;
+        partial void OnVisibilityTreesChanging(Nullable<global::System.Int32> value);
+        partial void OnVisibilityTreesChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> VisibilityBridgeWalkway
+        {
+            get
+            {
+                return _VisibilityBridgeWalkway;
+            }
+            set
+            {
+                OnVisibilityBridgeWalkwayChanging(value);
+                ReportPropertyChanging("VisibilityBridgeWalkway");
+                _VisibilityBridgeWalkway = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VisibilityBridgeWalkway");
+                OnVisibilityBridgeWalkwayChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _VisibilityBridgeWalkway;
+        partial void OnVisibilityBridgeWalkwayChanging(Nullable<global::System.Int32> value);
+        partial void OnVisibilityBridgeWalkwayChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> VisibilityElectricityPolesOther
+        {
+            get
+            {
+                return _VisibilityElectricityPolesOther;
+            }
+            set
+            {
+                OnVisibilityElectricityPolesOtherChanging(value);
+                ReportPropertyChanging("VisibilityElectricityPolesOther");
+                _VisibilityElectricityPolesOther = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VisibilityElectricityPolesOther");
+                OnVisibilityElectricityPolesOtherChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _VisibilityElectricityPolesOther;
+        partial void OnVisibilityElectricityPolesOtherChanging(Nullable<global::System.Int32> value);
+        partial void OnVisibilityElectricityPolesOtherChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ViewingSpeed
+        {
+            get
+            {
+                return _ViewingSpeed;
+            }
+            set
+            {
+                OnViewingSpeedChanging(value);
+                ReportPropertyChanging("ViewingSpeed");
+                _ViewingSpeed = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ViewingSpeed");
+                OnViewingSpeedChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ViewingSpeed;
+        partial void OnViewingSpeedChanging(Nullable<global::System.Int32> value);
+        partial void OnViewingSpeedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DirectionalTrafficPublicTransport
+        {
+            get
+            {
+                return _DirectionalTrafficPublicTransport;
+            }
+            set
+            {
+                OnDirectionalTrafficPublicTransportChanging(value);
+                ReportPropertyChanging("DirectionalTrafficPublicTransport");
+                _DirectionalTrafficPublicTransport = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DirectionalTrafficPublicTransport");
+                OnDirectionalTrafficPublicTransportChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DirectionalTrafficPublicTransport;
+        partial void OnDirectionalTrafficPublicTransportChanging(Nullable<global::System.Int32> value);
+        partial void OnDirectionalTrafficPublicTransportChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ShopSignsBillboards
+        {
+            get
+            {
+                return _ShopSignsBillboards;
+            }
+            set
+            {
+                OnShopSignsBillboardsChanging(value);
+                ReportPropertyChanging("ShopSignsBillboards");
+                _ShopSignsBillboards = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ShopSignsBillboards");
+                OnShopSignsBillboardsChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ShopSignsBillboards;
+        partial void OnShopSignsBillboardsChanging(Nullable<global::System.Int32> value);
+        partial void OnShopSignsBillboardsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> FlagsTemporaryBannersPromotionalItems
+        {
+            get
+            {
+                return _FlagsTemporaryBannersPromotionalItems;
+            }
+            set
+            {
+                OnFlagsTemporaryBannersPromotionalItemsChanging(value);
+                ReportPropertyChanging("FlagsTemporaryBannersPromotionalItems");
+                _FlagsTemporaryBannersPromotionalItems = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FlagsTemporaryBannersPromotionalItems");
+                OnFlagsTemporaryBannersPromotionalItemsChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _FlagsTemporaryBannersPromotionalItems;
+        partial void OnFlagsTemporaryBannersPromotionalItemsChanging(Nullable<global::System.Int32> value);
+        partial void OnFlagsTemporaryBannersPromotionalItemsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CompetitiveProductSigns
+        {
+            get
+            {
+                return _CompetitiveProductSigns;
+            }
+            set
+            {
+                OnCompetitiveProductSignsChanging(value);
+                ReportPropertyChanging("CompetitiveProductSigns");
+                _CompetitiveProductSigns = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CompetitiveProductSigns");
+                OnCompetitiveProductSignsChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CompetitiveProductSigns;
+        partial void OnCompetitiveProductSignsChanging(Nullable<global::System.Int32> value);
+        partial void OnCompetitiveProductSignsChanged();
 
         #endregion
     

@@ -30,7 +30,7 @@ namespace OAMS.Controllers
         //
         // GET: /Site/Create
 
-        public ActionResult Create(int contractID)
+        public ActionResult Create(int? contractID)
         {
             return View(new Site());
         }
@@ -39,14 +39,13 @@ namespace OAMS.Controllers
         // POST: /Site/Create
 
         [HttpPost]
-        public ActionResult Create(int contractID, FormCollection collection)
+        public ActionResult Create(int? contractID, FormCollection collection)
         {
             var v = new Site();
 
             UpdateModel(v);
 
             repo.Add(v, contractID);
-
             repo.Save();
 
             return RedirectToAction("Index");

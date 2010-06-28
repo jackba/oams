@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
         Create</h2>
-        <% Html.EnableClientValidation(); %>
+    <% Html.EnableClientValidation(); %>
     <% using (Html.BeginForm())
        {%>
     <%: Html.ValidationSummary(true) %>
@@ -56,6 +56,13 @@
             <%: Html.ValidationMessageFor(model => model.Width) %>
         </div>
         <div class="editor-label">
+            <%: Html.LabelFor(model => model.Direction) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(r => r.Direction) %>
+            <%: Html.ValidationMessageFor(model => model.Direction)%>
+        </div>
+        <div class="editor-label">
             <%: Html.LabelFor(model => model.Grade) %>
         </div>
         <div class="editor-field">
@@ -63,25 +70,46 @@
             <%: Html.ValidationMessageFor(model => model.Grade) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.RoadType) %>
+            <%: Html.LabelFor(model => model.RoadType1) %>
         </div>
         <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(model => model.RoadType) %>
-            <%: Html.ValidationMessageFor(model => model.RoadType) %>
+            <%: Html.CodeMasterDropDownListFor(model => model.RoadType1) %>
+            <%: Html.ValidationMessageFor(model => model.RoadType1) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.TrafficSpeed) %>
+            <%: Html.LabelFor(model => model.RoadType2) %>
         </div>
         <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(model => model.TrafficSpeed) %>
-            <%: Html.ValidationMessageFor(model => model.TrafficSpeed) %>
+            <%: Html.CodeMasterDropDownListFor(model => model.RoadType2) %>
+            <%: Html.ValidationMessageFor(model => model.RoadType2) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Illumination) %>
+            <%: Html.LabelFor(model => model.ViewingSpeed) %>
         </div>
         <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(model => model.Illumination) %>
-            <%: Html.ValidationMessageFor(model => model.Illumination) %>
+            <%: Html.CodeMasterDropDownListFor(model => model.ViewingSpeed)%>
+            <%: Html.ValidationMessageFor(model => model.ViewingSpeed)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Frontlit) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(model => model.Frontlit)%>
+            <%: Html.ValidationMessageFor(model => model.Frontlit)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.FrontlitNumerOfLamps) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.EditorFor(model => model.FrontlitNumerOfLamps)%>
+            <%: Html.ValidationMessageFor(model => model.FrontlitNumerOfLamps)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Backlit) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(model => model.Backlit)%>
+            <%: Html.ValidationMessageFor(model => model.Backlit)%>
         </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.DistanceFromRoadside) %>
@@ -98,18 +126,53 @@
             <%: Html.ValidationMessageFor(model => model.AboveStreet) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.DurationOfView) %>
+            <%: Html.LabelFor(model => model.ViewingDistance) %>
         </div>
         <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(model => model.DurationOfView) %>
-            <%: Html.ValidationMessageFor(model => model.DurationOfView) %>
+            <%: Html.CodeMasterDropDownListFor(model => model.ViewingDistance)%>
+            <%: Html.ValidationMessageFor(model => model.ViewingDistance)%>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.AngleOfVision) %>
+            <%: Html.LabelFor(model => model.InstallationPosition1) %>
         </div>
         <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(model => model.AngleOfVision) %>
-            <%: Html.ValidationMessageFor(model => model.AngleOfVision) %>
+            <%: Html.CodeMasterDropDownListFor(model => model.InstallationPosition1)%>
+            <%: Html.ValidationMessageFor(model => model.InstallationPosition1)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.InstallationPosition2) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(model => model.InstallationPosition2)%>
+            <%: Html.ValidationMessageFor(model => model.InstallationPosition2)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.VisibilityBuilding) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(model => model.VisibilityBuilding)%>
+            <%: Html.ValidationMessageFor(model => model.VisibilityBuilding)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.VisibilityTrees) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(model => model.VisibilityTrees)%>
+            <%: Html.ValidationMessageFor(model => model.VisibilityTrees)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.VisibilityBridgeWalkway) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(model => model.VisibilityBridgeWalkway)%>
+            <%: Html.ValidationMessageFor(model => model.VisibilityBridgeWalkway)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.VisibilityElectricityPolesOther) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(model => model.VisibilityElectricityPolesOther)%>
+            <%: Html.ValidationMessageFor(model => model.VisibilityElectricityPolesOther)%>
         </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.VisualClutter) %>
@@ -117,6 +180,34 @@
         <div class="editor-field">
             <%: Html.CodeMasterDropDownListFor(model => model.VisualClutter) %>
             <%: Html.ValidationMessageFor(model => model.VisualClutter) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.DirectionalTrafficPublicTransport) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(model => model.DirectionalTrafficPublicTransport)%>
+            <%: Html.ValidationMessageFor(model => model.DirectionalTrafficPublicTransport)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.ShopSignsBillboards) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(model => model.ShopSignsBillboards)%>
+            <%: Html.ValidationMessageFor(model => model.ShopSignsBillboards)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.FlagsTemporaryBannersPromotionalItems) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(model => model.FlagsTemporaryBannersPromotionalItems)%>
+            <%: Html.ValidationMessageFor(model => model.FlagsTemporaryBannersPromotionalItems)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.CompetitiveProductSigns) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(model => model.CompetitiveProductSigns)%>
+            <%: Html.ValidationMessageFor(model => model.CompetitiveProductSigns)%>
         </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.CloseToAirport) %>

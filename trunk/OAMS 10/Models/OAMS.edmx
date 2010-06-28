@@ -156,13 +156,8 @@
           <Property Name="Width" Type="decimal" Scale="2" />
           <Property Name="Size" Type="decimal" Precision="37" Scale="4" StoreGeneratedPattern="Computed" />
           <Property Name="Grade" Type="nvarchar(max)" />
-          <Property Name="RoadType" Type="nvarchar(max)" />
-          <Property Name="TrafficSpeed" Type="nvarchar(max)" />
-          <Property Name="Illumination" Type="int" />
           <Property Name="DistanceFromRoadside" Type="int" />
           <Property Name="AboveStreet" Type="int" />
-          <Property Name="DurationOfView" Type="int" />
-          <Property Name="AngleOfVision" Type="int" />
           <Property Name="VisualClutter" Type="int" />
           <Property Name="CloseToAirport" Type="bit" />
           <Property Name="CloseToFactory" Type="bit" />
@@ -183,6 +178,26 @@
           <Property Name="Longitude" Type="float" />
           <Property Name="Latitude" Type="float" />
           <Property Name="StreetLight" Type="bit" />
+          <Property Name="Direction" Type="nvarchar(max)" />
+          <Property Name="Frontlit" Type="nvarchar(max)" />
+          <Property Name="Backlit" Type="nvarchar(max)" />
+          <Property Name="FrontlitNumerOfLamps" Type="int" />
+          <Property Name="RoadType1" Type="int" />
+          <Property Name="RoadType2" Type="int" />
+          <Property Name="RoadTypePoint" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="InstallationPosition1" Type="int" />
+          <Property Name="InstallationPosition2" Type="int" />
+          <Property Name="InstallationPositionPoint" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="ViewingDistance" Type="int" />
+          <Property Name="VisibilityBuilding" Type="int" />
+          <Property Name="VisibilityTrees" Type="int" />
+          <Property Name="VisibilityBridgeWalkway" Type="int" />
+          <Property Name="VisibilityElectricityPolesOther" Type="int" />
+          <Property Name="ViewingSpeed" Type="int" />
+          <Property Name="DirectionalTrafficPublicTransport" Type="int" />
+          <Property Name="ShopSignsBillboards" Type="int" />
+          <Property Name="FlagsTemporaryBannersPromotionalItems" Type="int" />
+          <Property Name="CompetitiveProductSigns" Type="int" />
         </EntityType>
         <Association Name="FK_Campaign_Client">
           <End Role="Client" Type="OAMSModel.Store.Client" Multiplicity="0..1" />
@@ -460,13 +475,8 @@
           <Property Type="Decimal" Name="Width" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="Size" Precision="37" Scale="4" annotation:StoreGeneratedPattern="Computed" />
           <Property Type="String" Name="Grade" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="RoadType" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="TrafficSpeed" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Illumination" />
           <Property Type="Int32" Name="DistanceFromRoadside" />
           <Property Type="Int32" Name="AboveStreet" />
-          <Property Type="Int32" Name="DurationOfView" />
-          <Property Type="Int32" Name="AngleOfVision" />
           <Property Type="Int32" Name="VisualClutter" />
           <Property Type="Boolean" Name="CloseToAirport" />
           <Property Type="Boolean" Name="CloseToFactory" />
@@ -491,6 +501,26 @@
           <NavigationProperty Name="Geo1" Relationship="OAMSModel.FK_Site_Geo1" FromRole="Site" ToRole="Geo" />
           <NavigationProperty Name="Geo2" Relationship="OAMSModel.FK_Site_Geo2" FromRole="Site" ToRole="Geo" />
           <NavigationProperty Name="Geo3" Relationship="OAMSModel.FK_Site_Geo3" FromRole="Site" ToRole="Geo" />
+          <Property Type="String" Name="Direction" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Frontlit" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Backlit" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="FrontlitNumerOfLamps" />
+          <Property Type="Int32" Name="RoadType1" />
+          <Property Type="Int32" Name="RoadType2" />
+          <Property Type="Int32" Name="RoadTypePoint" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Int32" Name="InstallationPosition1" />
+          <Property Type="Int32" Name="InstallationPosition2" />
+          <Property Type="Int32" Name="InstallationPositionPoint" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Int32" Name="ViewingDistance" />
+          <Property Type="Int32" Name="VisibilityBuilding" />
+          <Property Type="Int32" Name="VisibilityTrees" />
+          <Property Type="Int32" Name="VisibilityBridgeWalkway" />
+          <Property Type="Int32" Name="VisibilityElectricityPolesOther" />
+          <Property Type="Int32" Name="ViewingSpeed" />
+          <Property Type="Int32" Name="DirectionalTrafficPublicTransport" />
+          <Property Type="Int32" Name="ShopSignsBillboards" />
+          <Property Type="Int32" Name="FlagsTemporaryBannersPromotionalItems" />
+          <Property Type="Int32" Name="CompetitiveProductSigns" />
         </EntityType>
         <Association Name="FK_ContractDetail_Contract">
           <End Type="OAMSModel.Contract" Role="Contract" Multiplicity="0..1" />
@@ -691,6 +721,26 @@
           <EntitySetMapping Name="Sites">
             <EntityTypeMapping TypeName="OAMSModel.Site">
               <MappingFragment StoreEntitySet="Site">
+                <ScalarProperty Name="CompetitiveProductSigns" ColumnName="CompetitiveProductSigns" />
+                <ScalarProperty Name="FlagsTemporaryBannersPromotionalItems" ColumnName="FlagsTemporaryBannersPromotionalItems" />
+                <ScalarProperty Name="ShopSignsBillboards" ColumnName="ShopSignsBillboards" />
+                <ScalarProperty Name="DirectionalTrafficPublicTransport" ColumnName="DirectionalTrafficPublicTransport" />
+                <ScalarProperty Name="ViewingSpeed" ColumnName="ViewingSpeed" />
+                <ScalarProperty Name="VisibilityElectricityPolesOther" ColumnName="VisibilityElectricityPolesOther" />
+                <ScalarProperty Name="VisibilityBridgeWalkway" ColumnName="VisibilityBridgeWalkway" />
+                <ScalarProperty Name="VisibilityTrees" ColumnName="VisibilityTrees" />
+                <ScalarProperty Name="VisibilityBuilding" ColumnName="VisibilityBuilding" />
+                <ScalarProperty Name="ViewingDistance" ColumnName="ViewingDistance" />
+                <ScalarProperty Name="InstallationPositionPoint" ColumnName="InstallationPositionPoint" />
+                <ScalarProperty Name="InstallationPosition2" ColumnName="InstallationPosition2" />
+                <ScalarProperty Name="InstallationPosition1" ColumnName="InstallationPosition1" />
+                <ScalarProperty Name="RoadTypePoint" ColumnName="RoadTypePoint" />
+                <ScalarProperty Name="RoadType2" ColumnName="RoadType2" />
+                <ScalarProperty Name="RoadType1" ColumnName="RoadType1" />
+                <ScalarProperty Name="FrontlitNumerOfLamps" ColumnName="FrontlitNumerOfLamps" />
+                <ScalarProperty Name="Backlit" ColumnName="Backlit" />
+                <ScalarProperty Name="Frontlit" ColumnName="Frontlit" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
                 <ScalarProperty Name="StreetLight" ColumnName="StreetLight" />
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />
@@ -711,13 +761,8 @@
                 <ScalarProperty Name="CloseToFactory" ColumnName="CloseToFactory" />
                 <ScalarProperty Name="CloseToAirport" ColumnName="CloseToAirport" />
                 <ScalarProperty Name="VisualClutter" ColumnName="VisualClutter" />
-                <ScalarProperty Name="AngleOfVision" ColumnName="AngleOfVision" />
-                <ScalarProperty Name="DurationOfView" ColumnName="DurationOfView" />
                 <ScalarProperty Name="AboveStreet" ColumnName="AboveStreet" />
                 <ScalarProperty Name="DistanceFromRoadside" ColumnName="DistanceFromRoadside" />
-                <ScalarProperty Name="Illumination" ColumnName="Illumination" />
-                <ScalarProperty Name="TrafficSpeed" ColumnName="TrafficSpeed" />
-                <ScalarProperty Name="RoadType" ColumnName="RoadType" />
                 <ScalarProperty Name="Grade" ColumnName="Grade" />
                 <ScalarProperty Name="Size" ColumnName="Size" />
                 <ScalarProperty Name="Width" ColumnName="Width" />
@@ -790,7 +835,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="OAMS" ZoomLevel="54">
+      <Diagram Name="OAMS" ZoomLevel="106">
         <EntityTypeShape EntityType="OAMSModel.Geo" Width="1.5" PointX="0.75" PointY="4.75" Height="2.5263069661458317" />
         <AssociationConnector Association="OAMSModel.FK_Geo_Geo" >
           <ConnectorPoint PointX="1.2819230769230767" PointY="7.8447884114583326" />
@@ -806,30 +851,30 @@
           <ConnectorPoint PointX="7.5" PointY="2.4144189453125" />
         </AssociationConnector>
         <EntityTypeShape EntityType="OAMSModel.ContractDetail" Width="1.5" PointX="9.75" PointY="7.875" Height="2.9052945963541674" />
-        <EntityTypeShape EntityType="OAMSModel.Site" Width="1.5" PointX="5.75" PointY="8.25" Height="9.1585904947916674" />
+        <EntityTypeShape EntityType="OAMSModel.Site" Width="1.5" PointX="5.75" PointY="8.25" Height="11.210755208333332" />
         <AssociationConnector Association="OAMSModel.FK_ContractDetail_Contract" >
           <ConnectorPoint PointX="8.25" PointY="3.9603483072916661" />
           <ConnectorPoint PointX="8.25" PointY="8.8121234950246468" />
           <ConnectorPoint PointX="9.75" PointY="8.8121234950246468" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_ContractDetail_Site" >
-          <ConnectorPoint PointX="7.25" PointY="9.77743056261649" />
-          <ConnectorPoint PointX="9.75" PointY="9.77743056261649" />
+          <ConnectorPoint PointX="7.25" PointY="9.9801551666957877" />
+          <ConnectorPoint PointX="9.75" PointY="9.9801551666957877" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Geo1" >
-          <ConnectorPoint PointX="1.5" PointY="7.4927376302083326" />
-          <ConnectorPoint PointX="1.5" PointY="12.250926106770834" />
-          <ConnectorPoint PointX="5.75" PointY="12.250926106770834" />
+          <ConnectorPoint PointX="2.25" PointY="7.2422900390625" />
+          <ConnectorPoint PointX="6.5" PointY="7.2422900390625" />
+          <ConnectorPoint PointX="6.5" PointY="8.25" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Geo2" >
-          <ConnectorPoint PointX="1.9062525" PointY="7.4927376302083326" />
-          <ConnectorPoint PointX="1.9062525" PointY="10.219210553385423" />
-          <ConnectorPoint PointX="5.75" PointY="10.219210553385423" />
+          <ConnectorPoint PointX="2.25" PointY="7.5944450455729156" />
+          <ConnectorPoint PointX="6.0937475" PointY="7.5944450455729156" />
+          <ConnectorPoint PointX="6.0937475" PointY="8.25" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Geo3" >
-          <ConnectorPoint PointX="1.0937475" PointY="7.4927376302083326" />
-          <ConnectorPoint PointX="1.0937475" PointY="14.282641660156244" />
-          <ConnectorPoint PointX="5.75" PointY="14.282641660156244" />
+          <ConnectorPoint PointX="2.25" PointY="6.8901350325520836" />
+          <ConnectorPoint PointX="6.9062525" PointY="6.8901350325520836" />
+          <ConnectorPoint PointX="6.9062525" PointY="8.25" />
         </AssociationConnector>
         <EntityTypeShape EntityType="OAMSModel.Campaign" Width="1.5" PointX="9.75" PointY="19" Height="2.5783902994791674" />
         <EntityTypeShape EntityType="OAMSModel.CampaignDetail" Width="1.5" PointX="12" PointY="8" Height="2.5783902994791674" />
