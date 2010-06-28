@@ -28,6 +28,8 @@
             <div id="menucontainer">
                 <ul id="menu">
                     <li>
+                        <%: Html.ActionLink("Site", "Index","Site")%></li>
+                    <li>
                         <%: Html.ActionLink("Contract", "Index","Contract")%></li>
                     <li>
                         <%: Html.ActionLink("Contractor", "Index","Contractor")%></li>
