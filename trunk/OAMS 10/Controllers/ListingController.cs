@@ -13,7 +13,8 @@ namespace OAMS.Controllers
         public JsonResult ListGeos(string searchText, int maxResults)
         {
             OAMSEntities db = new OAMSEntities();
-            var result = db.Geos.Where(r => r.FullName.Contains(searchText))
+            var result = db.Geos.Where(r => r.FullName.Contains(searchText) || r.FullNameNoDiacritics.Contains(searchText))
+                .Distinct()
                 .Take(maxResults)
                 .Select(r => new { r.ID, r.FullName })
                 .ToList();

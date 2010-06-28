@@ -21,6 +21,12 @@
             <%: Html.ValidationMessageFor(model => model.Code) %>
         </div>
         <div class="editor-label">
+            <%: Html.LabelFor(model => model.FullGeoName)%>
+        </div>
+        <div class="editor-field">
+            <%: Html.EditorFor(model => model.FullGeoName, "AutoCompleteGeo")%>
+        </div>
+        <div class="editor-label">
             <%: Html.LabelFor(model => model.Style) %>
         </div>
         <div class="editor-field">

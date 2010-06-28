@@ -56,7 +56,9 @@ namespace OAMS.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View(repo.Get(id));
+            Site e = repo.Get(id);
+            e.FullGeoName = GeoRepository.Repo.GetFullname(e.Geo1, e.Geo2, e.Geo3);
+            return View(e);
         }
 
         //
@@ -69,6 +71,8 @@ namespace OAMS.Controllers
             Site e = repo.Get(id);
 
             UpdateModel(e);
+            
+            repo.UpdateGeo(e);
 
             repo.Save();
 

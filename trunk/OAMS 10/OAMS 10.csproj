@@ -100,8 +100,10 @@
     <Compile Include="Models\ContractDetailRepository.cs" />
     <Compile Include="Models\ContractorRepository.cs" />
     <Compile Include="Models\ContractRepository.cs" />
-    <Compile Include="Models\Annotation\ContractAnnotation.cs" />
+    <Compile Include="Models\Partial\Contract.cs" />
     <Compile Include="Models\FindSite.cs" />
+    <Compile Include="Models\Partial\Geo.cs" />
+    <Compile Include="Models\Partial\Site.cs" />
     <Compile Include="Models\SiteRepository.cs" />
     <Compile Include="Models\GeoRepository.cs" />
     <Compile Include="Models\OAMS1.Designer.cs">
@@ -154,6 +156,7 @@
     <Content Include="Views\Geo\Edit.aspx" />
     <Content Include="Views\Geo\Index.aspx" />
     <Content Include="Views\Shared\EditorTemplates\AutoCompleteCodeMaster.ascx" />
+    <Content Include="Views\Shared\EditorTemplates\AutoCompleteGeo.ascx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Content\Image\resize.png" />
     <Content Include="Views\Site\Create.aspx" />

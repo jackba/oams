@@ -19,20 +19,13 @@
             <%: Html.EditorFor(model => model.Code)%>
             <%: Html.ValidationMessageFor(model => model.Code) %>
         </div>
-        <%--<div class="editor-label">
-            <%: Html.LabelFor(model => model.EffectiveDate) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.DatePickerFor(model => model.EffectiveDate) %>
-            <%: Html.ValidationMessageFor(model => model.EffectiveDate) %>
-        </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.TermDate) %>
+            <%: Html.LabelFor(model => model.FullGeoName)%>
         </div>
         <div class="editor-field">
-            <%: Html.DatePickerFor(model => model.TermDate)%>
-            <%: Html.ValidationMessageFor(model => model.TermDate) %>
-        </div>--%>
+            <%: Html.EditorFor(model => model.FullGeoName, "AutoCompleteGeo")%>
+            
+        </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.Style) %>
         </div>
@@ -67,6 +60,13 @@
         <div class="editor-field">
             <%: Html.TextBoxFor(model => model.Width) %>
             <%: Html.ValidationMessageFor(model => model.Width) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Direction) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(r => r.Direction) %>
+            <%: Html.ValidationMessageFor(model => model.Direction)%>
         </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.Grade) %>
@@ -132,7 +132,7 @@
             <%: Html.ValidationMessageFor(model => model.AboveStreet) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.ViewingDistance)%>
+            <%: Html.LabelFor(model => model.ViewingDistance) %>
         </div>
         <div class="editor-field">
             <%: Html.CodeMasterDropDownListFor(model => model.ViewingDistance)%>
@@ -151,13 +151,6 @@
         <div class="editor-field">
             <%: Html.CodeMasterDropDownListFor(model => model.InstallationPosition2)%>
             <%: Html.ValidationMessageFor(model => model.InstallationPosition2)%>
-        </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.VisualClutter) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(model => model.VisualClutter) %>
-            <%: Html.ValidationMessageFor(model => model.VisualClutter) %>
         </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.VisibilityBuilding) %>
@@ -186,6 +179,13 @@
         <div class="editor-field">
             <%: Html.CodeMasterDropDownListFor(model => model.VisibilityElectricityPolesOther)%>
             <%: Html.ValidationMessageFor(model => model.VisibilityElectricityPolesOther)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.VisualClutter) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(model => model.VisualClutter) %>
+            <%: Html.ValidationMessageFor(model => model.VisualClutter) %>
         </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.DirectionalTrafficPublicTransport) %>
@@ -344,7 +344,7 @@
         <p>
             <input type="submit" value="Save" />
         </p>
-        <% Html.RenderPartial("GMap"); %>
+        <%--<% Html.RenderPartial("GMap"); %>--%>
     </fieldset>
     <% } %>
     <div>

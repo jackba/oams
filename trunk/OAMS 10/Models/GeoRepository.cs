@@ -5,7 +5,7 @@ using System.Web;
 
 namespace OAMS.Models
 {
-    public class GeoRepository
+    public class GeoRepository : BaseRepository<GeoRepository>
     {
         private OAMSEntities db = new OAMSEntities();
 
@@ -21,12 +21,12 @@ namespace OAMS.Models
         //        ).SingleOrDefault();
         //}
 
-        //public Geo GetByFullname(string fullname)
-        //{
-        //    return (from e in db.Geos
-        //            where e.FullName.ToLower() == fullname.Trim().ToLower()
-        //            select e).SingleOrDefault();
-        //}
+        public Geo GetByFullname(string fullname)
+        {
+            return (from e in db.Geos
+                    where e.FullName.ToLower() == fullname.Trim().ToLower()
+                    select e).SingleOrDefault();
+        }
 
         //public IQueryable<Geo> Get(List<Guid> IDList, int level)
         //{
@@ -58,17 +58,17 @@ namespace OAMS.Models
         }
 
         // Add/Delete 
-        public Geo Add(string name, int level, Guid? parentID)
-        {
-            Geo geo = new Geo();
-            geo.Name = name.Trim();
-            geo.Level = level;
-            geo.ParentID = parentID;
+        //public Geo Add(string name, int level, Guid? parentID)
+        //{
+        //    Geo geo = new Geo();
+        //    geo.Name = name.Trim();
+        //    geo.Level = level;
+        //    geo.ParentID = parentID;
 
-            db.Geos.AddObject(geo);
+        //    db.Geos.AddObject(geo);
 
-            return geo;
-        }
+        //    return geo;
+        //}
 
         public Geo Add(Geo e)
         {
@@ -77,10 +77,17 @@ namespace OAMS.Models
             db.Geos.AddObject(e);
 
             e.Level = e.Parent == null ? 1 : e.Parent.Level + 1;
-            SetFullname(e);
-            e.FullNameNoDiacritics = e.FullName.RemoveDiacritics();
+            //SetFullname(e);
+            //e.FullNameNoDiacritics = e.FullName.RemoveDiacritics();
+            UpdateFullname(e);
 
             return e;
+        }
+
+        public void UpdateFullname(Geo e)
+        {
+            SetFullname(e);
+            e.FullNameNoDiacritics = e.FullName.RemoveDiacritics();
         }
 
         public void Delete(Geo e)
@@ -138,60 +145,58 @@ namespace OAMS.Models
             }
         }
 
-
-
-        //public static string GetFullname(Geo geo1, Geo geo2, Geo geo3)
-        //{
-        //    return geo3 != null ? geo3.FullName : geo2 != null ? geo2.FullName : geo1 != null ? geo1.FullName : "";
-        //}
+        public string GetFullname(Geo geo1, Geo geo2, Geo geo3)
+        {
+            return geo3 != null ? geo3.FullName : geo2 != null ? geo2.FullName : geo1 != null ? geo1.FullName : "";
+        }
 
         //public static string GetFullAddress(string address, string fullGeo)
         //{
         //    return (address + ", " + fullGeo).Trim(',', ' ');
         //}
 
-        //public static void Set3LevelByFullname(string fullname, Func<Guid?, Guid?, Guid?, int> setGeoFunc)
-        //{
+        public void Set3LevelByFullname(string fullname, Func<Guid?, Guid?, Guid?, int> setGeoFunc)
+        {
 
-        //    if (string.IsNullOrEmpty(fullname)
-        //               || string.IsNullOrEmpty(fullname.Trim()))
-        //    {
-        //        throw new Exception("Nhập đơn vị hành chính.");
-        //    }
-        //    else
-        //    {
-        //        Geo g = GeoRepository.GetByFullname(fullname);
-        //        if (g == null)
-        //        {
-        //            throw new Exception("Nhập sai đơn vị hành chính.");
-        //        }
-        //        else
-        //        {
-        //            Guid? geo1ID = null;
-        //            Guid? geo2ID = null;
-        //            Guid? geo3ID = null;
+            if (string.IsNullOrEmpty(fullname)
+                       || string.IsNullOrEmpty(fullname.Trim()))
+            {
+                //throw new Exception("Nhập đơn vị hành chính.");
+            }
+            else
+            {
+                Geo g = GetByFullname(fullname);
+                if (g == null)
+                {
+                    throw new Exception("Nhập sai đơn vị hành chính.");
+                }
+                else
+                {
+                    Guid? geo1ID = null;
+                    Guid? geo2ID = null;
+                    Guid? geo3ID = null;
 
-        //            if (g.Level == 1)
-        //            {
-        //                geo1ID = g.ID;
-        //            }
+                    if (g.Level == 1)
+                    {
+                        geo1ID = g.ID;
+                    }
 
-        //            if (g.Level == 2)
-        //            {
-        //                geo2ID = g.ID;
-        //                geo1ID = g.ParentGeo.ID;
-        //            }
+                    if (g.Level == 2)
+                    {
+                        geo2ID = g.ID;
+                        geo1ID = g.Parent.ID;
+                    }
 
-        //            if (g.Level == 3)
-        //            {
-        //                geo3ID = g.ID;
-        //                geo2ID = g.ParentGeo.ID;
-        //                geo1ID = g.ParentGeo.ParentGeo.ID;
-        //            }
+                    if (g.Level == 3)
+                    {
+                        geo3ID = g.ID;
+                        geo2ID = g.Parent.ID;
+                        geo1ID = g.Parent.Parent.ID;
+                    }
 
-        //            setGeoFunc(geo1ID, geo2ID, geo3ID);
-        //        }
-        //    }
-        //}
+                    setGeoFunc(geo1ID, geo2ID, geo3ID);
+                }
+            }
+        }
     }
 }

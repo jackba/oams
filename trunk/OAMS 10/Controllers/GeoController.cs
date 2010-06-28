@@ -81,6 +81,9 @@ namespace OAMS.Controllers
             var v = repo.Get(id);
 
             UpdateModel(v);
+
+            repo.UpdateFullname(v);
+
             repo.Save();
 
             // TODO: Add update logic here
