@@ -12,6 +12,11 @@
     <table>
         <tr>
             <td>
+                Geo1:
+                <br />
+                <%--<%: Html.DropDownListForGeo1(r => r.GeoID1) %>--%>
+                <%--<%: Html.EditorFor(model => model.Geo1FullName, "AutoCompleteGeo")%>--%>
+                <br />
                 Style List:
                 <br />
                 <%
@@ -28,6 +33,7 @@
                 <%: Html.LabelFor(r => r.Material) %>
                 <br />
                 <%: Html.CodeMasterDropDownListFor(r => r.Material) %>
+                <%: Html.EditorFor(r => r.Material, "AutoCompleteCodeMaster")%>
                 <br />
                 <%: Html.LabelFor(r => r.RoadType1) %>
                 <br />
