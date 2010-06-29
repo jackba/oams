@@ -406,6 +406,11 @@ namespace OAMS
                          "alert ('" + msg + "');", true);
         }
 
+        public static IQueryable<SelectListItem> ToSelectListItem(this IQueryable<Geo> l)
+        {
+            return l.ToList().Select(r => new SelectListItem() { Value = r.ID.ToString(), Text = r.FullName }).AsQueryable();
+        }
+
         public static IQueryable<SelectListItem> ToSelectListItem(this IQueryable<CodeMaster> l)
         {
             return l.Select(r => new SelectListItem() { Value = r.Code, Text = r.Note });
@@ -424,6 +429,11 @@ namespace OAMS
         public static MvcHtmlString CodeMasterDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
         {
             return htmlHelper.DropDownListFor(expression, CodeMasterRepository.Get(expression.Body).ToSelectListItem(), OAMSSetting.messageL.SelectNone);
+        }
+
+        public static MvcHtmlString DropDownListForGeo1<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
+        {
+            return htmlHelper.DropDownListFor(expression, GeoRepository.Repo.GetByParentID().ToSelectListItem(), OAMSSetting.messageL.SelectNone);
         }
     }
 }

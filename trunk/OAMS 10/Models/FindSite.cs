@@ -8,6 +8,8 @@ namespace OAMS.Models
     public class FindSite
     {
         public int CampaignID { get; set; }
+
+        public string Geo1FullName { get; set; }
         
         public List<string> StyleList { get; set; }
         public string Material { get; set; }

@@ -17,7 +17,7 @@ namespace OAMS.Controllers
             return View();
         }
 
-        public ActionResult Find(int campaignID)
+        public ActionResult Find(int campaignID = 0)
         {
             FindSite e = new FindSite();
             e.From = DateTime.Now.Date;
