@@ -15,7 +15,12 @@
                 Geo1:
                 <br />
                 <%--<%: Html.DropDownListForGeo1(r => r.GeoID1) %>--%>
-                <%--<%: Html.EditorFor(model => model.Geo1FullName, "AutoCompleteGeo")%>--%>
+                <%: Html.EditorFor(model => model.Geo1FullName, "AutoCompleteGeo", new { level = 1 }) %>
+                <br />
+                Geo2:
+                <div id="geo2List">
+                as
+                </div>
                 <br />
                 Style List:
                 <br />
@@ -33,7 +38,6 @@
                 <%: Html.LabelFor(r => r.Material) %>
                 <br />
                 <%: Html.CodeMasterDropDownListFor(r => r.Material) %>
-                <%: Html.EditorFor(r => r.Material, "AutoCompleteCodeMaster")%>
                 <br />
                 <%: Html.LabelFor(r => r.RoadType1) %>
                 <br />
@@ -128,8 +132,27 @@
         </tr>
     </table>
     <% } %>
-    <script type="text/javascript" src="http://www.google.com/jsapi?autoload={'modules':[{name:'maps',version:3,other_params:'sensor=false'},{'name':'jquery','version':'1.4.2'}]}"></script>
     <script type="text/javascript">
+
+        function showGeo2(str) {
+            //alert(str);
+            //var v = $("#geo2List").text();
+            var div1 = $("#geo2List");
+            div1.empty();
+
+            var chk = document.createElement('input');
+            chk.type = 'checkbox';
+            chk.name = 'geo2List';
+            chk.value = 'asbc';
+            //aAdd2Cam.innerHTML = 'Add to Campaign';
+
+            //aAdd2Cam.onclick = Add2Campaign1();
+            //div1.appendChild(chk);
+            div1.append(chk);
+
+
+            //alert(v);
+        }
 
         function addResults(json) {
 

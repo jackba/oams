@@ -10,15 +10,17 @@ namespace OAMS.Controllers
     public class ListingController : Controller
     {
         [HttpPost]
-        public JsonResult ListGeos(string searchText, int maxResults)
+        public JsonResult ListGeos(string searchText, int maxResults, int? level = null)
         {
             OAMSEntities db = new OAMSEntities();
-            var result = db.Geos.Where(r => r.FullName.Contains(searchText) || r.FullNameNoDiacritics.Contains(searchText))
+            var result = db.Geos.Where(r => (r.FullName.Contains(searchText) || r.FullNameNoDiacritics.Contains(searchText))
+                && (level == null || r.Level == level)
+                )
                 .Distinct()
                 .Take(maxResults)
                 .Select(r => new { r.ID, r.FullName })
                 .ToList();
-            
+
             return Json(result);
         }
 
