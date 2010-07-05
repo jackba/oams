@@ -14,12 +14,13 @@
             <td>
                 Geo1:
                 <br />
+                
                 <%--<%: Html.DropDownListForGeo1(r => r.GeoID1) %>--%>
                 <%: Html.EditorFor(model => model.Geo1FullName, "AutoCompleteGeo", new { level = 1 }) %>
                 <br />
                 Geo2:
                 <div id="geo2List">
-                as
+                    as
                 </div>
                 <br />
                 Style List:
@@ -140,15 +141,34 @@
             var div1 = $("#geo2List");
             div1.empty();
 
-            var chk = document.createElement('input');
-            chk.type = 'checkbox';
-            chk.name = 'geo2List';
-            chk.value = 'asbc';
-            //aAdd2Cam.innerHTML = 'Add to Campaign';
 
-            //aAdd2Cam.onclick = Add2Campaign1();
-            //div1.appendChild(chk);
-            div1.append(chk);
+
+            $.ajax({
+                url: "../Listing/ListGeo2", type: "POST", dataType: "json",
+                data: { parentFullName: str },
+                success: function (data) {
+                    response($.map(data, function (item) {
+
+                        var chk = document.createElement('input');
+                        chk.type = 'checkbox';
+                        chk.name = 'Geo2List';
+                        chk.value = item.FullName;
+
+                        div1.append(chk);
+                        div1.append(item.FullName);
+                        div1.append('<br />');
+                        
+                        //return { label: item.FullName, value: item.FullName, id: item.ID }
+
+
+                    }))
+                }
+
+            })
+
+
+
+          
 
 
             //alert(v);
@@ -252,8 +272,8 @@
                 maxDistance: 2500, // Twitter has a max distance of 2500km.
                 color: '#000',
                 activeColor: '#59b',
-                sizerIcon: new google.maps.MarkerImage('/Content/Image/resize-off.png'),
-                activeSizerIcon: new google.maps.MarkerImage('/Content/Image/resize.png')
+                sizerIcon: new google.maps.MarkerImage('../Content/Image/resize-off.png'),
+                activeSizerIcon: new google.maps.MarkerImage('../Content/Image/resize.png')
             });
 
             google.maps.event.addListener(distanceWidget, 'distance_changed',
@@ -365,7 +385,7 @@
             var tdata = $("form").serialize();
 
             $.ajax({
-                url: "/FindSite/FindJson", type: "POST", dataType: "json",
+                url: "../FindSite/FindJson", type: "POST", dataType: "json",
                 data: tdata,
                 success: function (data) {
 

@@ -58,11 +58,8 @@ namespace OAMS.Controllers
                 && (string.IsNullOrEmpty(e.FlagsTemporaryBannersPromotionalItems) || r.FlagsTemporaryBannersPromotionalItems == e.FlagsTemporaryBannersPromotionalItems.ToInt())
                 && (string.IsNullOrEmpty(e.CompetitiveProductSigns) || r.CompetitiveProductSigns == e.CompetitiveProductSigns.ToInt())
 
-
-
-
-
-
+                && (string.IsNullOrEmpty(e.Geo1FullName) || (r.Geo1 != null && r.Geo1.FullName == e.Geo1FullName))
+                && (e.Geo2List == null || e.Geo2List.FirstOrDefault() == null || (r.Geo2 != null && e.Geo2List.Contains(r.Geo2.FullName)))
 
                 ).ToList()
                 .Where(r => Helper.DistanceBetweenPoints(r.Latitude, r.Longitude, e.Lat, e.Long) <= e.Distance)

@@ -10,6 +10,7 @@ namespace OAMS.Models
         public int CampaignID { get; set; }
 
         public string Geo1FullName { get; set; }
+        public List<string> Geo2List { get; set; }
         
         public List<string> StyleList { get; set; }
         public string Material { get; set; }
