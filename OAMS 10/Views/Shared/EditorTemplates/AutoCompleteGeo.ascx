@@ -6,7 +6,7 @@
             select: function (event, ui) { showGeo2(ui.item.value); },
             source: function (request, response) {
                 $.ajax({
-                    url: "/Listing/ListGeos", type: "POST", dataType: "json",
+                    url: '<%= Url.Content("~/Listing/ListGeos") %>', type: "POST", dataType: "json",
                     data: { searchText: request.term, maxResults: 10, level: '<%= ViewData["level"]%>' },
                     success: function (data) {
                         response($.map(data, function (item) {
