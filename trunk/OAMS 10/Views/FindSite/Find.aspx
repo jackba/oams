@@ -14,13 +14,11 @@
             <td>
                 Geo1:
                 <br />
-                
                 <%--<%: Html.DropDownListForGeo1(r => r.GeoID1) %>--%>
                 <%: Html.EditorFor(model => model.Geo1FullName, "AutoCompleteGeo", new { level = 1 }) %>
                 <br />
                 Geo2:
                 <div id="geo2List">
-                    as
                 </div>
                 <br />
                 Style List:
@@ -144,7 +142,7 @@
 
 
             $.ajax({
-                url: "../Listing/ListGeo2", type: "POST", dataType: "json",
+                url: '<%= Url.Content("~/Listing/ListGeo2") %>', type: "POST", dataType: "json",
                 data: { parentFullName: str },
                 success: function (data) {
                     response($.map(data, function (item) {
@@ -157,7 +155,7 @@
                         div1.append(chk);
                         div1.append(item.FullName);
                         div1.append('<br />');
-                        
+
                         //return { label: item.FullName, value: item.FullName, id: item.ID }
 
 
@@ -168,7 +166,7 @@
 
 
 
-          
+
 
 
             //alert(v);
@@ -272,8 +270,8 @@
                 maxDistance: 2500, // Twitter has a max distance of 2500km.
                 color: '#000',
                 activeColor: '#59b',
-                sizerIcon: new google.maps.MarkerImage('../Content/Image/resize-off.png'),
-                activeSizerIcon: new google.maps.MarkerImage('../Content/Image/resize.png')
+                sizerIcon: new google.maps.MarkerImage('<%= Url.Content("~/Content/Image/resize-off.png") %>'),
+                activeSizerIcon: new google.maps.MarkerImage('<%= Url.Content("~/Content/Image/resize.png") %>')
             });
 
             google.maps.event.addListener(distanceWidget, 'distance_changed',
@@ -344,7 +342,7 @@
 
         function Add2Campaign(link, campaignID, contractDetailID) {
 
-            var url = '/Campaign/AddSiteDetail?CampaignID=' + campaignID + '&ContractDetailID=' + contractDetailID;
+            var url = '<%= Url.Content("~/Campaign/AddSiteDetail?CampaignID=") %>' + campaignID + '&ContractDetailID=' + contractDetailID;
 
             return function () {
                 $.ajax({
@@ -385,7 +383,7 @@
             var tdata = $("form").serialize();
 
             $.ajax({
-                url: "../FindSite/FindJson", type: "POST", dataType: "json",
+                url: '<%= Url.Content("~/FindSite/FindJson") %>', type: "POST", dataType: "json",
                 data: tdata,
                 success: function (data) {
 

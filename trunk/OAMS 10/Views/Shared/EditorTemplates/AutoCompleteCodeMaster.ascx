@@ -5,7 +5,7 @@
         $("#<%= ViewData.ModelMetadata.PropertyName %>").autocomplete({
             source: function (request, response) {
                 $.ajax({
-                    url: "/Listing/ListCodeMaster", type: "POST", dataType: "json",
+                    url: '<%= Url.Content("~/Listing/ListCodeMaster") %>', type: "POST", dataType: "json",
                     data: { searchText: request.term, maxResults: 10, type: "<%= ViewData.ModelMetadata.PropertyName %>" },
                     success: function (data) {
                         response($.map(data, function (item) {
