@@ -73,7 +73,7 @@
                     Code
                 </th>
                 <th>
-                    Style
+                    Type
                 </th>
                 <th>
                     Material
@@ -86,15 +86,6 @@
                 </th>
                 <th>
                     Size
-                </th>
-                <th>
-                    Grade
-                </th>
-                <th>
-                    Panels
-                </th>
-                <th>
-                    PanelCode
                 </th>
                 <th>
                     Longitude
@@ -133,7 +124,7 @@
                     <%: item.Site.Code %>
                 </td>
                 <td>
-                    <%: item.Site.Style%>
+                    <%: item.Site.Type%>
                 </td>
                 <td>
                     <%: item.Site.Material%>
@@ -147,20 +138,13 @@
                 <td>
                     <%: String.Format("{0:F}", item.Site.Size)%>
                 </td>
+               
+              
                 <td>
-                    <%: item.Site.Grade%>
+                    <%: item.Site.Lng%>
                 </td>
                 <td>
-                    <%: item.Site.NumberOfPanel%>
-                </td>
-                <td>
-                    <%: item.Site.PanelCode%>
-                </td>
-                <td>
-                    <%: item.Site.Longitude%>
-                </td>
-                <td>
-                    <%: item.Site.Latitude%>
+                    <%: item.Site.Lat%>
                 </td>
             </tr>
             <% } %>

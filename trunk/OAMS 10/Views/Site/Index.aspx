@@ -14,7 +14,7 @@
                 ID
             </th>
             <th>
-                Style
+                Type
             </th>
             <th>
                 Code
@@ -43,7 +43,7 @@
                 <%: item.ID %>
             </td>
             <td>
-                <%: item.Style %>
+                <%: item.Type %>
             </td>
             <td>
                 <%: item.Code %>

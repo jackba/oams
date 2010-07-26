@@ -21,13 +21,13 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Geo_Geo", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Geo1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Geo), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Contract_Contractor", "Contractor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contractor), "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Contract), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Contract", "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contract), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Campaign_Client", "Client", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Client), "Campaign", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Campaign), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_CampaignDetail_Campaign", "Campaign", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Campaign), "CampaignDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.CampaignDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_CampaignDetail_ContractDetail", "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.ContractDetail), "CampaignDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.CampaignDetail), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Site", "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Site), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetail), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo1", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo2", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo3", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Campaign_Client", "Client", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Client), "Campaign", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Campaign), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_CampaignDetail_Campaign", "Campaign", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Campaign), "CampaignDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.CampaignDetail), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_CampaignDetail_ContractDetail", "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.ContractDetail), "CampaignDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.CampaignDetail), true)]
 
 #endregion
 
@@ -162,22 +162,6 @@ namespace OAMS.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Site> Sites
-        {
-            get
-            {
-                if ((_Sites == null))
-                {
-                    _Sites = base.CreateObjectSet<Site>("Sites");
-                }
-                return _Sites;
-            }
-        }
-        private ObjectSet<Site> _Sites;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Campaign> Campaigns
         {
             get
@@ -222,6 +206,22 @@ namespace OAMS.Models
             }
         }
         private ObjectSet<Client> _Clients;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Site> Sites
+        {
+            get
+            {
+                if ((_Sites == null))
+                {
+                    _Sites = base.CreateObjectSet<Site>("Sites");
+                }
+                return _Sites;
+            }
+        }
+        private ObjectSet<Site> _Sites;
 
         #endregion
         #region AddTo Methods
@@ -267,14 +267,6 @@ namespace OAMS.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Sites EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToSites(Site site)
-        {
-            base.AddObject("Sites", site);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Campaigns EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToCampaigns(Campaign campaign)
@@ -296,6 +288,14 @@ namespace OAMS.Models
         public void AddToClients(Client client)
         {
             base.AddObject("Clients", client);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Sites EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSites(Site site)
+        {
+            base.AddObject("Sites", site);
         }
 
         #endregion
@@ -1630,6 +1630,28 @@ namespace OAMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_CampaignDetail_ContractDetail", "CampaignDetail")]
+        public EntityCollection<CampaignDetail> CampaignDetails
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CampaignDetail>("OAMSModel.FK_CampaignDetail_ContractDetail", "CampaignDetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CampaignDetail>("OAMSModel.FK_CampaignDetail_ContractDetail", "CampaignDetail", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Site", "Site")]
         public Site Site
         {
@@ -1658,28 +1680,6 @@ namespace OAMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Site>("OAMSModel.FK_ContractDetail_Site", "Site", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_CampaignDetail_ContractDetail", "CampaignDetail")]
-        public EntityCollection<CampaignDetail> CampaignDetails
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CampaignDetail>("OAMSModel.FK_CampaignDetail_ContractDetail", "CampaignDetail");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CampaignDetail>("OAMSModel.FK_CampaignDetail_ContractDetail", "CampaignDetail", value);
                 }
             }
         }
@@ -2033,7 +2033,7 @@ namespace OAMS.Models
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Geo1", "Site")]
-        public EntityCollection<Site> Sites1
+        public EntityCollection<Site> Sites
         {
             get
             {
@@ -2055,7 +2055,7 @@ namespace OAMS.Models
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Geo2", "Site")]
-        public EntityCollection<Site> Sites2
+        public EntityCollection<Site> Sites1
         {
             get
             {
@@ -2077,7 +2077,7 @@ namespace OAMS.Models
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Geo3", "Site")]
-        public EntityCollection<Site> Sites3
+        public EntityCollection<Site> Sites2
         {
             get
             {
@@ -2223,24 +2223,72 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Style
+        public global::System.String Address
         {
             get
             {
-                return _Style;
+                return _Address;
             }
             set
             {
-                OnStyleChanging(value);
-                ReportPropertyChanging("Style");
-                _Style = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Style");
-                OnStyleChanged();
+                OnAddressChanging(value);
+                ReportPropertyChanging("Address");
+                _Address = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Address");
+                OnAddressChanged();
             }
         }
-        private global::System.String _Style;
-        partial void OnStyleChanging(global::System.String value);
-        partial void OnStyleChanged();
+        private global::System.String _Address;
+        partial void OnAddressChanging(global::System.String value);
+        partial void OnAddressChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Type
+        {
+            get
+            {
+                return _Type;
+            }
+            set
+            {
+                OnTypeChanging(value);
+                ReportPropertyChanging("Type");
+                _Type = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Type");
+                OnTypeChanged();
+            }
+        }
+        private global::System.String _Type;
+        partial void OnTypeChanging(global::System.String value);
+        partial void OnTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Material
+        {
+            get
+            {
+                return _Material;
+            }
+            set
+            {
+                OnMaterialChanging(value);
+                ReportPropertyChanging("Material");
+                _Material = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Material");
+                OnMaterialChanged();
+            }
+        }
+        private global::System.String _Material;
+        partial void OnMaterialChanging(global::System.String value);
+        partial void OnMaterialChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2271,24 +2319,120 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Material
+        public global::System.String Contractor
         {
             get
             {
-                return _Material;
+                return _Contractor;
             }
             set
             {
-                OnMaterialChanging(value);
-                ReportPropertyChanging("Material");
-                _Material = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Material");
-                OnMaterialChanged();
+                OnContractorChanging(value);
+                ReportPropertyChanging("Contractor");
+                _Contractor = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Contractor");
+                OnContractorChanged();
             }
         }
-        private global::System.String _Material;
-        partial void OnMaterialChanging(global::System.String value);
-        partial void OnMaterialChanged();
+        private global::System.String _Contractor;
+        partial void OnContractorChanging(global::System.String value);
+        partial void OnContractorChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CurrentClient
+        {
+            get
+            {
+                return _CurrentClient;
+            }
+            set
+            {
+                OnCurrentClientChanging(value);
+                ReportPropertyChanging("CurrentClient");
+                _CurrentClient = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CurrentClient");
+                OnCurrentClientChanged();
+            }
+        }
+        private global::System.String _CurrentClient;
+        partial void OnCurrentClientChanging(global::System.String value);
+        partial void OnCurrentClientChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Competition
+        {
+            get
+            {
+                return _Competition;
+            }
+            set
+            {
+                OnCompetitionChanging(value);
+                ReportPropertyChanging("Competition");
+                _Competition = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Competition");
+                OnCompetitionChanged();
+            }
+        }
+        private global::System.String _Competition;
+        partial void OnCompetitionChanging(global::System.String value);
+        partial void OnCompetitionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Category
+        {
+            get
+            {
+                return _Category;
+            }
+            set
+            {
+                OnCategoryChanging(value);
+                ReportPropertyChanging("Category");
+                _Category = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Category");
+                OnCategoryChanged();
+            }
+        }
+        private global::System.String _Category;
+        partial void OnCategoryChanging(global::System.String value);
+        partial void OnCategoryChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ContractExpired
+        {
+            get
+            {
+                return _ContractExpired;
+            }
+            set
+            {
+                OnContractExpiredChanging(value);
+                ReportPropertyChanging("ContractExpired");
+                _ContractExpired = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ContractExpired");
+                OnContractExpiredChanged();
+            }
+        }
+        private global::System.String _ContractExpired;
+        partial void OnContractExpiredChanging(global::System.String value);
+        partial void OnContractExpiredChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2391,528 +2535,48 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Grade
+        public Nullable<global::System.Double> Lng
         {
             get
             {
-                return _Grade;
+                return _Lng;
             }
             set
             {
-                OnGradeChanging(value);
-                ReportPropertyChanging("Grade");
-                _Grade = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Grade");
-                OnGradeChanged();
+                OnLngChanging(value);
+                ReportPropertyChanging("Lng");
+                _Lng = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Lng");
+                OnLngChanged();
             }
         }
-        private global::System.String _Grade;
-        partial void OnGradeChanging(global::System.String value);
-        partial void OnGradeChanged();
+        private Nullable<global::System.Double> _Lng;
+        partial void OnLngChanging(Nullable<global::System.Double> value);
+        partial void OnLngChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> DistanceFromRoadside
+        public Nullable<global::System.Double> Lat
         {
             get
             {
-                return _DistanceFromRoadside;
+                return _Lat;
             }
             set
             {
-                OnDistanceFromRoadsideChanging(value);
-                ReportPropertyChanging("DistanceFromRoadside");
-                _DistanceFromRoadside = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("DistanceFromRoadside");
-                OnDistanceFromRoadsideChanged();
+                OnLatChanging(value);
+                ReportPropertyChanging("Lat");
+                _Lat = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Lat");
+                OnLatChanged();
             }
         }
-        private Nullable<global::System.Int32> _DistanceFromRoadside;
-        partial void OnDistanceFromRoadsideChanging(Nullable<global::System.Int32> value);
-        partial void OnDistanceFromRoadsideChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> AboveStreet
-        {
-            get
-            {
-                return _AboveStreet;
-            }
-            set
-            {
-                OnAboveStreetChanging(value);
-                ReportPropertyChanging("AboveStreet");
-                _AboveStreet = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("AboveStreet");
-                OnAboveStreetChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _AboveStreet;
-        partial void OnAboveStreetChanging(Nullable<global::System.Int32> value);
-        partial void OnAboveStreetChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> VisualClutter
-        {
-            get
-            {
-                return _VisualClutter;
-            }
-            set
-            {
-                OnVisualClutterChanging(value);
-                ReportPropertyChanging("VisualClutter");
-                _VisualClutter = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("VisualClutter");
-                OnVisualClutterChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _VisualClutter;
-        partial void OnVisualClutterChanging(Nullable<global::System.Int32> value);
-        partial void OnVisualClutterChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> CloseToAirport
-        {
-            get
-            {
-                return _CloseToAirport;
-            }
-            set
-            {
-                OnCloseToAirportChanging(value);
-                ReportPropertyChanging("CloseToAirport");
-                _CloseToAirport = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CloseToAirport");
-                OnCloseToAirportChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _CloseToAirport;
-        partial void OnCloseToAirportChanging(Nullable<global::System.Boolean> value);
-        partial void OnCloseToAirportChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> CloseToFactory
-        {
-            get
-            {
-                return _CloseToFactory;
-            }
-            set
-            {
-                OnCloseToFactoryChanging(value);
-                ReportPropertyChanging("CloseToFactory");
-                _CloseToFactory = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CloseToFactory");
-                OnCloseToFactoryChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _CloseToFactory;
-        partial void OnCloseToFactoryChanging(Nullable<global::System.Boolean> value);
-        partial void OnCloseToFactoryChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> CloseToGasStation
-        {
-            get
-            {
-                return _CloseToGasStation;
-            }
-            set
-            {
-                OnCloseToGasStationChanging(value);
-                ReportPropertyChanging("CloseToGasStation");
-                _CloseToGasStation = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CloseToGasStation");
-                OnCloseToGasStationChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _CloseToGasStation;
-        partial void OnCloseToGasStationChanging(Nullable<global::System.Boolean> value);
-        partial void OnCloseToGasStationChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> CloseToHopistal
-        {
-            get
-            {
-                return _CloseToHopistal;
-            }
-            set
-            {
-                OnCloseToHopistalChanging(value);
-                ReportPropertyChanging("CloseToHopistal");
-                _CloseToHopistal = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CloseToHopistal");
-                OnCloseToHopistalChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _CloseToHopistal;
-        partial void OnCloseToHopistalChanging(Nullable<global::System.Boolean> value);
-        partial void OnCloseToHopistalChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> CloseToMarket
-        {
-            get
-            {
-                return _CloseToMarket;
-            }
-            set
-            {
-                OnCloseToMarketChanging(value);
-                ReportPropertyChanging("CloseToMarket");
-                _CloseToMarket = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CloseToMarket");
-                OnCloseToMarketChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _CloseToMarket;
-        partial void OnCloseToMarketChanging(Nullable<global::System.Boolean> value);
-        partial void OnCloseToMarketChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> CloseToOffice
-        {
-            get
-            {
-                return _CloseToOffice;
-            }
-            set
-            {
-                OnCloseToOfficeChanging(value);
-                ReportPropertyChanging("CloseToOffice");
-                _CloseToOffice = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CloseToOffice");
-                OnCloseToOfficeChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _CloseToOffice;
-        partial void OnCloseToOfficeChanging(Nullable<global::System.Boolean> value);
-        partial void OnCloseToOfficeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> CloseToParking
-        {
-            get
-            {
-                return _CloseToParking;
-            }
-            set
-            {
-                OnCloseToParkingChanging(value);
-                ReportPropertyChanging("CloseToParking");
-                _CloseToParking = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CloseToParking");
-                OnCloseToParkingChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _CloseToParking;
-        partial void OnCloseToParkingChanging(Nullable<global::System.Boolean> value);
-        partial void OnCloseToParkingChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> CloseToResident
-        {
-            get
-            {
-                return _CloseToResident;
-            }
-            set
-            {
-                OnCloseToResidentChanging(value);
-                ReportPropertyChanging("CloseToResident");
-                _CloseToResident = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CloseToResident");
-                OnCloseToResidentChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _CloseToResident;
-        partial void OnCloseToResidentChanging(Nullable<global::System.Boolean> value);
-        partial void OnCloseToResidentChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> CloseToSchool
-        {
-            get
-            {
-                return _CloseToSchool;
-            }
-            set
-            {
-                OnCloseToSchoolChanging(value);
-                ReportPropertyChanging("CloseToSchool");
-                _CloseToSchool = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CloseToSchool");
-                OnCloseToSchoolChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _CloseToSchool;
-        partial void OnCloseToSchoolChanging(Nullable<global::System.Boolean> value);
-        partial void OnCloseToSchoolChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> CloseToShopping
-        {
-            get
-            {
-                return _CloseToShopping;
-            }
-            set
-            {
-                OnCloseToShoppingChanging(value);
-                ReportPropertyChanging("CloseToShopping");
-                _CloseToShopping = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CloseToShopping");
-                OnCloseToShoppingChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _CloseToShopping;
-        partial void OnCloseToShoppingChanging(Nullable<global::System.Boolean> value);
-        partial void OnCloseToShoppingChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> CloseToStadium
-        {
-            get
-            {
-                return _CloseToStadium;
-            }
-            set
-            {
-                OnCloseToStadiumChanging(value);
-                ReportPropertyChanging("CloseToStadium");
-                _CloseToStadium = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CloseToStadium");
-                OnCloseToStadiumChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _CloseToStadium;
-        partial void OnCloseToStadiumChanging(Nullable<global::System.Boolean> value);
-        partial void OnCloseToStadiumChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> CloseToStation
-        {
-            get
-            {
-                return _CloseToStation;
-            }
-            set
-            {
-                OnCloseToStationChanging(value);
-                ReportPropertyChanging("CloseToStation");
-                _CloseToStation = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CloseToStation");
-                OnCloseToStationChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _CloseToStation;
-        partial void OnCloseToStationChanging(Nullable<global::System.Boolean> value);
-        partial void OnCloseToStationChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> CloseToTownCenter
-        {
-            get
-            {
-                return _CloseToTownCenter;
-            }
-            set
-            {
-                OnCloseToTownCenterChanging(value);
-                ReportPropertyChanging("CloseToTownCenter");
-                _CloseToTownCenter = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CloseToTownCenter");
-                OnCloseToTownCenterChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _CloseToTownCenter;
-        partial void OnCloseToTownCenterChanging(Nullable<global::System.Boolean> value);
-        partial void OnCloseToTownCenterChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> CloseToUniversity
-        {
-            get
-            {
-                return _CloseToUniversity;
-            }
-            set
-            {
-                OnCloseToUniversityChanging(value);
-                ReportPropertyChanging("CloseToUniversity");
-                _CloseToUniversity = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CloseToUniversity");
-                OnCloseToUniversityChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _CloseToUniversity;
-        partial void OnCloseToUniversityChanging(Nullable<global::System.Boolean> value);
-        partial void OnCloseToUniversityChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> NumberOfPanel
-        {
-            get
-            {
-                return _NumberOfPanel;
-            }
-            set
-            {
-                OnNumberOfPanelChanging(value);
-                ReportPropertyChanging("NumberOfPanel");
-                _NumberOfPanel = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("NumberOfPanel");
-                OnNumberOfPanelChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _NumberOfPanel;
-        partial void OnNumberOfPanelChanging(Nullable<global::System.Int32> value);
-        partial void OnNumberOfPanelChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String PanelCode
-        {
-            get
-            {
-                return _PanelCode;
-            }
-            set
-            {
-                OnPanelCodeChanging(value);
-                ReportPropertyChanging("PanelCode");
-                _PanelCode = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("PanelCode");
-                OnPanelCodeChanged();
-            }
-        }
-        private global::System.String _PanelCode;
-        partial void OnPanelCodeChanging(global::System.String value);
-        partial void OnPanelCodeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Double> Longitude
-        {
-            get
-            {
-                return _Longitude;
-            }
-            set
-            {
-                OnLongitudeChanging(value);
-                ReportPropertyChanging("Longitude");
-                _Longitude = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Longitude");
-                OnLongitudeChanged();
-            }
-        }
-        private Nullable<global::System.Double> _Longitude;
-        partial void OnLongitudeChanging(Nullable<global::System.Double> value);
-        partial void OnLongitudeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Double> Latitude
-        {
-            get
-            {
-                return _Latitude;
-            }
-            set
-            {
-                OnLatitudeChanging(value);
-                ReportPropertyChanging("Latitude");
-                _Latitude = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Latitude");
-                OnLatitudeChanged();
-            }
-        }
-        private Nullable<global::System.Double> _Latitude;
-        partial void OnLatitudeChanging(Nullable<global::System.Double> value);
-        partial void OnLatitudeChanged();
+        private Nullable<global::System.Double> _Lat;
+        partial void OnLatChanging(Nullable<global::System.Double> value);
+        partial void OnLatChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2943,72 +2607,24 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Direction
+        public Nullable<global::System.Boolean> SurroundingAreaLight
         {
             get
             {
-                return _Direction;
+                return _SurroundingAreaLight;
             }
             set
             {
-                OnDirectionChanging(value);
-                ReportPropertyChanging("Direction");
-                _Direction = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Direction");
-                OnDirectionChanged();
+                OnSurroundingAreaLightChanging(value);
+                ReportPropertyChanging("SurroundingAreaLight");
+                _SurroundingAreaLight = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SurroundingAreaLight");
+                OnSurroundingAreaLightChanged();
             }
         }
-        private global::System.String _Direction;
-        partial void OnDirectionChanging(global::System.String value);
-        partial void OnDirectionChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Frontlit
-        {
-            get
-            {
-                return _Frontlit;
-            }
-            set
-            {
-                OnFrontlitChanging(value);
-                ReportPropertyChanging("Frontlit");
-                _Frontlit = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Frontlit");
-                OnFrontlitChanged();
-            }
-        }
-        private global::System.String _Frontlit;
-        partial void OnFrontlitChanging(global::System.String value);
-        partial void OnFrontlitChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Backlit
-        {
-            get
-            {
-                return _Backlit;
-            }
-            set
-            {
-                OnBacklitChanging(value);
-                ReportPropertyChanging("Backlit");
-                _Backlit = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Backlit");
-                OnBacklitChanged();
-            }
-        }
-        private global::System.String _Backlit;
-        partial void OnBacklitChanging(global::System.String value);
-        partial void OnBacklitChanged();
+        private Nullable<global::System.Boolean> _SurroundingAreaLight;
+        partial void OnSurroundingAreaLightChanging(Nullable<global::System.Boolean> value);
+        partial void OnSurroundingAreaLightChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3033,6 +2649,246 @@ namespace OAMS.Models
         private Nullable<global::System.Int32> _FrontlitNumerOfLamps;
         partial void OnFrontlitNumerOfLampsChanging(Nullable<global::System.Int32> value);
         partial void OnFrontlitNumerOfLampsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String FrontlitTopBottom
+        {
+            get
+            {
+                return _FrontlitTopBottom;
+            }
+            set
+            {
+                OnFrontlitTopBottomChanging(value);
+                ReportPropertyChanging("FrontlitTopBottom");
+                _FrontlitTopBottom = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("FrontlitTopBottom");
+                OnFrontlitTopBottomChanged();
+            }
+        }
+        private global::System.String _FrontlitTopBottom;
+        partial void OnFrontlitTopBottomChanging(global::System.String value);
+        partial void OnFrontlitTopBottomChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> FrontlitSideLighting
+        {
+            get
+            {
+                return _FrontlitSideLighting;
+            }
+            set
+            {
+                OnFrontlitSideLightingChanging(value);
+                ReportPropertyChanging("FrontlitSideLighting");
+                _FrontlitSideLighting = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FrontlitSideLighting");
+                OnFrontlitSideLightingChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _FrontlitSideLighting;
+        partial void OnFrontlitSideLightingChanging(Nullable<global::System.Boolean> value);
+        partial void OnFrontlitSideLightingChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String FontlitArmsPlacement
+        {
+            get
+            {
+                return _FontlitArmsPlacement;
+            }
+            set
+            {
+                OnFontlitArmsPlacementChanging(value);
+                ReportPropertyChanging("FontlitArmsPlacement");
+                _FontlitArmsPlacement = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("FontlitArmsPlacement");
+                OnFontlitArmsPlacementChanged();
+            }
+        }
+        private global::System.String _FontlitArmsPlacement;
+        partial void OnFontlitArmsPlacementChanging(global::System.String value);
+        partial void OnFontlitArmsPlacementChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String FontlitIlluminationDistribution
+        {
+            get
+            {
+                return _FontlitIlluminationDistribution;
+            }
+            set
+            {
+                OnFontlitIlluminationDistributionChanging(value);
+                ReportPropertyChanging("FontlitIlluminationDistribution");
+                _FontlitIlluminationDistribution = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("FontlitIlluminationDistribution");
+                OnFontlitIlluminationDistributionChanged();
+            }
+        }
+        private global::System.String _FontlitIlluminationDistribution;
+        partial void OnFontlitIlluminationDistributionChanging(global::System.String value);
+        partial void OnFontlitIlluminationDistributionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> FontLightArmsStraight
+        {
+            get
+            {
+                return _FontLightArmsStraight;
+            }
+            set
+            {
+                OnFontLightArmsStraightChanging(value);
+                ReportPropertyChanging("FontLightArmsStraight");
+                _FontLightArmsStraight = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FontLightArmsStraight");
+                OnFontLightArmsStraightChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _FontLightArmsStraight;
+        partial void OnFontLightArmsStraightChanging(Nullable<global::System.Boolean> value);
+        partial void OnFontLightArmsStraightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BacklitFormat
+        {
+            get
+            {
+                return _BacklitFormat;
+            }
+            set
+            {
+                OnBacklitFormatChanging(value);
+                ReportPropertyChanging("BacklitFormat");
+                _BacklitFormat = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BacklitFormat");
+                OnBacklitFormatChanged();
+            }
+        }
+        private global::System.String _BacklitFormat;
+        partial void OnBacklitFormatChanging(global::System.String value);
+        partial void OnBacklitFormatChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BacklitIlluninationSpread
+        {
+            get
+            {
+                return _BacklitIlluninationSpread;
+            }
+            set
+            {
+                OnBacklitIlluninationSpreadChanging(value);
+                ReportPropertyChanging("BacklitIlluninationSpread");
+                _BacklitIlluninationSpread = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BacklitIlluninationSpread");
+                OnBacklitIlluninationSpreadChanged();
+            }
+        }
+        private global::System.String _BacklitIlluninationSpread;
+        partial void OnBacklitIlluninationSpreadChanging(global::System.String value);
+        partial void OnBacklitIlluninationSpreadChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BacklitLightingBlocks
+        {
+            get
+            {
+                return _BacklitLightingBlocks;
+            }
+            set
+            {
+                OnBacklitLightingBlocksChanging(value);
+                ReportPropertyChanging("BacklitLightingBlocks");
+                _BacklitLightingBlocks = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BacklitLightingBlocks");
+                OnBacklitLightingBlocksChanged();
+            }
+        }
+        private global::System.String _BacklitLightingBlocks;
+        partial void OnBacklitLightingBlocksChanging(global::System.String value);
+        partial void OnBacklitLightingBlocksChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BacklitLightBoxLeakage
+        {
+            get
+            {
+                return _BacklitLightBoxLeakage;
+            }
+            set
+            {
+                OnBacklitLightBoxLeakageChanging(value);
+                ReportPropertyChanging("BacklitLightBoxLeakage");
+                _BacklitLightBoxLeakage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BacklitLightBoxLeakage");
+                OnBacklitLightBoxLeakageChanged();
+            }
+        }
+        private global::System.String _BacklitLightBoxLeakage;
+        partial void OnBacklitLightBoxLeakageChanging(global::System.String value);
+        partial void OnBacklitLightBoxLeakageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BacklitVisualLegibility
+        {
+            get
+            {
+                return _BacklitVisualLegibility;
+            }
+            set
+            {
+                OnBacklitVisualLegibilityChanging(value);
+                ReportPropertyChanging("BacklitVisualLegibility");
+                _BacklitVisualLegibility = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BacklitVisualLegibility");
+                OnBacklitVisualLegibilityChanged();
+            }
+        }
+        private global::System.String _BacklitVisualLegibility;
+        partial void OnBacklitVisualLegibilityChanging(global::System.String value);
+        partial void OnBacklitVisualLegibilityChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3327,6 +3183,30 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SiteHeight
+        {
+            get
+            {
+                return _SiteHeight;
+            }
+            set
+            {
+                OnSiteHeightChanging(value);
+                ReportPropertyChanging("SiteHeight");
+                _SiteHeight = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SiteHeight");
+                OnSiteHeightChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SiteHeight;
+        partial void OnSiteHeightChanging(Nullable<global::System.Int32> value);
+        partial void OnSiteHeightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public Nullable<global::System.Int32> DirectionalTrafficPublicTransport
         {
             get
@@ -3417,6 +3297,342 @@ namespace OAMS.Models
         private Nullable<global::System.Int32> _CompetitiveProductSigns;
         partial void OnCompetitiveProductSignsChanging(Nullable<global::System.Int32> value);
         partial void OnCompetitiveProductSignsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> CloseToUniversity
+        {
+            get
+            {
+                return _CloseToUniversity;
+            }
+            set
+            {
+                OnCloseToUniversityChanging(value);
+                ReportPropertyChanging("CloseToUniversity");
+                _CloseToUniversity = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CloseToUniversity");
+                OnCloseToUniversityChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _CloseToUniversity;
+        partial void OnCloseToUniversityChanging(Nullable<global::System.Boolean> value);
+        partial void OnCloseToUniversityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> CloseToHopistal
+        {
+            get
+            {
+                return _CloseToHopistal;
+            }
+            set
+            {
+                OnCloseToHopistalChanging(value);
+                ReportPropertyChanging("CloseToHopistal");
+                _CloseToHopistal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CloseToHopistal");
+                OnCloseToHopistalChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _CloseToHopistal;
+        partial void OnCloseToHopistalChanging(Nullable<global::System.Boolean> value);
+        partial void OnCloseToHopistalChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> CloseToAirport
+        {
+            get
+            {
+                return _CloseToAirport;
+            }
+            set
+            {
+                OnCloseToAirportChanging(value);
+                ReportPropertyChanging("CloseToAirport");
+                _CloseToAirport = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CloseToAirport");
+                OnCloseToAirportChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _CloseToAirport;
+        partial void OnCloseToAirportChanging(Nullable<global::System.Boolean> value);
+        partial void OnCloseToAirportChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> CloseToFactory
+        {
+            get
+            {
+                return _CloseToFactory;
+            }
+            set
+            {
+                OnCloseToFactoryChanging(value);
+                ReportPropertyChanging("CloseToFactory");
+                _CloseToFactory = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CloseToFactory");
+                OnCloseToFactoryChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _CloseToFactory;
+        partial void OnCloseToFactoryChanging(Nullable<global::System.Boolean> value);
+        partial void OnCloseToFactoryChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> CloseToGasStation
+        {
+            get
+            {
+                return _CloseToGasStation;
+            }
+            set
+            {
+                OnCloseToGasStationChanging(value);
+                ReportPropertyChanging("CloseToGasStation");
+                _CloseToGasStation = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CloseToGasStation");
+                OnCloseToGasStationChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _CloseToGasStation;
+        partial void OnCloseToGasStationChanging(Nullable<global::System.Boolean> value);
+        partial void OnCloseToGasStationChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> CloseToMarket
+        {
+            get
+            {
+                return _CloseToMarket;
+            }
+            set
+            {
+                OnCloseToMarketChanging(value);
+                ReportPropertyChanging("CloseToMarket");
+                _CloseToMarket = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CloseToMarket");
+                OnCloseToMarketChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _CloseToMarket;
+        partial void OnCloseToMarketChanging(Nullable<global::System.Boolean> value);
+        partial void OnCloseToMarketChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> CloseToOffice
+        {
+            get
+            {
+                return _CloseToOffice;
+            }
+            set
+            {
+                OnCloseToOfficeChanging(value);
+                ReportPropertyChanging("CloseToOffice");
+                _CloseToOffice = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CloseToOffice");
+                OnCloseToOfficeChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _CloseToOffice;
+        partial void OnCloseToOfficeChanging(Nullable<global::System.Boolean> value);
+        partial void OnCloseToOfficeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> CloseToParking
+        {
+            get
+            {
+                return _CloseToParking;
+            }
+            set
+            {
+                OnCloseToParkingChanging(value);
+                ReportPropertyChanging("CloseToParking");
+                _CloseToParking = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CloseToParking");
+                OnCloseToParkingChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _CloseToParking;
+        partial void OnCloseToParkingChanging(Nullable<global::System.Boolean> value);
+        partial void OnCloseToParkingChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> CloseToResident
+        {
+            get
+            {
+                return _CloseToResident;
+            }
+            set
+            {
+                OnCloseToResidentChanging(value);
+                ReportPropertyChanging("CloseToResident");
+                _CloseToResident = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CloseToResident");
+                OnCloseToResidentChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _CloseToResident;
+        partial void OnCloseToResidentChanging(Nullable<global::System.Boolean> value);
+        partial void OnCloseToResidentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> CloseToSchool
+        {
+            get
+            {
+                return _CloseToSchool;
+            }
+            set
+            {
+                OnCloseToSchoolChanging(value);
+                ReportPropertyChanging("CloseToSchool");
+                _CloseToSchool = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CloseToSchool");
+                OnCloseToSchoolChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _CloseToSchool;
+        partial void OnCloseToSchoolChanging(Nullable<global::System.Boolean> value);
+        partial void OnCloseToSchoolChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> CloseToShopping
+        {
+            get
+            {
+                return _CloseToShopping;
+            }
+            set
+            {
+                OnCloseToShoppingChanging(value);
+                ReportPropertyChanging("CloseToShopping");
+                _CloseToShopping = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CloseToShopping");
+                OnCloseToShoppingChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _CloseToShopping;
+        partial void OnCloseToShoppingChanging(Nullable<global::System.Boolean> value);
+        partial void OnCloseToShoppingChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> CloseToStadium
+        {
+            get
+            {
+                return _CloseToStadium;
+            }
+            set
+            {
+                OnCloseToStadiumChanging(value);
+                ReportPropertyChanging("CloseToStadium");
+                _CloseToStadium = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CloseToStadium");
+                OnCloseToStadiumChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _CloseToStadium;
+        partial void OnCloseToStadiumChanging(Nullable<global::System.Boolean> value);
+        partial void OnCloseToStadiumChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> CloseToStation
+        {
+            get
+            {
+                return _CloseToStation;
+            }
+            set
+            {
+                OnCloseToStationChanging(value);
+                ReportPropertyChanging("CloseToStation");
+                _CloseToStation = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CloseToStation");
+                OnCloseToStationChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _CloseToStation;
+        partial void OnCloseToStationChanging(Nullable<global::System.Boolean> value);
+        partial void OnCloseToStationChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> CloseToTownCenter
+        {
+            get
+            {
+                return _CloseToTownCenter;
+            }
+            set
+            {
+                OnCloseToTownCenterChanging(value);
+                ReportPropertyChanging("CloseToTownCenter");
+                _CloseToTownCenter = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CloseToTownCenter");
+                OnCloseToTownCenterChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _CloseToTownCenter;
+        partial void OnCloseToTownCenterChanging(Nullable<global::System.Boolean> value);
+        partial void OnCloseToTownCenterChanged();
 
         #endregion
     

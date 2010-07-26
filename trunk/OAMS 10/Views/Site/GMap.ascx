@@ -8,7 +8,7 @@
     initialize();
 
     function initialize() {
-        var latlng = new google.maps.LatLng(<%= Model.Latitude %>, <%= Model.Longitude %>);
+        var latlng = new google.maps.LatLng(<%= Model.Lat %>, <%= Model.Lng %>);
         var myOptions = {
             zoom: 15,
             center: latlng,
