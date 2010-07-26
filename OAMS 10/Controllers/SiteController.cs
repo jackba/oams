@@ -71,7 +71,7 @@ namespace OAMS.Controllers
             Site e = repo.Get(id);
 
             UpdateModel(e);
-            
+
             repo.UpdateGeo(e);
 
             repo.Save();
@@ -100,8 +100,8 @@ namespace OAMS.Controllers
         public JsonResult JsonList()
         {
             OAMSEntities db = new OAMSEntities();
-            var result = db.Sites.Where(r => r.Longitude > 0 && r.Latitude > 0)
-                .Select(r => new { r.Latitude, r.Longitude, r.Code, Note = r.Code })
+            var result = db.Sites.Where(r => r.Lng > 0 && r.Lat > 0)
+                .Select(r => new { r.Lat, r.Lng, r.Code, Note = r.Code })
                 .ToList();
 
             return Json(result);

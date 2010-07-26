@@ -186,7 +186,7 @@
                     //          new google.maps.Size(24, 24));
 
 
-                    var pos = new google.maps.LatLng(site.Latitude, site.Longitude);
+                    var pos = new google.maps.LatLng(site.Lat, site.Lng);
 
                     var marker = new google.maps.Marker({
                         map: map,

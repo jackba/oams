@@ -148,40 +148,34 @@
           <Property Name="Geo1ID" Type="uniqueidentifier" />
           <Property Name="Geo2ID" Type="uniqueidentifier" />
           <Property Name="Geo3ID" Type="uniqueidentifier" />
-          <Property Name="Style" Type="nvarchar(max)" />
-          <Property Name="Code" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Type" Type="nvarchar(max)" />
           <Property Name="Material" Type="nvarchar(max)" />
+          <Property Name="Code" Type="nvarchar(max)" />
+          <Property Name="Contractor" Type="nvarchar(max)" />
+          <Property Name="CurrentClient" Type="nvarchar(max)" />
+          <Property Name="Competition" Type="nvarchar(max)" />
+          <Property Name="Category" Type="nvarchar(max)" />
+          <Property Name="ContractExpired" Type="nvarchar(max)" />
           <Property Name="CBDViewed" Type="nvarchar(max)" />
           <Property Name="Height" Type="decimal" Scale="2" />
           <Property Name="Width" Type="decimal" Scale="2" />
           <Property Name="Size" Type="decimal" Precision="37" Scale="4" StoreGeneratedPattern="Computed" />
-          <Property Name="Grade" Type="nvarchar(max)" />
-          <Property Name="DistanceFromRoadside" Type="int" />
-          <Property Name="AboveStreet" Type="int" />
-          <Property Name="VisualClutter" Type="int" />
-          <Property Name="CloseToAirport" Type="bit" />
-          <Property Name="CloseToFactory" Type="bit" />
-          <Property Name="CloseToGasStation" Type="bit" />
-          <Property Name="CloseToHopistal" Type="bit" />
-          <Property Name="CloseToMarket" Type="bit" />
-          <Property Name="CloseToOffice" Type="bit" />
-          <Property Name="CloseToParking" Type="bit" />
-          <Property Name="CloseToResident" Type="bit" />
-          <Property Name="CloseToSchool" Type="bit" />
-          <Property Name="CloseToShopping" Type="bit" />
-          <Property Name="CloseToStadium" Type="bit" />
-          <Property Name="CloseToStation" Type="bit" />
-          <Property Name="CloseToTownCenter" Type="bit" />
-          <Property Name="CloseToUniversity" Type="bit" />
-          <Property Name="NumberOfPanel" Type="int" />
-          <Property Name="PanelCode" Type="nvarchar(max)" />
-          <Property Name="Longitude" Type="float" />
-          <Property Name="Latitude" Type="float" />
+          <Property Name="Lng" Type="float" />
+          <Property Name="Lat" Type="float" />
           <Property Name="StreetLight" Type="bit" />
-          <Property Name="Direction" Type="nvarchar(max)" />
-          <Property Name="Frontlit" Type="nvarchar(max)" />
-          <Property Name="Backlit" Type="nvarchar(max)" />
+          <Property Name="SurroundingAreaLight" Type="bit" />
           <Property Name="FrontlitNumerOfLamps" Type="int" />
+          <Property Name="FrontlitTopBottom" Type="nvarchar(max)" />
+          <Property Name="FrontlitSideLighting" Type="bit" />
+          <Property Name="FontlitArmsPlacement" Type="nvarchar(max)" />
+          <Property Name="FontlitIlluminationDistribution" Type="nvarchar(max)" />
+          <Property Name="FontLightArmsStraight" Type="bit" />
+          <Property Name="BacklitFormat" Type="nvarchar(max)" />
+          <Property Name="BacklitIlluninationSpread" Type="nvarchar(max)" />
+          <Property Name="BacklitLightingBlocks" Type="nvarchar(max)" />
+          <Property Name="BacklitLightBoxLeakage" Type="nvarchar(max)" />
+          <Property Name="BacklitVisualLegibility" Type="nvarchar(max)" />
           <Property Name="RoadType1" Type="int" />
           <Property Name="RoadType2" Type="int" />
           <Property Name="RoadTypePoint" Type="int" StoreGeneratedPattern="Computed" />
@@ -194,10 +188,25 @@
           <Property Name="VisibilityBridgeWalkway" Type="int" />
           <Property Name="VisibilityElectricityPolesOther" Type="int" />
           <Property Name="ViewingSpeed" Type="int" />
+          <Property Name="SiteHeight" Type="int" />
           <Property Name="DirectionalTrafficPublicTransport" Type="int" />
           <Property Name="ShopSignsBillboards" Type="int" />
           <Property Name="FlagsTemporaryBannersPromotionalItems" Type="int" />
           <Property Name="CompetitiveProductSigns" Type="int" />
+          <Property Name="CloseToUniversity" Type="bit" />
+          <Property Name="CloseToHopistal" Type="bit" />
+          <Property Name="CloseToAirport" Type="bit" />
+          <Property Name="CloseToFactory" Type="bit" />
+          <Property Name="CloseToGasStation" Type="bit" />
+          <Property Name="CloseToMarket" Type="bit" />
+          <Property Name="CloseToOffice" Type="bit" />
+          <Property Name="CloseToParking" Type="bit" />
+          <Property Name="CloseToResident" Type="bit" />
+          <Property Name="CloseToSchool" Type="bit" />
+          <Property Name="CloseToShopping" Type="bit" />
+          <Property Name="CloseToStadium" Type="bit" />
+          <Property Name="CloseToStation" Type="bit" />
+          <Property Name="CloseToTownCenter" Type="bit" />
         </EntityType>
         <Association Name="FK_Campaign_Client">
           <End Role="Client" Type="OAMSModel.Store.Client" Multiplicity="0..1" />
@@ -337,26 +346,9 @@
             <End Role="Contract" EntitySet="Contracts" />
           </AssociationSet>
           <EntitySet Name="ContractDetails" EntityType="OAMSModel.ContractDetail" />
-          <EntitySet Name="Sites" EntityType="OAMSModel.Site" />
           <AssociationSet Name="FK_ContractDetail_Contract" Association="OAMSModel.FK_ContractDetail_Contract">
             <End Role="Contract" EntitySet="Contracts" />
             <End Role="ContractDetail" EntitySet="ContractDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ContractDetail_Site" Association="OAMSModel.FK_ContractDetail_Site">
-            <End Role="Site" EntitySet="Sites" />
-            <End Role="ContractDetail" EntitySet="ContractDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Site_Geo1" Association="OAMSModel.FK_Site_Geo1">
-            <End Role="Geo" EntitySet="Geos" />
-            <End Role="Site" EntitySet="Sites" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Site_Geo2" Association="OAMSModel.FK_Site_Geo2">
-            <End Role="Geo" EntitySet="Geos" />
-            <End Role="Site" EntitySet="Sites" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Site_Geo3" Association="OAMSModel.FK_Site_Geo3">
-            <End Role="Geo" EntitySet="Geos" />
-            <End Role="Site" EntitySet="Sites" />
           </AssociationSet>
           <EntitySet Name="Campaigns" EntityType="OAMSModel.Campaign" />
           <EntitySet Name="CampaignDetails" EntityType="OAMSModel.CampaignDetail" />
@@ -373,6 +365,23 @@
             <End Role="ContractDetail" EntitySet="ContractDetails" />
             <End Role="CampaignDetail" EntitySet="CampaignDetails" />
           </AssociationSet>
+          <EntitySet Name="Sites" EntityType="OAMSModel.Site" />
+          <AssociationSet Name="FK_ContractDetail_Site" Association="OAMSModel.FK_ContractDetail_Site">
+            <End Role="Site" EntitySet="Sites" />
+            <End Role="ContractDetail" EntitySet="ContractDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Site_Geo1" Association="OAMSModel.FK_Site_Geo1">
+            <End Role="Geo" EntitySet="Geos" />
+            <End Role="Site" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Site_Geo2" Association="OAMSModel.FK_Site_Geo2">
+            <End Role="Geo" EntitySet="Geos" />
+            <End Role="Site" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Site_Geo3" Association="OAMSModel.FK_Site_Geo3">
+            <End Role="Geo" EntitySet="Geos" />
+            <End Role="Site" EntitySet="Sites" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Geo">
           <Key>
@@ -386,10 +395,10 @@
           <Property Type="String" Name="FullNameNoDiacritics" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Children" Relationship="OAMSModel.FK_Geo_Geo" FromRole="Geo" ToRole="Geo1" />
           <NavigationProperty Name="Parent" Relationship="OAMSModel.FK_Geo_Geo" FromRole="Geo1" ToRole="Geo" />
-          <NavigationProperty Name="Sites1" Relationship="OAMSModel.FK_Site_Geo1" FromRole="Geo" ToRole="Site" />
-          <NavigationProperty Name="Sites2" Relationship="OAMSModel.FK_Site_Geo2" FromRole="Geo" ToRole="Site" />
-          <NavigationProperty Name="Sites3" Relationship="OAMSModel.FK_Site_Geo3" FromRole="Geo" ToRole="Site" />
-        </EntityType>
+          <NavigationProperty Name="Sites" Relationship="OAMSModel.FK_Site_Geo1" FromRole="Geo" ToRole="Site" />
+          <NavigationProperty Name="Sites1" Relationship="OAMSModel.FK_Site_Geo2" FromRole="Geo" ToRole="Site" />
+          <NavigationProperty Name="Sites2" Relationship="OAMSModel.FK_Site_Geo3" FromRole="Geo" ToRole="Site" />
+          </EntityType>
         <Association Name="FK_Geo_Geo">
           <End Type="OAMSModel.Geo" Role="Geo" Multiplicity="0..1" />
           <End Type="OAMSModel.Geo" Role="Geo1" Multiplicity="*" />
@@ -456,71 +465,8 @@
           <Property Type="DateTime" Name="TermDate" />
           <Property Type="Int32" Name="SiteID" />
           <NavigationProperty Name="Contract" Relationship="OAMSModel.FK_ContractDetail_Contract" FromRole="ContractDetail" ToRole="Contract" />
-          <NavigationProperty Name="Site" Relationship="OAMSModel.FK_ContractDetail_Site" FromRole="ContractDetail" ToRole="Site" />
           <NavigationProperty Name="CampaignDetails" Relationship="OAMSModel.FK_CampaignDetail_ContractDetail" FromRole="ContractDetail" ToRole="CampaignDetail" />
-        </EntityType>
-        <EntityType Name="Site">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Guid" Name="Geo1ID" />
-          <Property Type="Guid" Name="Geo2ID" />
-          <Property Type="Guid" Name="Geo3ID" />
-          <Property Type="String" Name="Style" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Code" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Material" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CBDViewed" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="Height" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Width" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Size" Precision="37" Scale="4" annotation:StoreGeneratedPattern="Computed" />
-          <Property Type="String" Name="Grade" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="DistanceFromRoadside" />
-          <Property Type="Int32" Name="AboveStreet" />
-          <Property Type="Int32" Name="VisualClutter" />
-          <Property Type="Boolean" Name="CloseToAirport" />
-          <Property Type="Boolean" Name="CloseToFactory" />
-          <Property Type="Boolean" Name="CloseToGasStation" />
-          <Property Type="Boolean" Name="CloseToHopistal" />
-          <Property Type="Boolean" Name="CloseToMarket" />
-          <Property Type="Boolean" Name="CloseToOffice" />
-          <Property Type="Boolean" Name="CloseToParking" />
-          <Property Type="Boolean" Name="CloseToResident" />
-          <Property Type="Boolean" Name="CloseToSchool" />
-          <Property Type="Boolean" Name="CloseToShopping" />
-          <Property Type="Boolean" Name="CloseToStadium" />
-          <Property Type="Boolean" Name="CloseToStation" />
-          <Property Type="Boolean" Name="CloseToTownCenter" />
-          <Property Type="Boolean" Name="CloseToUniversity" />
-          <Property Type="Int32" Name="NumberOfPanel" />
-          <Property Type="String" Name="PanelCode" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Double" Name="Longitude" />
-          <Property Type="Double" Name="Latitude" />
-          <Property Type="Boolean" Name="StreetLight" />
-          <NavigationProperty Name="ContractDetails" Relationship="OAMSModel.FK_ContractDetail_Site" FromRole="Site" ToRole="ContractDetail" />
-          <NavigationProperty Name="Geo1" Relationship="OAMSModel.FK_Site_Geo1" FromRole="Site" ToRole="Geo" />
-          <NavigationProperty Name="Geo2" Relationship="OAMSModel.FK_Site_Geo2" FromRole="Site" ToRole="Geo" />
-          <NavigationProperty Name="Geo3" Relationship="OAMSModel.FK_Site_Geo3" FromRole="Site" ToRole="Geo" />
-          <Property Type="String" Name="Direction" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Frontlit" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Backlit" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="FrontlitNumerOfLamps" />
-          <Property Type="Int32" Name="RoadType1" />
-          <Property Type="Int32" Name="RoadType2" />
-          <Property Type="Int32" Name="RoadTypePoint" annotation:StoreGeneratedPattern="Computed" />
-          <Property Type="Int32" Name="InstallationPosition1" />
-          <Property Type="Int32" Name="InstallationPosition2" />
-          <Property Type="Int32" Name="InstallationPositionPoint" annotation:StoreGeneratedPattern="Computed" />
-          <Property Type="Int32" Name="ViewingDistance" />
-          <Property Type="Int32" Name="VisibilityBuilding" />
-          <Property Type="Int32" Name="VisibilityTrees" />
-          <Property Type="Int32" Name="VisibilityBridgeWalkway" />
-          <Property Type="Int32" Name="VisibilityElectricityPolesOther" />
-          <Property Type="Int32" Name="ViewingSpeed" />
-          <Property Type="Int32" Name="DirectionalTrafficPublicTransport" />
-          <Property Type="Int32" Name="ShopSignsBillboards" />
-          <Property Type="Int32" Name="FlagsTemporaryBannersPromotionalItems" />
-          <Property Type="Int32" Name="CompetitiveProductSigns" />
+          <NavigationProperty Name="Site" Relationship="OAMSModel.FK_ContractDetail_Site" FromRole="ContractDetail" ToRole="Site" />
         </EntityType>
         <Association Name="FK_ContractDetail_Contract">
           <End Type="OAMSModel.Contract" Role="Contract" Multiplicity="0..1" />
@@ -531,54 +477,6 @@
             </Principal>
             <Dependent Role="ContractDetail">
               <PropertyRef Name="ContractID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ContractDetail_Site">
-          <End Type="OAMSModel.Site" Role="Site" Multiplicity="0..1" />
-          <End Type="OAMSModel.ContractDetail" Role="ContractDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Site">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ContractDetail">
-              <PropertyRef Name="SiteID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Site_Geo1">
-          <End Type="OAMSModel.Geo" Role="Geo" Multiplicity="0..1" />
-          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Geo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="Geo1ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Site_Geo2">
-          <End Type="OAMSModel.Geo" Role="Geo" Multiplicity="0..1" />
-          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Geo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="Geo2ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Site_Geo3">
-          <End Type="OAMSModel.Geo" Role="Geo" Multiplicity="0..1" />
-          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Geo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="Geo3ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -657,6 +555,126 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Guid" Name="Geo1ID" />
+          <Property Type="Guid" Name="Geo2ID" />
+          <Property Type="Guid" Name="Geo3ID" />
+          <Property Type="String" Name="Address" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Type" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Material" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Code" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contractor" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CurrentClient" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Competition" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Category" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContractExpired" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CBDViewed" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Height" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Width" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Size" Precision="37" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Double" Name="Lng" />
+          <Property Type="Double" Name="Lat" />
+          <Property Type="Boolean" Name="StreetLight" />
+          <Property Type="Boolean" Name="SurroundingAreaLight" />
+          <Property Type="Int32" Name="FrontlitNumerOfLamps" />
+          <Property Type="String" Name="FrontlitTopBottom" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="FrontlitSideLighting" />
+          <Property Type="String" Name="FontlitArmsPlacement" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FontlitIlluminationDistribution" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="FontLightArmsStraight" />
+          <Property Type="String" Name="BacklitFormat" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BacklitIlluninationSpread" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BacklitLightingBlocks" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BacklitLightBoxLeakage" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BacklitVisualLegibility" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="RoadType1" />
+          <Property Type="Int32" Name="RoadType2" />
+          <Property Type="Int32" Name="RoadTypePoint" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Int32" Name="InstallationPosition1" />
+          <Property Type="Int32" Name="InstallationPosition2" />
+          <Property Type="Int32" Name="InstallationPositionPoint" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Int32" Name="ViewingDistance" />
+          <Property Type="Int32" Name="VisibilityBuilding" />
+          <Property Type="Int32" Name="VisibilityTrees" />
+          <Property Type="Int32" Name="VisibilityBridgeWalkway" />
+          <Property Type="Int32" Name="VisibilityElectricityPolesOther" />
+          <Property Type="Int32" Name="ViewingSpeed" />
+          <Property Type="Int32" Name="SiteHeight" />
+          <Property Type="Int32" Name="DirectionalTrafficPublicTransport" />
+          <Property Type="Int32" Name="ShopSignsBillboards" />
+          <Property Type="Int32" Name="FlagsTemporaryBannersPromotionalItems" />
+          <Property Type="Int32" Name="CompetitiveProductSigns" />
+          <Property Type="Boolean" Name="CloseToUniversity" />
+          <Property Type="Boolean" Name="CloseToHopistal" />
+          <Property Type="Boolean" Name="CloseToAirport" />
+          <Property Type="Boolean" Name="CloseToFactory" />
+          <Property Type="Boolean" Name="CloseToGasStation" />
+          <Property Type="Boolean" Name="CloseToMarket" />
+          <Property Type="Boolean" Name="CloseToOffice" />
+          <Property Type="Boolean" Name="CloseToParking" />
+          <Property Type="Boolean" Name="CloseToResident" />
+          <Property Type="Boolean" Name="CloseToSchool" />
+          <Property Type="Boolean" Name="CloseToShopping" />
+          <Property Type="Boolean" Name="CloseToStadium" />
+          <Property Type="Boolean" Name="CloseToStation" />
+          <Property Type="Boolean" Name="CloseToTownCenter" />
+          <NavigationProperty Name="ContractDetails" Relationship="OAMSModel.FK_ContractDetail_Site" FromRole="Site" ToRole="ContractDetail" />
+          <NavigationProperty Name="Geo1" Relationship="OAMSModel.FK_Site_Geo1" FromRole="Site" ToRole="Geo" />
+          <NavigationProperty Name="Geo2" Relationship="OAMSModel.FK_Site_Geo2" FromRole="Site" ToRole="Geo" />
+          <NavigationProperty Name="Geo3" Relationship="OAMSModel.FK_Site_Geo3" FromRole="Site" ToRole="Geo" />
+        </EntityType>
+        <Association Name="FK_ContractDetail_Site">
+          <End Type="OAMSModel.Site" Role="Site" Multiplicity="0..1" />
+          <End Type="OAMSModel.ContractDetail" Role="ContractDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Site">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ContractDetail">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Site_Geo1">
+          <End Type="OAMSModel.Geo" Role="Geo" Multiplicity="0..1" />
+          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Geo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Site">
+              <PropertyRef Name="Geo1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Site_Geo2">
+          <End Type="OAMSModel.Geo" Role="Geo" Multiplicity="0..1" />
+          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Geo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Site">
+              <PropertyRef Name="Geo2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Site_Geo3">
+          <End Type="OAMSModel.Geo" Role="Geo" Multiplicity="0..1" />
+          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Geo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Site">
+              <PropertyRef Name="Geo3ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -718,66 +736,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sites">
-            <EntityTypeMapping TypeName="OAMSModel.Site">
-              <MappingFragment StoreEntitySet="Site">
-                <ScalarProperty Name="CompetitiveProductSigns" ColumnName="CompetitiveProductSigns" />
-                <ScalarProperty Name="FlagsTemporaryBannersPromotionalItems" ColumnName="FlagsTemporaryBannersPromotionalItems" />
-                <ScalarProperty Name="ShopSignsBillboards" ColumnName="ShopSignsBillboards" />
-                <ScalarProperty Name="DirectionalTrafficPublicTransport" ColumnName="DirectionalTrafficPublicTransport" />
-                <ScalarProperty Name="ViewingSpeed" ColumnName="ViewingSpeed" />
-                <ScalarProperty Name="VisibilityElectricityPolesOther" ColumnName="VisibilityElectricityPolesOther" />
-                <ScalarProperty Name="VisibilityBridgeWalkway" ColumnName="VisibilityBridgeWalkway" />
-                <ScalarProperty Name="VisibilityTrees" ColumnName="VisibilityTrees" />
-                <ScalarProperty Name="VisibilityBuilding" ColumnName="VisibilityBuilding" />
-                <ScalarProperty Name="ViewingDistance" ColumnName="ViewingDistance" />
-                <ScalarProperty Name="InstallationPositionPoint" ColumnName="InstallationPositionPoint" />
-                <ScalarProperty Name="InstallationPosition2" ColumnName="InstallationPosition2" />
-                <ScalarProperty Name="InstallationPosition1" ColumnName="InstallationPosition1" />
-                <ScalarProperty Name="RoadTypePoint" ColumnName="RoadTypePoint" />
-                <ScalarProperty Name="RoadType2" ColumnName="RoadType2" />
-                <ScalarProperty Name="RoadType1" ColumnName="RoadType1" />
-                <ScalarProperty Name="FrontlitNumerOfLamps" ColumnName="FrontlitNumerOfLamps" />
-                <ScalarProperty Name="Backlit" ColumnName="Backlit" />
-                <ScalarProperty Name="Frontlit" ColumnName="Frontlit" />
-                <ScalarProperty Name="Direction" ColumnName="Direction" />
-                <ScalarProperty Name="StreetLight" ColumnName="StreetLight" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-                <ScalarProperty Name="PanelCode" ColumnName="PanelCode" />
-                <ScalarProperty Name="NumberOfPanel" ColumnName="NumberOfPanel" />
-                <ScalarProperty Name="CloseToUniversity" ColumnName="CloseToUniversity" />
-                <ScalarProperty Name="CloseToTownCenter" ColumnName="CloseToTownCenter" />
-                <ScalarProperty Name="CloseToStation" ColumnName="CloseToStation" />
-                <ScalarProperty Name="CloseToStadium" ColumnName="CloseToStadium" />
-                <ScalarProperty Name="CloseToShopping" ColumnName="CloseToShopping" />
-                <ScalarProperty Name="CloseToSchool" ColumnName="CloseToSchool" />
-                <ScalarProperty Name="CloseToResident" ColumnName="CloseToResident" />
-                <ScalarProperty Name="CloseToParking" ColumnName="CloseToParking" />
-                <ScalarProperty Name="CloseToOffice" ColumnName="CloseToOffice" />
-                <ScalarProperty Name="CloseToMarket" ColumnName="CloseToMarket" />
-                <ScalarProperty Name="CloseToHopistal" ColumnName="CloseToHopistal" />
-                <ScalarProperty Name="CloseToGasStation" ColumnName="CloseToGasStation" />
-                <ScalarProperty Name="CloseToFactory" ColumnName="CloseToFactory" />
-                <ScalarProperty Name="CloseToAirport" ColumnName="CloseToAirport" />
-                <ScalarProperty Name="VisualClutter" ColumnName="VisualClutter" />
-                <ScalarProperty Name="AboveStreet" ColumnName="AboveStreet" />
-                <ScalarProperty Name="DistanceFromRoadside" ColumnName="DistanceFromRoadside" />
-                <ScalarProperty Name="Grade" ColumnName="Grade" />
-                <ScalarProperty Name="Size" ColumnName="Size" />
-                <ScalarProperty Name="Width" ColumnName="Width" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="CBDViewed" ColumnName="CBDViewed" />
-                <ScalarProperty Name="Material" ColumnName="Material" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Style" ColumnName="Style" />
-                <ScalarProperty Name="Geo3ID" ColumnName="Geo3ID" />
-                <ScalarProperty Name="Geo2ID" ColumnName="Geo2ID" />
-                <ScalarProperty Name="Geo1ID" ColumnName="Geo1ID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Campaigns">
             <EntityTypeMapping TypeName="OAMSModel.Campaign">
               <MappingFragment StoreEntitySet="Campaign">
@@ -815,6 +773,75 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Sites">
+            <EntityTypeMapping TypeName="OAMSModel.Site">
+              <MappingFragment StoreEntitySet="Site">
+                <ScalarProperty Name="CloseToTownCenter" ColumnName="CloseToTownCenter" />
+                <ScalarProperty Name="CloseToStation" ColumnName="CloseToStation" />
+                <ScalarProperty Name="CloseToStadium" ColumnName="CloseToStadium" />
+                <ScalarProperty Name="CloseToShopping" ColumnName="CloseToShopping" />
+                <ScalarProperty Name="CloseToSchool" ColumnName="CloseToSchool" />
+                <ScalarProperty Name="CloseToResident" ColumnName="CloseToResident" />
+                <ScalarProperty Name="CloseToParking" ColumnName="CloseToParking" />
+                <ScalarProperty Name="CloseToOffice" ColumnName="CloseToOffice" />
+                <ScalarProperty Name="CloseToMarket" ColumnName="CloseToMarket" />
+                <ScalarProperty Name="CloseToGasStation" ColumnName="CloseToGasStation" />
+                <ScalarProperty Name="CloseToFactory" ColumnName="CloseToFactory" />
+                <ScalarProperty Name="CloseToAirport" ColumnName="CloseToAirport" />
+                <ScalarProperty Name="CloseToHopistal" ColumnName="CloseToHopistal" />
+                <ScalarProperty Name="CloseToUniversity" ColumnName="CloseToUniversity" />
+                <ScalarProperty Name="CompetitiveProductSigns" ColumnName="CompetitiveProductSigns" />
+                <ScalarProperty Name="FlagsTemporaryBannersPromotionalItems" ColumnName="FlagsTemporaryBannersPromotionalItems" />
+                <ScalarProperty Name="ShopSignsBillboards" ColumnName="ShopSignsBillboards" />
+                <ScalarProperty Name="DirectionalTrafficPublicTransport" ColumnName="DirectionalTrafficPublicTransport" />
+                <ScalarProperty Name="SiteHeight" ColumnName="SiteHeight" />
+                <ScalarProperty Name="ViewingSpeed" ColumnName="ViewingSpeed" />
+                <ScalarProperty Name="VisibilityElectricityPolesOther" ColumnName="VisibilityElectricityPolesOther" />
+                <ScalarProperty Name="VisibilityBridgeWalkway" ColumnName="VisibilityBridgeWalkway" />
+                <ScalarProperty Name="VisibilityTrees" ColumnName="VisibilityTrees" />
+                <ScalarProperty Name="VisibilityBuilding" ColumnName="VisibilityBuilding" />
+                <ScalarProperty Name="ViewingDistance" ColumnName="ViewingDistance" />
+                <ScalarProperty Name="InstallationPositionPoint" ColumnName="InstallationPositionPoint" />
+                <ScalarProperty Name="InstallationPosition2" ColumnName="InstallationPosition2" />
+                <ScalarProperty Name="InstallationPosition1" ColumnName="InstallationPosition1" />
+                <ScalarProperty Name="RoadTypePoint" ColumnName="RoadTypePoint" />
+                <ScalarProperty Name="RoadType2" ColumnName="RoadType2" />
+                <ScalarProperty Name="RoadType1" ColumnName="RoadType1" />
+                <ScalarProperty Name="BacklitVisualLegibility" ColumnName="BacklitVisualLegibility" />
+                <ScalarProperty Name="BacklitLightBoxLeakage" ColumnName="BacklitLightBoxLeakage" />
+                <ScalarProperty Name="BacklitLightingBlocks" ColumnName="BacklitLightingBlocks" />
+                <ScalarProperty Name="BacklitIlluninationSpread" ColumnName="BacklitIlluninationSpread" />
+                <ScalarProperty Name="BacklitFormat" ColumnName="BacklitFormat" />
+                <ScalarProperty Name="FontLightArmsStraight" ColumnName="FontLightArmsStraight" />
+                <ScalarProperty Name="FontlitIlluminationDistribution" ColumnName="FontlitIlluminationDistribution" />
+                <ScalarProperty Name="FontlitArmsPlacement" ColumnName="FontlitArmsPlacement" />
+                <ScalarProperty Name="FrontlitSideLighting" ColumnName="FrontlitSideLighting" />
+                <ScalarProperty Name="FrontlitTopBottom" ColumnName="FrontlitTopBottom" />
+                <ScalarProperty Name="FrontlitNumerOfLamps" ColumnName="FrontlitNumerOfLamps" />
+                <ScalarProperty Name="SurroundingAreaLight" ColumnName="SurroundingAreaLight" />
+                <ScalarProperty Name="StreetLight" ColumnName="StreetLight" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="CBDViewed" ColumnName="CBDViewed" />
+                <ScalarProperty Name="ContractExpired" ColumnName="ContractExpired" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Competition" ColumnName="Competition" />
+                <ScalarProperty Name="CurrentClient" ColumnName="CurrentClient" />
+                <ScalarProperty Name="Contractor" ColumnName="Contractor" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Material" ColumnName="Material" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Geo3ID" ColumnName="Geo3ID" />
+                <ScalarProperty Name="Geo2ID" ColumnName="Geo2ID" />
+                <ScalarProperty Name="Geo1ID" ColumnName="Geo1ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -838,10 +865,12 @@
       <Diagram Name="OAMS" ZoomLevel="106">
         <EntityTypeShape EntityType="OAMSModel.Geo" Width="1.5" PointX="0.75" PointY="4.75" Height="2.5263069661458317" />
         <AssociationConnector Association="OAMSModel.FK_Geo_Geo" >
-          <ConnectorPoint PointX="1.2819230769230767" PointY="7.8447884114583326" />
-          <ConnectorPoint PointX="1.2819230769230767" PointY="8.0947884114583317" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="8.0947884114583317" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="7.8447884114583326" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="7.8840950520833326" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="8.1340950520833317" />
+          <ConnectorPoint PointX="1.4218589743589742" PointY="8.1340950520833317" />
+          <ConnectorPoint PointX="1.5885256410256408" PointY="8.1340950520833317" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="8.1340950520833317" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="7.8840950520833326" />
         </AssociationConnector>
         <EntityTypeShape EntityType="OAMSModel.Contractor" Width="1.5" PointX="0.75" PointY="1.375" Height="1.5788378906250031" />
         <EntityTypeShape EntityType="OAMSModel.CodeMaster" Width="1.5" PointX="3.375" PointY="4.75" Height="1.7683317057291674" />
@@ -851,30 +880,10 @@
           <ConnectorPoint PointX="7.5" PointY="2.4144189453125" />
         </AssociationConnector>
         <EntityTypeShape EntityType="OAMSModel.ContractDetail" Width="1.5" PointX="9.75" PointY="7.875" Height="2.9052945963541674" />
-        <EntityTypeShape EntityType="OAMSModel.Site" Width="1.5" PointX="5.75" PointY="8.25" Height="11.210755208333332" />
         <AssociationConnector Association="OAMSModel.FK_ContractDetail_Contract" >
-          <ConnectorPoint PointX="8.25" PointY="3.9603483072916661" />
-          <ConnectorPoint PointX="8.25" PointY="8.8121234950246468" />
-          <ConnectorPoint PointX="9.75" PointY="8.8121234950246468" />
-        </AssociationConnector>
-        <AssociationConnector Association="OAMSModel.FK_ContractDetail_Site" >
-          <ConnectorPoint PointX="7.25" PointY="9.9801551666957877" />
-          <ConnectorPoint PointX="9.75" PointY="9.9801551666957877" />
-        </AssociationConnector>
-        <AssociationConnector Association="OAMSModel.FK_Site_Geo1" >
-          <ConnectorPoint PointX="2.25" PointY="7.2422900390625" />
-          <ConnectorPoint PointX="6.5" PointY="7.2422900390625" />
-          <ConnectorPoint PointX="6.5" PointY="8.25" />
-        </AssociationConnector>
-        <AssociationConnector Association="OAMSModel.FK_Site_Geo2" >
-          <ConnectorPoint PointX="2.25" PointY="7.5944450455729156" />
-          <ConnectorPoint PointX="6.0937475" PointY="7.5944450455729156" />
-          <ConnectorPoint PointX="6.0937475" PointY="8.25" />
-        </AssociationConnector>
-        <AssociationConnector Association="OAMSModel.FK_Site_Geo3" >
-          <ConnectorPoint PointX="2.25" PointY="6.8901350325520836" />
-          <ConnectorPoint PointX="6.9062525" PointY="6.8901350325520836" />
-          <ConnectorPoint PointX="6.9062525" PointY="8.25" />
+          <ConnectorPoint PointX="8.25" PointY="4.2398893229166656" />
+          <ConnectorPoint PointX="8.25" PointY="9.4420475260416659" />
+          <ConnectorPoint PointX="9.75" PointY="9.4420475260416659" />
         </AssociationConnector>
         <EntityTypeShape EntityType="OAMSModel.Campaign" Width="1.5" PointX="9.75" PointY="19" Height="2.5783902994791674" />
         <EntityTypeShape EntityType="OAMSModel.CampaignDetail" Width="1.5" PointX="12" PointY="8" Height="2.5783902994791674" />
@@ -889,8 +898,31 @@
           <ConnectorPoint PointX="12.75" PointY="10.578390299479167" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_CampaignDetail_ContractDetail" >
-          <ConnectorPoint PointX="11.25" PointY="9.2891951497395837" />
-          <ConnectorPoint PointX="12" PointY="9.2891951497395837" />
+          <ConnectorPoint PointX="11.25" PointY="9.4708968098958337" />
+          <ConnectorPoint PointX="12" PointY="9.4708968098958337" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="OAMSModel.Site" Width="1.5" PointX="3" PointY="21" Height="13.902975260416664" />
+        <AssociationConnector Association="OAMSModel.FK_ContractDetail_Site" >
+          <ConnectorPoint PointX="3.75" PointY="21" />
+          <ConnectorPoint PointX="3.75" PointY="10.2568237890625" />
+          <ConnectorPoint PointX="9.75" PointY="10.2568237890625" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_Site_Geo1" >
+          <ConnectorPoint PointX="0.98470903846153834" PointY="7.8840950520833326" />
+          <ConnectorPoint PointX="0.98470903846153834" PointY="27.951487630208334" />
+          <ConnectorPoint PointX="1.4218589743589742" PointY="27.951487630208334" />
+          <ConnectorPoint PointX="1.5885256410256408" PointY="27.951487630208334" />
+          <ConnectorPoint PointX="3" PointY="27.951487630208334" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_Site_Geo2" >
+          <ConnectorPoint PointX="2.0204832692307693" PointY="7.8840950520833326" />
+          <ConnectorPoint PointX="2.0204832692307693" PointY="24.444491315104173" />
+          <ConnectorPoint PointX="3" PointY="24.444491315104173" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_Site_Geo3" >
+          <ConnectorPoint PointX="1.5051923076923075" PointY="7.8840950520833326" />
+          <ConnectorPoint PointX="1.5051923076923075" PointY="31.458483945312494" />
+          <ConnectorPoint PointX="3" PointY="31.458483945312494" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
