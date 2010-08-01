@@ -2247,6 +2247,30 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public global::System.String Code
+        {
+            get
+            {
+                return _Code;
+            }
+            set
+            {
+                OnCodeChanging(value);
+                ReportPropertyChanging("Code");
+                _Code = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Code");
+                OnCodeChanged();
+            }
+        }
+        private global::System.String _Code;
+        partial void OnCodeChanging(global::System.String value);
+        partial void OnCodeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String Type
         {
             get
@@ -2271,48 +2295,24 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Material
+        public global::System.String Format
         {
             get
             {
-                return _Material;
+                return _Format;
             }
             set
             {
-                OnMaterialChanging(value);
-                ReportPropertyChanging("Material");
-                _Material = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Material");
-                OnMaterialChanged();
+                OnFormatChanging(value);
+                ReportPropertyChanging("Format");
+                _Format = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Format");
+                OnFormatChanged();
             }
         }
-        private global::System.String _Material;
-        partial void OnMaterialChanging(global::System.String value);
-        partial void OnMaterialChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Code
-        {
-            get
-            {
-                return _Code;
-            }
-            set
-            {
-                OnCodeChanging(value);
-                ReportPropertyChanging("Code");
-                _Code = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Code");
-                OnCodeChanged();
-            }
-        }
-        private global::System.String _Code;
-        partial void OnCodeChanging(global::System.String value);
-        partial void OnCodeChanged();
+        private global::System.String _Format;
+        partial void OnFormatChanging(global::System.String value);
+        partial void OnFormatChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2367,30 +2367,6 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Competition
-        {
-            get
-            {
-                return _Competition;
-            }
-            set
-            {
-                OnCompetitionChanging(value);
-                ReportPropertyChanging("Competition");
-                _Competition = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Competition");
-                OnCompetitionChanged();
-            }
-        }
-        private global::System.String _Competition;
-        partial void OnCompetitionChanging(global::System.String value);
-        partial void OnCompetitionChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String Category
         {
             get
@@ -2415,48 +2391,48 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ContractExpired
+        public global::System.String Competition
         {
             get
             {
-                return _ContractExpired;
+                return _Competition;
             }
             set
             {
-                OnContractExpiredChanging(value);
-                ReportPropertyChanging("ContractExpired");
-                _ContractExpired = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ContractExpired");
-                OnContractExpiredChanged();
+                OnCompetitionChanging(value);
+                ReportPropertyChanging("Competition");
+                _Competition = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Competition");
+                OnCompetitionChanged();
             }
         }
-        private global::System.String _ContractExpired;
-        partial void OnContractExpiredChanging(global::System.String value);
-        partial void OnContractExpiredChanged();
+        private global::System.String _Competition;
+        partial void OnCompetitionChanging(global::System.String value);
+        partial void OnCompetitionChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String CBDViewed
+        public global::System.String CurrentProduct
         {
             get
             {
-                return _CBDViewed;
+                return _CurrentProduct;
             }
             set
             {
-                OnCBDViewedChanging(value);
-                ReportPropertyChanging("CBDViewed");
-                _CBDViewed = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("CBDViewed");
-                OnCBDViewedChanged();
+                OnCurrentProductChanging(value);
+                ReportPropertyChanging("CurrentProduct");
+                _CurrentProduct = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CurrentProduct");
+                OnCurrentProductChanged();
             }
         }
-        private global::System.String _CBDViewed;
-        partial void OnCBDViewedChanging(global::System.String value);
-        partial void OnCBDViewedChanged();
+        private global::System.String _CurrentProduct;
+        partial void OnCurrentProductChanging(global::System.String value);
+        partial void OnCurrentProductChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2583,24 +2559,24 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> StreetLight
+        public global::System.String CBDViewed
         {
             get
             {
-                return _StreetLight;
+                return _CBDViewed;
             }
             set
             {
-                OnStreetLightChanging(value);
-                ReportPropertyChanging("StreetLight");
-                _StreetLight = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("StreetLight");
-                OnStreetLightChanged();
+                OnCBDViewedChanging(value);
+                ReportPropertyChanging("CBDViewed");
+                _CBDViewed = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CBDViewed");
+                OnCBDViewedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _StreetLight;
-        partial void OnStreetLightChanging(Nullable<global::System.Boolean> value);
-        partial void OnStreetLightChanged();
+        private global::System.String _CBDViewed;
+        partial void OnCBDViewedChanging(global::System.String value);
+        partial void OnCBDViewedChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2625,6 +2601,54 @@ namespace OAMS.Models
         private Nullable<global::System.Boolean> _SurroundingAreaLight;
         partial void OnSurroundingAreaLightChanging(Nullable<global::System.Boolean> value);
         partial void OnSurroundingAreaLightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> StreetLight
+        {
+            get
+            {
+                return _StreetLight;
+            }
+            set
+            {
+                OnStreetLightChanging(value);
+                ReportPropertyChanging("StreetLight");
+                _StreetLight = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("StreetLight");
+                OnStreetLightChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _StreetLight;
+        partial void OnStreetLightChanging(Nullable<global::System.Boolean> value);
+        partial void OnStreetLightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Display
+        {
+            get
+            {
+                return _Display;
+            }
+            set
+            {
+                OnDisplayChanging(value);
+                ReportPropertyChanging("Display");
+                _Display = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Display");
+                OnDisplayChanged();
+            }
+        }
+        private global::System.String _Display;
+        partial void OnDisplayChanging(global::System.String value);
+        partial void OnDisplayChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3063,6 +3087,54 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ViewingSpeed
+        {
+            get
+            {
+                return _ViewingSpeed;
+            }
+            set
+            {
+                OnViewingSpeedChanging(value);
+                ReportPropertyChanging("ViewingSpeed");
+                _ViewingSpeed = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ViewingSpeed");
+                OnViewingSpeedChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ViewingSpeed;
+        partial void OnViewingSpeedChanging(Nullable<global::System.Int32> value);
+        partial void OnViewingSpeedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> High
+        {
+            get
+            {
+                return _High;
+            }
+            set
+            {
+                OnHighChanging(value);
+                ReportPropertyChanging("High");
+                _High = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("High");
+                OnHighChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _High;
+        partial void OnHighChanging(Nullable<global::System.Int32> value);
+        partial void OnHighChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public Nullable<global::System.Int32> VisibilityBuilding
         {
             get
@@ -3153,54 +3225,6 @@ namespace OAMS.Models
         private Nullable<global::System.Int32> _VisibilityElectricityPolesOther;
         partial void OnVisibilityElectricityPolesOtherChanging(Nullable<global::System.Int32> value);
         partial void OnVisibilityElectricityPolesOtherChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ViewingSpeed
-        {
-            get
-            {
-                return _ViewingSpeed;
-            }
-            set
-            {
-                OnViewingSpeedChanging(value);
-                ReportPropertyChanging("ViewingSpeed");
-                _ViewingSpeed = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ViewingSpeed");
-                OnViewingSpeedChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _ViewingSpeed;
-        partial void OnViewingSpeedChanging(Nullable<global::System.Int32> value);
-        partial void OnViewingSpeedChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SiteHeight
-        {
-            get
-            {
-                return _SiteHeight;
-            }
-            set
-            {
-                OnSiteHeightChanging(value);
-                ReportPropertyChanging("SiteHeight");
-                _SiteHeight = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SiteHeight");
-                OnSiteHeightChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SiteHeight;
-        partial void OnSiteHeightChanging(Nullable<global::System.Int32> value);
-        partial void OnSiteHeightChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
