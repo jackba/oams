@@ -13,7 +13,7 @@ namespace OAMS.Models
         public List<string> Geo2List { get; set; }
         
         public List<string> StyleList { get; set; }
-        public string Material { get; set; }
+        public string Format { get; set; }
 
         public string RoadType1 { get; set; }
         public string RoadType2 { get; set; }
@@ -25,7 +25,7 @@ namespace OAMS.Models
         public string VisibilityBridgeWalkway { get; set; }
         public string VisibilityElectricityPolesOther { get; set; }
         public string ViewingSpeed { get; set; }
-        public string AboveStreet { get; set; }
+        public string Height { get; set; }
         public string DirectionalTrafficPublicTransport { get; set; }
         public string ShopSignsBillboards { get; set; }
         public string FlagsTemporaryBannersPromotionalItems { get; set; }

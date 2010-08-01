@@ -149,22 +149,23 @@
           <Property Name="Geo2ID" Type="uniqueidentifier" />
           <Property Name="Geo3ID" Type="uniqueidentifier" />
           <Property Name="Address" Type="nvarchar(max)" />
-          <Property Name="Type" Type="nvarchar(max)" />
-          <Property Name="Material" Type="nvarchar(max)" />
           <Property Name="Code" Type="nvarchar(max)" />
+          <Property Name="Type" Type="nvarchar(max)" />
+          <Property Name="Format" Type="nvarchar(max)" />
           <Property Name="Contractor" Type="nvarchar(max)" />
           <Property Name="CurrentClient" Type="nvarchar(max)" />
-          <Property Name="Competition" Type="nvarchar(max)" />
           <Property Name="Category" Type="nvarchar(max)" />
-          <Property Name="ContractExpired" Type="nvarchar(max)" />
-          <Property Name="CBDViewed" Type="nvarchar(max)" />
+          <Property Name="Competition" Type="nvarchar(max)" />
+          <Property Name="CurrentProduct" Type="nvarchar(max)" />
           <Property Name="Height" Type="decimal" Scale="2" />
           <Property Name="Width" Type="decimal" Scale="2" />
           <Property Name="Size" Type="decimal" Precision="37" Scale="4" StoreGeneratedPattern="Computed" />
           <Property Name="Lng" Type="float" />
           <Property Name="Lat" Type="float" />
-          <Property Name="StreetLight" Type="bit" />
+          <Property Name="CBDViewed" Type="nvarchar(max)" />
           <Property Name="SurroundingAreaLight" Type="bit" />
+          <Property Name="StreetLight" Type="bit" />
+          <Property Name="Display" Type="nvarchar(max)" />
           <Property Name="FrontlitNumerOfLamps" Type="int" />
           <Property Name="FrontlitTopBottom" Type="nvarchar(max)" />
           <Property Name="FrontlitSideLighting" Type="bit" />
@@ -183,12 +184,12 @@
           <Property Name="InstallationPosition2" Type="int" />
           <Property Name="InstallationPositionPoint" Type="int" StoreGeneratedPattern="Computed" />
           <Property Name="ViewingDistance" Type="int" />
+          <Property Name="ViewingSpeed" Type="int" />
+          <Property Name="High" Type="int" />
           <Property Name="VisibilityBuilding" Type="int" />
           <Property Name="VisibilityTrees" Type="int" />
           <Property Name="VisibilityBridgeWalkway" Type="int" />
           <Property Name="VisibilityElectricityPolesOther" Type="int" />
-          <Property Name="ViewingSpeed" Type="int" />
-          <Property Name="SiteHeight" Type="int" />
           <Property Name="DirectionalTrafficPublicTransport" Type="int" />
           <Property Name="ShopSignsBillboards" Type="int" />
           <Property Name="FlagsTemporaryBannersPromotionalItems" Type="int" />
@@ -382,7 +383,7 @@
             <End Role="Geo" EntitySet="Geos" />
             <End Role="Site" EntitySet="Sites" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Geo">
           <Key>
             <PropertyRef Name="ID" />
@@ -564,22 +565,23 @@
           <Property Type="Guid" Name="Geo2ID" />
           <Property Type="Guid" Name="Geo3ID" />
           <Property Type="String" Name="Address" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Type" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Material" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Code" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Type" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Format" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Contractor" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="CurrentClient" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Competition" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Category" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ContractExpired" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CBDViewed" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Competition" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CurrentProduct" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="Height" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="Width" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="Size" Precision="37" Scale="4" annotation:StoreGeneratedPattern="Computed" />
           <Property Type="Double" Name="Lng" />
           <Property Type="Double" Name="Lat" />
-          <Property Type="Boolean" Name="StreetLight" />
+          <Property Type="String" Name="CBDViewed" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="SurroundingAreaLight" />
+          <Property Type="Boolean" Name="StreetLight" />
+          <Property Type="String" Name="Display" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="FrontlitNumerOfLamps" />
           <Property Type="String" Name="FrontlitTopBottom" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="FrontlitSideLighting" />
@@ -598,12 +600,12 @@
           <Property Type="Int32" Name="InstallationPosition2" />
           <Property Type="Int32" Name="InstallationPositionPoint" annotation:StoreGeneratedPattern="Computed" />
           <Property Type="Int32" Name="ViewingDistance" />
+          <Property Type="Int32" Name="ViewingSpeed" />
+          <Property Type="Int32" Name="High" />
           <Property Type="Int32" Name="VisibilityBuilding" />
           <Property Type="Int32" Name="VisibilityTrees" />
           <Property Type="Int32" Name="VisibilityBridgeWalkway" />
           <Property Type="Int32" Name="VisibilityElectricityPolesOther" />
-          <Property Type="Int32" Name="ViewingSpeed" />
-          <Property Type="Int32" Name="SiteHeight" />
           <Property Type="Int32" Name="DirectionalTrafficPublicTransport" />
           <Property Type="Int32" Name="ShopSignsBillboards" />
           <Property Type="Int32" Name="FlagsTemporaryBannersPromotionalItems" />
@@ -675,7 +677,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -794,12 +796,12 @@
                 <ScalarProperty Name="FlagsTemporaryBannersPromotionalItems" ColumnName="FlagsTemporaryBannersPromotionalItems" />
                 <ScalarProperty Name="ShopSignsBillboards" ColumnName="ShopSignsBillboards" />
                 <ScalarProperty Name="DirectionalTrafficPublicTransport" ColumnName="DirectionalTrafficPublicTransport" />
-                <ScalarProperty Name="SiteHeight" ColumnName="SiteHeight" />
-                <ScalarProperty Name="ViewingSpeed" ColumnName="ViewingSpeed" />
                 <ScalarProperty Name="VisibilityElectricityPolesOther" ColumnName="VisibilityElectricityPolesOther" />
                 <ScalarProperty Name="VisibilityBridgeWalkway" ColumnName="VisibilityBridgeWalkway" />
                 <ScalarProperty Name="VisibilityTrees" ColumnName="VisibilityTrees" />
                 <ScalarProperty Name="VisibilityBuilding" ColumnName="VisibilityBuilding" />
+                <ScalarProperty Name="High" ColumnName="High" />
+                <ScalarProperty Name="ViewingSpeed" ColumnName="ViewingSpeed" />
                 <ScalarProperty Name="ViewingDistance" ColumnName="ViewingDistance" />
                 <ScalarProperty Name="InstallationPositionPoint" ColumnName="InstallationPositionPoint" />
                 <ScalarProperty Name="InstallationPosition2" ColumnName="InstallationPosition2" />
@@ -818,22 +820,23 @@
                 <ScalarProperty Name="FrontlitSideLighting" ColumnName="FrontlitSideLighting" />
                 <ScalarProperty Name="FrontlitTopBottom" ColumnName="FrontlitTopBottom" />
                 <ScalarProperty Name="FrontlitNumerOfLamps" ColumnName="FrontlitNumerOfLamps" />
-                <ScalarProperty Name="SurroundingAreaLight" ColumnName="SurroundingAreaLight" />
+                <ScalarProperty Name="Display" ColumnName="Display" />
                 <ScalarProperty Name="StreetLight" ColumnName="StreetLight" />
+                <ScalarProperty Name="SurroundingAreaLight" ColumnName="SurroundingAreaLight" />
+                <ScalarProperty Name="CBDViewed" ColumnName="CBDViewed" />
                 <ScalarProperty Name="Lat" ColumnName="Lat" />
                 <ScalarProperty Name="Lng" ColumnName="Lng" />
                 <ScalarProperty Name="Size" ColumnName="Size" />
                 <ScalarProperty Name="Width" ColumnName="Width" />
                 <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="CBDViewed" ColumnName="CBDViewed" />
-                <ScalarProperty Name="ContractExpired" ColumnName="ContractExpired" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="CurrentProduct" ColumnName="CurrentProduct" />
                 <ScalarProperty Name="Competition" ColumnName="Competition" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="CurrentClient" ColumnName="CurrentClient" />
                 <ScalarProperty Name="Contractor" ColumnName="Contractor" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Material" ColumnName="Material" />
+                <ScalarProperty Name="Format" ColumnName="Format" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Geo3ID" ColumnName="Geo3ID" />
                 <ScalarProperty Name="Geo2ID" ColumnName="Geo2ID" />
@@ -901,30 +904,30 @@
           <ConnectorPoint PointX="11.25" PointY="9.4708968098958337" />
           <ConnectorPoint PointX="12" PointY="9.4708968098958337" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="OAMSModel.Site" Width="1.5" PointX="3" PointY="21" Height="13.902975260416664" />
+        <EntityTypeShape EntityType="OAMSModel.Site" Width="1.5" PointX="3" PointY="21.125" Height="14.095276692708328" />
         <AssociationConnector Association="OAMSModel.FK_ContractDetail_Site" >
-          <ConnectorPoint PointX="3.75" PointY="21" />
+          <ConnectorPoint PointX="3.75" PointY="21.125" />
           <ConnectorPoint PointX="3.75" PointY="10.2568237890625" />
           <ConnectorPoint PointX="9.75" PointY="10.2568237890625" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Geo1" >
           <ConnectorPoint PointX="0.98470903846153834" PointY="7.8840950520833326" />
-          <ConnectorPoint PointX="0.98470903846153834" PointY="27.951487630208334" />
-          <ConnectorPoint PointX="1.4218589743589742" PointY="27.951487630208334" />
-          <ConnectorPoint PointX="1.5885256410256408" PointY="27.951487630208334" />
-          <ConnectorPoint PointX="3" PointY="27.951487630208334" />
+          <ConnectorPoint PointX="0.98470903846153834" PointY="28.172638346354162" />
+          <ConnectorPoint PointX="1.4218589743589742" PointY="28.172638346354162" />
+          <ConnectorPoint PointX="1.5885256410256408" PointY="28.172638346354162" />
+          <ConnectorPoint PointX="3" PointY="28.172638346354162" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Geo2" >
           <ConnectorPoint PointX="2.0204832692307693" PointY="7.8840950520833326" />
-          <ConnectorPoint PointX="2.0204832692307693" PointY="24.444491315104173" />
-          <ConnectorPoint PointX="3" PointY="24.444491315104173" />
+          <ConnectorPoint PointX="2.0204832692307693" PointY="24.617566673177087" />
+          <ConnectorPoint PointX="3" PointY="24.617566673177087" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Geo3" >
           <ConnectorPoint PointX="1.5051923076923075" PointY="7.8840950520833326" />
-          <ConnectorPoint PointX="1.5051923076923075" PointY="31.458483945312494" />
-          <ConnectorPoint PointX="3" PointY="31.458483945312494" />
+          <ConnectorPoint PointX="1.5051923076923075" PointY="31.727710019531237" />
+          <ConnectorPoint PointX="3" PointY="31.727710019531237" />
         </AssociationConnector>
-      </Diagram>
+        </Diagram>
     </Diagrams>
   </Designer>
 </edmx:Edmx>

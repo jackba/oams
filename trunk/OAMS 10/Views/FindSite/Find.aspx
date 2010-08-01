@@ -34,9 +34,9 @@
                     }
                 %>
                 <br />
-                <%: Html.LabelFor(r => r.Material) %>
+                <%: Html.LabelFor(r => r.Format) %>
                 <br />
-                <%: Html.CodeMasterDropDownListFor(r => r.Material) %>
+                <%: Html.CodeMasterDropDownListFor(r => r.Format)%>
                 <br />
                 <%: Html.LabelFor(r => r.RoadType1) %>
                 <br />
@@ -70,9 +70,9 @@
                 <br />
                 <%: Html.CodeMasterDropDownListFor(r => r.ViewingSpeed)%>
                 <br />
-                <%: Html.LabelFor(r => r.AboveStreet) %>
+                <%: Html.LabelFor(r => r.Height) %>
                 <br />
-                <%: Html.CodeMasterDropDownListFor(r => r.AboveStreet)%>
+                <%: Html.CodeMasterDropDownListFor(r => r.Height)%>
                 <br />
                 <%: Html.LabelFor(model => model.DirectionalTrafficPublicTransport) %>
                 <br />

@@ -127,7 +127,7 @@
                     <%: item.Site.Type%>
                 </td>
                 <td>
-                    <%: item.Site.Material%>
+                    <%: item.Site.Format%>
                 </td>
                 <td>
                     <%: String.Format("{0:F}", item.Site.Height)%>
@@ -138,8 +138,6 @@
                 <td>
                     <%: String.Format("{0:F}", item.Site.Size)%>
                 </td>
-               
-              
                 <td>
                     <%: item.Site.Lng%>
                 </td>

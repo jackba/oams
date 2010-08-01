@@ -38,7 +38,7 @@ namespace OAMS.Controllers
         {
             List<Site> l = SiteRepository.Repo.GetAll().ToList()
                 .Where(r => e.StyleList.Contains(r.Type)
-                && (string.IsNullOrEmpty(e.Material) || r.Material == e.Material)
+                && (string.IsNullOrEmpty(e.Format) || r.Format == e.Format)
                 && (string.IsNullOrEmpty(e.RoadType1) || r.RoadType1 == e.RoadType1.ToInt())
                 && (string.IsNullOrEmpty(e.RoadType2) || r.RoadType2 == e.RoadType2.ToInt())
                 && (string.IsNullOrEmpty(e.InstallationPosition1) || r.InstallationPosition1 == e.InstallationPosition1.ToInt())
@@ -52,7 +52,7 @@ namespace OAMS.Controllers
                 && (string.IsNullOrEmpty(e.VisibilityElectricityPolesOther) || r.VisibilityElectricityPolesOther == e.VisibilityElectricityPolesOther.ToInt())
                 && (string.IsNullOrEmpty(e.ViewingSpeed) || r.ViewingSpeed == e.ViewingSpeed.ToInt())
 
-                && (string.IsNullOrEmpty(e.AboveStreet) || r.SiteHeight == e.AboveStreet.ToInt())
+                && (string.IsNullOrEmpty(e.Height) || r.Height == e.Height.ToInt())
                 && (string.IsNullOrEmpty(e.DirectionalTrafficPublicTransport) || r.DirectionalTrafficPublicTransport == e.DirectionalTrafficPublicTransport.ToInt())
                 && (string.IsNullOrEmpty(e.ShopSignsBillboards) || r.ShopSignsBillboards == e.ShopSignsBillboards.ToInt())
                 && (string.IsNullOrEmpty(e.FlagsTemporaryBannersPromotionalItems) || r.FlagsTemporaryBannersPromotionalItems == e.FlagsTemporaryBannersPromotionalItems.ToInt())
@@ -66,7 +66,7 @@ namespace OAMS.Controllers
                 .ToList();
 
 
-            return Json(l.Select(r => new { r.ID, r.Lat, r.Lng, r.Code, r.Material, r.Type, ContractDetailID = r.ContractDetails.LastOrDefault().ID }));
+            return Json(l.Select(r => new { r.ID, r.Lat, r.Lng, r.Code, r.Format, r.Type, ContractDetailID = r.ContractDetails.LastOrDefault().ID }));
             //return Json(e.Results.Select(r => new { r.ID, r.Latitude, r.Longitude, r.Code, r.Material, r.Style, ContractDetailID = 100 }));
         }
     }

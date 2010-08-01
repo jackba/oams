@@ -20,7 +20,7 @@
                 Code
             </th>
             <th>
-                Material
+                Format
             </th>
             <th>
                 Height
@@ -49,7 +49,7 @@
                 <%: item.Code %>
             </td>
             <td>
-                <%: item.Material %>
+                <%: item.Format %>
             </td>
             <td>
                 <%: String.Format("{0:F}", item.Height) %>
