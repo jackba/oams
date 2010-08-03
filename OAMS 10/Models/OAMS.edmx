@@ -208,6 +208,7 @@
           <Property Name="CloseToStadium" Type="bit" />
           <Property Name="CloseToStation" Type="bit" />
           <Property Name="CloseToTownCenter" Type="bit" />
+          <Property Name="Score" Type="int" StoreGeneratedPattern="Computed" />
         </EntityType>
         <Association Name="FK_Campaign_Client">
           <End Role="Client" Type="OAMSModel.Store.Client" Multiplicity="0..1" />
@@ -628,6 +629,7 @@
           <NavigationProperty Name="Geo1" Relationship="OAMSModel.FK_Site_Geo1" FromRole="Site" ToRole="Geo" />
           <NavigationProperty Name="Geo2" Relationship="OAMSModel.FK_Site_Geo2" FromRole="Site" ToRole="Geo" />
           <NavigationProperty Name="Geo3" Relationship="OAMSModel.FK_Site_Geo3" FromRole="Site" ToRole="Geo" />
+          <Property Type="Int32" Name="Score" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <Association Name="FK_ContractDetail_Site">
           <End Type="OAMSModel.Site" Role="Site" Multiplicity="0..1" />
@@ -778,6 +780,7 @@
           <EntitySetMapping Name="Sites">
             <EntityTypeMapping TypeName="OAMSModel.Site">
               <MappingFragment StoreEntitySet="Site">
+                <ScalarProperty Name="Score" ColumnName="Score" />
                 <ScalarProperty Name="CloseToTownCenter" ColumnName="CloseToTownCenter" />
                 <ScalarProperty Name="CloseToStation" ColumnName="CloseToStation" />
                 <ScalarProperty Name="CloseToStadium" ColumnName="CloseToStadium" />

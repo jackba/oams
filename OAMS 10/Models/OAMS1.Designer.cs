@@ -3657,6 +3657,30 @@ namespace OAMS.Models
         private Nullable<global::System.Boolean> _CloseToTownCenter;
         partial void OnCloseToTownCenterChanging(Nullable<global::System.Boolean> value);
         partial void OnCloseToTownCenterChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Score
+        {
+            get
+            {
+                return _Score;
+            }
+            set
+            {
+                OnScoreChanging(value);
+                ReportPropertyChanging("Score");
+                _Score = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Score");
+                OnScoreChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Score;
+        partial void OnScoreChanging(Nullable<global::System.Int32> value);
+        partial void OnScoreChanged();
 
         #endregion
     
