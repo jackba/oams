@@ -14,19 +14,28 @@
                 ID
             </th>
             <th>
-                Type
+                Code
             </th>
             <th>
-                Code
+                Geo
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Type
             </th>
             <th>
                 Format
             </th>
             <th>
-                Height
+                Current Client
             </th>
             <th>
-                Width
+                Current Product
+            </th>
+            <th>
+                Total
             </th>
         </tr>
         <% foreach (var item in Model)
@@ -43,19 +52,28 @@
                 <%: item.ID %>
             </td>
             <td>
-                <%: item.Type %>
+                <%: item.Code %>
             </td>
             <td>
-                <%: item.Code %>
+                <%: item.GeoFullName %>
+            </td>
+            <td>
+                <%: item.Address %>
+            </td>
+            <td>
+                <%: item.Type %>
             </td>
             <td>
                 <%: item.Format %>
             </td>
             <td>
-                <%: String.Format("{0:F}", item.Height) %>
+                <%: item.CurrentClient %>
             </td>
             <td>
-                <%: String.Format("{0:F}", item.Width) %>
+                <%: item.CurrentProduct %>
+            </td>
+            <td>
+                <%: item.Score %>
             </td>
         </tr>
         <% } %>
