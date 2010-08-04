@@ -98,6 +98,7 @@
           <Property Name="Type" Type="nvarchar(max)" />
           <Property Name="Code" Type="nvarchar(max)" />
           <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Order" Type="int" />
         </EntityType>
         <EntityType Name="Contract">
           <Key>
@@ -429,6 +430,7 @@
           <Property Type="String" Name="Type" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Code" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Note" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Order" />
         </EntityType>
         <EntityType Name="Contract">
           <Key>
@@ -708,6 +710,7 @@
           <EntitySetMapping Name="CodeMasters">
             <EntityTypeMapping TypeName="OAMSModel.CodeMaster">
               <MappingFragment StoreEntitySet="CodeMaster">
+                <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -868,7 +871,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="OAMS" ZoomLevel="106">
+      <Diagram Name="OAMS" ZoomLevel="88">
         <EntityTypeShape EntityType="OAMSModel.Geo" Width="1.5" PointX="0.75" PointY="4.75" Height="2.5263069661458317" />
         <AssociationConnector Association="OAMSModel.FK_Geo_Geo" >
           <ConnectorPoint PointX="1.2819230769230767" PointY="7.8840950520833326" />
@@ -879,7 +882,7 @@
           <ConnectorPoint PointX="1.7284615384615383" PointY="7.8840950520833326" />
         </AssociationConnector>
         <EntityTypeShape EntityType="OAMSModel.Contractor" Width="1.5" PointX="0.75" PointY="1.375" Height="1.5788378906250031" />
-        <EntityTypeShape EntityType="OAMSModel.CodeMaster" Width="1.5" PointX="3.375" PointY="4.75" Height="1.7683317057291674" />
+        <EntityTypeShape EntityType="OAMSModel.CodeMaster" Width="1.5" PointX="3.375" PointY="4.75" Height="1.5923063151041665" IsExpanded="true" />
         <EntityTypeShape EntityType="OAMSModel.Contract" Width="1.5" PointX="7.5" PointY="1.875" Height="2.3368131510416674" />
         <AssociationConnector Association="OAMSModel.FK_Contract_Contractor" >
           <ConnectorPoint PointX="2.25" PointY="2.4144189453125" />
