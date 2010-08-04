@@ -62,18 +62,18 @@
             <%: Html.ValidationMessageFor(model => model.Width) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Lng) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.TextBoxFor(model => model.Lng)%>
-            <%: Html.ValidationMessageFor(model => model.Lng)%>
-        </div>
-        <div class="editor-label">
             <%: Html.LabelFor(model => model.Lat) %>
         </div>
         <div class="editor-field">
             <%: Html.TextBoxFor(model => model.Lat)%>
             <%: Html.ValidationMessageFor(model => model.Lat)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Lng) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.Lng)%>
+            <%: Html.ValidationMessageFor(model => model.Lng)%>
         </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.Contractor) %>

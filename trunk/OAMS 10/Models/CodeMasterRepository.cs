@@ -15,7 +15,7 @@ namespace OAMS.Models
             OAMSEntities db = new OAMSEntities();
 
             string type = PropertyName.GetMemberName(expression);
-            return db.CodeMasters.Where(r => r.Type == type);
+            return db.CodeMasters.Where(r => r.Type == type).OrderBy(r => r.Order);
         }
 
         public static IQueryable<CodeMaster> Get(string type)
