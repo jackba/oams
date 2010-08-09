@@ -32,7 +32,22 @@ namespace OAMS.Controllers
 
         public ActionResult Create(int? contractID)
         {
-            return View(new Site());
+            Site e = new Site();
+            e.CloseToAirport = false;
+            e.CloseToFactory = false;
+            e.CloseToGasStation = false;
+            e.CloseToHopistal = false;
+            e.CloseToMarket = false;
+            e.CloseToOffice = false;
+            e.CloseToParking = false; ;
+            e.CloseToResident = false;
+            e.CloseToSchool = false;
+            e.CloseToShopping = false;
+            e.CloseToStadium = false;
+            e.CloseToStation = false;
+            e.CloseToTownCenter = false;
+            e.CloseToUniversity = false;
+            return View(e);
         }
 
         //
@@ -76,7 +91,7 @@ namespace OAMS.Controllers
 
             repo.Save();
 
-            return View(e);
+            return RedirectToAction("Index");
         }
 
         //
