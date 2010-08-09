@@ -65,14 +65,14 @@
             <%: Html.ValidationMessageFor(model => model.Width) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Lat) %>
+            Latitude
         </div>
         <div class="editor-field">
             <%: Html.TextBoxFor(model => model.Lat)%>
             <%: Html.ValidationMessageFor(model => model.Lat)%>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Lng) %>
+            Longitude
         </div>
         <div class="editor-field">
             <%: Html.TextBoxFor(model => model.Lng)%>
