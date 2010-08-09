@@ -131,27 +131,6 @@
             <%: Html.ValidationMessageFor(model => model.SurroundingAreaLight)%>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.ViewingDistance) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(model => model.ViewingDistance)%>
-            <%: Html.ValidationMessageFor(model => model.ViewingDistance)%>
-        </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.ViewingSpeed) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(model => model.ViewingSpeed)%>
-            <%: Html.ValidationMessageFor(model => model.ViewingSpeed)%>
-        </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.High) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(model => model.High)%>
-            <%: Html.ValidationMessageFor(model => model.High)%>
-        </div>
-        <div class="editor-label">
             <%: Html.LabelFor(model => model.FrontlitNumerOfLamps) %>
         </div>
         <div class="editor-field">
@@ -227,6 +206,27 @@
         <div class="editor-field">
             <%: Html.CodeMasterDropDownListFor(r => r.BacklitVisualLegibility)%>
             <%: Html.ValidationMessageFor(model => model.BacklitVisualLegibility)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.ViewingDistance) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(model => model.ViewingDistance)%>
+            <%: Html.ValidationMessageFor(model => model.ViewingDistance)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.ViewingSpeed) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(model => model.ViewingSpeed)%>
+            <%: Html.ValidationMessageFor(model => model.ViewingSpeed)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.High) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.CodeMasterDropDownListFor(model => model.High)%>
+            <%: Html.ValidationMessageFor(model => model.High)%>
         </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.RoadType1) %>
