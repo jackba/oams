@@ -355,6 +355,23 @@ namespace OAMS
             else return o.ToString().ToIntNullable();
         }
 
+        public static double? TrimDouble(this double? d)
+        {
+            string s = d.ToString();
+            int dotIndex = s.IndexOf('.');
+            if (dotIndex > -1)
+            {
+                string thapphan = s.Substring(dotIndex + 1);
+                thapphan = thapphan.Substring(0, 1);
+                string nguyen = s.Substring(0, dotIndex + 1);
+                return double.Parse(nguyen + thapphan);
+            }
+            else
+            {
+                return d;
+            }
+        }
+
         //public static void Apply(this CssStyleCollection style, PrintSetting setting)
         //{
         //    if (setting == null) return;
