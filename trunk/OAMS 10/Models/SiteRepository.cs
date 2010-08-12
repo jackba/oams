@@ -7,8 +7,6 @@ namespace OAMS.Models
 {
     public class SiteRepository : BaseRepository<SiteRepository>
     {
-        private OAMSEntities db = new OAMSEntities();
-
         public IQueryable<Site> GetAll()
         {
             return db.Sites;
@@ -43,5 +41,47 @@ namespace OAMS.Models
         {
             db.SaveChanges();
         }
+
+        public Site InitWithDefaultValue()
+        {
+            Site e = new Site();
+            e.CloseToAirport = false;
+            e.CloseToFactory = false;
+            e.CloseToGasStation = false;
+            e.CloseToHopistal = false;
+            e.CloseToMarket = false;
+            e.CloseToOffice = false;
+            e.CloseToParking = false; ;
+            e.CloseToResident = false;
+            e.CloseToSchool = false;
+            e.CloseToShopping = false;
+            e.CloseToStadium = false;
+            e.CloseToStation = false;
+            e.CloseToTownCenter = false;
+            e.CloseToUniversity = false;
+
+            e.VisibilityBridgeWalkway = 5;
+            e.VisibilityBuilding = 5;
+            e.VisibilityElectricityPolesOther = 5;
+            e.VisibilityTrees = 5;
+
+            e.DirectionalTrafficPublicTransport = 5;
+            e.ShopSignsBillboards = 5;
+            e.FlagsTemporaryBannersPromotionalItems = 5;
+            e.CompetitiveProductSigns = 5;
+
+            Site lastSite = db.Sites.OrderByDescending(r => r.ID).FirstOrDefault();
+            if (lastSite != null)
+            {
+                e.Lat = lastSite.Lat.TrimDouble();
+                e.Lng = lastSite.Lng.TrimDouble();
+
+
+            }
+
+            return e;
+        }
+
+
     }
 }

@@ -32,33 +32,7 @@ namespace OAMS.Controllers
 
         public ActionResult Create(int? contractID)
         {
-            Site e = new Site();
-            e.CloseToAirport = false;
-            e.CloseToFactory = false;
-            e.CloseToGasStation = false;
-            e.CloseToHopistal = false;
-            e.CloseToMarket = false;
-            e.CloseToOffice = false;
-            e.CloseToParking = false; ;
-            e.CloseToResident = false;
-            e.CloseToSchool = false;
-            e.CloseToShopping = false;
-            e.CloseToStadium = false;
-            e.CloseToStation = false;
-            e.CloseToTownCenter = false;
-            e.CloseToUniversity = false;
-
-            e.VisibilityBridgeWalkway = 5;
-            e.VisibilityBuilding = 5;
-            e.VisibilityElectricityPolesOther = 5;
-            e.VisibilityTrees = 5;
-
-            e.DirectionalTrafficPublicTransport = 5;
-            e.ShopSignsBillboards = 5;
-            e.FlagsTemporaryBannersPromotionalItems = 5;
-            e.CompetitiveProductSigns = 5;
-
-
+            Site e = repo.InitWithDefaultValue();
             return View(e);
         }
 
