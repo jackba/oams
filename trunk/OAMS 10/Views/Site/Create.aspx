@@ -5,6 +5,33 @@
     Create
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript" language=javascript>
+        $(function () {
+
+            //run the currently selected effect
+            function show(div) {
+                var options = {};
+                $(div).show('blind', options, 500);
+            };
+
+            function hide(div) {
+                var options = {};
+                $(div).hide('blind', options, 500);
+            };
+            //set effect from select menu value
+            $("#FrontlitNumerOfLamps").blur(function () {
+                if ($("#FrontlitNumerOfLamps").val() > 0) {
+                    show('#FrontLit');
+                    hide('#BackLit');
+                }
+                else {
+                    hide('#FrontLit');
+                    show('#BackLit');
+                }
+                return false;
+            });
+        });
+    </script>
     <h2>
         Create</h2>
     <% Html.EnableClientValidation(); %>
