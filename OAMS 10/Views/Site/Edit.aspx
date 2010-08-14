@@ -4,6 +4,40 @@
     Edit Site
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript" language=javascript>
+        $(function () {
+            if ($("#FrontlitNumerOfLamps").val() > 0) {
+                show('#FrontLit');
+                hide('#BackLit');
+            }
+            else {
+                hide('#FrontLit');
+                show('#BackLit');
+            }
+            //run the currently selected effect
+            function show(div) {
+                var options = {};
+                $(div).show('blind', options, 500);
+            };
+
+            function hide(div) {
+                var options = {};
+                $(div).hide('blind', options, 500);
+            };
+            //set effect from select menu value
+            $("#FrontlitNumerOfLamps").blur(function () {
+                if ($("#FrontlitNumerOfLamps").val() > 0) {
+                    show('#FrontLit');
+                    hide('#BackLit');
+                }
+                else {
+                    hide('#FrontLit');
+                    show('#BackLit');
+                }
+                return false;
+            });
+        });
+    </script>
     <h2>
         Edit Site</h2>
     <% Html.EnableClientValidation(); %>
@@ -137,75 +171,79 @@
             <%: Html.EditorFor(model => model.FrontlitNumerOfLamps)%>
             <%: Html.ValidationMessageFor(model => model.FrontlitNumerOfLamps)%>
         </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.FrontlitTopBottom) %>
+        <div id="FrontLit">
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.FrontlitTopBottom) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.CodeMasterDropDownListFor(r => r.FrontlitTopBottom)%>
+                <%: Html.ValidationMessageFor(model => model.FrontlitTopBottom)%>
+            </div>
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.FrontlitSideLighting)%>
+            </div>
+            <div class="editor-field">
+                <%: Html.EditorFor(model => model.FrontlitSideLighting)%>
+                <%: Html.ValidationMessageFor(model => model.FrontlitSideLighting)%>
+            </div>
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.FontlitArmsPlacement)%>
+            </div>
+            <div class="editor-field">
+                <%: Html.CodeMasterDropDownListFor(r => r.FontlitArmsPlacement)%>
+                <%: Html.ValidationMessageFor(model => model.FontlitArmsPlacement)%>
+            </div>
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.FontlitIlluminationDistribution)%>
+            </div>
+            <div class="editor-field">
+                <%: Html.CodeMasterDropDownListFor(r => r.FontlitIlluminationDistribution)%>
+                <%: Html.ValidationMessageFor(model => model.FontlitIlluminationDistribution)%>
+            </div>
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.FontLightArmsStraight)%>
+            </div>
+            <div class="editor-field">
+                <%: Html.EditorFor(model => model.FontLightArmsStraight)%>
+                <%: Html.ValidationMessageFor(model => model.FontLightArmsStraight)%>
+            </div>
         </div>
-        <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(r => r.FrontlitTopBottom)%>
-            <%: Html.ValidationMessageFor(model => model.FrontlitTopBottom)%>
-        </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.FrontlitSideLighting)%>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.FrontlitSideLighting)%>
-            <%: Html.ValidationMessageFor(model => model.FrontlitSideLighting)%>
-        </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.FontlitArmsPlacement)%>
-        </div>
-        <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(r => r.FontlitArmsPlacement)%>
-            <%: Html.ValidationMessageFor(model => model.FontlitArmsPlacement)%>
-        </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.FontlitIlluminationDistribution)%>
-        </div>
-        <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(r => r.FontlitIlluminationDistribution)%>
-            <%: Html.ValidationMessageFor(model => model.FontlitIlluminationDistribution)%>
-        </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.FontLightArmsStraight)%>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.FontLightArmsStraight)%>
-            <%: Html.ValidationMessageFor(model => model.FontLightArmsStraight)%>
-        </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.BacklitFormat)%>
-        </div>
-        <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(r => r.BacklitFormat)%>
-            <%: Html.ValidationMessageFor(model => model.BacklitFormat)%>
-        </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.BacklitIlluninationSpread)%>
-        </div>
-        <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(r => r.BacklitIlluninationSpread)%>
-            <%: Html.ValidationMessageFor(model => model.BacklitIlluninationSpread)%>
-        </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.BacklitLightingBlocks)%>
-        </div>
-        <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(r => r.BacklitLightingBlocks)%>
-            <%: Html.ValidationMessageFor(model => model.BacklitLightingBlocks)%>
-        </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.BacklitLightBoxLeakage)%>
-        </div>
-        <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(r => r.BacklitLightBoxLeakage)%>
-            <%: Html.ValidationMessageFor(model => model.BacklitLightBoxLeakage)%>
-        </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.BacklitVisualLegibility)%>
-        </div>
-        <div class="editor-field">
-            <%: Html.CodeMasterDropDownListFor(r => r.BacklitVisualLegibility)%>
-            <%: Html.ValidationMessageFor(model => model.BacklitVisualLegibility)%>
+        <div id="BackLit">
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.BacklitFormat)%>
+            </div>
+            <div class="editor-field">
+                <%: Html.CodeMasterDropDownListFor(r => r.BacklitFormat)%>
+                <%: Html.ValidationMessageFor(model => model.BacklitFormat)%>
+            </div>
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.BacklitIlluninationSpread)%>
+            </div>
+            <div class="editor-field">
+                <%: Html.CodeMasterDropDownListFor(r => r.BacklitIlluninationSpread)%>
+                <%: Html.ValidationMessageFor(model => model.BacklitIlluninationSpread)%>
+            </div>
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.BacklitLightingBlocks)%>
+            </div>
+            <div class="editor-field">
+                <%: Html.CodeMasterDropDownListFor(r => r.BacklitLightingBlocks)%>
+                <%: Html.ValidationMessageFor(model => model.BacklitLightingBlocks)%>
+            </div>
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.BacklitLightBoxLeakage)%>
+            </div>
+            <div class="editor-field">
+                <%: Html.CodeMasterDropDownListFor(r => r.BacklitLightBoxLeakage)%>
+                <%: Html.ValidationMessageFor(model => model.BacklitLightBoxLeakage)%>
+            </div>
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.BacklitVisualLegibility)%>
+            </div>
+            <div class="editor-field">
+                <%: Html.CodeMasterDropDownListFor(r => r.BacklitVisualLegibility)%>
+                <%: Html.ValidationMessageFor(model => model.BacklitVisualLegibility)%>
+            </div>
         </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.ViewingDistance) %>
