@@ -87,7 +87,8 @@ namespace OAMS.Controllers
             var v = repo.Get(id);
             repo.Delete(v);
             repo.Save();
-            return View();
+            //return View();
+            return RedirectToAction("Index");
         }
 
         //

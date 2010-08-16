@@ -17,6 +17,20 @@
         <div class="display-label">Name</div>
         <div class="display-field"><%: Model.Name %></div>
         
+        <div class="display-label">Address</div>
+        <div class="display-field"><%: Model.Address %></div>
+
+        <div class="display-label">Telephone</div>
+        <div class="display-field"><%: Model.Telephone %></div>
+
+        <div class="display-label">Contact Name</div>
+        <div class="display-field"><%: Model.ContactName %></div>
+
+        <div class="display-label">Contact Phone</div>
+        <div class="display-field"><%: Model.ContactPhone %></div>
+
+        <div class="display-label">Contact Email</div>
+        <div class="display-field"><%: Model.ContactEmail %></div>
     </fieldset>
     <p>
 

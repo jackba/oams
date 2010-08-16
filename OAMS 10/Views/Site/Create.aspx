@@ -18,16 +18,30 @@
                 var options = {};
                 $(div).hide('blind', options, 500);
             };
+            function toggle() {
+                var reg = /^\d+$/;
+                if (reg.test($("#FrontlitNumerOfLamps").val())) {
+                    if ($("#FrontlitNumerOfLamps").val() > 0) {
+                        if (!($('#FrontLit').is(":visible"))) {
+                            show('#FrontLit');
+                        }
+                        if ($('#BackLit').is(":visible")) {
+                            hide('#BackLit');
+                        }
+                    }
+                    else {
+                        if ($('#FrontLit').is(":visible")) {
+                            hide('#FrontLit');
+                        }
+                        if (!($('#BackLit').is(":visible"))) {
+                            show('#BackLit');
+                        }
+                    }
+                }
+            }
             //set effect from select menu value
-            $("#FrontlitNumerOfLamps").blur(function () {
-                if ($("#FrontlitNumerOfLamps").val() > 0) {
-                    show('#FrontLit');
-                    hide('#BackLit');
-                }
-                else {
-                    hide('#FrontLit');
-                    show('#BackLit');
-                }
+            $("#FrontlitNumerOfLamps").keyup(function () {
+                toggle();
                 return false;
             });
         });
