@@ -28,7 +28,7 @@ namespace OAMS.Models
 
     public class CodeMasterType
     {
-        public string Style = "Style";
+        public string Type = "Type";
         public string Material { get; set; }
         public string CBDViewed { get; set; }
         public string Grade { get; set; }

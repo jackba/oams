@@ -37,7 +37,8 @@ namespace OAMS.Controllers
         public JsonResult FindJson(FindSite e)
         {
             List<Site> l = SiteRepository.Repo.GetAll().ToList()
-                .Where(r => e.StyleList.Contains(r.Type)
+                .Where(r =>
+                    (e.StyleList == null || e.StyleList.Count == 0 || e.StyleList.Contains(r.Type))
                 && (string.IsNullOrEmpty(e.Format) || r.Format == e.Format)
                 && (string.IsNullOrEmpty(e.RoadType1) || r.RoadType1 == e.RoadType1.ToInt())
                 && (string.IsNullOrEmpty(e.RoadType2) || r.RoadType2 == e.RoadType2.ToInt())
@@ -66,8 +67,7 @@ namespace OAMS.Controllers
                 .ToList();
 
 
-            return Json(l.Select(r => new { r.ID, r.Lat, r.Lng, r.Code, r.Format, r.Type, ContractDetailID = r.ContractDetails.LastOrDefault().ID }));
-            //return Json(e.Results.Select(r => new { r.ID, r.Latitude, r.Longitude, r.Code, r.Material, r.Style, ContractDetailID = 100 }));
+            return Json(l.Select(r => new { r.ID, r.Lat, r.Lng, r.Code, r.Format, r.Type }));
         }
     }
 }

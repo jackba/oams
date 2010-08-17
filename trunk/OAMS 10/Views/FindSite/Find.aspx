@@ -9,9 +9,9 @@
     <% using (Html.BeginForm())
        {%>
     <%: Html.HiddenFor(r => r.CampaignID) %>
-    <table>
+    <table width="100%">
         <tr>
-            <td>
+            <td style="width: 280px;" valign="top">
                 Geo1:
                 <br />
                 <%--<%: Html.DropDownListForGeo1(r => r.GeoID1) %>--%>
@@ -24,7 +24,7 @@
                 Style List:
                 <br />
                 <%
-                    foreach (var category in OAMS.Models.CodeMasterRepository.Get((new OAMS.Models.CodeMasterType()).Style))
+                    foreach (var category in OAMS.Models.CodeMasterRepository.Get((new OAMS.Models.CodeMasterType()).Type))
                     {
                 %>
                 <input type="checkbox" name="StyleList" value="<%= category.Code %>" />
@@ -99,40 +99,62 @@
             </td>
             <td valign="top">
                 <input type="button" onclick="search(this)" value="Find" />
-                <table>
+                <table width="100%">
                     <tr>
                         <td>
-                            <div id="map" style="width: 500px; height: 500px;">
+                            <div id="map" style="width: 100%; height: 800px;">
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td style="vertical-align: top;">
-                            <table id="tblResult">
-                                <thead>
-                                    <tr>
-                                        <td>
-                                            Code
-                                        </td>
-                                        <td>
-                                            Style
-                                        </td>
-                                        <td>
-                                        </td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="vertical-align: top;">
+                <div id="divCol">
+                    Display columns:
+                    <input type="checkbox" id="chkColID" checked="checked" />
+                    ID
+                    <input type="checkbox" id="chkColType" checked="checked" />
+                    Type
+                    <input type="checkbox" id="chkColFormat" checked="checked" />
+                    Format
+                    <input type="button" id="hell" value="Ok" onclick='ShowHideCols();' />
+                </div>
+                <table id="tblResult" class="display">
+                    <thead>
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                Type
+                            </th>
+                            <th>
+                                Format
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
                 </table>
             </td>
         </tr>
     </table>
     <% } %>
     <script type="text/javascript">
+        var oTable;
+        function ShowHideCols() {
 
+            //            if (oTable != null) {
+            //                oTable.fnDestroy();
+            //            }
+
+            oTable.fnSetColumnVis(0, $('#chkColID').attr('checked'));
+            oTable.fnSetColumnVis(1, $('#chkColType').attr('checked'));
+            oTable.fnSetColumnVis(2, $('#chkColFormat').attr('checked'));
+
+        }
         function showGeo2(str) {
             //alert(str);
             //var v = $("#geo2List").text();
@@ -145,7 +167,8 @@
                 url: '<%= Url.Content("~/Listing/ListGeo2") %>', type: "POST", dataType: "json",
                 data: { parentFullName: str },
                 success: function (data) {
-                    response($.map(data, function (item) {
+
+                    $.map(data, function (item) {
 
                         var chk = document.createElement('input');
                         chk.type = 'checkbox';
@@ -157,9 +180,7 @@
                         div1.append('<br />');
 
                         //return { label: item.FullName, value: item.FullName, id: item.ID }
-
-
-                    }))
+                    })
                 }
 
             })
@@ -198,7 +219,12 @@
 
                     profileMarkers.push(marker);
 
-                    bindInfoWindow(marker, map, infoWindow, site.Code);
+                    bindInfoWindow(marker, map, infoWindow, site.Style);
+                    //bindInfoWindow(marker, map, infoWindow, 'asdsa');
+
+                    //                    if (oTable != null) {
+                    //                        oTable.fnDestroy();
+                    //                    }
 
                     var tbl = $('#tblResult tbody');
                     tbl.innerHTML = '';
@@ -207,37 +233,71 @@
                     var rSel = document.createElement('tr');
                     tbl.append(rSel);
 
-                    //Code
-                    var cSel = document.createElement('td');
-                    rSel.appendChild(cSel);
+                    //ID
+                    //                    var cSel = document.createElement('td');
+                    //                    rSel.appendChild(cSel);
+                    //                    var aSel = document.createElement('a');
+                    //                    aSel.href = 'javascript:void(0);';
+                    //                    aSel.innerHTML = site.ID;
+                    //                    aSel.onclick = generateTriggerCallback(marker, 'click');
+                    //                    cSel.appendChild(aSel);
 
-                    var aSel = document.createElement('a');
-                    aSel.href = 'javascript:void(0);';
-                    aSel.innerHTML = site.Code;
-                    aSel.onclick = generateTriggerCallback(marker, 'click');
-                    //aSel.onclick = function () { google.maps.event.trigger(marker, 'click'); };
 
-                    cSel.appendChild(aSel);
-
-                    //Style
                     var cStyle = document.createElement('td');
-                    cStyle.innerHTML = site.Style;
+                    cStyle.innerHTML = site.ID;
                     rSel.appendChild(cStyle);
 
+
+                    //Type
+                    var cStyle1 = document.createElement('td');
+                    cStyle1.innerHTML = site.Type;
+                    rSel.appendChild(cStyle1);
+
+                    //Format
+                    var cStyle2 = document.createElement('td');
+                    cStyle2.innerHTML = site.Format;
+                    rSel.appendChild(cStyle2);
+
                     //Add2Campaign
-                    var cAdd2Cam = document.createElement('td');
-                    rSel.appendChild(cAdd2Cam);
+                    //var cAdd2Cam = document.createElement('td');
+                    //rSel.appendChild(cAdd2Cam);
 
-                    var aAdd2Cam = document.createElement('a');
-                    aAdd2Cam.href = 'javascript:void(0);';
-                    aAdd2Cam.innerHTML = 'Add to Campaign';
+                    //var aAdd2Cam = document.createElement('a');
+                    //aAdd2Cam.href = 'javascript:void(0);';
+                    //aAdd2Cam.innerHTML = 'Add to Campaign';
 
-                    //aAdd2Cam.onclick = Add2Campaign1();
-                    cAdd2Cam.appendChild(aAdd2Cam);
 
-                    aAdd2Cam.onclick = Add2Campaign(aAdd2Cam, $("#CampaignID").val(), site.ContractDetailID);
+                    //cAdd2Cam.appendChild(aAdd2Cam);
+
+                    //aAdd2Cam.onclick = Add2Campaign(aAdd2Cam, $("#CampaignID").val(), site.ContractDetailID);
+
+
 
                 }
+                //$('#example').dataTable();
+                //                $('#tblResult').dataTable({
+                //                    "aoColumnDefs": [
+                //                    { "asSorting": ["asc"], "aTargets": [0] },
+                //                    ]
+                //                });
+                //                oTable = $('#tblResult').dataTable({
+
+                //                    "aoColumnDefs": [
+
+                //                        { "bVisible": false, "aTargets": [0] }
+
+                //                                    ]
+                //                });
+
+                //                if (oTable != null) {
+                //                    oTable.fnDraw();
+                //                    //oTable = $('#tblResult').dataTable();
+                //                }
+                //                else
+                //                    oTable = $('#tblResult').dataTable();
+
+                oTable = $('#tblResult').dataTable();
+
             }
             else {
                 tbl.push('No site found.');
@@ -266,7 +326,7 @@
 
             distanceWidget = new DistanceWidget({
                 map: map,
-                distance: 1, // Starting distance in km.
+                distance: 100, // Starting distance in km.
                 maxDistance: 2500, // Twitter has a max distance of 2500km.
                 color: '#000',
                 activeColor: '#59b',
@@ -380,6 +440,10 @@
 
         function search(e) {
 
+            if (oTable != null) {
+                oTable.fnDestroy();
+            }
+
             var tdata = $("form").serialize();
 
             $.ajax({
@@ -388,6 +452,7 @@
                 success: function (data) {
 
                     clearMarkers();
+
 
                     addResults(data);
 
