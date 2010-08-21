@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using OAMS.Models;
+using Google.GData.Photos;
 
 namespace OAMS.Controllers
 {
@@ -39,15 +40,18 @@ namespace OAMS.Controllers
         //
         // POST: /Site/Create
 
+
+
         [HttpPost]
-        public ActionResult Create(int? contractID, FormCollection collection)
+        //public ActionResult Create(IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Create(int? contractID, IEnumerable<HttpPostedFileBase> files)
         {
-            var v = new Site();
+            var e = new Site();
 
-            UpdateModel(v);
+            UpdateModel(e);
 
-            repo.Add(v, contractID);
-            repo.Save();
+            repo.Add(e, contractID);
+            repo.AddPhoto(e, files);
 
             return RedirectToAction("Index");
         }
@@ -66,7 +70,7 @@ namespace OAMS.Controllers
         // POST: /Site/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList)
         {
             // TODO: Add update logic here
             Site e = repo.Get(id);
@@ -77,6 +81,11 @@ namespace OAMS.Controllers
 
             repo.Save();
 
+            repo.AddPhoto(e, files);
+            
+            repo.DeletePhoto(DeletePhotoList);
+
+            //return View(e);
             return RedirectToAction("Index");
         }
 
@@ -109,10 +118,6 @@ namespace OAMS.Controllers
         }
 
 
-        public ActionResult Find()
-        {
-            return View();
-        }
 
     }
 }

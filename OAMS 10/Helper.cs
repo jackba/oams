@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Web;
 using System.Diagnostics;
 using System.Reflection;
+using System.Configuration;
 namespace OAMS
 {
     public class Helper
@@ -36,6 +37,21 @@ namespace OAMS
     public class OAMSSetting
     {
         static public Message messageL = new Message();
+        static public string GoogleUsername
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["GoogleUsername"];
+            }
+        }
+
+        static public string GooglePassword
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["GooglePassword"];
+            }
+        }
     }
 
     public class Message
