@@ -114,6 +114,7 @@
     <Compile Include="Models\ContractDetailRepository.cs" />
     <Compile Include="Models\ContractorRepository.cs" />
     <Compile Include="Models\ContractRepository.cs" />
+    <Compile Include="Models\PicasaRepository.cs" />
     <Compile Include="Models\Partial\Contract.cs" />
     <Compile Include="Models\FindSite.cs" />
     <Compile Include="Models\Partial\Geo.cs" />

@@ -15,6 +15,7 @@
           <EntitySet Name="Contractor" EntityType="OAMSModel.Store.Contractor" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Geo" EntityType="OAMSModel.Store.Geo" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Site" EntityType="OAMSModel.Store.Site" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SitePhoto" EntityType="OAMSModel.Store.SitePhoto" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Campaign_Client" Association="OAMSModel.Store.FK_Campaign_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="Campaign" EntitySet="Campaign" />
@@ -54,6 +55,10 @@
           <AssociationSet Name="FK_Site_Geo3" Association="OAMSModel.Store.FK_Site_Geo3">
             <End Role="Geo" EntitySet="Geo" />
             <End Role="Site" EntitySet="Site" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SitePhoto_Site" Association="OAMSModel.Store.FK_SitePhoto_Site">
+            <End Role="Site" EntitySet="Site" />
+            <End Role="SitePhoto" EntitySet="SitePhoto" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Campaign">
@@ -129,11 +134,11 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="Address" Type="nvarchar" MaxLength="255" />
-          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
-          <Property Name="ContactName" Type="nvarchar" MaxLength="128" />
-          <Property Name="ContactPhone" Type="nvarchar" MaxLength="50" />
-          <Property Name="ContactEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Telephone" Type="nvarchar(max)" />
+          <Property Name="ContactName" Type="nvarchar(max)" />
+          <Property Name="ContactPhone" Type="nvarchar(max)" />
+          <Property Name="ContactEmail" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Geo">
           <Key>
@@ -215,6 +220,15 @@
           <Property Name="CloseToStation" Type="bit" />
           <Property Name="CloseToTownCenter" Type="bit" />
           <Property Name="Score" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="AlbumUrl" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SitePhoto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SiteID" Type="int" />
+          <Property Name="Url" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Campaign_Client">
           <End Role="Client" Type="OAMSModel.Store.Client" Multiplicity="0..1" />
@@ -336,6 +350,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SitePhoto_Site">
+          <End Role="Site" Type="OAMSModel.Store.Site" Multiplicity="0..1" />
+          <End Role="SitePhoto" Type="OAMSModel.Store.SitePhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Site">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SitePhoto">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -346,13 +372,8 @@
             <End Role="Geo" EntitySet="Geos" />
             <End Role="Geo1" EntitySet="Geos" />
           </AssociationSet>
-          <EntitySet Name="Contractors" EntityType="OAMSModel.Contractor" />
           <EntitySet Name="CodeMasters" EntityType="OAMSModel.CodeMaster" />
           <EntitySet Name="Contracts" EntityType="OAMSModel.Contract" />
-          <AssociationSet Name="FK_Contract_Contractor" Association="OAMSModel.FK_Contract_Contractor">
-            <End Role="Contractor" EntitySet="Contractors" />
-            <End Role="Contract" EntitySet="Contracts" />
-          </AssociationSet>
           <EntitySet Name="ContractDetails" EntityType="OAMSModel.ContractDetail" />
           <AssociationSet Name="FK_ContractDetail_Contract" Association="OAMSModel.FK_ContractDetail_Contract">
             <End Role="Contract" EntitySet="Contracts" />
@@ -390,6 +411,16 @@
             <End Role="Geo" EntitySet="Geos" />
             <End Role="Site" EntitySet="Sites" />
           </AssociationSet>
+          <EntitySet Name="SitePhotoes" EntityType="OAMSModel.SitePhoto" />
+          <AssociationSet Name="FK_SitePhoto_Site" Association="OAMSModel.FK_SitePhoto_Site">
+            <End Role="Site" EntitySet="Sites" />
+            <End Role="SitePhoto" EntitySet="SitePhotoes" />
+          </AssociationSet>
+          <EntitySet Name="Contractors" EntityType="OAMSModel.Contractor" />
+          <AssociationSet Name="FK_Contract_Contractor" Association="OAMSModel.FK_Contract_Contractor">
+            <End Role="Contractor" EntitySet="Contractors" />
+            <End Role="Contract" EntitySet="Contracts" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Geo">
           <Key>
@@ -419,19 +450,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Contractor">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Contracts" Relationship="OAMSModel.FK_Contract_Contractor" FromRole="Contractor" ToRole="Contract" />
-          <Property Type="String" Name="Address" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Telephone" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ContactName" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ContactPhone" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ContactEmail" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="CodeMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -451,21 +469,9 @@
           <Property Type="DateTime" Name="EffectiveDate" />
           <Property Type="DateTime" Name="TermDate" />
           <Property Type="Int32" Name="ContractorID" />
-          <NavigationProperty Name="Contractor" Relationship="OAMSModel.FK_Contract_Contractor" FromRole="Contract" ToRole="Contractor" />
           <NavigationProperty Name="ContractDetails" Relationship="OAMSModel.FK_ContractDetail_Contract" FromRole="Contract" ToRole="ContractDetail" />
+          <NavigationProperty Name="Contractor" Relationship="OAMSModel.FK_Contract_Contractor" FromRole="Contract" ToRole="Contractor" />
         </EntityType>
-        <Association Name="FK_Contract_Contractor">
-          <End Type="OAMSModel.Contractor" Role="Contractor" Multiplicity="0..1" />
-          <End Type="OAMSModel.Contract" Role="Contract" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contractor">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Contract">
-              <PropertyRef Name="ContractorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="ContractDetail">
           <Key>
             <PropertyRef Name="ID" />
@@ -642,6 +648,8 @@
           <NavigationProperty Name="Geo2" Relationship="OAMSModel.FK_Site_Geo2" FromRole="Site" ToRole="Geo" />
           <NavigationProperty Name="Geo3" Relationship="OAMSModel.FK_Site_Geo3" FromRole="Site" ToRole="Geo" />
           <Property Type="Int32" Name="Score" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="String" Name="AlbumUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SitePhotoes" Relationship="OAMSModel.FK_SitePhoto_Site" FromRole="Site" ToRole="SitePhoto" />
         </EntityType>
         <Association Name="FK_ContractDetail_Site">
           <End Type="OAMSModel.Site" Role="Site" Multiplicity="0..1" />
@@ -691,6 +699,52 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SitePhoto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="SiteID" />
+          <Property Type="String" Name="Url" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Site" Relationship="OAMSModel.FK_SitePhoto_Site" FromRole="SitePhoto" ToRole="Site" />
+        </EntityType>
+        <Association Name="FK_SitePhoto_Site">
+          <End Type="OAMSModel.Site" Role="Site" Multiplicity="0..1" />
+          <End Type="OAMSModel.SitePhoto" Role="SitePhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Site">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SitePhoto">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Contractor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Telephone" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContactName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContactPhone" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContactEmail" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contracts" Relationship="OAMSModel.FK_Contract_Contractor" FromRole="Contractor" ToRole="Contract" />
+        </EntityType>
+        <Association Name="FK_Contract_Contractor">
+          <End Type="OAMSModel.Contractor" Role="Contractor" Multiplicity="0..1" />
+          <End Type="OAMSModel.Contract" Role="Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contractor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="ContractorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -704,19 +758,6 @@
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Level" ColumnName="Level" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Contractors">
-            <EntityTypeMapping TypeName="OAMSModel.Contractor">
-              <MappingFragment StoreEntitySet="Contractor">
-                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
-                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
-                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -798,6 +839,7 @@
           <EntitySetMapping Name="Sites">
             <EntityTypeMapping TypeName="OAMSModel.Site">
               <MappingFragment StoreEntitySet="Site">
+                <ScalarProperty Name="AlbumUrl" ColumnName="AlbumUrl" />
                 <ScalarProperty Name="Score" ColumnName="Score" />
                 <ScalarProperty Name="CloseToTownCenter" ColumnName="CloseToTownCenter" />
                 <ScalarProperty Name="CloseToStation" ColumnName="CloseToStation" />
@@ -866,6 +908,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SitePhotoes">
+            <EntityTypeMapping TypeName="OAMSModel.SitePhoto">
+              <MappingFragment StoreEntitySet="SitePhoto">
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contractors">
+            <EntityTypeMapping TypeName="OAMSModel.Contractor">
+              <MappingFragment StoreEntitySet="Contractor">
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -894,18 +958,13 @@
           <ConnectorPoint PointX="1.8915384615384618" PointY="4.5" />
           <ConnectorPoint PointX="1.8915384615384618" PointY="4.75" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="OAMSModel.Contractor" Width="1.5" PointX="0.75" PointY="1.375" Height="1.5788378906250031" />
         <EntityTypeShape EntityType="OAMSModel.CodeMaster" Width="1.5" PointX="3.375" PointY="4.75" Height="1.5923063151041665" IsExpanded="true" />
         <EntityTypeShape EntityType="OAMSModel.Contract" Width="1.5" PointX="7.5" PointY="1.875" Height="2.3368131510416674" />
-        <AssociationConnector Association="OAMSModel.FK_Contract_Contractor" >
-          <ConnectorPoint PointX="2.25" PointY="2.4144189453125" />
-          <ConnectorPoint PointX="7.5" PointY="2.4144189453125" />
-        </AssociationConnector>
         <EntityTypeShape EntityType="OAMSModel.ContractDetail" Width="1.5" PointX="9.75" PointY="7.875" Height="2.9052945963541674" />
         <AssociationConnector Association="OAMSModel.FK_ContractDetail_Contract" >
           <ConnectorPoint PointX="8.25" PointY="4.2398893229166656" />
-          <ConnectorPoint PointX="8.25" PointY="9.4420475260416659" />
-          <ConnectorPoint PointX="9.75" PointY="9.4420475260416659" />
+          <ConnectorPoint PointX="8.25" PointY="8.9406254866536443" />
+          <ConnectorPoint PointX="9.75" PointY="8.9406254866536443" />
         </AssociationConnector>
         <EntityTypeShape EntityType="OAMSModel.Campaign" Width="1.5" PointX="9.75" PointY="19" Height="2.5783902994791674" />
         <EntityTypeShape EntityType="OAMSModel.CampaignDetail" Width="1.875" PointX="12" PointY="8" Height="2.5783902994791674" />
@@ -915,9 +974,9 @@
           <ConnectorPoint PointX="9.75" PointY="20.296153157552084" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_CampaignDetail_Campaign" >
-          <ConnectorPoint PointX="11.25" PointY="20.289195149739584" />
-          <ConnectorPoint PointX="12.9375" PointY="20.289195149739584" />
-          <ConnectorPoint PointX="12.9375" PointY="10.578390299479167" />
+          <ConnectorPoint PointX="11.25" PointY="20.470896809895834" />
+          <ConnectorPoint PointX="12.9375" PointY="20.470896809895834" />
+          <ConnectorPoint PointX="12.9375" PointY="10.941793619791666" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_CampaignDetail_ContractDetail" >
           <ConnectorPoint PointX="11.25" PointY="9.2891951497395837" />
@@ -926,25 +985,35 @@
         <EntityTypeShape EntityType="OAMSModel.Site" Width="1.5" PointX="3" PointY="21.125" Height="14.095276692708328" />
         <AssociationConnector Association="OAMSModel.FK_ContractDetail_Site" >
           <ConnectorPoint PointX="3.75" PointY="21.125" />
-          <ConnectorPoint PointX="3.75" PointY="10.2568237890625" />
-          <ConnectorPoint PointX="9.75" PointY="10.2568237890625" />
+          <ConnectorPoint PointX="3.75" PointY="10.068755973307292" />
+          <ConnectorPoint PointX="9.75" PointY="10.068755973307292" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Geo1" >
-          <ConnectorPoint PointX="1.1250811298076922" PointY="7.4927376302083326" />
-          <ConnectorPoint PointX="1.1250811298076922" PointY="27.290885060628252" />
-          <ConnectorPoint PointX="1.4948808072916664" PointY="27.290885060628252" />
-          <ConnectorPoint PointX="1.6615474739583329" PointY="27.290885060628252" />
-          <ConnectorPoint PointX="3" PointY="27.290885060628252" />
+          <ConnectorPoint PointX="1.1445510351562498" PointY="7.8840950520833326" />
+          <ConnectorPoint PointX="1.1445510351562498" PointY="27.772726147969561" />
+          <ConnectorPoint PointX="1.5299702018229164" PointY="27.772726147969561" />
+          <ConnectorPoint PointX="1.696636868489583" PointY="27.772726147969561" />
+          <ConnectorPoint PointX="3" PointY="27.772726147969561" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Geo2" >
-          <ConnectorPoint PointX="2.0313471514423074" PointY="7.4927376302083326" />
-          <ConnectorPoint PointX="2.0313471514423074" PointY="24.176690030314134" />
-          <ConnectorPoint PointX="3" PointY="24.176690030314134" />
+          <ConnectorPoint PointX="2.08205603515625" PointY="7.8840950520833326" />
+          <ConnectorPoint PointX="2.08205603515625" PointY="24.417610573984788" />
+          <ConnectorPoint PointX="3" PointY="24.417610573984788" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Geo3" >
-          <ConnectorPoint PointX="1.5782141406249997" PointY="7.4927376302083326" />
-          <ConnectorPoint PointX="1.5782141406249997" PointY="30.376636436564119" />
-          <ConnectorPoint PointX="3" PointY="30.376636436564119" />
+          <ConnectorPoint PointX="1.6133035351562497" PointY="7.8840950520833326" />
+          <ConnectorPoint PointX="1.6133035351562497" PointY="31.816206068776445" />
+          <ConnectorPoint PointX="3" PointY="31.816206068776445" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="OAMSModel.SitePhoto" Width="1.5" PointX="5.25" PointY="27.625" Height="1.7879850260416674" />
+        <AssociationConnector Association="OAMSModel.FK_SitePhoto_Site" >
+          <ConnectorPoint PointX="4.5" PointY="28.518992513020834" />
+          <ConnectorPoint PointX="5.25" PointY="28.518992513020834" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="OAMSModel.Contractor" Width="1.5" PointX="1.875" PointY="0.875" Height="2.5571907552083317" />
+        <AssociationConnector Association="OAMSModel.FK_Contract_Contractor" >
+          <ConnectorPoint PointX="3.375" PointY="2.6535953776041659" />
+          <ConnectorPoint PointX="7.5" PointY="2.6535953776041659" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

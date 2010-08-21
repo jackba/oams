@@ -29,6 +29,8 @@ namespace OAMS.Models
 
             GeoRepository.Repo.Set3LevelByFullname(e.GeoFullName, e.UpdateGeo);
 
+            Save();
+
             return e;
         }
 
@@ -82,6 +84,40 @@ namespace OAMS.Models
             return e;
         }
 
+        public void AddPhoto(Site e, IEnumerable<HttpPostedFileBase> files)
+        {
+            if (files == null || files.Count() == 0) return;
+
+            if (string.IsNullOrEmpty(e.AlbumUrl))
+            {
+                e.AlbumUrl = PicasaRepository.Repo.CreateAlbum(e.ID);
+            }
+
+            List<string> photoUriList = PicasaRepository.Repo.Upload(e.AlbumUrl, files);
+
+            foreach (var item in photoUriList)
+            {
+                SitePhoto photo = new SitePhoto();
+                photo.Url = item;
+                e.SitePhotoes.Add(photo);
+            }
+
+            Save();
+        }
+
+        public void DeletePhoto(List<int> IDList)
+        {
+            if (IDList != null)
+            {
+                List<SitePhoto> l = db.SitePhotoes.Where(r => IDList.Contains(r.ID)).ToList();
+                foreach (var item in l)
+                {
+                    db.DeleteObject(item);
+                }
+
+                Save();
+            }
+        }
 
     }
 }
