@@ -90,8 +90,12 @@
                 <br />
                 <%: Html.CodeMasterDropDownListFor(model => model.CompetitiveProductSigns)%>
                 <br />
+                <%--<%: Html.EditorFor(model => model.IsWithinCircle) %>--%>
+                <%--<input type="checkbox" name="IsWithinCircle" id="IsWithinCircle" onclick="Click_WithinCircle(this);" />--%>
+                <input class="check-box" id="IsWithinCircle" name="IsWithinCircle" type="checkbox"
+                    value="true" onclick="Click_WithinCircle(this);" />
                 Within
-                <%: Html.EditorFor(r => r.Distance) %>
+                <input type="text" name="Distance" id="Distance" disabled="disabled" onblur="updateDistanceFromTxt(this);" />
                 km
                 <%: Html.HiddenFor(r => r.Lat) %>
                 <%: Html.HiddenFor(r => r.Long) %>
@@ -143,12 +147,31 @@
     </table>
     <% } %>
     <script type="text/javascript">
+        function updateDistanceFromTxt(txt) {
+
+            //alert(txt.value);
+            //distanceWidget.pRadiusWidget.set('distance', txt.value);
+            distanceWidget.set('distance', txt.value);
+            distanceWidget.pRadiusWidget.setSizerChangeFromTxt();
+
+            
+        }
+
+        function Click_WithinCircle(chk) {
+            if (chk.checked) {
+                $("#Distance").removeAttr('disabled');
+                distanceWidget.setVisible(true);
+            }
+            else {
+                $("#Distance").attr('disabled', 'disabled');
+                distanceWidget.setVisible(false);
+            }
+        }
+
         var oTable;
         function ShowHideCols() {
 
-            //            if (oTable != null) {
-            //                oTable.fnDestroy();
-            //            }
+
 
             oTable.fnSetColumnVis(0, $('#chkColID').attr('checked'));
             oTable.fnSetColumnVis(1, $('#chkColType').attr('checked'));
@@ -219,7 +242,30 @@
 
                     profileMarkers.push(marker);
 
-                    bindInfoWindow(marker, map, infoWindow, site.Style);
+                    var html = "ID: " + site.ID;
+                    html += "<br />";
+                    html += "Site Code: " + site.Code;
+                    html += "<br />";
+                    html += "Address: " + site.Address;
+                    html += "<br />";
+                    html += "Location: " + site.GeoFullName;
+                    html += "<br />";
+                    html += "Type: " + site.Type;
+                    html += "<br />";
+                    html += "Orientation: " + site.Orientation;
+                    html += "<br />";
+                    html += "Size: " + site.Size;
+                    html += "<br />";
+                    html += "Lighting: " + site.Lighting;
+                    html += "<br />";
+                    html += "Contractor: " + site.Contractor;
+                    html += "<br />";
+
+                    //html += '<embed type="application/x-shockwave-flash" src="http://picasaweb.google.com/s/c/bin/slideshow.swf" width="288" height="192" flashvars="host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F113917932111131696693%2Falbumid%2F5508075853826874961%3Falt%3Drss%26kind%3Dphoto%26authkey%3DGv1sRgCM2P2-L2oriXUA%26hl%3Den_US" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>'
+
+
+
+                    bindInfoWindow(marker, map, infoWindow, html);
                     //bindInfoWindow(marker, map, infoWindow, 'asdsa');
 
                     //                    if (oTable != null) {
@@ -228,7 +274,7 @@
 
                     var tbl = $('#tblResult tbody');
                     tbl.innerHTML = '';
-                    html = [];
+                    //html = [];
 
                     var rSel = document.createElement('tr');
                     tbl.append(rSel);
@@ -300,14 +346,40 @@
 
             }
             else {
-                tbl.push('No site found.');
+
+                var tbl = $('#tblResult tbody');
+                tbl.innerHTML = '';
+
+                var rSel = document.createElement('tr');
+                tbl.append(rSel);
+
+                var cStyle = document.createElement('td');
+                cStyle.innerHTML = "No Site Found";
+                rSel.appendChild(cStyle);
             }
 
             //$(results).html(html.join(''));
             //$('#results-wrapper').show();
         }
 
+        function bindInfoWindowToA(marker, map, infoWindow, html, link) {
+            google.maps.event.addListener(link, 'click', function () {
+                //                infoWindow.setContent(html);
+                //                infoWindow.open(map, marker);
+                alert('aa');
+            });
+        }
 
+        function bindInfoWindow(marker, map, infoWindow, html) {
+
+            google.maps.event.addListener(marker, 'click', function () {
+                //var s = html + "";
+
+                infoWindow.setContent(html);
+                //infoWindow.setContent('asd');
+                infoWindow.open(map, marker);
+            });
+        }
 
         var distanceWidget;
         var map;
@@ -326,7 +398,7 @@
 
             distanceWidget = new DistanceWidget({
                 map: map,
-                distance: 100, // Starting distance in km.
+                distance: 1, // Starting distance in km.
                 maxDistance: 2500, // Twitter has a max distance of 2500km.
                 color: '#000',
                 activeColor: '#59b',
@@ -345,6 +417,7 @@
             updateDistance();
             updatePosition();
             addActions();
+            distanceWidget.setVisible(false);
         }
 
         function updatePosition() {
@@ -375,8 +448,13 @@
 
         function updateDistance() {
             var distance = distanceWidget.get('distance');
+            
+
+            //cast to number to function toFixed() working
+            distance = distance * 1;
             //            $('#dist').html(distance.toFixed(2));
             $('#Distance').val(distance.toFixed(2));
+            
         }
 
 
@@ -516,20 +594,7 @@
             };
         }
 
-        function bindInfoWindowToA(marker, map, infoWindow, html, link) {
-            google.maps.event.addListener(link, 'click', function () {
-                //                infoWindow.setContent(html);
-                //                infoWindow.open(map, marker);
-                alert('aa');
-            });
-        }
 
-        function bindInfoWindow(marker, map, infoWindow, html) {
-            google.maps.event.addListener(marker, 'click', function () {
-                infoWindow.setContent(html);
-                infoWindow.open(map, marker);
-            });
-        }
 
         /**
         * A distance widget that will display a circle that can be resized and will
@@ -548,6 +613,8 @@
                 this.set('position', map.getCenter());
             }
 
+
+
             // Add a marker to the page at the map center or specified position
             var marker = new google.maps.Marker({
                 draggable: true,
@@ -558,6 +625,8 @@
             marker.bindTo('zIndex', this);
             marker.bindTo('position', this);
             marker.bindTo('icon', this);
+
+            this.pCenterMarker = marker;
 
             // Create a new radius widget
             var radiusWidget = new RadiusWidget(options['distance'] || 50);
@@ -573,6 +642,8 @@
             radiusWidget.bindTo('sizerIcon', this);
             radiusWidget.bindTo('activeSizerIcon', this);
 
+            this.pRadiusWidget = radiusWidget;
+
             // Bind to the radius widget distance property
             this.bindTo('distance', radiusWidget);
             // Bind to the radius widget bounds property
@@ -584,7 +655,17 @@
                 map.fitBounds(me.get('bounds'));
             });
         }
+
+
         DistanceWidget.prototype = new google.maps.MVCObject();
+
+        DistanceWidget.prototype.setVisible = function (isVisible) {
+
+            this.pCenterMarker.setVisible(isVisible);
+            this.pRadiusWidget.setVisible(isVisible);
+
+        };
+
 
 
         /**
@@ -608,9 +689,12 @@
             circle.bindTo('strokeColor', this);
             circle.bindTo('radius', this);
 
+            this.pCircle = circle;
+
             this.addSizer_();
         }
         RadiusWidget.prototype = new google.maps.MVCObject();
+
 
 
         /**
@@ -642,8 +726,20 @@
             google.maps.event.addListener(sizer, 'dragend', function () {
                 me.set('active', false);
             });
+
+            this.pSizer = sizer;
         };
 
+        RadiusWidget.prototype.setVisible = function (isVisible) {
+
+            //this.pCircle.setVisible(isVisible);
+
+            if (isVisible) {
+                this.pCircle.setMap(map);
+            } else { this.pCircle.setMap(null); }
+            this.pSizer.setVisible(isVisible);
+
+        };
 
         /**
         * Update the radius when the distance has changed.
@@ -651,6 +747,8 @@
         RadiusWidget.prototype.distance_changed = function () {
             this.set('radius', this.get('distance') * 1000);
         };
+
+
 
         /**
         * Update the radius when the min distance has changed.
@@ -732,6 +830,22 @@
             $('#Lat').val(this.get('center').lat());
             $('#Long').val(this.get('center').lng());
 
+
+        };
+
+        RadiusWidget.prototype.setSizerChangeFromTxt = function () {
+          
+            var position;
+
+            var bounds = this.get('bounds');
+            if (bounds) {
+                var lng = bounds.getNorthEast().lng();
+                position = new google.maps.LatLng(this.get('center').lat(), lng);
+            }
+
+            if (position) {
+                this.set('sizer_position', position);
+            }
 
         };
 

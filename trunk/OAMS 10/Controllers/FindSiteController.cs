@@ -63,11 +63,24 @@ namespace OAMS.Controllers
                 && (e.Geo2List == null || e.Geo2List.FirstOrDefault() == null || (r.Geo2 != null && e.Geo2List.Contains(r.Geo2.FullName)))
 
                 ).ToList()
-                .Where(r => Helper.DistanceBetweenPoints(r.Lat, r.Lng, e.Lat, e.Long) <= e.Distance)
+                .Where(r => !e.IsWithinCircle || Helper.DistanceBetweenPoints(r.Lat, r.Lng, e.Lat, e.Long) <= e.Distance)
                 .ToList();
 
-
-            return Json(l.Select(r => new { r.ID, r.Lat, r.Lng, r.Code, r.Format, r.Type }));
+            return Json(l.Select(r => new
+            {
+                r.ID,
+                r.Lat,
+                r.Lng,
+                r.Code,
+                r.Format,
+                r.Type,
+                r.GeoFullName,
+                r.Address,
+                Orientation = r.Width >= r.Height ? "Horizontal" : "Vertical",
+                Size = string.Format("{0}m x {1}m", r.Width.ToString(), r.Height.ToString()),
+                Lighting = r.FrontlitNumerOfLamps > 0 ? "Fontlit" : "Backlit",
+                r.Contractor
+            }));
         }
     }
 }

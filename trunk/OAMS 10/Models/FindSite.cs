@@ -11,7 +11,7 @@ namespace OAMS.Models
 
         public string Geo1FullName { get; set; }
         public List<string> Geo2List { get; set; }
-        
+
         public List<string> StyleList { get; set; }
         public string Format { get; set; }
 
@@ -31,7 +31,7 @@ namespace OAMS.Models
         public string FlagsTemporaryBannersPromotionalItems { get; set; }
         public string CompetitiveProductSigns { get; set; }
 
-
+        public bool IsWithinCircle { get; set; }
         public double Distance { get; set; }
         public double? Lat { get; set; }
         public double? Long { get; set; }
