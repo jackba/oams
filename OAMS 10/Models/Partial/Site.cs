@@ -10,6 +10,12 @@ namespace OAMS.Models
 
     public partial class Site
     {
-        public string GeoFullName { get; set; }
+        public string GeoFullName
+        {
+            get
+            {
+                return GeoRepository.Repo.GetFullname(Geo1, Geo2, Geo3);
+            }
+        }
     }
 }
