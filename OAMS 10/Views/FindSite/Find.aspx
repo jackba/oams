@@ -24,7 +24,7 @@
                 Style List:
                 <br />
                 <%
-                    foreach (var category in OAMS.Models.CodeMasterRepository.Get((new OAMS.Models.CodeMasterType()).Type))
+                    foreach (var category in OAMS.Models.CodeMasterRepository.Repo.Get((new OAMS.Models.CodeMasterType()).Type))
                     {
                 %>
                 <input type="checkbox" name="StyleList" value="<%= category.Code %>" />
@@ -107,6 +107,20 @@
                     Type
                     <input type="checkbox" id="chkColFormat" checked="checked" />
                     Format
+                    <input type="checkbox" id="chkColAddressLine1" checked="checked" />
+                    Address Line 1
+                    <input type="checkbox" id="chkColAddressLine2" checked="checked" />
+                    Address Line 2
+                    <input type="checkbox" id="chkColSize" checked="checked" />
+                    Size
+                    <input type="checkbox" id="chkColCurrentProduct" checked="checked" />
+                    Current Product
+                    <input type="checkbox" id="chkColCurrentClient" checked="checked" />
+                    Current Client
+                    <input type="checkbox" id="chkColContractor" checked="checked" />
+                    Contractor
+                    <input type="checkbox" id="chkColScore" checked="checked" />
+                    Total
                     <input type="button" id="hell" value="Ok" onclick='ShowHideCols();' />
                 </div>
                 <table id="tblResult" class="display">
@@ -120,6 +134,27 @@
                             </th>
                             <th>
                                 Format
+                            </th>
+                            <th>
+                                Address Line 1
+                            </th>
+                            <th>
+                                Address Line 2
+                            </th>
+                            <th>
+                                Size
+                            </th>
+                            <th>
+                                Current Product
+                            </th>
+                            <th>
+                                Current Client
+                            </th>
+                            <th>
+                                Contractor
+                            </th>
+                            <th>
+                                Total
                             </th>
                         </tr>
                     </thead>
@@ -138,7 +173,7 @@
             distanceWidget.set('distance', txt.value);
             distanceWidget.pRadiusWidget.setSizerChangeFromTxt();
 
-            
+
         }
 
         function Click_WithinCircle(chk) {
@@ -160,6 +195,13 @@
             oTable.fnSetColumnVis(0, $('#chkColID').attr('checked'));
             oTable.fnSetColumnVis(1, $('#chkColType').attr('checked'));
             oTable.fnSetColumnVis(2, $('#chkColFormat').attr('checked'));
+            oTable.fnSetColumnVis(3, $('#chkColAddressLine1').attr('checked'));
+            oTable.fnSetColumnVis(4, $('#chkColAddressLine2').attr('checked'));
+            oTable.fnSetColumnVis(5, $('#chkColSize').attr('checked'));
+            oTable.fnSetColumnVis(6, $('#chkColCurrentProduct').attr('checked'));
+            oTable.fnSetColumnVis(7, $('#chkColCurrentClient').attr('checked'));
+            oTable.fnSetColumnVis(8, $('#chkColContractor').attr('checked'));
+            oTable.fnSetColumnVis(9, $('#chkColScore').attr('checked'));
 
         }
         function showGeo2(str) {
@@ -244,6 +286,8 @@
                     html += "<br />";
                     html += "Contractor: " + site.Contractor;
                     html += "<br />";
+                    html += "CurrentProduct: " + site.CurrentProduct;
+                    
 
                     //html += '<embed type="application/x-shockwave-flash" src="http://picasaweb.google.com/s/c/bin/slideshow.swf" width="288" height="192" flashvars="host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F113917932111131696693%2Falbumid%2F5508075853826874961%3Falt%3Drss%26kind%3Dphoto%26authkey%3DGv1sRgCM2P2-L2oriXUA%26hl%3Den_US" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>'
 
@@ -287,6 +331,44 @@
                     var cStyle2 = document.createElement('td');
                     cStyle2.innerHTML = site.Format;
                     rSel.appendChild(cStyle2);
+
+                    //AddressLine1
+                    var cStyle3 = document.createElement('td');
+                    cStyle3.innerHTML = site.AddressLine1;
+                    rSel.appendChild(cStyle3);
+
+                    //AddressLine2
+                    var cStyle4 = document.createElement('td');
+                    cStyle4.innerHTML = site.AddressLine2;
+                    rSel.appendChild(cStyle4);
+
+                    //Size
+                    var cStyle5 = document.createElement('td');
+                    cStyle5.innerHTML = site.Size;
+                    rSel.appendChild(cStyle5);
+
+                    //CurrentProduct
+                    var cStyle6 = document.createElement('td');
+                    cStyle6.innerHTML = site.CurrentProduct;
+                    rSel.appendChild(cStyle6);
+
+                    //CurrentClient
+                    var cStyle7 = document.createElement('td');
+                    cStyle7.innerHTML = site.CurrentClient;
+                    rSel.appendChild(cStyle7);
+
+                    //Contractor
+                    var cStyle8 = document.createElement('td');
+                    cStyle8.innerHTML = site.Contractor;
+                    rSel.appendChild(cStyle8);
+
+                    //Score
+                    var cStyle9 = document.createElement('td');
+                    cStyle9.innerHTML = site.Score;
+                    rSel.appendChild(cStyle9);
+
+
+
 
                     //Add2Campaign
                     //var cAdd2Cam = document.createElement('td');
@@ -432,13 +514,13 @@
 
         function updateDistance() {
             var distance = distanceWidget.get('distance');
-            
+
 
             //cast to number to function toFixed() working
             distance = distance * 1;
             //            $('#dist').html(distance.toFixed(2));
             $('#Distance').val(distance.toFixed(2));
-            
+
         }
 
 
@@ -818,7 +900,7 @@
         };
 
         RadiusWidget.prototype.setSizerChangeFromTxt = function () {
-          
+
             var position;
 
             var bounds = this.get('bounds');

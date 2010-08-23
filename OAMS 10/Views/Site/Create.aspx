@@ -83,10 +83,10 @@
                         <%: Html.ValidationMessageFor(model => model.Code)%>
                     </div>
                     <div class="editor-label">
-                        <%: Html.LabelFor(model => model.GeoFullName)%>
+                        <%: Html.LabelFor(model => model.NewGeoFullName)%>
                     </div>
                     <div class="editor-field">
-                        <%: Html.EditorFor(model => model.GeoFullName, "AutoCompleteGeo")%>
+                        <%: Html.EditorFor(model => model.NewGeoFullName, "AutoCompleteGeo")%>
                     </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.AddressLine1) %>
