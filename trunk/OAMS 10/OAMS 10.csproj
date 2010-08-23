@@ -134,10 +134,19 @@
       <DependentUpon>OAMS.MDF</DependentUpon>
     </Content>
     <Content Include="Content\css\demo_table.css" />
+    <Content Include="Content\Image\back_disabled.jpg" />
+    <Content Include="Content\Image\back_enabled.jpg" />
     <Content Include="Content\Image\bg1.png" />
     <Content Include="Content\Image\bg2.png" />
+    <Content Include="Content\Image\forward_disabled.jpg" />
+    <Content Include="Content\Image\forward_enabled.jpg" />
     <Content Include="Content\Image\logo.png" />
     <Content Include="Content\Image\resize-off.png" />
+    <Content Include="Content\Image\sort_asc.png" />
+    <Content Include="Content\Image\sort_asc_disabled.png" />
+    <Content Include="Content\Image\sort_both.png" />
+    <Content Include="Content\Image\sort_desc.png" />
+    <Content Include="Content\Image\sort_desc_disabled.png" />
     <Content Include="Content\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
