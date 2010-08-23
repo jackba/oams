@@ -445,7 +445,7 @@ namespace OAMS
 
         public static MvcHtmlString CodeMasterDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
         {
-            return htmlHelper.DropDownListFor(expression, CodeMasterRepository.Get(expression.Body).ToSelectListItem(), OAMSSetting.messageL.SelectNone);
+            return htmlHelper.DropDownListFor(expression, CodeMasterRepository.Repo.Get(expression.Body).ToSelectListItem(), OAMSSetting.messageL.SelectNone);
         }
 
         public static MvcHtmlString DropDownListForGeo1<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)

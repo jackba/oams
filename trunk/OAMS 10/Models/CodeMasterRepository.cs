@@ -6,24 +6,28 @@ using System.Linq.Expressions;
 
 namespace OAMS.Models
 {
-    public class CodeMasterRepository
+    public class CodeMasterRepository : BaseRepository<CodeMasterRepository>
     {
         private OAMSEntities db = new OAMSEntities();
 
-        public static IQueryable<CodeMaster> Get(Expression expression)
+        public IQueryable<CodeMaster> Get(Expression expression)
         {
-            OAMSEntities db = new OAMSEntities();
-
             string type = PropertyName.GetMemberName(expression);
             return db.CodeMasters.Where(r => r.Type == type).OrderBy(r => r.Order);
         }
 
-        public static IQueryable<CodeMaster> Get(string type)
+        public IQueryable<CodeMaster> Get(string type)
         {
-            OAMSEntities db = new OAMSEntities();
-
             return db.CodeMasters.Where(r => r.Type == type);
         }
+
+        public string GetNote(string type, string code)
+        {
+            CodeMaster e = db.CodeMasters.Where(r => r.Type == type && r.Code == code).FirstOrDefault();
+
+            return e == null ? "" : e.Note;
+        }
+
     }
 
     public class CodeMasterType

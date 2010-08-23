@@ -2776,30 +2776,6 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Display
-        {
-            get
-            {
-                return _Display;
-            }
-            set
-            {
-                OnDisplayChanging(value);
-                ReportPropertyChanging("Display");
-                _Display = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Display");
-                OnDisplayChanged();
-            }
-        }
-        private global::System.String _Display;
-        partial void OnDisplayChanging(global::System.String value);
-        partial void OnDisplayChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Int32> FrontlitNumerOfLamps
         {
             get

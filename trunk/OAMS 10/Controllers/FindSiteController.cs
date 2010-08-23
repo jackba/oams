@@ -45,12 +45,12 @@ namespace OAMS.Controllers
                 && (string.IsNullOrEmpty(e.InstallationPosition1) || r.InstallationPosition1 == e.InstallationPosition1.ToInt())
                 && (string.IsNullOrEmpty(e.InstallationPosition2) || r.InstallationPosition2 == e.InstallationPosition2.ToInt())
                 && (string.IsNullOrEmpty(e.ViewingDistance) || r.ViewingDistance == e.ViewingDistance.ToInt())
-                //&& (string.IsNullOrEmpty(e.VisibilityBuilding) || r.VisibilityBuilding == e.VisibilityBuilding.ToInt())
+                        //&& (string.IsNullOrEmpty(e.VisibilityBuilding) || r.VisibilityBuilding == e.VisibilityBuilding.ToInt())
 
                 //&& (string.IsNullOrEmpty(e.VisibilityBuilding) || r.VisibilityBuilding == e.VisibilityBuilding.ToInt())
-                //&& (string.IsNullOrEmpty(e.VisibilityTrees) || r.VisibilityTrees == e.VisibilityTrees.ToInt())
-                //&& (string.IsNullOrEmpty(e.VisibilityBridgeWalkway) || r.VisibilityBridgeWalkway == e.VisibilityBridgeWalkway.ToInt())
-                //&& (string.IsNullOrEmpty(e.VisibilityElectricityPolesOther) || r.VisibilityElectricityPolesOther == e.VisibilityElectricityPolesOther.ToInt())
+                        //&& (string.IsNullOrEmpty(e.VisibilityTrees) || r.VisibilityTrees == e.VisibilityTrees.ToInt())
+                        //&& (string.IsNullOrEmpty(e.VisibilityBridgeWalkway) || r.VisibilityBridgeWalkway == e.VisibilityBridgeWalkway.ToInt())
+                        //&& (string.IsNullOrEmpty(e.VisibilityElectricityPolesOther) || r.VisibilityElectricityPolesOther == e.VisibilityElectricityPolesOther.ToInt())
                 && (string.IsNullOrEmpty(e.ViewingSpeed) || r.ViewingSpeed == e.ViewingSpeed.ToInt())
 
                 && (string.IsNullOrEmpty(e.Height) || r.Height == e.Height.ToInt())
@@ -66,20 +66,28 @@ namespace OAMS.Controllers
                 .Where(r => !e.IsWithinCircle || Helper.DistanceBetweenPoints(r.Lat, r.Lng, e.Lat, e.Long) <= e.Distance)
                 .ToList();
 
+            CodeMasterType cmt = new CodeMasterType();
+
             return Json(l.Select(r => new
             {
                 r.ID,
                 r.Lat,
                 r.Lng,
-                r.Code,
+                AddressLine1 = r.AddressLine1 ?? "",
+                AddressLine2 = r.AddressLine2 ?? "",
+
+                Code = r.Code ?? "",
                 r.Format,
-                r.Type,
+                Type = CodeMasterRepository.Repo.GetNote(cmt.Type, r.Type),
                 r.GeoFullName,
                 Address = r.AddressLine1 + " " + r.AddressLine2,
                 Orientation = r.Width >= r.Height ? "Horizontal" : "Vertical",
-                Size = string.Format("{0}m x {1}m", r.Width.ToString(), r.Height.ToString()),
+                Size = string.Format("{0}m x {1}m", r.Height.ToString(), r.Width.ToString()),
                 Lighting = r.FrontlitNumerOfLamps > 0 ? "Fontlit" : "Backlit",
-                r.Contractor
+                Contractor = r.Contractor ?? "",
+                CurrentProduct = r.CurrentProduct ?? "",
+                CurrentClient = r.CurrentClient ?? "",
+                r.Score
             }));
         }
     }

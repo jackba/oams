@@ -27,7 +27,7 @@ namespace OAMS.Models
                 new ContractDetail() { Site = e, ContractID = contractID };
             }
 
-            GeoRepository.Repo.Set3LevelByFullname(e.GeoFullName, e.UpdateGeo);
+            UpdateGeo(e);
 
             Save();
 
@@ -36,7 +36,7 @@ namespace OAMS.Models
 
         public void UpdateGeo(Site e)
         {
-            GeoRepository.Repo.Set3LevelByFullname(e.GeoFullName, e.UpdateGeo);
+            GeoRepository.Repo.Set3LevelByFullname(e.NewGeoFullName, e.UpdateGeo);
         }
 
         public void Save()
