@@ -64,6 +64,7 @@ namespace OAMS.Models
 
             e.VisibilityBridgeWalkway = 5;
             e.VisibilityBuilding = 5;
+            e.VisibilityHight = 5;
             e.VisibilityElectricityPolesOther = 5;
             e.VisibilityTrees = 5;
 

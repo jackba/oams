@@ -50,22 +50,6 @@
                 <br />
                 <%: Html.CodeMasterDropDownListFor(r => r.ViewingDistance) %>
                 <br />
-                <%: Html.LabelFor(r => r.VisibilityBuilding) %>
-                <br />
-                <%: Html.CodeMasterDropDownListFor(r => r.VisibilityBuilding) %>
-                <br />
-                <%: Html.LabelFor(r => r.VisibilityTrees) %>
-                <br />
-                <%: Html.CodeMasterDropDownListFor(r => r.VisibilityTrees) %>
-                <br />
-                <%: Html.LabelFor(r => r.VisibilityBridgeWalkway) %>
-                <br />
-                <%: Html.CodeMasterDropDownListFor(r => r.VisibilityBridgeWalkway) %>
-                <br />
-                <%: Html.LabelFor(r => r.VisibilityElectricityPolesOther) %>
-                <br />
-                <%: Html.CodeMasterDropDownListFor(r => r.VisibilityElectricityPolesOther) %>
-                <br />
                 <%: Html.LabelFor(r => r.ViewingSpeed) %>
                 <br />
                 <%: Html.CodeMasterDropDownListFor(r => r.ViewingSpeed)%>

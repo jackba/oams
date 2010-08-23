@@ -89,11 +89,18 @@
                         <%: Html.EditorFor(model => model.GeoFullName, "AutoCompleteGeo")%>
                     </div>
                     <div class="editor-label">
-                        <%: Html.LabelFor(model => model.Address) %>
+                        <%: Html.LabelFor(model => model.AddressLine1) %>
                     </div>
                     <div class="editor-field">
-                        <%: Html.EditorFor(r => r.Address)%>
-                        <%: Html.ValidationMessageFor(model => model.Address)%>
+                        <%: Html.EditorFor(r => r.AddressLine1)%>
+                        <%: Html.ValidationMessageFor(model => model.AddressLine1)%>
+                    </div>
+                    <div class="editor-label">
+                        <%: Html.LabelFor(model => model.AddressLine2) %>
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.EditorFor(r => r.AddressLine2)%>
+                        <%: Html.ValidationMessageFor(model => model.AddressLine2)%>
                     </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.Type) %>
@@ -329,6 +336,13 @@
                     <div class="editor-field">
                         <%: Html.CodeMasterDropDownListFor(model => model.VisibilityBuilding)%>
                         <%: Html.ValidationMessageFor(model => model.VisibilityBuilding)%>
+                    </div>
+                    <div class="editor-label">
+                        <%: Html.LabelFor(model => model.VisibilityHight) %>
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.CodeMasterDropDownListFor(model => model.VisibilityHight)%>
+                        <%: Html.ValidationMessageFor(model => model.VisibilityHight)%>
                     </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.VisibilityTrees) %>

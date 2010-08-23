@@ -23,7 +23,10 @@
                 Geo
             </th>
             <th>
-                Address
+                Address Line 1
+            </th>
+            <th>
+                Address Line 2
             </th>
             <th>
                 Type
@@ -61,7 +64,10 @@
                 <%: item.GeoFullName %>
             </td>
             <td>
-                <%: item.Address %>
+                <%: item.AddressLine1 %>
+            </td>
+            <td>
+                <%: item.AddressLine2 %>
             </td>
             <td>
                 <%: item.Type %>

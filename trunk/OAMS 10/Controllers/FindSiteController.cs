@@ -45,12 +45,12 @@ namespace OAMS.Controllers
                 && (string.IsNullOrEmpty(e.InstallationPosition1) || r.InstallationPosition1 == e.InstallationPosition1.ToInt())
                 && (string.IsNullOrEmpty(e.InstallationPosition2) || r.InstallationPosition2 == e.InstallationPosition2.ToInt())
                 && (string.IsNullOrEmpty(e.ViewingDistance) || r.ViewingDistance == e.ViewingDistance.ToInt())
-                && (string.IsNullOrEmpty(e.VisibilityBuilding) || r.VisibilityBuilding == e.VisibilityBuilding.ToInt())
+                //&& (string.IsNullOrEmpty(e.VisibilityBuilding) || r.VisibilityBuilding == e.VisibilityBuilding.ToInt())
 
-                && (string.IsNullOrEmpty(e.VisibilityBuilding) || r.VisibilityBuilding == e.VisibilityBuilding.ToInt())
-                && (string.IsNullOrEmpty(e.VisibilityTrees) || r.VisibilityTrees == e.VisibilityTrees.ToInt())
-                && (string.IsNullOrEmpty(e.VisibilityBridgeWalkway) || r.VisibilityBridgeWalkway == e.VisibilityBridgeWalkway.ToInt())
-                && (string.IsNullOrEmpty(e.VisibilityElectricityPolesOther) || r.VisibilityElectricityPolesOther == e.VisibilityElectricityPolesOther.ToInt())
+                //&& (string.IsNullOrEmpty(e.VisibilityBuilding) || r.VisibilityBuilding == e.VisibilityBuilding.ToInt())
+                //&& (string.IsNullOrEmpty(e.VisibilityTrees) || r.VisibilityTrees == e.VisibilityTrees.ToInt())
+                //&& (string.IsNullOrEmpty(e.VisibilityBridgeWalkway) || r.VisibilityBridgeWalkway == e.VisibilityBridgeWalkway.ToInt())
+                //&& (string.IsNullOrEmpty(e.VisibilityElectricityPolesOther) || r.VisibilityElectricityPolesOther == e.VisibilityElectricityPolesOther.ToInt())
                 && (string.IsNullOrEmpty(e.ViewingSpeed) || r.ViewingSpeed == e.ViewingSpeed.ToInt())
 
                 && (string.IsNullOrEmpty(e.Height) || r.Height == e.Height.ToInt())
@@ -75,7 +75,7 @@ namespace OAMS.Controllers
                 r.Format,
                 r.Type,
                 r.GeoFullName,
-                r.Address,
+                Address = r.AddressLine1 + " " + r.AddressLine2,
                 Orientation = r.Width >= r.Height ? "Horizontal" : "Vertical",
                 Size = string.Format("{0}m x {1}m", r.Width.ToString(), r.Height.ToString()),
                 Lighting = r.FrontlitNumerOfLamps > 0 ? "Fontlit" : "Backlit",

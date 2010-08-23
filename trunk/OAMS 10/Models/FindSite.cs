@@ -20,10 +20,7 @@ namespace OAMS.Models
         public string InstallationPosition1 { get; set; }
         public string InstallationPosition2 { get; set; }
         public string ViewingDistance { get; set; }
-        public string VisibilityBuilding { get; set; }
-        public string VisibilityTrees { get; set; }
-        public string VisibilityBridgeWalkway { get; set; }
-        public string VisibilityElectricityPolesOther { get; set; }
+       
         public string ViewingSpeed { get; set; }
         public string Height { get; set; }
         public string DirectionalTrafficPublicTransport { get; set; }

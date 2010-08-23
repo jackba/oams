@@ -2392,30 +2392,6 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Address
-        {
-            get
-            {
-                return _Address;
-            }
-            set
-            {
-                OnAddressChanging(value);
-                ReportPropertyChanging("Address");
-                _Address = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Address");
-                OnAddressChanged();
-            }
-        }
-        private global::System.String _Address;
-        partial void OnAddressChanging(global::System.String value);
-        partial void OnAddressChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String Code
         {
             get
@@ -3874,6 +3850,78 @@ namespace OAMS.Models
         private global::System.String _AlbumUrl;
         partial void OnAlbumUrlChanging(global::System.String value);
         partial void OnAlbumUrlChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AddressLine1
+        {
+            get
+            {
+                return _AddressLine1;
+            }
+            set
+            {
+                OnAddressLine1Changing(value);
+                ReportPropertyChanging("AddressLine1");
+                _AddressLine1 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AddressLine1");
+                OnAddressLine1Changed();
+            }
+        }
+        private global::System.String _AddressLine1;
+        partial void OnAddressLine1Changing(global::System.String value);
+        partial void OnAddressLine1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> VisibilityHight
+        {
+            get
+            {
+                return _VisibilityHight;
+            }
+            set
+            {
+                OnVisibilityHightChanging(value);
+                ReportPropertyChanging("VisibilityHight");
+                _VisibilityHight = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VisibilityHight");
+                OnVisibilityHightChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _VisibilityHight;
+        partial void OnVisibilityHightChanging(Nullable<global::System.Int32> value);
+        partial void OnVisibilityHightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AddressLine2
+        {
+            get
+            {
+                return _AddressLine2;
+            }
+            set
+            {
+                OnAddressLine2Changing(value);
+                ReportPropertyChanging("AddressLine2");
+                _AddressLine2 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AddressLine2");
+                OnAddressLine2Changed();
+            }
+        }
+        private global::System.String _AddressLine2;
+        partial void OnAddressLine2Changing(global::System.String value);
+        partial void OnAddressLine2Changed();
 
         #endregion
     
