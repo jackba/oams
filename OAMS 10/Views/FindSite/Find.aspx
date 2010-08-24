@@ -172,7 +172,7 @@
             //distanceWidget.pRadiusWidget.set('distance', txt.value);
             distanceWidget.set('distance', txt.value);
             distanceWidget.pRadiusWidget.setSizerChangeFromTxt();
-
+            map.fitBounds(distanceWidget.get('bounds'));
 
         }
 
@@ -244,7 +244,10 @@
 
         function addResults(json) {
 
-
+            //  Create a new viewpoint bound
+            var bounds = new google.maps.LatLngBounds();
+            
+            
 
             if (json.length) {
                 for (var i = 0, site; site = json[i]; i++) {
@@ -258,6 +261,8 @@
 
                     var pos = new google.maps.LatLng(site.Lat, site.Lng);
 
+
+
                     var marker = new google.maps.Marker({
                         map: map,
                         position: pos,
@@ -265,6 +270,10 @@
                         zIndex: 10
                     });
 
+                    
+                    if (VietnamBounds.contains(marker.position)) {
+                        bounds.extend(marker.position);
+                    }
 
                     profileMarkers.push(marker);
 
@@ -287,9 +296,11 @@
                     html += "Contractor: " + site.Contractor;
                     html += "<br />";
                     html += "CurrentProduct: " + site.CurrentProduct;
-                    
 
-                    //html += '<embed type="application/x-shockwave-flash" src="http://picasaweb.google.com/s/c/bin/slideshow.swf" width="288" height="192" flashvars="host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F113917932111131696693%2Falbumid%2F5508075853826874961%3Falt%3Drss%26kind%3Dphoto%26authkey%3DGv1sRgCM2P2-L2oriXUA%26hl%3Den_US" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>'
+                    html += "<br />";
+                    //html += '<embed type="application/x-shockwave-flash" src="http://picasaweb.google.com/s/c/bin/slideshow.swf" width="400" height="267" flashvars="host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F113917932111131696693%2Falbumid%2F5508075853826874961%3Falt%3Drss%26kind%3Dphoto%26authkey%3DGv1sRgCM2P2-L2oriXUA%26hl%3Den_US" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>'
+                    //html += '<embed type="application/x-shockwave-flash" src="http://picasaweb.google.com/s/c/bin/slideshow.swf" width="400" height="267" flashvars="host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F113917932111131696693%2Falbumid%2F5508934161572260737%3Falt%3Drss%26kind%3Dphoto%26authkey%3DGv1sRgCKzn1_jGireGFg" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>'
+                    //html += '<table style="width:194px;"><tr><td align="center" style="height:194px;background:url(http://picasaweb.google.com/s/c/transparent_album_background.gif) no-repeat left"><a href="http://picasaweb.google.com/113917932111131696693/376?authkey=Gv1sRgCNKm8tiUn-LowgE&feat=embedwebsite"><img src="http://lh3.ggpht.com/_OtjZ6-a3sBA/THOkvRpPeFE/AAAAAAAAAzg/4io1G2s4-ws/s160-c/376.jpg" width="160" height="160" style="margin:1px 0 0 4px;"></a></td></tr><tr><td style="text-align:center;font-family:arial,sans-serif;font-size:11px"><a href="http://picasaweb.google.com/113917932111131696693/376?authkey=Gv1sRgCNKm8tiUn-LowgE&feat=embedwebsite" style="color:#4D4D4D;font-weight:bold;text-decoration:none;">376</a></td></tr></table>'
 
 
 
@@ -424,6 +435,9 @@
                 rSel.appendChild(cStyle);
             }
 
+            //  Fit these bounds to the map
+            map.fitBounds(bounds);
+
             //$(results).html(html.join(''));
             //$('#results-wrapper').show();
         }
@@ -454,10 +468,12 @@
 
         var infoWindow = new google.maps.InfoWindow;
 
+        var VietnamBounds = new google.maps.LatLngBounds(new google.maps.LatLng(6, 100), new google.maps.LatLng(24, 109));
+
         function init() {
             var mapDiv = document.getElementById('map');
             map = new google.maps.Map(mapDiv, {
-                center: new google.maps.LatLng(10.74981, 106.70176),
+                center: new google.maps.LatLng(10.77250, 106.69808),
                 zoom: 8,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
@@ -486,6 +502,8 @@
             distanceWidget.setVisible(false);
         }
 
+        
+
         function updatePosition() {
             if (geocodeTimer) {
                 window.clearTimeout(geocodeTimer);
@@ -495,6 +513,17 @@
             geocodeTimer = window.setTimeout(function () {
                 reverseGeocodePosition();
             }, 200);
+        }
+
+        function AutoCenter(markers) {
+            //  Create a new viewpoint bound
+            var bounds = new google.maps.LatLngBounds();
+            //  Go through each...
+            $.each(markers, function (index, marker) {
+                bounds.extend(marker.position);
+            });
+            //  Fit these bounds to the map
+            map.fitBounds(bounds);
         }
 
         function reverseGeocodePosition() {
