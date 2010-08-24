@@ -36,6 +36,7 @@
                         if (!($('#BackLit').is(":visible"))) {
                             show('#BackLit');
                         }
+                        $('#ViewingDistance').focus();
                     }
                 }
             }
