@@ -2,19 +2,17 @@
 <publishData>
   <publishProfile publishUrl="D:\ghostnguyen\oams-deploy" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
     <file relUrl="Views/Contractor/Details.aspx" publishTime="08/20/2010 20:11:53" />
-    <file relUrl="Content/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png" publishTime="05/23/2010 16:05:34" />
     <file relUrl="Content/smoothness/jquery-ui-1.8.1.custom.css" publishTime="05/23/2010 16:05:34" />
     <file relUrl="Scripts/MicrosoftAjax.js" publishTime="05/23/2010 16:05:13" />
     <file relUrl="Content/Image/forward_disabled.jpg" publishTime="04/13/2008 13:28:00" />
     <file relUrl="bin/Google.GData.Photos.dll" publishTime="06/22/2010 12:00:50" />
     <file relUrl="Views/Geo/Create.aspx" publishTime="06/02/2010 22:56:07" />
     <file relUrl="Views/Account/LogOn.aspx" publishTime="06/02/2010 22:56:07" />
-    <file relUrl="Content/Image/sort_asc_disabled.png" publishTime="01/17/2010 09:56:32" />
+    <file relUrl="Views/Contractor/Create.aspx" publishTime="08/20/2010 20:11:45" />
     <file relUrl="Scripts/MicrosoftMvcValidation.debug.js" publishTime="05/23/2010 16:05:13" />
     <file relUrl="Content/css/demo_table.css" publishTime="08/17/2010 22:08:19" />
     <file relUrl="Views/Site/GMap.ascx" publishTime="07/26/2010 21:44:19" />
     <file relUrl="Scripts/MicrosoftMvcAjax.js" publishTime="05/23/2010 16:05:13" />
-    <file relUrl="Views/Account/ChangePasswordSuccess.aspx" publishTime="05/23/2010 16:05:15" />
     <file relUrl="Views/Shared/EditorTemplates/DateTime.ascx" publishTime="06/02/2010 22:43:21" />
     <file relUrl="Content/smoothness/images/ui-bg_glass_65_ffffff_1x400.png" publishTime="05/23/2010 16:05:34" />
     <file relUrl="Global.asax" publishTime="06/02/2010 22:56:07" />
@@ -24,15 +22,17 @@
     <file relUrl="Views/Shared/EditorTemplates/AutoCompleteCodeMaster.ascx" publishTime="07/05/2010 21:18:09" />
     <file relUrl="Content/Image/resize.png" publishTime="05/29/2010 09:51:43" />
     <file relUrl="Views/Contract/Index.aspx" publishTime="06/02/2010 22:56:07" />
-    <file relUrl="Scripts/grid.base.js" publishTime="06/01/2010 19:49:45" />
+    <file relUrl="Views/Contractor/Index.aspx" publishTime="08/20/2010 20:11:37" />
+    <file relUrl="Scripts/jquery-ui-1.8.1.custom.min.js" publishTime="05/23/2010 16:05:13" />
     <file relUrl="Views/Campaign/Edit.aspx" publishTime="06/02/2010 22:56:07" />
-    <file relUrl="Scripts/jquery.dataTables.js" publishTime="08/01/2010 16:57:38" />
-    <file relUrl="Views/FindSite/Find.aspx" publishTime="08/23/2010 23:05:14" />
-    <file relUrl="Views/Shared/LogOnUserControl.ascx" publishTime="05/23/2010 16:05:14" />
     <file relUrl="Content/Image/logo.png" publishTime="06/26/2010 14:51:27" />
+    <file relUrl="Views/Site/Index.aspx" publishTime="08/22/2010 19:02:04" />
+    <file relUrl="Scripts/jquery.dataTables.js" publishTime="08/01/2010 16:57:38" />
+    <file relUrl="Views/Shared/LogOnUserControl.ascx" publishTime="05/23/2010 16:05:14" />
+    <file relUrl="Content/Image/sort_asc_disabled.png" publishTime="01/17/2010 09:56:32" />
     <file relUrl="Content/smoothness/images/ui-bg_flat_0_aaaaaa_40x100.png" publishTime="05/23/2010 16:05:34" />
-    <file relUrl="bin/OAMS 10.pdb" publishTime="08/23/2010 23:41:58" />
-    <file relUrl="Views/Contractor/Edit.aspx" publishTime="08/20/2010 20:11:42" />
+    <file relUrl="bin/OAMS 10.pdb" publishTime="08/25/2010 23:08:34" />
+    <file relUrl="Views/Contractor/Edit.aspx" publishTime="08/25/2010 21:28:40" />
     <file relUrl="Content/smoothness/images/ui-bg_flat_75_ffffff_40x100.png" publishTime="05/23/2010 16:05:34" />
     <file relUrl="Content/Image/bg1.png" publishTime="06/26/2010 14:51:35" />
     <file relUrl="Content/smoothness/images/ui-bg_glass_55_fbf9ee_1x400.png" publishTime="05/23/2010 16:05:34" />
@@ -43,21 +43,20 @@
     <file relUrl="Content/Image/back_disabled.jpg" publishTime="04/13/2008 13:29:38" />
     <file relUrl="Views/Geo/Edit.aspx" publishTime="06/02/2010 22:56:07" />
     <file relUrl="Content/Image/sort_desc_disabled.png" publishTime="01/17/2010 09:56:32" />
+    <file relUrl="Scripts/grid.base.js" publishTime="06/01/2010 19:49:45" />
     <file relUrl="Content/Image/bg2.png" publishTime="06/26/2010 14:51:41" />
     <file relUrl="Content/smoothness/images/ui-bg_glass_95_fef1ec_1x400.png" publishTime="05/23/2010 16:05:34" />
     <file relUrl="Views/Home/Index.aspx" publishTime="06/09/2010 21:47:24" />
     <file relUrl="Views/Campaign/Index.aspx" publishTime="06/02/2010 22:56:07" />
     <file relUrl="bin/Google.GData.Extensions.dll" publishTime="06/22/2010 12:00:50" />
     <file relUrl="Content/smoothness/images/ui-icons_888888_256x240.png" publishTime="05/23/2010 16:05:34" />
-    <file relUrl="App_Data/OAMS_log.ldf" publishTime="08/23/2010 23:38:21" />
-    <file relUrl="Views/Contractor/Index.aspx" publishTime="08/20/2010 20:11:37" />
+    <file relUrl="App_Data/OAMS_log.ldf" publishTime="08/25/2010 23:06:57" />
     <file relUrl="Content/smoothness/images/ui-icons_cd0a0a_256x240.png" publishTime="05/23/2010 16:05:34" />
     <file relUrl="Views/Shared/Site.Master" publishTime="08/17/2010 21:32:28" />
     <file relUrl="Scripts/jquery.validate.min.js" publishTime="05/23/2010 16:05:13" />
     <file relUrl="Scripts/MicrosoftMvcValidation.js" publishTime="05/23/2010 16:05:13" />
     <file relUrl="bin/Google.GData.Client.dll" publishTime="06/22/2010 12:00:50" />
     <file relUrl="Content/smoothness/images/ui-icons_2e83ff_256x240.png" publishTime="05/23/2010 16:05:34" />
-    <file relUrl="Views/ContractDetail/Edit.aspx" publishTime="06/02/2010 22:56:07" />
     <file relUrl="Scripts/jquery.validate-vsdoc.js" publishTime="05/23/2010 16:05:13" />
     <file relUrl="Content/Image/resize-off.png" publishTime="05/29/2010 09:52:09" />
     <file relUrl="Views/Campaign/Create.aspx" publishTime="06/02/2010 23:10:32" />
@@ -66,25 +65,26 @@
     <file relUrl="Content/Image/sort_asc.png" publishTime="01/17/2010 09:56:34" />
     <file relUrl="Content/smoothness/images/ui-bg_glass_75_e6e6e6_1x400.png" publishTime="05/23/2010 16:05:34" />
     <file relUrl="Views/Account/Register.aspx" publishTime="06/02/2010 22:56:07" />
+    <file relUrl="Views/Site/Create.aspx" publishTime="08/25/2010 23:07:20" />
     <file relUrl="Views/Account/ChangePassword.aspx" publishTime="06/02/2010 22:56:07" />
     <file relUrl="Views/Shared/Error.aspx" publishTime="05/23/2010 16:05:14" />
-    <file relUrl="App_Data/OAMS.MDF" publishTime="08/23/2010 23:38:21" />
+    <file relUrl="App_Data/OAMS.MDF" publishTime="08/25/2010 23:06:57" />
     <file relUrl="Content/smoothness/images/ui-icons_222222_256x240.png" publishTime="05/23/2010 16:05:34" />
     <file relUrl="Content/smoothness/images/ui-icons_454545_256x240.png" publishTime="05/23/2010 16:05:34" />
-    <file relUrl="Views/Contractor/Create.aspx" publishTime="08/20/2010 20:11:45" />
-    <file relUrl="bin/OAMS 10.dll" publishTime="08/23/2010 23:41:58" />
+    <file relUrl="Views/FindSite/Find.aspx" publishTime="08/25/2010 23:07:20" />
+    <file relUrl="bin/OAMS 10.dll" publishTime="08/25/2010 23:08:34" />
     <file relUrl="Content/Image/sort_both.png" publishTime="01/17/2010 09:56:32" />
     <file relUrl="Scripts/MicrosoftAjax.debug.js" publishTime="05/23/2010 16:05:13" />
     <file relUrl="Views/Geo/Index.aspx" publishTime="06/02/2010 22:56:07" />
     <file relUrl="Content/Image/sort_desc.png" publishTime="01/17/2010 09:56:32" />
     <file relUrl="Scripts/MicrosoftMvcAjax.debug.js" publishTime="05/23/2010 16:05:13" />
-    <file relUrl="Views/Site/Index.aspx" publishTime="08/22/2010 19:02:04" />
-    <file relUrl="Scripts/jquery-ui-1.8.1.custom.min.js" publishTime="05/23/2010 16:05:13" />
-    <file relUrl="Views/Site/Create.aspx" publishTime="08/23/2010 22:30:28" />
+    <file relUrl="Content/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png" publishTime="05/23/2010 16:05:34" />
+    <file relUrl="Views/Account/ChangePasswordSuccess.aspx" publishTime="05/23/2010 16:05:15" />
+    <file relUrl="Views/ContractDetail/Edit.aspx" publishTime="06/02/2010 22:56:07" />
     <file relUrl="Scripts/jquery.validate.js" publishTime="05/23/2010 16:05:13" />
-    <file relUrl="Views/Site/Edit.aspx" publishTime="08/23/2010 22:29:30" />
+    <file relUrl="Views/Site/Edit.aspx" publishTime="08/25/2010 23:07:20" />
     <file relUrl="Content/Image/back_enabled.jpg" publishTime="04/13/2008 13:29:54" />
     <file relUrl="Views/Contract/Create.aspx" publishTime="06/02/2010 22:56:07" />
-    <file relUrl="Web.config" publishTime="08/23/2010 23:42:12" />
+    <file relUrl="Web.config" publishTime="08/25/2010 23:08:43" />
   </publishProfile>
 </publishData>
