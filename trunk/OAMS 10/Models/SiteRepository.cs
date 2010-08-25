@@ -106,6 +106,11 @@ namespace OAMS.Models
             Save();
         }
 
+        public void Delete(int ID)
+        {
+             
+        }
+
         public void DeletePhoto(List<int> IDList)
         {
             if (IDList != null)
