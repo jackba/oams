@@ -64,6 +64,50 @@
             divAddMore.append(input);
             divAddMore.append('<br />');
         }
+
+        var map;
+        var marker;
+        function init() {
+            var mapDiv = document.getElementById('map');
+            map = new google.maps.Map(mapDiv, {
+                center: new google.maps.LatLng(10.77250, 106.69808),
+                zoom: 15,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', init);
+
+        function txtGeoChanged() {
+
+            var lng = $('#Lng').val();
+            var lat = $('#Lat').val();
+
+            if (marker != null) {
+                marker.setMap(null);
+            }
+
+            marker = new google.maps.Marker({
+
+                position: new google.maps.LatLng(lat, lng),
+                map: map,
+                draggable: true,
+                title: 'Move me!'
+            });
+
+
+
+            if (!map.getBounds().contains(marker.position)) {
+                var bounds = new google.maps.LatLngBounds();
+                bounds.extend(marker.position);
+                map.fitBounds(bounds);
+            }
+
+            google.maps.event.addListener(marker, 'drag', function () {
+                $('#Lng').val(marker.getPosition().lng());
+                $('#Lat').val(marker.getPosition().lat());
+            });
+        }
     </script>
     <h2>
         Create</h2>
@@ -76,6 +120,22 @@
             <td>
                 <fieldset>
                     <legend>Fields</legend>
+                    <div id="map" style="width: 300px; height: 300px;">
+                    </div>
+                    <div class="editor-label">
+                        Latitude
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.TextBoxFor(model => model.Lat, new { onblur = "txtGeoChanged();" })%>
+                        <%: Html.ValidationMessageFor(model => model.Lat)%>
+                    </div>
+                    <div class="editor-label">
+                        Longitude
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.TextBoxFor(model => model.Lng, new { onblur = "txtGeoChanged();" })%>
+                        <%: Html.ValidationMessageFor(model => model.Lng)%>
+                    </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.Code) %>
                     </div>
@@ -130,20 +190,6 @@
                     <div class="editor-field">
                         <%: Html.TextBoxFor(model => model.Width) %>
                         <%: Html.ValidationMessageFor(model => model.Width) %>
-                    </div>
-                    <div class="editor-label">
-                        Latitude
-                    </div>
-                    <div class="editor-field">
-                        <%: Html.TextBoxFor(model => model.Lat)%>
-                        <%: Html.ValidationMessageFor(model => model.Lat)%>
-                    </div>
-                    <div class="editor-label">
-                        Longitude
-                    </div>
-                    <div class="editor-field">
-                        <%: Html.TextBoxFor(model => model.Lng)%>
-                        <%: Html.ValidationMessageFor(model => model.Lng)%>
                     </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.Contractor) %>
