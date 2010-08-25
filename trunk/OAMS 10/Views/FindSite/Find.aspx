@@ -36,43 +36,19 @@
                 <br />
                 <%: Html.LabelFor(r => r.Format) %>
                 <br />
-                <%: Html.CodeMasterDropDownListFor(r => r.Format)%>
+                <%: Html.CodeMasterDropDownListFor(r => r.Format, false)%>
                 <br />
                 <%: Html.LabelFor(r => r.RoadType1) %>
                 <br />
-                <%: Html.CodeMasterDropDownListFor(r => r.RoadType2) %>
+                <%: Html.CodeMasterDropDownListFor(r => r.RoadType2, false)%>
                 <br />
                 <%: Html.LabelFor(r => r.InstallationPosition1) %>
                 <br />
-                <%: Html.CodeMasterDropDownListFor(r => r.InstallationPosition2) %>
+                <%: Html.CodeMasterDropDownListFor(r => r.InstallationPosition2, false)%>
                 <br />
                 <%: Html.LabelFor(r => r.ViewingDistance) %>
                 <br />
-                <%: Html.CodeMasterDropDownListFor(r => r.ViewingDistance) %>
-                <br />
-                <%: Html.LabelFor(r => r.ViewingSpeed) %>
-                <br />
-                <%: Html.CodeMasterDropDownListFor(r => r.ViewingSpeed)%>
-                <br />
-                <%: Html.LabelFor(r => r.Height) %>
-                <br />
-                <%: Html.CodeMasterDropDownListFor(r => r.Height)%>
-                <br />
-                <%: Html.LabelFor(model => model.DirectionalTrafficPublicTransport) %>
-                <br />
-                <%: Html.CodeMasterDropDownListFor(model => model.DirectionalTrafficPublicTransport)%>
-                <br />
-                <%: Html.LabelFor(model => model.ShopSignsBillboards) %>
-                <br />
-                <%: Html.CodeMasterDropDownListFor(model => model.ShopSignsBillboards)%>
-                <br />
-                <%: Html.LabelFor(model => model.FlagsTemporaryBannersPromotionalItems) %>
-                <br />
-                <%: Html.CodeMasterDropDownListFor(model => model.FlagsTemporaryBannersPromotionalItems)%>
-                <br />
-                <%: Html.LabelFor(model => model.CompetitiveProductSigns) %>
-                <br />
-                <%: Html.CodeMasterDropDownListFor(model => model.CompetitiveProductSigns)%>
+                <%: Html.CodeMasterDropDownListFor(r => r.ViewingDistance, false)%>
                 <br />
                 <%--<%: Html.EditorFor(model => model.IsWithinCircle) %>--%>
                 <%--<input type="checkbox" name="IsWithinCircle" id="IsWithinCircle" onclick="Click_WithinCircle(this);" />--%>
@@ -80,7 +56,6 @@
                     value="true" onclick="Click_WithinCircle(this);" />
                 Within
                 <input type="text" name="Distance" id="Distance" disabled="disabled" onblur="updateDistanceFromTxt(this);" />
-                km
                 <%: Html.HiddenFor(r => r.Lat) %>
                 <%: Html.HiddenFor(r => r.Long) %>
                 <br />

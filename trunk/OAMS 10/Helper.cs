@@ -57,6 +57,7 @@ namespace OAMS
     public class Message
     {
         public string SelectNone { get { return "-- None --"; } }
+        public string SelectAll { get { return "-- All --"; } }
     }
 
     public class MyMethodBase

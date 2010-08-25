@@ -448,6 +448,11 @@ namespace OAMS
             return htmlHelper.DropDownListFor(expression, CodeMasterRepository.Repo.Get(expression.Body).ToSelectListItem(), OAMSSetting.messageL.SelectNone);
         }
 
+        public static MvcHtmlString CodeMasterDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, bool isSelectNone)
+        {
+            return htmlHelper.DropDownListFor(expression, CodeMasterRepository.Repo.Get(expression.Body).ToSelectListItem(), isSelectNone?OAMSSetting.messageL.SelectNone:OAMSSetting.messageL.SelectAll);
+        }
+
         public static MvcHtmlString DropDownListForGeo1<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
         {
             return htmlHelper.DropDownListFor(expression, GeoRepository.Repo.GetByParentID().ToSelectListItem(), OAMSSetting.messageL.SelectNone);
