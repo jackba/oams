@@ -542,7 +542,7 @@
             <td>
                 <label for="file1">
                     Filename:</label>
-                <input type="file" name="files" id="file3" />
+                <input type="file" name="files" id="file3" size="65"/>
                 <br />
                 <div id="divMoreFile">
                 </div>

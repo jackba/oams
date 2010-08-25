@@ -108,7 +108,9 @@ namespace OAMS.Models
 
         public void Delete(int ID)
         {
-             
+            Site s=Get(ID);
+            db.Sites.DeleteObject(s);
+            Save();
         }
 
         public void DeletePhoto(List<int> IDList)
@@ -125,5 +127,15 @@ namespace OAMS.Models
             }
         }
 
+        public void DeletePhoto(int SiteID)
+        {
+            List<SitePhoto> l = db.SitePhotoes.Where(r => r.SiteID == SiteID).ToList();
+            foreach (var item in l)
+            {
+                db.DeleteObject(item);
+            }
+
+            Save();
+        }
     }
 }

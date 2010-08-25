@@ -94,8 +94,8 @@ namespace OAMS.Controllers
 
         public ActionResult Delete(int id)
         {
-            
-            SiteRepository.Repo.DeletePhoto
+            repo.DeletePhoto(id);
+            repo.Delete(id);
             return RedirectToAction("Index");
 
             //return View();
@@ -107,6 +107,8 @@ namespace OAMS.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
+            repo.DeletePhoto(id);
+            repo.Delete(id);
             return RedirectToAction("Index");
         }
 
