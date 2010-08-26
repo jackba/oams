@@ -38,6 +38,16 @@
                         }
                     }
                 }
+                else {
+                    if ($("#FrontlitNumerOfLamps").val() == '') {
+                        if ($('#FrontLit').is(":visible")) {
+                            hide('#FrontLit');
+                        }
+                        if (!($('#BackLit').is(":visible"))) {
+                            show('#BackLit');
+                        }
+                    }
+                }
             }
             //set effect from select menu value
             $("#FrontlitNumerOfLamps").keyup(function () {
@@ -59,6 +69,7 @@
             var input = document.createElement('input');
             input.setAttribute('type', 'file');
             input.setAttribute('name', 'files');
+            input.setAttribute('size', '65');
 
             divAddMore.append(input);
             divAddMore.append('<br />');
