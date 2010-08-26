@@ -134,8 +134,8 @@
             }
 
             google.maps.event.addListener(marker, 'drag', function () {
-                $('#Lng').val(marker.getPosition().lng());
-                $('#Lat').val(marker.getPosition().lat());
+                $('#Lng').val(marker.getPosition().lng().toFixed(6));
+                $('#Lat').val(marker.getPosition().lat().toFixed(6));
             });
         }
     </script>

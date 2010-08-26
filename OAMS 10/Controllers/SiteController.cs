@@ -93,7 +93,8 @@ namespace OAMS.Controllers
             UpdateModel(e);
 
             repo.UpdateGeo(e);
-            if (e.FrontlitNumerOfLamps == 0)
+            if (!e.FrontlitNumerOfLamps.HasValue 
+                || e.FrontlitNumerOfLamps <= 0)
             {
                 e.FontLightArmsStraight = null;
                 e.FontlitArmsPlacement = null;
@@ -101,7 +102,7 @@ namespace OAMS.Controllers
                 e.FrontlitSideLighting = null;
                 e.FrontlitTopBottom = null;
             }
-            else if (e.FrontlitNumerOfLamps > 0)
+            else 
             {
                 e.BacklitFormat = null;
                 e.BacklitIlluninationSpread = null;
