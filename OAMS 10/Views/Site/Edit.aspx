@@ -38,6 +38,16 @@
                         }
                     }
                 }
+                else {
+                    if ($("#FrontlitNumerOfLamps").val() == '') {
+                        if ($('#FrontLit').is(":visible")) {
+                            hide('#FrontLit');
+                        }
+                        if (!($('#BackLit').is(":visible"))) {
+                            show('#BackLit');
+                        }
+                    }
+                }
             }
 
             //set effect from select menu value
@@ -62,6 +72,7 @@
             var input = document.createElement('input');
             input.setAttribute('type', 'file');
             input.setAttribute('name', 'files');
+            input.setAttribute('size', '65');
 
             divAddMore.append(input);
             divAddMore.append('<br />');
@@ -565,7 +576,7 @@
                 </div>
                 <% foreach (var item in Model.SitePhotoes)
                    { %>
-                <input type="button" value="Delete this impage" onclick="deleteSitePhoto(this,'<%= item.ID %>')" />
+                <input type="button" value="Delete this image" onclick="deleteSitePhoto(this,'<%= item.ID %>')" />
                 <br />
                 <img src='<%= item.Url %>' alt="" width="500" id='photo<%: item.ID %>' />
                 <br />
