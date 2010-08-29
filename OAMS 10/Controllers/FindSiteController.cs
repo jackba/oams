@@ -36,7 +36,9 @@ namespace OAMS.Controllers
         [HttpPost]
         public JsonResult FindJson(FindSite e)
         {
-            List<Site> l = SiteRepository.Repo.GetAll().ToList()
+            SiteRepository siteRepo = new SiteRepository();
+            
+            List<Site> l = siteRepo.GetAll().ToList()
                 .Where(r =>
                     (e.StyleList == null || e.StyleList.Count == 0 || e.StyleList.Contains(r.Type))
                 && (string.IsNullOrEmpty(e.Format) || r.Format == e.Format)
@@ -68,6 +70,8 @@ namespace OAMS.Controllers
 
             CodeMasterType cmt = new CodeMasterType();
 
+            CodeMasterRepository codeMasterRepo = new CodeMasterRepository();
+
             return Json(l.Select(r => new
             {
                 r.ID,
@@ -78,7 +82,7 @@ namespace OAMS.Controllers
 
                 Code = r.Code ?? "",
                 r.Format,
-                Type = CodeMasterRepository.Repo.GetNote(cmt.Type, r.Type),
+                Type = codeMasterRepo.GetNote(cmt.Type, r.Type),
                 r.GeoFullName,
                 Address = r.AddressLine1 + " " + r.AddressLine2,
                 Orientation = r.Width >= r.Height ? "Horizontal" : "Vertical",

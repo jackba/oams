@@ -17,6 +17,9 @@ namespace OAMS.Controllers
 
         public ActionResult Index()
         {
+            PicasaRepository picasaRepository = new PicasaRepository();
+            picasaRepository.GetAlbumInfo();
+
             return View(repo.GetAll());
         }
 
@@ -49,24 +52,8 @@ namespace OAMS.Controllers
             var e = new Site();
 
             UpdateModel(e);
-            if (e.FrontlitNumerOfLamps == 0)
-            {
-                e.FontLightArmsStraight = null;
-                e.FontlitArmsPlacement = null;
-                e.FontlitIlluminationDistribution = null;
-                e.FrontlitSideLighting = null;
-                e.FrontlitTopBottom = null;
-            }
-            else if (e.FrontlitNumerOfLamps > 0)
-            {
-                e.BacklitFormat = null;
-                e.BacklitIlluninationSpread = null;
-                e.BacklitLightBoxLeakage = null;
-                e.BacklitLightingBlocks = null;
-                e.BacklitVisualLegibility = null;
-            }
-            repo.Add(e, contractID);
-            repo.AddPhoto(e, files);
+
+            repo.Add(e, files);
 
             return RedirectToAction("Index");
         }
@@ -93,7 +80,7 @@ namespace OAMS.Controllers
             UpdateModel(e);
 
             repo.UpdateGeo(e);
-            if (!e.FrontlitNumerOfLamps.HasValue 
+            if (!e.FrontlitNumerOfLamps.HasValue
                 || e.FrontlitNumerOfLamps <= 0)
             {
                 e.FontLightArmsStraight = null;
@@ -102,7 +89,7 @@ namespace OAMS.Controllers
                 e.FrontlitSideLighting = null;
                 e.FrontlitTopBottom = null;
             }
-            else 
+            else
             {
                 e.BacklitFormat = null;
                 e.BacklitIlluninationSpread = null;
@@ -112,8 +99,8 @@ namespace OAMS.Controllers
             }
             repo.Save();
 
-            repo.AddPhoto(e, files);
-            
+            //repo.AddPhoto(e, files);
+
             repo.DeletePhoto(DeletePhotoList);
 
             //return View(e);

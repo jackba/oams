@@ -7,15 +7,25 @@ namespace OAMS.Models
 {
     public class BaseRepository<T> where T : new()
     {
-        public static T Repo
+        //public static T Repo
+        //{
+        //    get
+        //    {
+        //        T t = new T();
+        //        return t;
+        //    }
+        //}
+
+        private OAMSEntities _db = new OAMSEntities();
+        public OAMSEntities DB
         {
-            get
-            {
-                T t = new T();
-                return t;
-            }
+            get { return _db; }
+            set { _db = value; }
         }
 
-        protected OAMSEntities db = new OAMSEntities();
+        public int Save()
+        {
+            return DB.SaveChanges();
+        }
     }
 }
