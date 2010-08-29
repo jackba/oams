@@ -13,7 +13,7 @@ namespace OAMS.Controllers
 
         public ActionResult Index()
         {
-            return View(CampaignRepository.Repo.GetAll());
+            return View(repo.GetAll());
         }
 
         public ActionResult Create()

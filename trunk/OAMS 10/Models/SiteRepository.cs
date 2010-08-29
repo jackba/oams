@@ -9,39 +9,52 @@ namespace OAMS.Models
     {
         public IQueryable<Site> GetAll()
         {
-            return db.Sites;
+            return DB.Sites;
         }
 
         public Site Get(int id)
         {
-            return db.Sites.Where(r => r.ID == id).SingleOrDefault();
+            return DB.Sites.Where(r => r.ID == id).SingleOrDefault();
 
         }
 
-        public Site Add(Site e, int? contractID)
+        public Site Add(Site e, IEnumerable<HttpPostedFileBase> files)
         {
-            db.Sites.AddObject(e);
-
-            if (contractID != null && contractID == 0)
+            if (e.FrontlitNumerOfLamps == 0)
             {
-                new ContractDetail() { Site = e, ContractID = contractID };
+                e.FontLightArmsStraight = null;
+                e.FontlitArmsPlacement = null;
+                e.FontlitIlluminationDistribution = null;
+                e.FrontlitSideLighting = null;
+                e.FrontlitTopBottom = null;
+            }
+            else if (e.FrontlitNumerOfLamps > 0)
+            {
+                e.BacklitFormat = null;
+                e.BacklitIlluninationSpread = null;
+                e.BacklitLightBoxLeakage = null;
+                e.BacklitLightingBlocks = null;
+                e.BacklitVisualLegibility = null;
             }
 
             UpdateGeo(e);
 
+            DB.Sites.AddObject(e);
+
             Save();
+
+            PicasaRepository picasaRepository = new PicasaRepository();
+            picasaRepository.DB = DB;
+
+            picasaRepository.UploadPhoto(e, files);
 
             return e;
         }
 
         public void UpdateGeo(Site e)
         {
-            GeoRepository.Repo.Set3LevelByFullname(e.NewGeoFullName, e.UpdateGeo);
-        }
-
-        public void Save()
-        {
-            db.SaveChanges();
+            GeoRepository geoRepository = new GeoRepository();
+            geoRepository.Set3LevelByFullname(e.NewGeoFullName, e.UpdateGeo);
         }
 
         public Site InitWithDefaultValue()
@@ -73,43 +86,22 @@ namespace OAMS.Models
             e.FlagsTemporaryBannersPromotionalItems = 5;
             e.CompetitiveProductSigns = 5;
 
-            Site lastSite = db.Sites.OrderByDescending(r => r.ID).FirstOrDefault();
+            Site lastSite = DB.Sites.OrderByDescending(r => r.ID).FirstOrDefault();
             if (lastSite != null)
             {
                 e.Lat = lastSite.Lat.TrimDouble();
                 e.Lng = lastSite.Lng.TrimDouble();
-
-
             }
 
             return e;
         }
 
-        public void AddPhoto(Site e, IEnumerable<HttpPostedFileBase> files)
-        {
-            if (files == null || files.Count() == 0) return;
-
-            if (string.IsNullOrEmpty(e.AlbumUrl))
-            {
-                e.AlbumUrl = PicasaRepository.Repo.CreateAlbum(e.ID);
-            }
-
-            List<string> photoUriList = PicasaRepository.Repo.Upload(e.AlbumUrl, files);
-
-            foreach (var item in photoUriList)
-            {
-                SitePhoto photo = new SitePhoto();
-                photo.Url = item;
-                e.SitePhotoes.Add(photo);
-            }
-
-            Save();
-        }
+       
 
         public void Delete(int ID)
         {
-            Site s=Get(ID);
-            db.Sites.DeleteObject(s);
+            Site s = Get(ID);
+            DB.Sites.DeleteObject(s);
             Save();
         }
 
@@ -117,10 +109,10 @@ namespace OAMS.Models
         {
             if (IDList != null)
             {
-                List<SitePhoto> l = db.SitePhotoes.Where(r => IDList.Contains(r.ID)).ToList();
+                List<SitePhoto> l = DB.SitePhotoes.Where(r => IDList.Contains(r.ID)).ToList();
                 foreach (var item in l)
                 {
-                    db.DeleteObject(item);
+                    DB.DeleteObject(item);
                 }
 
                 Save();
@@ -129,10 +121,10 @@ namespace OAMS.Models
 
         public void DeletePhoto(int SiteID)
         {
-            List<SitePhoto> l = db.SitePhotoes.Where(r => r.SiteID == SiteID).ToList();
+            List<SitePhoto> l = DB.SitePhotoes.Where(r => r.SiteID == SiteID).ToList();
             foreach (var item in l)
             {
-                db.DeleteObject(item);
+                DB.DeleteObject(item);
             }
 
             Save();

@@ -9,24 +9,24 @@ namespace OAMS.Models
     {
         public IQueryable<Campaign> GetAll()
         {
-            return db.Campaigns;
+            return DB.Campaigns;
         }
 
         public Campaign Get(int id)
         {
-            return db.Campaigns.Where(r => r.ID == id).SingleOrDefault();
+            return DB.Campaigns.Where(r => r.ID == id).SingleOrDefault();
         }
 
         public Campaign Add(Campaign e)
         {
-            db.Campaigns.AddObject(e);
+            DB.Campaigns.AddObject(e);
             return e;
         }
 
 
         public void Save()
         {
-            db.SaveChanges();
+            DB.SaveChanges();
         }
     }
 }

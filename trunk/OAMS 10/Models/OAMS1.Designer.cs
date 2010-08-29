@@ -3898,6 +3898,30 @@ namespace OAMS.Models
         private global::System.String _AddressLine2;
         partial void OnAddressLine2Changing(global::System.String value);
         partial void OnAddressLine2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BackupAlbumUrl
+        {
+            get
+            {
+                return _BackupAlbumUrl;
+            }
+            set
+            {
+                OnBackupAlbumUrlChanging(value);
+                ReportPropertyChanging("BackupAlbumUrl");
+                _BackupAlbumUrl = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BackupAlbumUrl");
+                OnBackupAlbumUrlChanged();
+            }
+        }
+        private global::System.String _BackupAlbumUrl;
+        partial void OnBackupAlbumUrlChanging(global::System.String value);
+        partial void OnBackupAlbumUrlChanged();
 
         #endregion
     
@@ -4162,6 +4186,30 @@ namespace OAMS.Models
         private global::System.String _Url;
         partial void OnUrlChanging(global::System.String value);
         partial void OnUrlChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AtomUrl
+        {
+            get
+            {
+                return _AtomUrl;
+            }
+            set
+            {
+                OnAtomUrlChanging(value);
+                ReportPropertyChanging("AtomUrl");
+                _AtomUrl = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AtomUrl");
+                OnAtomUrlChanged();
+            }
+        }
+        private global::System.String _AtomUrl;
+        partial void OnAtomUrlChanging(global::System.String value);
+        partial void OnAtomUrlChanged();
 
         #endregion
     

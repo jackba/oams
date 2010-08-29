@@ -22,7 +22,7 @@
             <%: Html.LabelFor(model => model.ClientID) %>
         </div>
         <div class="editor-field">
-            <%: Html.DropDownListFor(model => model.ClientID, OAMS.Models.ClientRepository.Repo.GetAll().ToSelectListItem() , OAMSSetting.messageL.SelectNone)%>
+            <%: Html.DropDownListFor(model => model.ClientID, (new OAMS.Models.ClientRepository()).GetAll().ToSelectListItem() , OAMSSetting.messageL.SelectNone)%>
             <%: Html.ValidationMessageFor(model => model.ClientID) %>
         </div>
         <div class="editor-label">

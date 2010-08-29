@@ -9,7 +9,7 @@ namespace OAMS.Models
     {
         public IQueryable<Client> GetAll()
         {
-            return db.Clients;
+            return DB.Clients;
         }
     }
 }

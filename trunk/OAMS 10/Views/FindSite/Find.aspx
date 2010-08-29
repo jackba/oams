@@ -24,7 +24,7 @@
                 Style List:
                 <br />
                 <%
-                    foreach (var category in OAMS.Models.CodeMasterRepository.Repo.Get((new OAMS.Models.CodeMasterType()).Type))
+                    foreach (var category in (new OAMS.Models.CodeMasterRepository()).Get((new OAMS.Models.CodeMasterType()).Type))
                     {
                 %>
                 <input type="checkbox" name="StyleList" value="<%= category.Code %>" />

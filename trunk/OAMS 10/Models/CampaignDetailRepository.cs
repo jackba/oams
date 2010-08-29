@@ -9,7 +9,7 @@ namespace OAMS.Models
     {
         public CampaignDetail Create(int campaignID,int contractDetailID)
         {
-            CampaignDetail old = db.CampaignDetails.Where(r => r.CampaignID == campaignID && r.ContractDetailID == contractDetailID).SingleOrDefault();
+            CampaignDetail old = DB.CampaignDetails.Where(r => r.CampaignID == campaignID && r.ContractDetailID == contractDetailID).SingleOrDefault();
 
             if (old != null) return null;
 
@@ -17,14 +17,11 @@ namespace OAMS.Models
             e.CampaignID = campaignID;
             e.ContractDetailID = contractDetailID;
 
-            db.CampaignDetails.AddObject(e);
+            DB.CampaignDetails.AddObject(e);
 
             return e;
         }
 
-        public void Save()
-        {
-            db.SaveChanges();
-        }
+        
     }
 }

@@ -222,6 +222,7 @@
           <Property Name="AlbumUrl" Type="nvarchar(max)" />
           <Property Name="VisibilityHight" Type="int" />
           <Property Name="AddressLine2" Type="nvarchar(max)" />
+          <Property Name="BackupAlbumUrl" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="SitePhoto">
           <Key>
@@ -230,6 +231,7 @@
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="SiteID" Type="int" />
           <Property Name="Url" Type="nvarchar(max)" />
+          <Property Name="AtomUrl" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Campaign_Client">
           <End Role="Client" Type="OAMSModel.Store.Client" Multiplicity="0..1" />
@@ -652,6 +654,7 @@
           <Property Type="String" Name="AddressLine1" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="VisibilityHight" />
           <Property Type="String" Name="AddressLine2" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BackupAlbumUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_ContractDetail_Site">
           <End Type="OAMSModel.Site" Role="Site" Multiplicity="0..1" />
@@ -709,6 +712,7 @@
           <Property Type="Int32" Name="SiteID" />
           <Property Type="String" Name="Url" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Site" Relationship="OAMSModel.FK_SitePhoto_Site" FromRole="SitePhoto" ToRole="Site" />
+          <Property Type="String" Name="AtomUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_SitePhoto_Site">
           <End Type="OAMSModel.Site" Role="Site" Multiplicity="0..1" />
@@ -841,6 +845,7 @@
           <EntitySetMapping Name="Sites">
             <EntityTypeMapping TypeName="OAMSModel.Site">
               <MappingFragment StoreEntitySet="Site">
+                <ScalarProperty Name="BackupAlbumUrl" ColumnName="BackupAlbumUrl" />
                 <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
                 <ScalarProperty Name="VisibilityHight" ColumnName="VisibilityHight" />
                 <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
@@ -914,6 +919,7 @@
           <EntitySetMapping Name="SitePhotoes">
             <EntityTypeMapping TypeName="OAMSModel.SitePhoto">
               <MappingFragment StoreEntitySet="SitePhoto">
+                <ScalarProperty Name="AtomUrl" ColumnName="AtomUrl" />
                 <ScalarProperty Name="Url" ColumnName="Url" />
                 <ScalarProperty Name="SiteID" ColumnName="SiteID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

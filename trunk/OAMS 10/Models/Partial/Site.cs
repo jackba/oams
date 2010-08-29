@@ -14,7 +14,8 @@ namespace OAMS.Models
         {
             get
             {
-                return GeoRepository.Repo.GetFullname(Geo1, Geo2, Geo3);
+                GeoRepository geoRepository = new GeoRepository();
+                return geoRepository.GetFullname(Geo1, Geo2, Geo3);
             }
         }
 

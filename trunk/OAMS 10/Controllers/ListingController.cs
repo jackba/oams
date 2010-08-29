@@ -27,9 +27,9 @@ namespace OAMS.Controllers
         [HttpPost]
         public JsonResult ListGeo2(string parentFullName)
         {
-            OAMSEntities db = new OAMSEntities();
+            GeoRepository geoRepository = new GeoRepository();
 
-            Geo e = GeoRepository.Repo.GetByFullname(parentFullName);
+            Geo e = geoRepository.GetByFullname(parentFullName);
 
             return Json(e.Children.Select(r => new { r.ID, r.FullName }).OrderBy(r => r.FullName));
         }
