@@ -40,7 +40,7 @@ namespace OAMS.Controllers
             
             List<Site> l = siteRepo.GetAll().ToList()
                 .Where(r =>
-                    (e.StyleList == null || e.StyleList.Count == 0 || e.StyleList.Contains(r.Type))
+                    (e.StyleList == null || e.StyleList.Count == 0 || e.StyleList.Contains(r.Type) || e.StyleList.Contains("All"))
                 && (string.IsNullOrEmpty(e.Format) || r.Format == e.Format)
                 && (string.IsNullOrEmpty(e.RoadType1) || r.RoadType1 == e.RoadType1.ToInt())
                 && (string.IsNullOrEmpty(e.RoadType2) || r.RoadType2 == e.RoadType2.ToInt())
@@ -62,7 +62,7 @@ namespace OAMS.Controllers
                 && (string.IsNullOrEmpty(e.CompetitiveProductSigns) || r.CompetitiveProductSigns == e.CompetitiveProductSigns.ToInt())
 
                 && (string.IsNullOrEmpty(e.Geo1FullName) || (r.Geo1 != null && r.Geo1.FullName == e.Geo1FullName))
-                && (e.Geo2List == null || e.Geo2List.FirstOrDefault() == null || (r.Geo2 != null && e.Geo2List.Contains(r.Geo2.FullName)))
+                && (e.Geo2List == null || e.Geo2List.FirstOrDefault() == null || (r.Geo2 != null && e.Geo2List.Contains(r.Geo2.FullName) || e.Geo2List.Contains("All")))
 
                 ).ToList()
                 .Where(r => !e.IsWithinCircle || Helper.DistanceBetweenPoints(r.Lat, r.Lng, e.Lat, e.Long) <= e.Distance)
