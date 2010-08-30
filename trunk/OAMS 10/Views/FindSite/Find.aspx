@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<OAMS.Models.FindSite>" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Find
 </asp:Content>
@@ -9,9 +8,9 @@
     <% using (Html.BeginForm())
        {%>
     <%: Html.HiddenFor(r => r.CampaignID) %>
-    <table width="100%">
+    <table width="100%" id="tblAll">
         <tr>
-            <td style="width: 280px;" valign="top">
+            <td style="width:200px;" valign="top" id="SearchPane">
                 Geo1:
                 <br />
                 <%--<%: Html.DropDownListForGeo1(r => r.GeoID1) %>--%>
@@ -22,6 +21,8 @@
                 </div>
                 <br />
                 Style List:
+                <br />
+                <input type="checkbox" name="StyleList" value="All" onclick="checkAll(document.forms[0].StyleList)"/> All
                 <br />
                 <%
                     foreach (var category in (new OAMS.Models.CodeMasterRepository()).Get((new OAMS.Models.CodeMasterType()).Type))
@@ -55,13 +56,14 @@
                 <input class="check-box" id="IsWithinCircle" name="IsWithinCircle" type="checkbox"
                     value="true" onclick="Click_WithinCircle(this);" />
                 Within
-                <input type="text" name="Distance" id="Distance" disabled="disabled" onblur="updateDistanceFromTxt(this);" />
+                <input type="text" style="width:50px;" name="Distance" id="Distance" disabled="disabled" onblur="updateDistanceFromTxt(this);" />
                 <%: Html.HiddenFor(r => r.Lat) %>
                 <%: Html.HiddenFor(r => r.Long) %>
                 <br />
             </td>
             <td valign="top">
                 <input type="button" onclick="search(this)" value="Find" />
+                <input id="btnToggleSearchPane" type="button" onclick="toggleSearchPane()" value="Hide Search Criteria" />
                 <table width="100%">
                     <tr>
                         <td>
@@ -72,8 +74,10 @@
                 </table>
             </td>
         </tr>
+    </table>
+    <table>
         <tr>
-            <td colspan="2" style="vertical-align: top;">
+            <td style="width:100%;" style="vertical-align: top;">
                 <div id="divCol">
                     Display columns:
                     <input type="checkbox" id="chkColID" checked="checked" />
@@ -191,7 +195,28 @@
                 url: '<%= Url.Content("~/Listing/ListGeo2") %>', type: "POST", dataType: "json",
                 data: { parentFullName: str },
                 success: function (data) {
+                    var chkAll = document.createElement('input');
+                    chkAll.type = 'checkbox';
+                    chkAll.name = 'Geo2List';
+                    chkAll.value = 'All';
+                    chkAll.onclick = function () {
+                        var lst = document.forms[0].Geo2List;
+                        if (lst[0].checked) {
+                            for (i = 1; i < lst.length; i++) {
+                                lst[i].checked = false;
+                                lst[i].disabled = true;
+                            }
+                        }
+                        else {
+                            for (i = 1; i < lst.length; i++) {
+                                lst[i].disabled = false;
+                            }
+                        }
+                    };
 
+                    div1.append(chkAll);
+                    div1.append('All');
+                    div1.append('<br />');
                     $.map(data, function (item) {
 
                         var chk = document.createElement('input');
@@ -204,7 +229,7 @@
                         div1.append('<br />');
 
                         //return { label: item.FullName, value: item.FullName, id: item.ID }
-                    })
+                    });
                 }
 
             })
@@ -221,10 +246,11 @@
 
             //  Create a new viewpoint bound
             var bounds = new google.maps.LatLngBounds();
-            
-            
+
+
 
             if (json.length) {
+
                 for (var i = 0, site; site = json[i]; i++) {
 
                     //  var image = new google.maps.MarkerImage(profileImageUrl,
@@ -444,7 +470,6 @@
         var infoWindow = new google.maps.InfoWindow;
 
         var VietnamBounds = new google.maps.LatLngBounds(new google.maps.LatLng(6, 100), new google.maps.LatLng(24, 109));
-
         function init() {
             var mapDiv = document.getElementById('map');
             map = new google.maps.Map(mapDiv, {
@@ -475,6 +500,8 @@
             updatePosition();
             addActions();
             distanceWidget.setVisible(false);
+
+            
         }
 
         
@@ -587,11 +614,10 @@
         }
 
         function search(e) {
-
             if (oTable != null) {
                 oTable.fnDestroy();
+                oTable = null;
             }
-
             var tdata = $("form").serialize();
 
             $.ajax({
@@ -1029,5 +1055,33 @@
             return d;
         };
 
+        function checkAll(lst) {
+            if (lst[0].checked) {
+                for (i = 1; i < lst.length; i++) {
+                    lst[i].checked = false;
+                    lst[i].disabled = true;
+                }
+            }
+            else {
+                for (i = 1; i < lst.length; i++) {
+                    lst[i].disabled = false;
+                }
+            }
+        }
+
+        function toggleSearchPane() {
+            var opt = {};
+            if ($('#SearchPane').is(":visible")) {
+                //$('#tblAll').toggleColumns(1, opt);
+                $('#SearchPane').toggle();
+                $('#btnToggleSearchPane').val("Show Search Criteria");
+            }
+            else {
+                //$('#tblAll').toggleColumns(1, opt);
+                $('#SearchPane').toggle();
+                $('#btnToggleSearchPane').val("Hide Search Criteria");
+            }
+            google.maps.event.trigger(map, 'resize');
+        }
     </script>
 </asp:Content>
