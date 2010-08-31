@@ -5,6 +5,8 @@ using System.Web;
 using Google.GData.Photos;
 using Google.GData.Client;
 using System.IO;
+using System.Web.Mvc.Async;
+using System.Net;
 
 namespace OAMS.Models
 {
@@ -21,59 +23,95 @@ namespace OAMS.Models
 
         void service_AsyncOperationCompleted(object sender, AsyncOperationCompletedEventArgs e)
         {
+            dynamic r = e.UserState;
+
+            int a = r.SiteID;
+            AsyncManager am = r.AM;
+            am.OutstandingOperations.Decrement();
+
             //e.
             //throw new NotImplementedException();
         }
 
-        public void UploadPhoto(Site e, IEnumerable<HttpPostedFileBase> files)
+        public void UploadPhotoToBackupAlbum(Site e, Stream stream)
         {
-            if (e == null || files == null || files.Count() == 0) return;
-
-            if (string.IsNullOrEmpty(e.AlbumUrl))
-            {
-                e.AlbumUrl = CreateAlbum(e.ID);
-                e.BackupAlbumUrl = CreateAlbum(e.ID, true);
-            }
-
             PicasaService service = InitPicasaService();
 
-            Uri postUri = new Uri(PicasaQuery.CreatePicasaUri(OAMSSetting.GoogleUsername, e.AlbumUrl));
+            if (string.IsNullOrEmpty(e.BackupAlbumUrl))
+            {
+                e.BackupAlbumUrl = CreateAlbum(e.ID, true); ;
+            }
+
+            Uri postUri = new Uri(e.BackupAlbumUrl.Replace("entry", "feed"));
+
+            stream.Position = 0;
+
+            PicasaEntry entry = new PhotoEntry();
+            entry.MediaSource = new Google.GData.Client.MediaFileSource(stream, "backup", "image/jpeg");
+
+            PicasaEntry createdEntry = service.Insert(postUri, entry);
+        }
+
+        public void UploadPhoto(Site e, IEnumerable<HttpPostedFileBase> files, bool isBackupAlbum = false)
+        {
+            PicasaService service = InitPicasaService();
+
+
+            //Uri postUri = new Uri(PicasaQuery.CreatePicasaUri(OAMSSetting.GoogleUsername, e.AlbumUrl));
+            //Uri postUri = new Uri(PicasaQuery.CreatePicasaUri(OAMSSetting.GoogleUsername, "5510860318178203601"));
+            //Uri postUri = new Uri(PicasaQuery.CreatePicasaUri(OAMSSetting.GoogleUsername, "5511184217960168417"));
+            //Uri postUri = new Uri(PicasaQuery.CreatePicasaUri(username, albumid));
+
+
+            //5510860318178203601
+            //5510860318178203601
+            string albumUrl = "";
+            if (string.IsNullOrEmpty(isBackupAlbum ? e.BackupAlbumUrl : e.AlbumUrl))
+            {
+                albumUrl = CreateAlbum(e.ID, isBackupAlbum);
+                if (isBackupAlbum)
+                    e.BackupAlbumUrl = albumUrl;
+                else e.AlbumUrl = albumUrl;
+            }
+            else
+                albumUrl = isBackupAlbum ? e.BackupAlbumUrl : e.AlbumUrl;
+
+            Uri postUri = new Uri(albumUrl.Replace("entry", "feed"));
 
             foreach (var item in files)
             {
                 if (item != null)
                 {
                     MemoryStream mStream = new MemoryStream();
+
+                    item.InputStream.Position = 0;
                     item.InputStream.CopyTo(mStream);
+                    mStream.Position = 0;
 
                     //PicasaEntry entry = (PicasaEntry)service.Insert(postUri, mStream, "image/jpeg", "");
-
-                    //PicasaEntry entry = (PicasaEntry)service.InsertAsync(postUri, mStream, "image/jpeg", "");
-
+                    //PicasaEntry entry = (PicasaEntry)service.Insert(postUri, item.InputStream, "image/jpeg", "");
                     //photoUriList.Add(entry.Media.Content.Url);
+
+
+                    PicasaEntry entry = new PhotoEntry();
+                    entry.MediaSource = new Google.GData.Client.MediaFileSource(mStream, Path.GetFileName(item.FileName), "image/jpeg");
+
+                    //service.InsertAsync(postUri, entry, new { SiteID = e.ID, AM = asyncManager });
+                    PicasaEntry createdEntry = service.Insert(postUri, entry);
+
+                    if (!isBackupAlbum && createdEntry != null)
+                    {
+                        SitePhoto photo = new SitePhoto();
+
+                        photo.Url = createdEntry.Media.Content.Url;
+                        photo.AtomUrl = createdEntry.EditUri.Content;
+
+                        e.SitePhotoes.Add(photo);
+                    }
                 }
             }
-
-            //List<string> photoUriList = Upload(e.AlbumUrl, files);
-
-            //foreach (var item in photoUriList)
-            //{
-            //    SitePhoto photo = new SitePhoto();
-            //    photo.Url = item;
-            //    e.SitePhotoes.Add(photo);
-            //}
-
-            ////Save();
-
-
-            //if (files == null || files.Count() == 0) return null;
-
-            //List<string> photoUriList = new List<string>();
-
-
-
-            //return photoUriList;
         }
+
 
         public string CreateAlbum(int siteKey, bool isBackup = false)
         {
@@ -93,82 +131,84 @@ namespace OAMS.Models
             //return createdEntry.Id.AbsoluteUri;
         }
 
+        public void DeletePhoto(SitePhoto item)
+        {
+            PicasaService service = InitPicasaService();
+            PicasaEntry a = (PicasaEntry)service.Get(item.AtomUrl);
+
+            byte[] b;
+            HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create(item.Url);
+            WebResponse myResp = myReq.GetResponse();
+            Stream stream = myResp.GetResponseStream();
+
+            using (BinaryReader br = new BinaryReader(stream))
+            {
+                b = br.ReadBytes(500000);
+                br.Close();
+            }
+            myResp.Close();
+
+            MemoryStream mem = new MemoryStream(b);
+
+            UploadPhotoToBackupAlbum(item.Site, mem);
+
+            a.Delete();
+        }
+
         public void GetAlbumInfo()
         {
             PicasaService service = InitPicasaService();
-
-
-
 
 
             //AlbumQuery query = new AlbumQuery(PicasaQuery.CreatePicasaUri(OAMSSetting.GoogleUsername));
 
             //PicasaFeed feed = service.Query(query);
 
+            //int i = 0;
             //foreach (PicasaEntry entry in feed.Entries)
             //{
-            //    //Console.WriteLine(entry.Title.Text);
-            //    AlbumAccessor ac = new AlbumAccessor(entry);
-            //    //Console.WriteLine(ac.NumPhotos);
+                
 
-            //    if (ac.NumPhotos == 0)
-            //    {
-            //        //if (entry.Title.Text.EndsWith("B"))
-            //        //{
 
-            //        //}
+                
+            //    //int count = DB.Sites.Where(r => r.AlbumUrl == entry.EditUri.Content || r.BackupAlbumUrl == entry.EditUri.Content).Count();
+            //    //if (count == 0)
+            //    //{
+            //    //    i++;
+            //    //    entry.Delete();
+            //    //}
 
-            //        entry.Delete();
-            //    }
+
+
+
+            //    //AlbumAccessor ac = new AlbumAccessor(entry);
+
+            //    //if (ac.NumPhotos == 0)
+            //    //{
+            //    //    //entry.Delete();
+            //    //}
             //}
 
 
-            //foreach (var item in db.Sites)
+
+
+
+            
+            //foreach (var item in DB.Sites)
             //{
-            //    if (!string.IsNullOrEmpty(item.AlbumUrl)
-            //        //&& string.IsNullOrEmpty(item.BackupAlbumUrl)
-            //        //&& item.AlbumUrl.Length < 25
-            //        )
+            //    if (!string.IsNullOrEmpty(item.AlbumUrl))
             //    {
             //        PhotoQuery query = new PhotoQuery(PicasaQuery.CreatePicasaUri(OAMSSetting.GoogleUsername, item.AlbumUrl));
-
-            //        //AlbumQuery query = new AlbumQuery(PicasaQuery.CreatePicasaUri(OAMSSetting.GoogleUsername, item.AlbumUrl));
-
-            //        //string query = PicasaQuery.CreatePicasaUri(OAMSSetting.GoogleUsername, item.AlbumUrl);
-
-
 
             //        try
             //        {
             //            PicasaFeed feed = service.Query(query);
 
-            //            //AlbumEntry entry = (AlbumEntry)service.Get(query);
+            //            item.AlbumUrl = feed.Feed.Replace("feed", "entry");
 
-
-            //            item.AlbumUrl = feed.Feed;
-
-
-            //            ////Create backup album
-            //            //AlbumEntry newEntry = new AlbumEntry();
-            //            //newEntry.Title.Text = item.ID.ToString() + "B";
-            //            //newEntry.Summary.Text = item.ID.ToString() + "B";
-
-            //            //Uri feedUri = new Uri(PicasaQuery.CreatePicasaUri(OAMSSetting.GoogleUsername));
-
-            //            //PicasaEntry createdEntry = (PicasaEntry)service.Insert(feedUri, newEntry);
-
-            //            //item.BackupAlbumUrl = createdEntry.EditUri.Content;
-
-
-
-            //            foreach (PicasaEntry entry in feed.Entries)
-            //            {
-            //                SitePhoto sp = new SitePhoto();
-            //                sp.Url = entry.Media.Content.Url;
-            //                sp.AtomUrl = entry.EditUri.Content;
-
-            //                item.SitePhotoes.Add(sp);
-            //            }
+            //            //foreach (PicasaEntry entry in feed.Entries)
+            //            //{
+            //            //}
             //        }
             //        catch (Exception ex)
             //        {
@@ -177,36 +217,69 @@ namespace OAMS.Models
 
             //    }
             //}
-            //db.SaveChanges();
+            //DB.SaveChanges();
+
+
+
+
+            //int i = 0;
+            //foreach (var item in DB.Sites)
+            //{
+            //    if (!string.IsNullOrEmpty(item.AlbumUrl))
+            //    {
+            //        PhotoQuery query = new PhotoQuery(PicasaQuery.CreatePicasaUri(OAMSSetting.GoogleUsername, item.AlbumUrl.Split('/')[9].Split('?')[0]));
+                    
+            //        try
+            //        {
+            //            PicasaFeed feed = service.Query(query);
+
+            //            foreach (PicasaEntry entry in feed.Entries)
+            //            {
+            //                SitePhoto sp = item.SitePhotoes.Where(r => r.Url == entry.Media.Content.Url).FirstOrDefault();
+            //                if (sp == null)
+            //                {
+            //                    //entry.EditUri
+            //                    //entry.Media.Content.Url
+            //                    entry.Delete();
+            //                    i++;
+            //                }
+            //                else
+            //                {
+            //                    sp.AtomUrl = entry.EditUri.Content; 
+            //                }
+            //            }
+            //        }
+            //        catch (Exception ex)
+            //        {
+                        
+            //        }
+
+            //    }
+            //}
+            //DB.SaveChanges();
 
 
 
 
 
-            //foreach (var item in db.Sites)
+
+
+
+
+            //foreach (var item in DB.Sites)
             //{
             //    if (!string.IsNullOrEmpty(item.AlbumUrl)
             //        //&& string.IsNullOrEmpty(item.BackupAlbumUrl)
             //        //&& item.AlbumUrl.Length < 25
             //        )
             //    {
-            //        //PhotoQuery query = new PhotoQuery(PicasaQuery.CreatePicasaUri(OAMSSetting.GoogleUsername, item.AlbumUrl));
-
-            //        //AlbumQuery query = new AlbumQuery(PicasaQuery.CreatePicasaUri(OAMSSetting.GoogleUsername, item.AlbumUrl));
-
             //        string query = PicasaQuery.CreatePicasaUri(OAMSSetting.GoogleUsername, item.AlbumUrl);
 
             //        try
             //        {
-            //            //PicasaFeed feed = service.Query(query);
-
             //            AlbumEntry entry = (AlbumEntry)service.Get(query);
 
-
-
-
-
-            //            //item.AlbumUrl = entry.EditUri.Content;
+            //            item.AlbumUrl = entry.EditUri.Content;
 
 
             //            ////Create backup album
@@ -234,21 +307,11 @@ namespace OAMS.Models
             //        catch (Exception ex)
             //        {
 
-            //            try
-            //            {
-            //                service.Delete(new Uri(query));
-
-            //            }
-            //            catch (Exception)
-            //            {
-
-
-            //            }
             //        }
 
             //    }
             //}
-            //db.SaveChanges();
+            //DB.SaveChanges();
 
             //Site e = SiteRepository.Repo.Get(150);
 

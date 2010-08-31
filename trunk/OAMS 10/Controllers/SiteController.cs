@@ -8,7 +8,7 @@ using Google.GData.Photos;
 
 namespace OAMS.Controllers
 {
-    public class SiteController : Controller
+    public class SiteController : AsyncController
     {
         //
         // GET: /Site/
@@ -75,44 +75,30 @@ namespace OAMS.Controllers
         public ActionResult Edit(int id, FormCollection collection, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList)
         {
             // TODO: Add update logic here
-            Site e = repo.Get(id);
+            repo.Update(id, UpdateModel, files, DeletePhotoList);
 
-            UpdateModel(e);
 
-            repo.UpdateGeo(e);
-            if (!e.FrontlitNumerOfLamps.HasValue
-                || e.FrontlitNumerOfLamps <= 0)
-            {
-                e.FontLightArmsStraight = null;
-                e.FontlitArmsPlacement = null;
-                e.FontlitIlluminationDistribution = null;
-                e.FrontlitSideLighting = null;
-                e.FrontlitTopBottom = null;
-            }
-            else
-            {
-                e.BacklitFormat = null;
-                e.BacklitIlluninationSpread = null;
-                e.BacklitLightBoxLeakage = null;
-                e.BacklitLightingBlocks = null;
-                e.BacklitVisualLegibility = null;
-            }
-            repo.Save();
-
-            //repo.AddPhoto(e, files);
-
-            repo.DeletePhoto(DeletePhotoList);
 
             //return View(e);
             return RedirectToAction("Index");
         }
+
+        //public ActionResult EditCompleted(string[] headlines)
+        //public ActionResult EditCompleted()
+        //{
+        //    return RedirectToAction("Index");
+        //    //return View("News", new ViewStringModel
+        //    //{
+        //    //    NewsHeadlines = headlines
+        //    //});
+        //}
 
         //
         // GET: /Site/Delete/5
 
         public ActionResult Delete(int id)
         {
-            repo.DeletePhoto(id);
+            //repo.DeletePhoto(id);
             repo.Delete(id);
             return RedirectToAction("Index");
 
@@ -122,13 +108,13 @@ namespace OAMS.Controllers
         //
         // POST: /Site/Delete/5
 
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            repo.DeletePhoto(id);
-            repo.Delete(id);
-            return RedirectToAction("Index");
-        }
+        //[HttpPost]
+        //public ActionResult Delete(int id, FormCollection collection)
+        //{
+        //    //repo.DeletePhoto(id);
+        //    repo.Delete(id);
+        //    return RedirectToAction("Index");
+        //}
 
         [HttpPost]
         public JsonResult JsonList()

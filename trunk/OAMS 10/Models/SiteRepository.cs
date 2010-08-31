@@ -46,9 +46,49 @@ namespace OAMS.Models
             PicasaRepository picasaRepository = new PicasaRepository();
             picasaRepository.DB = DB;
 
-            picasaRepository.UploadPhoto(e, files);
+            //picasaRepository.UploadPhoto(e, files);
 
             return e;
+        }
+
+        public void Update(int ID, Action<Site> updateMethod, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList)
+        {
+            Site e = Get(ID);
+
+            updateMethod(e);
+
+            UpdateGeo(e);
+
+            if (!e.FrontlitNumerOfLamps.HasValue
+                || e.FrontlitNumerOfLamps <= 0)
+            {
+                e.FontLightArmsStraight = null;
+                e.FontlitArmsPlacement = null;
+                e.FontlitIlluminationDistribution = null;
+                e.FrontlitSideLighting = null;
+                e.FrontlitTopBottom = null;
+            }
+            else
+            {
+                e.BacklitFormat = null;
+                e.BacklitIlluninationSpread = null;
+                e.BacklitLightBoxLeakage = null;
+                e.BacklitLightingBlocks = null;
+                e.BacklitVisualLegibility = null;
+            }
+
+            Save();
+
+
+            PicasaRepository picasaRepository = new PicasaRepository();
+            picasaRepository.DB = DB;
+
+            picasaRepository.UploadPhoto(e, files);
+            //picasaRepository.UploadPhoto(e, files, true);
+
+            DeletePhoto(DeletePhotoList);
+
+            Save();
         }
 
         public void UpdateGeo(Site e)
@@ -96,11 +136,17 @@ namespace OAMS.Models
             return e;
         }
 
-       
+
 
         public void Delete(int ID)
         {
             Site s = Get(ID);
+
+            foreach (var item in s.SitePhotoes)
+            {
+                DB.SitePhotoes.DeleteObject(item);                 
+            }
+
             DB.Sites.DeleteObject(s);
             Save();
         }
@@ -110,24 +156,15 @@ namespace OAMS.Models
             if (IDList != null)
             {
                 List<SitePhoto> l = DB.SitePhotoes.Where(r => IDList.Contains(r.ID)).ToList();
+                PicasaRepository picasaRepository = new PicasaRepository();
                 foreach (var item in l)
                 {
+                    picasaRepository.DeletePhoto(item);
                     DB.DeleteObject(item);
                 }
 
                 Save();
             }
-        }
-
-        public void DeletePhoto(int SiteID)
-        {
-            List<SitePhoto> l = DB.SitePhotoes.Where(r => r.SiteID == SiteID).ToList();
-            foreach (var item in l)
-            {
-                DB.DeleteObject(item);
-            }
-
-            Save();
         }
     }
 }
