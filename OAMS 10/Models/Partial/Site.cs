@@ -24,5 +24,22 @@ namespace OAMS.Models
             get;
             set;
         }
+
+        public string ContractorName
+        {
+            get
+            {
+                return Contractor != null ? Contractor.Name : "";
+            }
+        }
+
+        public int UpdateGeo(Guid? geoID1, Guid? geoID2, Guid? geoID3)
+        {
+            Geo1ID = geoID1;
+            Geo2ID = geoID2;
+            Geo3ID = geoID3;
+            
+            return 0;
+        }
     }
 }

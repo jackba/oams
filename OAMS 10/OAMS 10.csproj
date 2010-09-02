@@ -162,6 +162,7 @@
     <Content Include="Content\smoothness\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\smoothness\jquery-ui-1.8.1.custom.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\common.js" />
     <Content Include="Scripts\grid.base.js" />
     <Content Include="Scripts\jquery-1.4.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.1.custom.min.js" />
@@ -181,7 +182,7 @@
     <Content Include="Views\Geo\Create.aspx" />
     <Content Include="Views\Geo\Edit.aspx" />
     <Content Include="Views\Geo\Index.aspx" />
-    <Content Include="Views\Shared\EditorTemplates\AutoCompleteCodeMaster.ascx" />
+    <Content Include="Views\Shared\EditorTemplates\AutoCompleteContractor.ascx" />
     <Content Include="Views\Shared\EditorTemplates\AutoCompleteGeo.ascx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Content\Image\resize.png" />

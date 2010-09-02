@@ -202,11 +202,12 @@
                         <%: Html.ValidationMessageFor(model => model.Width) %>
                     </div>
                     <div class="editor-label">
-                        <%: Html.LabelFor(model => model.Contractor) %>
+                        <%: Html.LabelFor(model => model.ContractorName)%>
                     </div>
                     <div class="editor-field">
-                        <%: Html.EditorFor(r => r.Contractor)%>
-                        <%: Html.ValidationMessageFor(model => model.Contractor)%>
+                        <%: Html.EditorFor(model => model.ContractorName, "AutoCompleteContractor")%>
+                        <%: Html.ValidationMessageFor(r => r.ContractorName)%>
+                        <%: Html.TextBoxFor(model => model.ContractorID, new { @style = "visibility:collapse;" })%>
                     </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.CurrentClient) %>
@@ -553,7 +554,7 @@
             <td>
                 <label for="file1">
                     Filename:</label>
-                <input type="file" name="files" id="file3" size="65"/>
+                <input type="file" name="files" id="file3" size="65" />
                 <br />
                 <div id="divMoreFile">
                 </div>

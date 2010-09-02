@@ -10,14 +10,14 @@ namespace OAMS.Controllers
     public class ListingController : Controller
     {
         [HttpPost]
-        public JsonResult ListGeos(string searchText, int maxResults, int? level = null)
+        public JsonResult ListGeos(string searchText, int? level = null)
         {
             OAMSEntities db = new OAMSEntities();
             var result = db.Geos.Where(r => (r.FullName.Contains(searchText) || r.FullNameNoDiacritics.Contains(searchText))
                 && (level == null || r.Level == level)
                 )
                 .Distinct()
-                .Take(maxResults)
+                //.Take(maxResults)
                 .Select(r => new { r.ID, r.FullName })
                 .ToList();
 
@@ -34,7 +34,7 @@ namespace OAMS.Controllers
             return Json(e.Children.Select(r => new { r.ID, r.FullName }).OrderBy(r => r.FullName));
         }
 
-        
+
 
         [HttpPost]
         public JsonResult ListCodeMaster(string searchText, int maxResults, string type)
@@ -43,6 +43,17 @@ namespace OAMS.Controllers
             var result = db.CodeMasters.Where(r => r.Note.Contains(searchText) && r.Type == type)
                 .Take(maxResults)
                 .Select(r => new { r.ID, r.Code, r.Note })
+                .ToList();
+            return Json(result);
+        }
+
+        [HttpPost]
+        public JsonResult ListContractor(string searchText, int maxResults)
+        {
+            OAMSEntities db = new OAMSEntities();
+            var result = db.Contractors.Where(r => r.Name.Contains(searchText))
+                .Take(maxResults)
+                .Select(r => new { r.ID, r.Name })
                 .ToList();
             return Json(result);
         }

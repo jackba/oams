@@ -18,35 +18,24 @@ namespace OAMS.Models
 
         }
 
-        public Site Add(Site e, IEnumerable<HttpPostedFileBase> files)
+        public Site Add(Action<Site> updateMethod, IEnumerable<HttpPostedFileBase> files)
         {
-            if (e.FrontlitNumerOfLamps == 0)
-            {
-                e.FontLightArmsStraight = null;
-                e.FontlitArmsPlacement = null;
-                e.FontlitIlluminationDistribution = null;
-                e.FrontlitSideLighting = null;
-                e.FrontlitTopBottom = null;
-            }
-            else if (e.FrontlitNumerOfLamps > 0)
-            {
-                e.BacklitFormat = null;
-                e.BacklitIlluninationSpread = null;
-                e.BacklitLightBoxLeakage = null;
-                e.BacklitLightingBlocks = null;
-                e.BacklitVisualLegibility = null;
-            }
+            Site e = new Site();
+            updateMethod(e);
 
+            UpdateFrontBackLit(e);
             UpdateGeo(e);
 
             DB.Sites.AddObject(e);
-
+            
             Save();
 
             PicasaRepository picasaRepository = new PicasaRepository();
             picasaRepository.DB = DB;
 
-            //picasaRepository.UploadPhoto(e, files);
+            picasaRepository.UploadPhoto(e, files);
+
+            Save();
 
             return e;
         }
@@ -59,8 +48,36 @@ namespace OAMS.Models
 
             UpdateGeo(e);
 
+            UpdateFrontBackLit(e);
+
+            Save();
+
+
+            PicasaRepository picasaRepository = new PicasaRepository();
+            picasaRepository.DB = DB;
+
+            picasaRepository.UploadPhoto(e, files);
+
+            DeletePhoto(DeletePhotoList);
+
+            Save();
+        }
+
+        public void UpdateContractor(Site e)
+        {
+ 
+        }
+
+        public void UpdateGeo(Site e)
+        {
+            GeoRepository geoRepository = new GeoRepository();
+            geoRepository.Set3LevelByFullname(e.NewGeoFullName, e.UpdateGeo);
+        }
+
+        public void UpdateFrontBackLit(Site e)
+        {
             if (!e.FrontlitNumerOfLamps.HasValue
-                || e.FrontlitNumerOfLamps <= 0)
+                           || e.FrontlitNumerOfLamps <= 0)
             {
                 e.FontLightArmsStraight = null;
                 e.FontlitArmsPlacement = null;
@@ -76,25 +93,6 @@ namespace OAMS.Models
                 e.BacklitLightingBlocks = null;
                 e.BacklitVisualLegibility = null;
             }
-
-            Save();
-
-
-            PicasaRepository picasaRepository = new PicasaRepository();
-            picasaRepository.DB = DB;
-
-            picasaRepository.UploadPhoto(e, files);
-            //picasaRepository.UploadPhoto(e, files, true);
-
-            DeletePhoto(DeletePhotoList);
-
-            Save();
-        }
-
-        public void UpdateGeo(Site e)
-        {
-            GeoRepository geoRepository = new GeoRepository();
-            geoRepository.Set3LevelByFullname(e.NewGeoFullName, e.UpdateGeo);
         }
 
         public Site InitWithDefaultValue()
@@ -144,7 +142,7 @@ namespace OAMS.Models
 
             foreach (var item in s.SitePhotoes)
             {
-                DB.SitePhotoes.DeleteObject(item);                 
+                DB.SitePhotoes.DeleteObject(item);
             }
 
             DB.Sites.DeleteObject(s);
@@ -165,6 +163,25 @@ namespace OAMS.Models
 
                 Save();
             }
+        }
+
+        public void FixDB()
+        {
+            //List<Site> l = DB.Sites.Where(r => !string.IsNullOrEmpty(r.Contractor)).ToList();
+            //foreach (var item in l)
+            //{
+
+            //    Contractor e = DB.Contractors.Where(r => r.Name == item.Contractor).FirstOrDefault();
+
+            //    if (e == null)
+            //    {
+            //        e = new Contractor();
+            //        e.Name = item.Contractor;
+            //    }
+
+            //    item.Contractor1 = e;
+            //    Save();
+            //}
         }
     }
 }
