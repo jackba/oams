@@ -225,8 +225,9 @@
                         <%: Html.LabelFor(model => model.Contractor) %>
                     </div>
                     <div class="editor-field">
-                        <%: Html.EditorFor(r => r.Contractor)%>
-                        <%: Html.ValidationMessageFor(model => model.Contractor)%>
+                        <%: Html.EditorFor(model => model.ContractorName, "AutoCompleteContractor")%>
+                        <%: Html.ValidationMessageFor(r => r.ContractorName)%>
+                        <%: Html.TextBoxFor(model => model.ContractorID, new { @style = "visibility:collapse;" })%>
                     </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.CurrentClient) %>

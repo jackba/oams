@@ -55,6 +55,11 @@
     </fieldset>
     <% } %>
     <div>
+        Replace
         <%: Html.ActionLink("Back to List", "Index") %>
+    </div>
+    <div>
+        <%--<%: Html.TextBox(model => model.ContractorName, "AutoCompleteContractor")%>
+        <%: Html.ActionLink("Replace", "Replace")%>--%>
     </div>
 </asp:Content>

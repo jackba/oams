@@ -88,7 +88,7 @@ namespace OAMS.Controllers
                 Orientation = r.Width >= r.Height ? "Horizontal" : "Vertical",
                 Size = string.Format("{0}m x {1}m", r.Height.ToString(), r.Width.ToString()),
                 Lighting = r.FrontlitNumerOfLamps > 0 ? "Fontlit" : "Backlit",
-                Contractor = r.Contractor ?? "",
+                Contractor = r.Contractor == null ? r.Contractor.Name : "",
                 CurrentProduct = r.CurrentProduct ?? "",
                 CurrentClient = r.CurrentClient ?? "",
                 r.Score

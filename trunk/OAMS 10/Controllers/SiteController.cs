@@ -17,8 +17,7 @@ namespace OAMS.Controllers
 
         public ActionResult Index()
         {
-            PicasaRepository picasaRepository = new PicasaRepository();
-            picasaRepository.GetAlbumInfo();
+            repo.FixDB();
 
             return View(repo.GetAll());
         }
@@ -49,11 +48,7 @@ namespace OAMS.Controllers
         //public ActionResult Create(IEnumerable<HttpPostedFileBase> files)
         public ActionResult Create(int? contractID, IEnumerable<HttpPostedFileBase> files)
         {
-            var e = new Site();
-
-            UpdateModel(e);
-
-            repo.Add(e, files);
+            repo.Add(UpdateModel, files);
 
             return RedirectToAction("Index");
         }
@@ -76,8 +71,6 @@ namespace OAMS.Controllers
         {
             // TODO: Add update logic here
             repo.Update(id, UpdateModel, files, DeletePhotoList);
-
-
 
             //return View(e);
             return RedirectToAction("Index");

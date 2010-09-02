@@ -5,7 +5,7 @@ using System.Web;
 
 namespace OAMS.Models
 {
-    public class ContractorRepository
+    public class ContractorRepository : BaseRepository<ContractorRepository>
     {
         private OAMSEntities db = new OAMSEntities();
 
@@ -34,11 +34,6 @@ namespace OAMS.Models
         }
 
         
-
-        // Persistence 
-        public void Save()
-        {
-            db.SaveChanges();
-        }
+      
     }
 }
