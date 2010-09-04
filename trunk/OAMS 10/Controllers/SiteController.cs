@@ -25,10 +25,10 @@ namespace OAMS.Controllers
         //
         // GET: /Site/Details/5
 
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
         //
         // GET: /Site/Create

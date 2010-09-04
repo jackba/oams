@@ -140,7 +140,9 @@ namespace OAMS.Models
         {
             Site s = Get(ID);
 
-            foreach (var item in s.SitePhotoes)
+            List<SitePhoto> l = s.SitePhotoes.ToList();
+            
+            foreach (var item in l)
             {
                 DB.SitePhotoes.DeleteObject(item);
             }
