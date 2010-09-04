@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<OAMS.Models.FindSite>" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Find
 </asp:Content>
@@ -10,26 +11,29 @@
     <%: Html.HiddenFor(r => r.CampaignID) %>
     <table width="100%" id="tblAll">
         <tr>
-            <td style="width:200px;" valign="top" id="SearchPane">
+            <td style="width: 200px;" valign="top" id="SearchPane">
                 Geo1:
                 <br />
                 <%--<%: Html.DropDownListForGeo1(r => r.GeoID1) %>--%>
                 <%: Html.EditorFor(model => model.Geo1FullName, "AutoCompleteGeo", new { level = 1 }) %>
                 <br />
-                Geo2:
+                Geo2: <a id="A1" href="javascript:checkAll(document.forms[0].Geo2List, true);">All</a>&nbsp;/&nbsp;<a
+                    id="A2" href="javascript:checkAll(document.forms[0].Geo2List, false);">Clear</a>
                 <div id="geo2List">
                 </div>
                 <br />
-                Style List:
+                Style List: <a id="lnkCheckAllStyle" href="javascript:checkAll(document.forms[0].StyleList, true);">
+                    All</a>&nbsp;/&nbsp;<a id="lnkUnCheckAllStyle" href="javascript:checkAll(document.forms[0].StyleList, false);">Clear</a>
                 <br />
-                <a id="lnkCheckAllStyle" style="cursor:pointer;" onclick="checkAll(document.forms[0].StyleList, true)">Check All</a>&nbsp;/&nbsp;<a id="lnkUnCheckAllStyle" style="cursor:pointer;" onclick="checkAll(document.forms[0].StyleList, false)">Uncheck All</a>
-                <input type="checkbox" name="StyleList" value="All" onclick="checkAll(document.forms[0].StyleList)" style="display:none;" checked="checked"/>
+              <%--  <input type="checkbox" name="StyleList" value="All" onclick="checkAll(document.forms[0].StyleList)"
+                    style="display: none;" checked="checked" />--%>
                 <br />
                 <%
                     foreach (var category in (new OAMS.Models.CodeMasterRepository()).Get((new OAMS.Models.CodeMasterType()).Type))
                     {
                 %>
-                <input type="checkbox" name="StyleList" value="<%= category.Code %>" onclick="unCheck(document.forms[0].StyleList)" checked="checked"/>
+                <input type="checkbox" name="StyleList" value="<%= category.Code %>" 
+                    checked="checked" />
                 <%: category.Note %>
                 <br />
                 <%
@@ -57,7 +61,8 @@
                 <input class="check-box" id="IsWithinCircle" name="IsWithinCircle" type="checkbox"
                     value="true" onclick="Click_WithinCircle(this);" />
                 Within
-                <input type="text" style="width:50px;" name="Distance" id="Distance" disabled="disabled" onblur="updateDistanceFromTxt(this);" />
+                <input type="text" style="width: 50px;" name="Distance" id="Distance" disabled="disabled"
+                    onblur="updateDistanceFromTxt(this);" />
                 <%: Html.HiddenFor(r => r.Lat) %>
                 <%: Html.HiddenFor(r => r.Long) %>
                 <br />
@@ -78,7 +83,7 @@
     </table>
     <table>
         <tr>
-            <td style="width:100%;" style="vertical-align: top;">
+            <td style="width: 100%;" style="vertical-align: top;">
                 <div id="divCol">
                     Display columns:
                     <input type="checkbox" id="chkColID" checked="checked" />
@@ -135,6 +140,9 @@
                             </th>
                             <th>
                                 Total
+                            </th>
+                            <th>
+                                Edit
                             </th>
                         </tr>
                     </thead>
@@ -196,40 +204,42 @@
                 url: '<%= Url.Content("~/Listing/ListGeo2") %>', type: "POST", dataType: "json",
                 data: { parentFullName: str },
                 success: function (data) {
-                    var lnkChkAll = document.createElement('a');
-                    lnkChkAll.id = 'lnkCheckAllDistrict';
-                    lnkChkAll.setAttribute('style', 'cursor:pointer;');
-                    lnkChkAll.innerText = 'Check All';
-                    lnkChkAll.onclick = function () {
-                        var lst = document.forms[0].Geo2List;
-                        for (i = 0; i < lst.length; i++) {
-                            lst[i].checked = true;
-                        }
-                    };
 
-                    var lnkUnChkAll = document.createElement('a');
-                    lnkUnChkAll.id = 'lnkUnCheckAllDistrict';
-                    lnkUnChkAll.setAttribute('style', 'cursor:pointer;');
-                    lnkUnChkAll.innerText = 'Uncheck All';
-                    lnkUnChkAll.onclick = function () {
-                        var lst = document.forms[0].Geo2List;
-                        for (i = 0; i < lst.length; i++) {
-                            lst[i].checked = false;
-                        }
-                    };
+                    //                    var lnkChkAll = document.createElement('a');
+                    //                    lnkChkAll.id = 'lnkCheckAllDistrict';
+                    //                    lnkChkAll.setAttribute('style', 'cursor:pointer;');
+                    //                    lnkChkAll.innerText = 'Check All';
+                    //                    lnkChkAll.onclick = function () {
+                    //                        var lst = document.forms[0].Geo2List;
+                    //                        for (i = 0; i < lst.length; i++) {
+                    //                            lst[i].checked = true;
+                    //                        }
+                    //                    };
 
-                    div1.append(lnkChkAll);
-                    div1.append('&nbsp;/&nbsp;');
-                    div1.append(lnkUnChkAll);
+                    //                    var lnkUnChkAll = document.createElement('a');
+                    //                    lnkUnChkAll.id = 'lnkUnCheckAllDistrict';
+                    //                    lnkUnChkAll.setAttribute('style', 'cursor:pointer;');
+                    //                    lnkUnChkAll.innerText = 'Uncheck All';
+                    //                    lnkUnChkAll.onclick = function () {
+                    //                        var lst = document.forms[0].Geo2List;
+                    //                        for (i = 0; i < lst.length; i++) {
+                    //                            lst[i].checked = false;
+                    //                        }
+                    //                    };
 
-                    var chkAll = document.createElement('input');
-                    chkAll.type = 'checkbox';
-                    chkAll.name = 'Geo2List';
-                    chkAll.value = 'All';
-                    chkAll.setAttribute('style', 'display:none;');
-                    chkAll.setAttribute('checked', 'checked');
-                    div1.append(chkAll);
+                    //                    div1.append(lnkChkAll);
+                    //                    div1.append('&nbsp;/&nbsp;');
+                    //                    div1.append(lnkUnChkAll);
+
+//                    var chkAll = document.createElement('input');
+//                    chkAll.type = 'checkbox';
+//                    chkAll.name = 'Geo2List';
+//                    chkAll.value = 'All';
+//                    chkAll.setAttribute('style', 'display:none;');
+//                    chkAll.setAttribute('checked', 'checked');
+//                    div1.append(chkAll);
                     div1.append('<br />');
+
                     $.map(data, function (item) {
 
                         var chk = document.createElement('input');
@@ -290,7 +300,7 @@
                         zIndex: 10
                     });
 
-                    
+
                     if (VietnamBounds.contains(marker.position)) {
                         bounds.extend(marker.position);
                     }
@@ -347,10 +357,7 @@
                     //                    aSel.onclick = generateTriggerCallback(marker, 'click');
                     //                    cSel.appendChild(aSel);
 
-                    var cEdit = document.createElement('td');
-                    cEdit.innerHTML = '<%: Html.ActionLink("Edit", "Edit", "Site", new {id=-1},null) %>';
-                    cEdit.innerHTML = cEdit.innerHTML.replace('-1', site.ID);
-                    rSel.appendChild(cEdit);
+                  
 
                     var cStyle = document.createElement('td');
                     cStyle.innerHTML = site.ID;
@@ -401,8 +408,11 @@
                     cStyle9.innerHTML = site.Score;
                     rSel.appendChild(cStyle9);
 
-
-
+                    //Edit
+                    var cEdit = document.createElement('td');
+                    cEdit.innerHTML = '<%: Html.ActionLink("Edit", "Edit", "Site", new {id=-1},null) %>';
+                    cEdit.innerHTML = cEdit.innerHTML.replace('-1', site.ID);
+                    rSel.appendChild(cEdit);
 
                     //Add2Campaign
                     //var cAdd2Cam = document.createElement('td');
@@ -523,10 +533,10 @@
             addActions();
             distanceWidget.setVisible(false);
 
-            
+
         }
 
-        
+
 
         function updatePosition() {
             if (geocodeTimer) {
@@ -1077,19 +1087,19 @@
             return d;
         };
 
-        function checkAll_Org(lst) {
-            if (lst[0].checked) {
-                for (i = 1; i < lst.length; i++) {
-                    lst[i].checked = false;
-                    lst[i].disabled = true;
-                }
-            }
-            else {
-                for (i = 1; i < lst.length; i++) {
-                    lst[i].disabled = false;
-                }
-            }
-        }
+//        function checkAll_Org(lst) {
+//            if (lst[0].checked) {
+//                for (i = 1; i < lst.length; i++) {
+//                    lst[i].checked = false;
+//                    lst[i].disabled = true;
+//                }
+//            }
+//            else {
+//                for (i = 1; i < lst.length; i++) {
+//                    lst[i].disabled = false;
+//                }
+//            }
+//        }
 
         function checkAll(lst, checked) {
             for (i = 0; i < lst.length; i++) {
@@ -1097,11 +1107,11 @@
             }
         }
 
-        function unCheck(lst) {
-            if (!this.checked) {
-                lst[0].checked = false;
-            }
-        }
+//        function unCheck(lst) {
+//            if (!this.checked) {
+//                lst[0].checked = false;
+//            }
+//        }
 
         function toggleSearchPane() {
             var opt = {};

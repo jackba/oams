@@ -37,11 +37,12 @@ namespace OAMS.Controllers
         public JsonResult FindJson(FindSite e)
         {
             SiteRepository siteRepo = new SiteRepository();
-            
+
             List<Site> l = siteRepo.GetAll().ToList()
                 .Where(r =>
                     //(e.StyleList == null || e.StyleList.Count == 0 || e.StyleList.Contains(r.Type) || e.StyleList.Contains("All"))
-                    (e.StyleList != null && (e.StyleList.Count == 0 || e.StyleList.Contains(r.Type) || e.StyleList.Contains("All")))
+                    //(e.StyleList != null && (e.StyleList.Count == 0 || e.StyleList.Contains(r.Type) || e.StyleList.Contains("All")))
+                    e.StyleList.Contains(r.Type)
                 && (string.IsNullOrEmpty(e.Format) || r.Format == e.Format)
                 && (string.IsNullOrEmpty(e.RoadType1) || r.RoadType1 == e.RoadType1.ToInt())
                 && (string.IsNullOrEmpty(e.RoadType2) || r.RoadType2 == e.RoadType2.ToInt())
@@ -63,8 +64,10 @@ namespace OAMS.Controllers
                 && (string.IsNullOrEmpty(e.CompetitiveProductSigns) || r.CompetitiveProductSigns == e.CompetitiveProductSigns.ToInt())
 
                 && (string.IsNullOrEmpty(e.Geo1FullName) || (r.Geo1 != null && r.Geo1.FullName == e.Geo1FullName))
-                && ((string.IsNullOrEmpty(e.Geo1FullName) && e.Geo2List == null) || (e.Geo2List != null && (e.Geo2List.FirstOrDefault() == null || (r.Geo2 != null && e.Geo2List.Contains(r.Geo2.FullName) || e.Geo2List.Contains("All")))))
-                ).ToList()
+                && ((string.IsNullOrEmpty(e.Geo1FullName) && e.Geo2List == null)
+                    || (e.Geo2List != null && (e.Geo2List.FirstOrDefault() == null || (r.Geo2 != null && e.Geo2List.Contains(r.Geo2.FullName)))))
+
+                    ).ToList()
                 .Where(r => !e.IsWithinCircle || Helper.DistanceBetweenPoints(r.Lat, r.Lng, e.Lat, e.Long) <= e.Distance)
                 .ToList();
 
@@ -82,13 +85,13 @@ namespace OAMS.Controllers
 
                 Code = r.Code ?? "",
                 r.Format,
-                Type = codeMasterRepo.GetNote(cmt.Type, r.Type),
+                Type = string.IsNullOrEmpty(r.Type) ? "" : codeMasterRepo.GetNote(cmt.Type, r.Type),
                 r.GeoFullName,
                 Address = r.AddressLine1 + " " + r.AddressLine2,
                 Orientation = r.Width >= r.Height ? "Horizontal" : "Vertical",
                 Size = string.Format("{0}m x {1}m", r.Height.ToString(), r.Width.ToString()),
                 Lighting = r.FrontlitNumerOfLamps > 0 ? "Fontlit" : "Backlit",
-                Contractor = r.Contractor == null ? r.Contractor.Name : "",
+                Contractor = r.Contractor != null ? r.Contractor.Name : "",
                 CurrentProduct = r.CurrentProduct ?? "",
                 CurrentClient = r.CurrentClient ?? "",
                 r.Score
