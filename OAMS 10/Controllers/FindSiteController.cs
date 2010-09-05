@@ -86,6 +86,7 @@ namespace OAMS.Controllers
                 Code = r.Code ?? "",
                 r.Format,
                 Type = string.IsNullOrEmpty(r.Type) ? "" : codeMasterRepo.GetNote(cmt.Type, r.Type),
+                CodeType = r.Type,
                 r.GeoFullName,
                 Address = r.AddressLine1 + " " + r.AddressLine2,
                 Orientation = r.Width >= r.Height ? "Horizontal" : "Vertical",
