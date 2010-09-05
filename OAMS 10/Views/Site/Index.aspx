@@ -86,7 +86,7 @@
                 <%: item.Score %>
             </td>
             <td>
-                <%: item.SitePhotoes.Where(r => r.SiteID == item.ID).Count() %>
+                <%: item.SitePhotoes.Count() %>
             </td>
         </tr>
         <% } %>
