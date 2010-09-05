@@ -95,7 +95,9 @@ namespace OAMS.Controllers
                 Contractor = r.Contractor != null ? r.Contractor.Name : "",
                 CurrentProduct = r.CurrentProduct ?? "",
                 CurrentClient = r.CurrentClient ?? "",
-                r.Score
+                r.Score,
+                AlbumID = string.IsNullOrEmpty(r.AlbumUrl) ? "" : r.AlbumUrl.Split('/')[9].Split('?')[0],
+                AuthID = string.IsNullOrEmpty(r.AlbumUrl) ? "" : r.AlbumUrl.Split('?')[1].Split('=')[1]
             }));
         }
     }
