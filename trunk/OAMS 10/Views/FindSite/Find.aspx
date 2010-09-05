@@ -25,19 +25,18 @@
                 Style List: <a id="lnkCheckAllStyle" href="javascript:checkAll(document.forms[0].StyleList, true);">
                     All</a>&nbsp;/&nbsp;<a id="lnkUnCheckAllStyle" href="javascript:checkAll(document.forms[0].StyleList, false);">Clear</a>
                 <br />
-              <%--  <input type="checkbox" name="StyleList" value="All" onclick="checkAll(document.forms[0].StyleList)"
+                <%--  <input type="checkbox" name="StyleList" value="All" onclick="checkAll(document.forms[0].StyleList)"
                     style="display: none;" checked="checked" />--%>
                 <br />
                 <%
                     foreach (var category in (new OAMS.Models.CodeMasterRepository()).Get((new OAMS.Models.CodeMasterType()).Type))
                     {
                 %>
-                <input type="checkbox" name="StyleList" value="<%= category.Code %>" 
-                    checked="checked" />
+                <input type="checkbox" name="StyleList" value="<%= category.Code %>" checked="checked" />
                 <%: category.Note %>&nbsp;
                 <% 
-                    string profileImageUrl="";
-                    if(category.Code == "WMB")
+                    string profileImageUrl = "";
+                    if (category.Code == "WMB")
                     {
                         profileImageUrl = Url.Content("~/Content/Image/wallmountedbannee.png");
                     }
@@ -74,7 +73,7 @@
                         profileImageUrl = Url.Content("~/Content/Image/other.png");
                     }
                 %>
-                <img alt="" border="0" src="<%= profileImageUrl %>" width="20"/>
+                <img alt="" border="0" src="<%= profileImageUrl %>" width="20" />
                 <br />
                 <%
                     }
@@ -271,13 +270,13 @@
                     //                    div1.append('&nbsp;/&nbsp;');
                     //                    div1.append(lnkUnChkAll);
 
-//                    var chkAll = document.createElement('input');
-//                    chkAll.type = 'checkbox';
-//                    chkAll.name = 'Geo2List';
-//                    chkAll.value = 'All';
-//                    chkAll.setAttribute('style', 'display:none;');
-//                    chkAll.setAttribute('checked', 'checked');
-//                    div1.append(chkAll);
+                    //                    var chkAll = document.createElement('input');
+                    //                    chkAll.type = 'checkbox';
+                    //                    chkAll.name = 'Geo2List';
+                    //                    chkAll.value = 'All';
+                    //                    chkAll.setAttribute('style', 'display:none;');
+                    //                    chkAll.setAttribute('checked', 'checked');
+                    //                    div1.append(chkAll);
                     div1.append('<br />');
 
                     $.map(data, function (item) {
@@ -287,12 +286,12 @@
                         chk.name = 'Geo2List';
                         chk.value = item.FullName;
                         chk.setAttribute('checked', 'checked');
-//                        chk.onclick = function () {
-//                            var lst = document.forms[0].Geo2List;
-//                            if (!this.checked) {
-//                                lst[0].checked = false;
-//                            }
-//                        };
+                        //                        chk.onclick = function () {
+                        //                            var lst = document.forms[0].Geo2List;
+                        //                            if (!this.checked) {
+                        //                                lst[0].checked = false;
+                        //                            }
+                        //                        };
                         div1.append(chk);
                         div1.append(item.FullName);
                         div1.append('<br />');
@@ -393,13 +392,14 @@
                     html += "<br />";
                     html += "CurrentProduct: " + site.CurrentProduct;
 
-                    html += "<br />";
-                    //html += '<embed type="application/x-shockwave-flash" src="http://picasaweb.google.com/s/c/bin/slideshow.swf" width="400" height="267" flashvars="host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F113917932111131696693%2Falbumid%2F5508075853826874961%3Falt%3Drss%26kind%3Dphoto%26authkey%3DGv1sRgCM2P2-L2oriXUA%26hl%3Den_US" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>'
-                    //html += '<embed type="application/x-shockwave-flash" src="http://picasaweb.google.com/s/c/bin/slideshow.swf" width="400" height="267" flashvars="host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F113917932111131696693%2Falbumid%2F5508934161572260737%3Falt%3Drss%26kind%3Dphoto%26authkey%3DGv1sRgCKzn1_jGireGFg" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>'
-                    //html += '<table style="width:194px;"><tr><td align="center" style="height:194px;background:url(http://picasaweb.google.com/s/c/transparent_album_background.gif) no-repeat left"><a href="http://picasaweb.google.com/113917932111131696693/376?authkey=Gv1sRgCNKm8tiUn-LowgE&feat=embedwebsite"><img src="http://lh3.ggpht.com/_OtjZ6-a3sBA/THOkvRpPeFE/AAAAAAAAAzg/4io1G2s4-ws/s160-c/376.jpg" width="160" height="160" style="margin:1px 0 0 4px;"></a></td></tr><tr><td style="text-align:center;font-family:arial,sans-serif;font-size:11px"><a href="http://picasaweb.google.com/113917932111131696693/376?authkey=Gv1sRgCNKm8tiUn-LowgE&feat=embedwebsite" style="color:#4D4D4D;font-weight:bold;text-decoration:none;">376</a></td></tr></table>'
-
-
-
+                    if (site.AlbumID != '') {
+                        html += "<br />";
+                        html += '<embed type="application/x-shockwave-flash" src="http://picasaweb.google.com/s/c/bin/slideshow.swf" width="400" height="267" flashvars="host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F113917932111131696693%2Falbumid%2F';
+                        html += site.AlbumID;
+                        html += '%3Falt%3Drss%26kind%3Dphoto%26authkey%3D';
+                        html += site.AuthID;
+                        html += '%26hl%3Den_US" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>';
+                    }
                     bindInfoWindow(marker, map, infoWindow, html);
                     //bindInfoWindow(marker, map, infoWindow, 'asdsa');
 
@@ -423,7 +423,7 @@
                     //                    aSel.onclick = generateTriggerCallback(marker, 'click');
                     //                    cSel.appendChild(aSel);
 
-                  
+
 
                     var cStyle = document.createElement('td');
                     cStyle.innerHTML = site.ID;
@@ -1153,19 +1153,19 @@
             return d;
         };
 
-//        function checkAll_Org(lst) {
-//            if (lst[0].checked) {
-//                for (i = 1; i < lst.length; i++) {
-//                    lst[i].checked = false;
-//                    lst[i].disabled = true;
-//                }
-//            }
-//            else {
-//                for (i = 1; i < lst.length; i++) {
-//                    lst[i].disabled = false;
-//                }
-//            }
-//        }
+        //        function checkAll_Org(lst) {
+        //            if (lst[0].checked) {
+        //                for (i = 1; i < lst.length; i++) {
+        //                    lst[i].checked = false;
+        //                    lst[i].disabled = true;
+        //                }
+        //            }
+        //            else {
+        //                for (i = 1; i < lst.length; i++) {
+        //                    lst[i].disabled = false;
+        //                }
+        //            }
+        //        }
 
         function checkAll(lst, checked) {
             for (i = 0; i < lst.length; i++) {
@@ -1173,11 +1173,11 @@
             }
         }
 
-//        function unCheck(lst) {
-//            if (!this.checked) {
-//                lst[0].checked = false;
-//            }
-//        }
+        //        function unCheck(lst) {
+        //            if (!this.checked) {
+        //                lst[0].checked = false;
+        //            }
+        //        }
 
         function toggleSearchPane() {
             var opt = {};
