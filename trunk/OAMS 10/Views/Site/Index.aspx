@@ -43,6 +43,9 @@
             <th>
                 Total
             </th>
+            <th>
+                Photo Count
+            </th>
         </tr>
         <% foreach (var item in Model)
            { %>
@@ -81,6 +84,9 @@
             </td>
             <td>
                 <%: item.Score %>
+            </td>
+            <td>
+                <%: item.SitePhotoes.Where(r => r.SiteID == item.ID).Count() %>
             </td>
         </tr>
         <% } %>

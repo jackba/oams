@@ -34,7 +34,47 @@
                 %>
                 <input type="checkbox" name="StyleList" value="<%= category.Code %>" 
                     checked="checked" />
-                <%: category.Note %>
+                <%: category.Note %>&nbsp;
+                <% 
+                    string profileImageUrl="";
+                    if(category.Code == "WMB")
+                    {
+                        profileImageUrl = Url.Content("~/Content/Image/wallmountedbannee.png");
+                    }
+                    else if (category.Code == "BRL")
+                    {
+                        profileImageUrl = Url.Content("~/Content/Image/britelite.png");
+                    }
+                    else if (category.Code == "BSH")
+                    {
+                        profileImageUrl = Url.Content("~/Content/Image/busshelter.png");
+                    }
+                    else if (category.Code == "CMR")
+                    {
+                        profileImageUrl = Url.Content("~/Content/Image/covermarket.png");
+                    }
+                    else if (category.Code == "ELV")
+                    {
+                        profileImageUrl = Url.Content("~/Content/Image/elevator.png");
+                    }
+                    else if (category.Code == "ITK")
+                    {
+                        profileImageUrl = Url.Content("~/Content/Image/itkiosk.png");
+                    }
+                    else if (category.Code == "Billboard")
+                    {
+                        profileImageUrl = Url.Content("~/Content/Image/billboard.png");
+                    }
+                    else if (category.Code == "BillboardPole")
+                    {
+                        profileImageUrl = Url.Content("~/Content/Image/billboardpole.png");
+                    }
+                    else if (category.Code == "Other")
+                    {
+                        profileImageUrl = Url.Content("~/Content/Image/other.png");
+                    }
+                %>
+                <img alt="" border="0" src="<%= profileImageUrl %>" width="20"/>
                 <br />
                 <%
                     }
@@ -247,12 +287,12 @@
                         chk.name = 'Geo2List';
                         chk.value = item.FullName;
                         chk.setAttribute('checked', 'checked');
-                        chk.onclick = function () {
-                            var lst = document.forms[0].Geo2List;
-                            if (!this.checked) {
-                                lst[0].checked = false;
-                            }
-                        };
+//                        chk.onclick = function () {
+//                            var lst = document.forms[0].Geo2List;
+//                            if (!this.checked) {
+//                                lst[0].checked = false;
+//                            }
+//                        };
                         div1.append(chk);
                         div1.append(item.FullName);
                         div1.append('<br />');
@@ -279,15 +319,41 @@
 
 
             if (json.length) {
-
+                var profileImageUrl;
                 for (var i = 0, site; site = json[i]; i++) {
+                    if (site.CodeType == 'WMB') {
+                        profileImageUrl = '<%= Url.Content("~/Content/Image/wallmountedbannee.png") %>';
+                    }
+                    else if (site.CodeType == 'BRL') {
+                        profileImageUrl = '<%= Url.Content("~/Content/Image/britelite.png") %>';
+                    }
+                    else if (site.CodeType == 'BSH') {
+                        profileImageUrl = '<%= Url.Content("~/Content/Image/busshelter.png") %>';
+                    }
+                    else if (site.CodeType == 'CMR') {
+                        profileImageUrl = '<%= Url.Content("~/Content/Image/covermarket.png") %>';
+                    }
+                    else if (site.CodeType == 'ELV') {
+                        profileImageUrl = '<%= Url.Content("~/Content/Image/elevator.png") %>';
+                    }
+                    else if (site.CodeType == 'ITK') {
+                        profileImageUrl = '<%= Url.Content("~/Content/Image/itkiosk.png") %>';
+                    }
+                    else if (site.CodeType == 'Billboard') {
+                        profileImageUrl = '<%= Url.Content("~/Content/Image/billboard.png") %>';
+                    }
+                    else if (site.CodeType == 'BillboardPole') {
+                        profileImageUrl = '<%= Url.Content("~/Content/Image/billboardpole.png") %>';
+                    }
+                    else if (site.CodeType == 'Other') {
+                        profileImageUrl = '<%= Url.Content("~/Content/Image/other.png") %>';
+                    }
 
-                    //  var image = new google.maps.MarkerImage(profileImageUrl,
-                    //          new google.maps.Size(48, 48),
-                    //          new google.maps.Point(0, 0),
-                    //          new google.maps.Point(24, 24),
-                    //          new google.maps.Size(24, 24));
-
+                    var image = new google.maps.MarkerImage(profileImageUrl,
+                              new google.maps.Size(48, 48),
+                              new google.maps.Point(0, 0),
+                              new google.maps.Point(24, 24),
+                              new google.maps.Size(24, 24));
 
                     var pos = new google.maps.LatLng(site.Lat, site.Lng);
 
@@ -296,7 +362,7 @@
                     var marker = new google.maps.Marker({
                         map: map,
                         position: pos,
-                        //icon: image,
+                        icon: image,
                         zIndex: 10
                     });
 
