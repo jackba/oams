@@ -7,30 +7,33 @@ namespace OAMS.Models
 {
     public class ContractorRepository : BaseRepository<ContractorRepository>
     {
-        private OAMSEntities db = new OAMSEntities();
-
-        public static IQueryable<Contractor> GetAll()
+        public IQueryable<Contractor> GetAll()
         {
-            OAMSEntities db = new OAMSEntities();
-
-            return db.Contractors;
+            return DB.Contractors;
         }
 
         public Contractor Get(int ID)
         {
-            return db.Contractors.Where(r => r.ID == ID).SingleOrDefault();
+            return DB.Contractors.Where(r => r.ID == ID).SingleOrDefault();
         }
 
         public Contractor Add(Contractor e)
         {
-            db.Contractors.AddObject(e);
+            DB.Contractors.AddObject(e);
+            Save();
+            return e;
+        }
 
+        public Contractor Update(Contractor e)
+        {
+            Save();
             return e;
         }
 
         public void Delete(Contractor e)
         {
-            db.Contractors.DeleteObject(e);
+            DB.Contractors.DeleteObject(e);
+            Save();
         }
 
         

@@ -104,7 +104,69 @@
                     onblur="updateDistanceFromTxt(this);" />
                 <%: Html.HiddenFor(r => r.Lat) %>
                 <%: Html.HiddenFor(r => r.Long) %>
+                <script type="text/javascript" language="javascript">
+                    var count = 2;
+                    function addMoreContractor() {
+                        var divAddMore = $('#divMoreContractor');
+                        var input = document.createElement('input');
+                        input.setAttribute('type', 'text');
+                        input.setAttribute('id', 'ContractorName' + count);
+                        input.setAttribute('class', 'text-box single-line');
+                        divAddMore.append(input);
+
+                        $(function () {
+                            $("#ContractorName" + count).autocomplete({
+                                select: function (event, ui) {
+                                    var inputCollapse = document.createElement('input');
+                                    inputCollapse.setAttribute('type', 'text');
+                                    inputCollapse.setAttribute('id', 'ContractorID' + count);
+                                    inputCollapse.setAttribute('style', 'display: none;');
+                                    inputCollapse.setAttribute('name', 'ContractorList');
+                                    divAddMore.append(inputCollapse);
+                                    $("#ContractorID" + count).val(ui.item.id);
+                                    count = count + 1;
+                                },
+                                source: function (request, response) {
+                                    $.ajax({
+                                        url: '/Listing/ListContractor', type: "POST", dataType: "json",
+                                        data: { searchText: request.term, maxResults: 10, type: "ContractorName" },
+                                        success: function (data) {
+                                            response($.map(data, function (item) {
+                                                return { label: item.Name, value: item.Name, id: item.ID }
+                                            }))
+                                        }
+                                    })
+                                }
+                            });
+                        });
+                        count = count + 1;
+                    }
+                </script>
                 <br />
+                Contractor
+                <script type="text/javascript" language="javascript">
+                    $(function () {
+                        $("#ContractorName1").autocomplete({
+                            select: function (event, ui) { $("#ContractorID1").val(ui.item.id); },
+                            source: function (request, response) {
+                                $.ajax({
+                                    url: '/Listing/ListContractor', type: "POST", dataType: "json",
+                                    data: { searchText: request.term, maxResults: 10, type: "ContractorName" },
+                                    success: function (data) {
+                                        response($.map(data, function (item) {
+                                            return { label: item.Name, value: item.Name, id: item.ID }
+                                        }))
+                                    }
+                                })
+                            }
+                        });
+                    });
+                </script> 
+                <div id="divMoreContractor">
+                    <input class="text-box single-line" id="ContractorName1" name="ContractorName" type="text" value="" />
+                    <input id="ContractorID1" name="ContractorList" type="text" value="" style="display: none;"/>
+                </div>
+                <input type="button" value="More contractor to search" onclick="addMoreContractor()" />
             </td>
             <td valign="top">
                 <input type="button" onclick="search(this)" value="Find" />

@@ -7,12 +7,12 @@ using OAMS.Models;
 
 namespace OAMS.Controllers
 {
-    public class ContractorController : Controller
+    public class ClientController : Controller
     {
         //
-        // GET: /Contractor/
+        // GET: /Client/
 
-        ContractorRepository repo = new ContractorRepository();
+        ClientRepository repo = new ClientRepository();
 
         public ActionResult Index()
         {
@@ -21,7 +21,7 @@ namespace OAMS.Controllers
         }
 
         //
-        // GET: /Contractor/Details/5
+        // GET: /Client/Details/5
 
         public ActionResult Details(int id)
         {
@@ -29,28 +29,28 @@ namespace OAMS.Controllers
         }
 
         //
-        // GET: /Contractor/Create
+        // GET: /Client/Create
 
         public ActionResult Create()
         {
-            return View(new Contractor());
+            return View(new Client());
         }
 
         //
-        // POST: /Contractor/Create
+        // POST: /Client/Create
 
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
             // TODO: Add insert logic here
-            var v = new Contractor();
+            var v = new Client();
             UpdateModel(v);
             repo.Add(v);
             return RedirectToAction("Index");
         }
 
         //
-        // GET: /Contractor/Edit/5
+        // GET: /Client/Edit/5
 
         public ActionResult Edit(int id)
         {
@@ -58,7 +58,7 @@ namespace OAMS.Controllers
         }
 
         //
-        // POST: /Contractor/Edit/5
+        // POST: /Client/Edit/5
 
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
@@ -71,7 +71,7 @@ namespace OAMS.Controllers
         }
 
         //
-        // GET: /Contractor/Delete/5
+        // GET: /Client/Delete/5
 
         public ActionResult Delete(int id)
         {
@@ -81,7 +81,7 @@ namespace OAMS.Controllers
         }
 
         //
-        // POST: /Contractor/Delete/5
+        // POST: /Client/Delete/5
 
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)

@@ -37,7 +37,8 @@
             <%: "Contractor Name" %>
         </div>
         <div class="editor-field">
-            <%: Html.DropDownListFor(model => model.ContractorID, OAMS.Models.ContractorRepository.GetAll().ToSelectListItem() , OAMSSetting.messageL.SelectNone)%>
+            <% OAMS.Models.ContractorRepository repo = new OAMS.Models.ContractorRepository();%>
+            <%: Html.DropDownListFor(model => model.ContractorID, repo.GetAll().ToSelectListItem() , OAMSSetting.messageL.SelectNone)%>
             <%: Html.ValidationMessageFor(model => model.ContractorID) %>
         </div>
         <div>

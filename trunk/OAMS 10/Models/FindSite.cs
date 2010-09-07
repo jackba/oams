@@ -34,6 +34,8 @@ namespace OAMS.Models
         public double? Long { get; set; }
         public DateTime? From { get; set; }
         public DateTime? To { get; set; }
+
+        public List<int> ContractorList { get; set; }
     }
 }
 
