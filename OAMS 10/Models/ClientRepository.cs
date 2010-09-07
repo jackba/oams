@@ -11,5 +11,29 @@ namespace OAMS.Models
         {
             return DB.Clients;
         }
+
+        public Client Get(int ID)
+        {
+            return DB.Clients.Where(r => r.ID == ID).SingleOrDefault();
+        }
+
+        public Client Add(Client e)
+        {
+            DB.Clients.AddObject(e);
+            Save();
+            return e;
+        }
+
+        public Client Update(Client e)
+        {
+            Save();
+            return e;
+        }
+
+        public void Delete(Client e)
+        {
+            DB.Clients.DeleteObject(e);
+            Save();
+        }
     }
 }

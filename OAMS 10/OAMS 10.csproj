@@ -95,6 +95,8 @@
     <Compile Include="Controllers\ContractController.cs" />
     <Compile Include="Controllers\ContractorController.cs" />
     <Compile Include="Controllers\ContractDetailController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\FindSiteController.cs" />
     <Compile Include="Controllers\GeoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -109,11 +111,12 @@
     <Compile Include="Models\BaseRepository.cs" />
     <Compile Include="Models\CampaignDetailRepository.cs" />
     <Compile Include="Models\CampaignRepository.cs" />
-    <Compile Include="Models\ClientRepository.cs" />
     <Compile Include="Models\CodeMasterRepository.cs" />
     <Compile Include="Models\ContractDetailRepository.cs" />
     <Compile Include="Models\ContractorRepository.cs" />
     <Compile Include="Models\ContractRepository.cs" />
+    <Compile Include="Models\ClientRepository.cs" />
+    <Compile Include="Models\CategoryRepository.cs" />
     <Compile Include="Models\PicasaRepository.cs" />
     <Compile Include="Models\Partial\Contract.cs" />
     <Compile Include="Models\FindSite.cs" />
@@ -179,6 +182,9 @@
     <Content Include="Views\Campaign\Create.aspx" />
     <Content Include="Views\Campaign\Edit.aspx" />
     <Content Include="Views\Campaign\Index.aspx" />
+    <Content Include="Views\Client\Create.aspx" />
+    <Content Include="Views\Client\Edit.aspx" />
+    <Content Include="Views\Client\Index.aspx" />
     <Content Include="Views\ContractDetail\Edit.aspx" />
     <Content Include="Views\Contractor\Create.aspx" />
     <Content Include="Views\Contractor\Details.aspx" />
@@ -187,6 +193,9 @@
     <Content Include="Views\Contract\Create.aspx" />
     <Content Include="Views\Contract\Edit.aspx" />
     <Content Include="Views\Contract\Index.aspx" />
+    <Content Include="Views\Category\Create.aspx" />
+    <Content Include="Views\Category\Edit.aspx" />
+    <Content Include="Views\Category\Index.aspx" />
     <Content Include="Views\FindSite\Find.aspx" />
     <Content Include="Views\Geo\Create.aspx" />
     <Content Include="Views\Geo\Edit.aspx" />
