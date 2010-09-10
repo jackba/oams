@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-<%= Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, new { @class = "text-box single-line" }) %>
+<%= Html.TextBox("", "Hồ Chí Minh City", new { @class = "text-box single-line" }) %>
 <style type="text/css">
     .ui-autocomplete
     {
@@ -11,7 +11,7 @@
         $("#<%= ViewData.ModelMetadata.PropertyName %>").autocomplete({
             select: function (event, ui) {
                 if (typeof showGeo2 == 'function') {
-                    showGeo2(ui.item.value);
+                    showGeo2(ui.item.value, true, '');
                 }
             },
             source: function (request, response) {
