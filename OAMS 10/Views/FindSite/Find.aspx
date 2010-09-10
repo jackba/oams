@@ -255,6 +255,7 @@
     </table>
     <% } %>
     <script type="text/javascript">
+        showGeo2('Hồ Chí Minh City', false, 'dis. 1, Hồ Chí Minh City');
         function updateDistanceFromTxt(txt) {
 
             //alert(txt.value);
@@ -265,7 +266,7 @@
 
         }
 
-        function Click_WithinCircle(chk) {
+        function Click_WithinCircle() {
             if (chk.checked) {
                 $("#Distance").removeAttr('disabled');
                 distanceWidget.setVisible(true);
@@ -293,7 +294,7 @@
             oTable.fnSetColumnVis(9, $('#chkColScore').attr('checked'));
 
         }
-        function showGeo2(str) {
+        function showGeo2(str, checkAll, checkName) {
             //alert(str);
             //var v = $("#geo2List").text();
             var div1 = $("#geo2List");
@@ -340,14 +341,23 @@
                     //                    chkAll.setAttribute('checked', 'checked');
                     //                    div1.append(chkAll);
                     div1.append('<br />');
-
+                    var index = 1;
                     $.map(data, function (item) {
 
                         var chk = document.createElement('input');
                         chk.type = 'checkbox';
                         chk.name = 'Geo2List';
                         chk.value = item.FullName;
-                        chk.setAttribute('checked', 'checked');
+                        chk.id = 'Geo2List' + index;
+                        index = index + 1;
+                        if (checkAll) {
+                            chk.setAttribute('checked', 'checked');
+                        }
+                        else if (checkName != '') {
+                            if (item.FullName == checkName) {
+                                chk.setAttribute('checked', 'checked');
+                            }
+                        }
                         //                        chk.onclick = function () {
                         //                            var lst = document.forms[0].Geo2List;
                         //                            if (!this.checked) {
@@ -355,7 +365,12 @@
                         //                            }
                         //                        };
                         div1.append(chk);
-                        div1.append(item.FullName);
+                        var sp = document.createElement('a');
+                        sp.innerText = item.FullName;
+                        sp.id = chk.id + '_sp';
+                        sp.name = 'Geo2List_sp';
+                        div1.append(sp);
+                        //div1.append(item.FullName);
                         div1.append('<br />');
 
                         //return { label: item.FullName, value: item.FullName, id: item.ID }
@@ -661,7 +676,10 @@
             addActions();
             distanceWidget.setVisible(false);
 
-
+            google.maps.event.addListener(map, 'dragstart',
+            function () {
+                infoWindow.close();
+            });
         }
 
 
