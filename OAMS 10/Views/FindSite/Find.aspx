@@ -11,16 +11,19 @@
     <%: Html.HiddenFor(r => r.CampaignID) %>
     <table width="100%" id="tblAll">
         <tr>
-            <td style="width: 200px;" valign="top" id="SearchPane">
+            <td style="width: 230px;" valign="top" id="SearchPane">
                 Geo1:
                 <br />
                 <%--<%: Html.DropDownListForGeo1(r => r.GeoID1) %>--%>
                 <%: Html.EditorFor(model => model.Geo1FullName, "AutoCompleteGeo", new { level = 1 }) %>
                 <br />
-                Geo2: <a id="A1" href="javascript:checkAll(document.forms[0].Geo2List, true);">All</a>&nbsp;/&nbsp;<a
-                    id="A2" href="javascript:checkAll(document.forms[0].Geo2List, false);">Clear</a>
+                Geo2: <a id="A1" href="javascript:checkAll(document.forms[0].Geo2List, true);ShowAll(document.forms[0].Geo2List,'Geo2ListMore');">
+                    All</a>&nbsp;/&nbsp;<a id="A2" href="javascript:checkAll(document.forms[0].Geo2List, false);">Clear</a>
                 <div id="geo2List">
                 </div>
+                <a id="Geo2ListMore" href="javascript:ShowAll(document.forms[0].Geo2List,'Geo2ListMore');"
+                    style="display: none;">More...</a>
+                <br />
                 <br />
                 Style List: <a id="lnkCheckAllStyle" href="javascript:checkAll(document.forms[0].StyleList, true);">
                     All</a>&nbsp;/&nbsp;<a id="lnkUnCheckAllStyle" href="javascript:checkAll(document.forms[0].StyleList, false);">Clear</a>
@@ -32,8 +35,12 @@
                     foreach (var category in (new OAMS.Models.CodeMasterRepository()).Get((new OAMS.Models.CodeMasterType()).Type))
                     {
                 %>
-                <input type="checkbox" name="StyleList" value="<%= category.Code %>" checked="checked" />
-                <%: category.Note %>&nbsp;
+                <input type="checkbox" name="StyleList" value="<%= category.Code %>" checked="checked"
+                    id='StyleItem + <%= category.ID %>' />
+                <label for='StyleItem + <%= category.ID %>'>
+                    <%: category.Note %>
+                </label>
+                &nbsp;
                 <% 
                     string profileImageUrl = "";
                     if (category.Code == "WMB")
@@ -87,11 +94,12 @@
                 <br />
                 <%: Html.CodeMasterDropDownListFor(r => r.RoadType2, false)%>
                 <br />
-                <%: Html.LabelFor(r => r.InstallationPosition1) %>
+                <%--<%: Html.LabelFor(r => r.InstallationPosition2) %>--%>
+                Angle to Road
                 <br />
                 <%: Html.CodeMasterDropDownListFor(r => r.InstallationPosition2, false)%>
                 <br />
-                <%: Html.LabelFor(r => r.ViewingDistance) %>
+                Viewing Distance
                 <br />
                 <%: Html.CodeMasterDropDownListFor(r => r.ViewingDistance, false)%>
                 <br />
@@ -143,7 +151,7 @@
                     }
                 </script>
                 <br />
-                Contractor
+                <%--Contractor--%>
                 <script type="text/javascript" language="javascript">
                     $(function () {
                         $("#ContractorName1").autocomplete({
@@ -161,12 +169,14 @@
                             }
                         });
                     });
-                </script> 
+                </script>
                 <div id="divMoreContractor">
-                    <input class="text-box single-line" id="ContractorName1" name="ContractorName" type="text" value="" />
-                    <input id="ContractorID1" name="ContractorList" type="text" value="" style="display: none;"/>
+                    <input class="text-box single-line" id="ContractorName1" name="ContractorName" type="text"
+                        value="" style="display: none;"/>
+                    <input id="ContractorID1" name="ContractorList" type="text" value="" style="display: none;" />
                 </div>
-                <input type="button" value="More contractor to search" onclick="addMoreContractor()" />
+                <%--<input type="button" value="More..." onclick="addMoreContractor()" />--%>
+                <%--<a href="javascript:addMoreContractor();">More contractor</a>--%>
             </td>
             <td valign="top">
                 <input type="button" onclick="search(this)" value="Find" />
@@ -255,7 +265,14 @@
     </table>
     <% } %>
     <script type="text/javascript">
-        showGeo2('Hồ Chí Minh City', false, 'dis. 1, Hồ Chí Minh City');
+        //showGeo2('Hồ Chí Minh City', false, 'dis. 1, Hồ Chí Minh City');
+
+        
+        $('#Geo1FullName').val('Hồ Chí Minh City');
+        showGeo2('Hồ Chí Minh City');
+        //$('#Geo2List1').setAttribute('checked', 'checked');
+
+
         function updateDistanceFromTxt(txt) {
 
             //alert(txt.value);
@@ -266,7 +283,7 @@
 
         }
 
-        function Click_WithinCircle() {
+        function Click_WithinCircle(chk) {
             if (chk.checked) {
                 $("#Distance").removeAttr('disabled');
                 distanceWidget.setVisible(true);
@@ -294,9 +311,12 @@
             oTable.fnSetColumnVis(9, $('#chkColScore').attr('checked'));
 
         }
-        function showGeo2(str, checkAll, checkName) {
+        function showGeo2(str) {
             //alert(str);
             //var v = $("#geo2List").text();
+
+            $("#Geo2ListMore").hide();
+
             var div1 = $("#geo2List");
             div1.empty();
 
@@ -341,37 +361,65 @@
                     //                    chkAll.setAttribute('checked', 'checked');
                     //                    div1.append(chkAll);
                     div1.append('<br />');
-                    var index = 1;
+                    var index = 0;
                     $.map(data, function (item) {
+
+                        index++;
+                        var divInner = document.createElement('div');
+
+
 
                         var chk = document.createElement('input');
                         chk.type = 'checkbox';
                         chk.name = 'Geo2List';
                         chk.value = item.FullName;
                         chk.id = 'Geo2List' + index;
-                        index = index + 1;
-                        if (checkAll) {
-                            chk.setAttribute('checked', 'checked');
-                        }
-                        else if (checkName != '') {
-                            if (item.FullName == checkName) {
-                                chk.setAttribute('checked', 'checked');
-                            }
-                        }
+
+
+
+                        //                        if (checkAll) {
+                        //                            chk.setAttribute('checked', 'checked');
+                        //                        }
+                        //                        else if (checkName != '') {
+                        //                            if (item.FullName == checkName) {
+                        //                                chk.setAttribute('checked', 'checked');
+                        //                            }
+                        //                        }
+
+
                         //                        chk.onclick = function () {
                         //                            var lst = document.forms[0].Geo2List;
                         //                            if (!this.checked) {
                         //                                lst[0].checked = false;
                         //                            }
                         //                        };
-                        div1.append(chk);
-                        var sp = document.createElement('a');
-                        sp.innerText = item.FullName;
-                        sp.id = chk.id + '_sp';
-                        sp.name = 'Geo2List_sp';
-                        div1.append(sp);
+
+
+                        //div1.append(chk);
+                        divInner.appendChild(chk);
+
+                        var lbl = document.createElement('label');
+
+                        lbl.innerHTML = item.FullName;
+                        lbl.setAttribute('for', 'Geo2List' + index)
+                        //lbl.style.display = 'block';
+
+
+                        //div1.append(lbl);
+                        divInner.appendChild(lbl);
+                        //div1.style.display = 'block';
+                        //div1.append('<br />');
+
+                        div1.append(divInner);
+
                         //div1.append(item.FullName);
-                        div1.append('<br />');
+
+                        //                        var sp = document.createElement('a');
+                        //                        sp.innerText = item.FullName;
+                        //                        sp.id = chk.id + '_sp';
+                        //                        sp.name = 'Geo2List_sp';
+                        //                        div1.append(sp);
+                        //                        div1.append('<br />');
 
                         //return { label: item.FullName, value: item.FullName, id: item.ID }
                     });
@@ -387,7 +435,52 @@
             //alert(v);
         }
 
+
+        function HideUncheck(lst, btnHideID) {
+
+            var count = 0;
+
+            for (i = 0; i < lst.length; i++) {
+
+                if (lst[i].checked) {
+
+                }
+                else {
+                    count++;
+
+                    lst[i].style.visibility = 'collapse';
+                    lst[i].style.display = 'none';
+                    $('label[for=' + lst[i].id + ']').css({ display: "none", visibility: "collapse" });
+                }
+            }
+
+            if (count == 0) {
+                $("#" + btnHideID).hide();
+            }
+            else {
+
+                $("#" + btnHideID).show();
+            }
+        }
+
+        function ShowAll(lst, btnMoreID) {
+            for (i = 0; i < lst.length; i++) {
+
+                lst[i].style.visibility = 'visible';
+                lst[i].style.display = '';
+                $('label[for=' + lst[i].id + ']').css({ display: "", visibility: "visible" });
+            }
+
+            $("#" + btnMoreID).hide();
+        }
+
+
         function addResults(json) {
+
+
+            //HideUncheck(document.forms[0].StyleList);
+
+            HideUncheck(document.forms[0].Geo2List, 'Geo2ListMore');
 
             //  Create a new viewpoint bound
             var bounds = new google.maps.LatLngBounds();
@@ -448,8 +541,9 @@
                     }
 
                     profileMarkers.push(marker);
-
-                    var html = "ID: " + site.ID;
+                    var html = "";
+                    html += "<table><tr><td>";
+                    html += "ID: " + site.ID;
                     html += "<br />";
                     html += "Site Code: " + site.Code;
                     html += "<br />";
@@ -468,7 +562,8 @@
                     html += "Contractor: " + site.Contractor;
                     html += "<br />";
                     html += "CurrentProduct: " + site.CurrentProduct;
-
+                    html += "</td></tr>";
+                    html += "<tr><td>";
                     if (site.AlbumID != '') {
                         html += "<br />";
                         html += '<embed type="application/x-shockwave-flash" src="http://picasaweb.google.com/s/c/bin/slideshow.swf" width="400" height="267" flashvars="host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F113917932111131696693%2Falbumid%2F';
@@ -477,6 +572,10 @@
                         html += site.AuthID;
                         html += '%26hl%3Den_US" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>';
                     }
+
+                    html += "</td></tr>";
+                    html += "</table>";
+
                     bindInfoWindow(marker, map, infoWindow, html);
                     //bindInfoWindow(marker, map, infoWindow, 'asdsa');
 
