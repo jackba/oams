@@ -55,11 +55,32 @@
     </fieldset>
     <% } %>
     <div>
-        Replace
         <%: Html.ActionLink("Back to List", "Index") %>
     </div>
+    <br />
     <div>
-        <%--<%: Html.TextBox(model => model.ContractorName, "AutoCompleteContractor")%>
-        <%: Html.ActionLink("Replace", "Replace")%>--%>
+        Replace:
+        <%: Html.EditorFor(model => model.ReplaceFor, "AutoCompleteContractor")%>
+        <%--<%: Html.ActionLink("Replace", "Replace")%>--%>
+        <input type="button" id="btnReplace" value="Replace" onclick="replace();" />
+        <input id="ContractorID" name="ContractorID" style="visibility: collapse;" type="text"
+            value="" />
     </div>
+    <script type="text/javascript">
+
+        function replace() {
+
+            var id = $("#ID").val();
+            var replaceID = $("#ContractorID").val();
+
+            $.ajax({
+                url: '<%= Url.Content("~/Contractor/Replace") %>', type: "POST", dataType: "json",
+                data: { "id": id, "replaceID": replaceID },
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        }
+
+    </script>
 </asp:Content>

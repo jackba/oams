@@ -36,7 +36,29 @@ namespace OAMS.Models
             Save();
         }
 
-        
-      
+        public bool Replace(int id, int replaceID)
+        {
+            Contractor e = Get(id);
+            Contractor replaceContractor = Get(replaceID);
+
+            if (e == null || replaceContractor == null)
+            {
+                return false;
+            }
+            else
+            {
+                IQueryable<Site> sL = DB.Sites.Where(r => r.ContractorID == replaceID);
+                foreach (var item in sL)
+                {
+                    item.ContractorID = id;                    
+                }
+
+                Save();
+                DB.Contractors.DeleteObject(replaceContractor);
+                Save();
+
+                return true;
+            }
+        }
     }
 }

@@ -90,5 +90,18 @@ namespace OAMS.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public JsonResult Replace(int id,int replaceID)
+        {
+            bool r = repo.Replace(id, replaceID);
+            string str = "";
+            if(r)
+                str = "Replace Done.";
+            else
+                str = "Replace Fail.";
+            return Json(str);
+        }
+
     }
 }
