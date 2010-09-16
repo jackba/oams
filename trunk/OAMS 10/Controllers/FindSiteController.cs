@@ -43,7 +43,7 @@ namespace OAMS.Controllers
                     //(e.StyleList == null || e.StyleList.Count == 0 || e.StyleList.Contains(r.Type) || e.StyleList.Contains("All"))
                     //(e.StyleList != null && (e.StyleList.Count == 0 || e.StyleList.Contains(r.Type) || e.StyleList.Contains("All")))
                     e.StyleList.Contains(r.Type)
-                //&& (e.ContractorList.Contains(r.ContractorID.ToInt()))
+                && (e.ContractorList.Contains(r.ContractorID.ToInt()))
                 && (string.IsNullOrEmpty(e.Format) || r.Format == e.Format)
                 && (string.IsNullOrEmpty(e.RoadType1) || r.RoadType1 == e.RoadType1.ToInt())
                 && (string.IsNullOrEmpty(e.RoadType2) || r.RoadType2 == e.RoadType2.ToInt())

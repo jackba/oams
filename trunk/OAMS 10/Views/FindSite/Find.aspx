@@ -122,17 +122,25 @@
                         input.setAttribute('class', 'text-box single-line');
                         divAddMore.append(input);
 
+                        var inputCollapse = document.createElement('input');
+                        inputCollapse.setAttribute('type', 'text');
+                        inputCollapse.setAttribute('style', 'display: none;');
+                        inputCollapse.setAttribute('name', 'ContractorList');
+                        inputCollapse.setAttribute('id', 'ContractorID' + count);
+                        divAddMore.append(inputCollapse);
+
+                        var lnkDelete = document.createElement('a');
+                        lnkDelete.setAttribute('id', 'LnkDelete' + count);
+                        lnkDelete.setAttribute('href', "javascript:$('#ContractorName" + count + "').remove();$('#ContractorID" + count + "').remove();$('#LnkDelete" + count + "').remove();");
+                        lnkDelete.innerText = 'X';
+                        lnkDelete.setAttribute('style','color:red;font-weight:bold;text-decoration:none;');
+                        divAddMore.append(" ").append(lnkDelete);
+
                         $(function () {
                             $("#ContractorName" + count).autocomplete({
                                 select: function (event, ui) {
-                                    var inputCollapse = document.createElement('input');
-                                    inputCollapse.setAttribute('type', 'text');
-                                    inputCollapse.setAttribute('id', 'ContractorID' + count);
-                                    inputCollapse.setAttribute('style', 'display: none;');
-                                    inputCollapse.setAttribute('name', 'ContractorList');
-                                    divAddMore.append(inputCollapse);
-                                    $("#ContractorID" + count).val(ui.item.id);
-                                    count = count + 1;
+                                    var index = this.id.substring(14);
+                                    $("#ContractorID" + index).val(ui.item.id);
                                 },
                                 source: function (request, response) {
                                     $.ajax({
@@ -147,6 +155,7 @@
                                 }
                             });
                         });
+                        $("#ContractorName" + count).focus();
                         count = count + 1;
                     }
                 </script>
@@ -171,12 +180,13 @@
                     });
                 </script>
                 <div id="divMoreContractor">
+                    <br />Contractor<br />
                     <input class="text-box single-line" id="ContractorName1" name="ContractorName" type="text"
-                        value="" style="display: none;"/>
+                        value=""/>
                     <input id="ContractorID1" name="ContractorList" type="text" value="" style="display: none;" />
                 </div>
                 <%--<input type="button" value="More..." onclick="addMoreContractor()" />--%>
-                <%--<a href="javascript:addMoreContractor();">More contractor</a>--%>
+                <a id="addContractor" href="javascript:addMoreContractor();">More contractor</a>
             </td>
             <td valign="top">
                 <input type="button" onclick="search(this)" value="Find" />
