@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-<%= Html.TextBox("", "Hồ Chí Minh City", new { @class = "text-box single-line" }) %>
+<%= Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, new { @class = "text-box single-line" }) %>
 <style type="text/css">
     .ui-autocomplete
     {
