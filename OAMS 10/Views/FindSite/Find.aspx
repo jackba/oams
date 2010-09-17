@@ -113,7 +113,7 @@
                 <%: Html.HiddenFor(r => r.Lat) %>
                 <%: Html.HiddenFor(r => r.Long) %>
                 <script type="text/javascript" language="javascript">
-                    var count = 2;
+                    var count = 1;
                     function addMoreContractor() {
                         var divAddMore = $('#divMoreContractor');
                         var input = document.createElement('input');
@@ -129,11 +129,20 @@
                         inputCollapse.setAttribute('id', 'ContractorID' + count);
                         divAddMore.append(inputCollapse);
 
+                        var lnkClear = document.createElement('a');
+                        lnkClear.setAttribute('id', 'LnkClear' + count);
+                        lnkClear.setAttribute('href', "javascript:$('#ContractorName" + count + "').val('');$('#ContractorID" + count + "').val(0);");
+                        lnkClear.innerText = 'C';
+                        lnkClear.setAttribute('style', 'color:red;font-weight:bold;text-decoration:none;');
+                        lnkClear.setAttribute('title', 'Clear current contractor to set new contractor');
+                        divAddMore.append(" ").append(lnkClear);
+
                         var lnkDelete = document.createElement('a');
                         lnkDelete.setAttribute('id', 'LnkDelete' + count);
-                        lnkDelete.setAttribute('href', "javascript:$('#ContractorName" + count + "').remove();$('#ContractorID" + count + "').remove();$('#LnkDelete" + count + "').remove();");
+                        lnkDelete.setAttribute('href', "javascript:$('#ContractorName" + count + "').remove();$('#ContractorID" + count + "').remove();$('#LnkClear" + count + "').remove();$('#LnkDelete" + count + "').remove();");
                         lnkDelete.innerText = 'X';
-                        lnkDelete.setAttribute('style','color:red;font-weight:bold;text-decoration:none;');
+                        lnkDelete.setAttribute('style', 'color:red;font-weight:bold;text-decoration:none;');
+                        lnkDelete.setAttribute('title', 'Remove this contractor out of search criteria');
                         divAddMore.append(" ").append(lnkDelete);
 
                         $(function () {
@@ -181,9 +190,6 @@
                 </script>
                 <div id="divMoreContractor">
                     <br />Contractor<br />
-                    <input class="text-box single-line" id="ContractorName1" name="ContractorName" type="text"
-                        value=""/>
-                    <input id="ContractorID1" name="ContractorList" type="text" value="" style="display: none;" />
                 </div>
                 <%--<input type="button" value="More..." onclick="addMoreContractor()" />--%>
                 <a id="addContractor" href="javascript:addMoreContractor();">More contractor</a>
