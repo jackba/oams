@@ -17,6 +17,18 @@ namespace OAMS.Models
             return DB.ContractDetails;
         }
 
+        public int? Delete(int id)
+        {
+            ContractDetail e = Get(id);
+
+            int? contractID = e.ContractID;
+
+            DB.DeleteObject(e);
+            Save();
+
+            return contractID;
+        }
+
        
     }
 }

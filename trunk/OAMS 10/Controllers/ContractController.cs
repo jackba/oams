@@ -35,7 +35,7 @@ namespace OAMS.Controllers
         public ActionResult Create()
         {
             Contract e = new Contract();
-            e.EffectiveDate = DateTime.Now;
+            //e.EffectiveDate = DateTime.Now;
             return View(e);
         }
 
@@ -108,6 +108,13 @@ namespace OAMS.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        public JsonResult AddSite(int contractID, int siteID)
+        {
+            repo.AddSite(contractID, siteID);
+            return Json(0);
         }
     }
 }

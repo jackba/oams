@@ -12,13 +12,6 @@
     <fieldset>
         <legend>Fields</legend>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.ID) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.TextBoxFor(model => model.ID) %>
-            <%: Html.ValidationMessageFor(model => model.ID) %>
-        </div>
-        <div class="editor-label">
             <%: Html.LabelFor(model => model.Number) %>
         </div>
         <div class="editor-field">
@@ -26,25 +19,112 @@
             <%: Html.ValidationMessageFor(model => model.Number) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.EffectiveDate) %>
+            <%: Html.LabelFor(model => model.ContractType) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.EffectiveDate) %>
-            <%: Html.ValidationMessageFor(model => model.EffectiveDate) %>
+            <%: Html.CodeMasterDropDownListFor(model => model.ContractType) %>
+            <%: Html.ValidationMessageFor(model => model.ContractType) %>
+        </div>
+     
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.ContractorName)%>
+        </div>
+        <div class="editor-field">
+            <%: Html.EditorFor(model => model.ContractorName, "AutoCompleteContractor")%>
+            <%: Html.ValidationMessageFor(r => r.ContractorName)%>
+            <%: Html.TextBoxFor(model => model.ContractorID, new { @style = "visibility:collapse;" })%>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.TermDate) %>
+            <%: Html.LabelFor(model => model.ClientName)%>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.TermDate)%>
-            <%: Html.ValidationMessageFor(model => model.TermDate) %>
+            <%: Html.EditorFor(model => model.ClientName, "AutoCompleteClient")%>
+            <%: Html.ValidationMessageFor(r => r.ClientName)%>
+            <%: Html.TextBoxFor(model => model.ClientID, new { @style = "visibility:collapse;" })%>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.ContractorID) %>
+            <%: Html.LabelFor(model => model.SignedDate) %>
         </div>
         <div class="editor-field">
-            <% OAMS.Models.ContractorRepository repo = new OAMS.Models.ContractorRepository(); %>
-            <%: Html.DropDownListFor(model => model.ContractorID, repo.GetAll().ToSelectListItem() , OAMSSetting.messageL.SelectNone)%>
+            <%: Html.EditorFor(model => model.SignedDate) %>
+            <%: Html.ValidationMessageFor(model => model.SignedDate) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.ExpiredDate) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.EditorFor(model => model.ExpiredDate)%>
+            <%: Html.ValidationMessageFor(model => model.ExpiredDate)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.InspectionFrequency) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.InspectionFrequency) %>
+            <%: Html.ValidationMessageFor(model => model.InspectionFrequency) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.ReportOn) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.ReportOn) %>
+            <%: Html.ValidationMessageFor(model => model.ReportOn) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Value) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.Value) %>
+            <%: Html.ValidationMessageFor(model => model.Value) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.PaymentTerm) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.PaymentTerm) %>
+            <%: Html.ValidationMessageFor(model => model.PaymentTerm) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.ContactName1) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.ContactName1) %>
+            <%: Html.ValidationMessageFor(model => model.ContactName1) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Phone1) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.Phone1) %>
+            <%: Html.ValidationMessageFor(model => model.Phone1) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Email1) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.Email1) %>
+            <%: Html.ValidationMessageFor(model => model.Email1) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.ContractName2) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.ContractName2) %>
+            <%: Html.ValidationMessageFor(model => model.ContractName2) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Phone2) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.Phone2) %>
+            <%: Html.ValidationMessageFor(model => model.Phone2) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Email2) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.Email2) %>
+            <%: Html.ValidationMessageFor(model => model.Email2) %>
         </div>
         <p>
             <input type="submit" value="Create" />

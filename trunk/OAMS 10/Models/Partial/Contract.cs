@@ -14,13 +14,29 @@ namespace OAMS.Models
         {
             get { return ContractDetails.ToList(); }
         }
+
+        public string ContractorName
+        {
+            get
+            {
+                return Contractor != null ? Contractor.Name : "";
+            }
+        }
+
+        public string ClientName
+        {
+            get
+            {
+                return Client != null ? Client.Name : "";
+            }
+        }
     }
     public class ContractNotaion
     {
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime? EffectiveDate { get; set; }
+        public DateTime? SignedDate { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime? TermDate { get; set; }
+        public DateTime? ExpiredDate { get; set; }
     }
 }

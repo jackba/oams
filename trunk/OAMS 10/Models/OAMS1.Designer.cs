@@ -19,18 +19,21 @@ using System.Runtime.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Geo_Geo", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Geo1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Geo), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Contract", "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contract), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetail), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Campaign_Client", "Client", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Client), "Campaign", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Campaign), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_CampaignDetail_Campaign", "Campaign", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Campaign), "CampaignDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.CampaignDetail), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_CampaignDetail_ContractDetail", "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.ContractDetail), "CampaignDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.CampaignDetail), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Contract_Contractor", "Contractor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contractor), "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Contract), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Site", "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Site), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetail), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Contractor", "Contractor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contractor), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo1", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo2", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo3", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_SitePhoto_Site", "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Site), "SitePhoto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.SitePhoto), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_CampaignDetail_ContractDetail", "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.ContractDetail), "CampaignDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.CampaignDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Site", "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Site), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_SiteMonitoring_ContractDetail", "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.ContractDetail), "SiteMonitoring", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.SiteMonitoring), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_SiteMonitoringPhoto_SiteMonitoring", "SiteMonitoring", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.SiteMonitoring), "SiteMonitoringPhoto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.SiteMonitoringPhoto), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Category_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Category), "Category1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Category), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Contract_Contractor", "Contractor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contractor), "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Contract), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Contract", "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contract), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Contract_Client", "Client", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Client), "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Contract), true)]
 
 #endregion
 
@@ -113,38 +116,6 @@ namespace OAMS.Models
             }
         }
         private ObjectSet<CodeMaster> _CodeMasters;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Contract> Contracts
-        {
-            get
-            {
-                if ((_Contracts == null))
-                {
-                    _Contracts = base.CreateObjectSet<Contract>("Contracts");
-                }
-                return _Contracts;
-            }
-        }
-        private ObjectSet<Contract> _Contracts;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<ContractDetail> ContractDetails
-        {
-            get
-            {
-                if ((_ContractDetails == null))
-                {
-                    _ContractDetails = base.CreateObjectSet<ContractDetail>("ContractDetails");
-                }
-                return _ContractDetails;
-            }
-        }
-        private ObjectSet<ContractDetail> _ContractDetails;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -245,6 +216,54 @@ namespace OAMS.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<ContractDetail> ContractDetails
+        {
+            get
+            {
+                if ((_ContractDetails == null))
+                {
+                    _ContractDetails = base.CreateObjectSet<ContractDetail>("ContractDetails");
+                }
+                return _ContractDetails;
+            }
+        }
+        private ObjectSet<ContractDetail> _ContractDetails;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SiteMonitoring> SiteMonitorings
+        {
+            get
+            {
+                if ((_SiteMonitorings == null))
+                {
+                    _SiteMonitorings = base.CreateObjectSet<SiteMonitoring>("SiteMonitorings");
+                }
+                return _SiteMonitorings;
+            }
+        }
+        private ObjectSet<SiteMonitoring> _SiteMonitorings;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SiteMonitoringPhoto> SiteMonitoringPhotoes
+        {
+            get
+            {
+                if ((_SiteMonitoringPhotoes == null))
+                {
+                    _SiteMonitoringPhotoes = base.CreateObjectSet<SiteMonitoringPhoto>("SiteMonitoringPhotoes");
+                }
+                return _SiteMonitoringPhotoes;
+            }
+        }
+        private ObjectSet<SiteMonitoringPhoto> _SiteMonitoringPhotoes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Category> Categories
         {
             get
@@ -257,6 +276,22 @@ namespace OAMS.Models
             }
         }
         private ObjectSet<Category> _Categories;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Contract> Contracts
+        {
+            get
+            {
+                if ((_Contracts == null))
+                {
+                    _Contracts = base.CreateObjectSet<Contract>("Contracts");
+                }
+                return _Contracts;
+            }
+        }
+        private ObjectSet<Contract> _Contracts;
 
         #endregion
         #region AddTo Methods
@@ -275,22 +310,6 @@ namespace OAMS.Models
         public void AddToCodeMasters(CodeMaster codeMaster)
         {
             base.AddObject("CodeMasters", codeMaster);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Contracts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToContracts(Contract contract)
-        {
-            base.AddObject("Contracts", contract);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the ContractDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToContractDetails(ContractDetail contractDetail)
-        {
-            base.AddObject("ContractDetails", contractDetail);
         }
     
         /// <summary>
@@ -342,11 +361,43 @@ namespace OAMS.Models
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the ContractDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToContractDetails(ContractDetail contractDetail)
+        {
+            base.AddObject("ContractDetails", contractDetail);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SiteMonitorings EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSiteMonitorings(SiteMonitoring siteMonitoring)
+        {
+            base.AddObject("SiteMonitorings", siteMonitoring);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SiteMonitoringPhotoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSiteMonitoringPhotoes(SiteMonitoringPhoto siteMonitoringPhoto)
+        {
+            base.AddObject("SiteMonitoringPhotoes", siteMonitoringPhoto);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Categories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToCategories(Category category)
         {
             base.AddObject("Categories", category);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Contracts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToContracts(Contract contract)
+        {
+            base.AddObject("Contracts", contract);
         }
 
         #endregion
@@ -1307,6 +1358,28 @@ namespace OAMS.Models
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Contract_Client", "Contract")]
+        public EntityCollection<Contract> Contracts
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Contract>("OAMSModel.FK_Contract_Client", "Contract");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Contract>("OAMSModel.FK_Contract_Client", "Contract", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -1542,48 +1615,24 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> EffectiveDate
+        public global::System.String ContractType
         {
             get
             {
-                return _EffectiveDate;
+                return _ContractType;
             }
             set
             {
-                OnEffectiveDateChanging(value);
-                ReportPropertyChanging("EffectiveDate");
-                _EffectiveDate = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("EffectiveDate");
-                OnEffectiveDateChanged();
+                OnContractTypeChanging(value);
+                ReportPropertyChanging("ContractType");
+                _ContractType = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ContractType");
+                OnContractTypeChanged();
             }
         }
-        private Nullable<global::System.DateTime> _EffectiveDate;
-        partial void OnEffectiveDateChanging(Nullable<global::System.DateTime> value);
-        partial void OnEffectiveDateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> TermDate
-        {
-            get
-            {
-                return _TermDate;
-            }
-            set
-            {
-                OnTermDateChanging(value);
-                ReportPropertyChanging("TermDate");
-                _TermDate = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("TermDate");
-                OnTermDateChanged();
-            }
-        }
-        private Nullable<global::System.DateTime> _TermDate;
-        partial void OnTermDateChanging(Nullable<global::System.DateTime> value);
-        partial void OnTermDateChanged();
+        private global::System.String _ContractType;
+        partial void OnContractTypeChanging(global::System.String value);
+        partial void OnContractTypeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1608,32 +1657,346 @@ namespace OAMS.Models
         private Nullable<global::System.Int32> _ContractorID;
         partial void OnContractorIDChanging(Nullable<global::System.Int32> value);
         partial void OnContractorIDChanged();
-
-        #endregion
-    
-        #region Navigation Properties
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Contract", "ContractDetail")]
-        public EntityCollection<ContractDetail> ContractDetails
+        public Nullable<global::System.Int32> ClientID
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Contract", "ContractDetail");
+                return _ClientID;
             }
             set
             {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Contract", "ContractDetail", value);
-                }
+                OnClientIDChanging(value);
+                ReportPropertyChanging("ClientID");
+                _ClientID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ClientID");
+                OnClientIDChanged();
             }
         }
+        private Nullable<global::System.Int32> _ClientID;
+        partial void OnClientIDChanging(Nullable<global::System.Int32> value);
+        partial void OnClientIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> SignedDate
+        {
+            get
+            {
+                return _SignedDate;
+            }
+            set
+            {
+                OnSignedDateChanging(value);
+                ReportPropertyChanging("SignedDate");
+                _SignedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SignedDate");
+                OnSignedDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _SignedDate;
+        partial void OnSignedDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnSignedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> ExpiredDate
+        {
+            get
+            {
+                return _ExpiredDate;
+            }
+            set
+            {
+                OnExpiredDateChanging(value);
+                ReportPropertyChanging("ExpiredDate");
+                _ExpiredDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ExpiredDate");
+                OnExpiredDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _ExpiredDate;
+        partial void OnExpiredDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnExpiredDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String InspectionFrequency
+        {
+            get
+            {
+                return _InspectionFrequency;
+            }
+            set
+            {
+                OnInspectionFrequencyChanging(value);
+                ReportPropertyChanging("InspectionFrequency");
+                _InspectionFrequency = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("InspectionFrequency");
+                OnInspectionFrequencyChanged();
+            }
+        }
+        private global::System.String _InspectionFrequency;
+        partial void OnInspectionFrequencyChanging(global::System.String value);
+        partial void OnInspectionFrequencyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ReportOn
+        {
+            get
+            {
+                return _ReportOn;
+            }
+            set
+            {
+                OnReportOnChanging(value);
+                ReportPropertyChanging("ReportOn");
+                _ReportOn = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ReportOn");
+                OnReportOnChanged();
+            }
+        }
+        private global::System.String _ReportOn;
+        partial void OnReportOnChanging(global::System.String value);
+        partial void OnReportOnChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Value
+        {
+            get
+            {
+                return _Value;
+            }
+            set
+            {
+                OnValueChanging(value);
+                ReportPropertyChanging("Value");
+                _Value = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Value");
+                OnValueChanged();
+            }
+        }
+        private global::System.String _Value;
+        partial void OnValueChanging(global::System.String value);
+        partial void OnValueChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PaymentTerm
+        {
+            get
+            {
+                return _PaymentTerm;
+            }
+            set
+            {
+                OnPaymentTermChanging(value);
+                ReportPropertyChanging("PaymentTerm");
+                _PaymentTerm = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PaymentTerm");
+                OnPaymentTermChanged();
+            }
+        }
+        private global::System.String _PaymentTerm;
+        partial void OnPaymentTermChanging(global::System.String value);
+        partial void OnPaymentTermChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ContactName1
+        {
+            get
+            {
+                return _ContactName1;
+            }
+            set
+            {
+                OnContactName1Changing(value);
+                ReportPropertyChanging("ContactName1");
+                _ContactName1 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ContactName1");
+                OnContactName1Changed();
+            }
+        }
+        private global::System.String _ContactName1;
+        partial void OnContactName1Changing(global::System.String value);
+        partial void OnContactName1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Phone1
+        {
+            get
+            {
+                return _Phone1;
+            }
+            set
+            {
+                OnPhone1Changing(value);
+                ReportPropertyChanging("Phone1");
+                _Phone1 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Phone1");
+                OnPhone1Changed();
+            }
+        }
+        private global::System.String _Phone1;
+        partial void OnPhone1Changing(global::System.String value);
+        partial void OnPhone1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Email1
+        {
+            get
+            {
+                return _Email1;
+            }
+            set
+            {
+                OnEmail1Changing(value);
+                ReportPropertyChanging("Email1");
+                _Email1 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Email1");
+                OnEmail1Changed();
+            }
+        }
+        private global::System.String _Email1;
+        partial void OnEmail1Changing(global::System.String value);
+        partial void OnEmail1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ContractName2
+        {
+            get
+            {
+                return _ContractName2;
+            }
+            set
+            {
+                OnContractName2Changing(value);
+                ReportPropertyChanging("ContractName2");
+                _ContractName2 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ContractName2");
+                OnContractName2Changed();
+            }
+        }
+        private global::System.String _ContractName2;
+        partial void OnContractName2Changing(global::System.String value);
+        partial void OnContractName2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Phone2
+        {
+            get
+            {
+                return _Phone2;
+            }
+            set
+            {
+                OnPhone2Changing(value);
+                ReportPropertyChanging("Phone2");
+                _Phone2 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Phone2");
+                OnPhone2Changed();
+            }
+        }
+        private global::System.String _Phone2;
+        partial void OnPhone2Changing(global::System.String value);
+        partial void OnPhone2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Email2
+        {
+            get
+            {
+                return _Email2;
+            }
+            set
+            {
+                OnEmail2Changing(value);
+                ReportPropertyChanging("Email2");
+                _Email2 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Email2");
+                OnEmail2Changed();
+            }
+        }
+        private global::System.String _Email2;
+        partial void OnEmail2Changing(global::System.String value);
+        partial void OnEmail2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ContractStatus
+        {
+            get
+            {
+                return _ContractStatus;
+            }
+            set
+            {
+                OnContractStatusChanging(value);
+                ReportPropertyChanging("ContractStatus");
+                _ContractStatus = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ContractStatus");
+                OnContractStatusChanged();
+            }
+        }
+        private global::System.String _ContractStatus;
+        partial void OnContractStatusChanging(global::System.String value);
+        partial void OnContractStatusChanged();
+
+        #endregion
+    
+        #region Navigation Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1669,6 +2032,66 @@ namespace OAMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Contractor>("OAMSModel.FK_Contract_Contractor", "Contractor", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Contract", "ContractDetail")]
+        public EntityCollection<ContractDetail> ContractDetails
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Contract", "ContractDetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Contract", "ContractDetail", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Contract_Client", "Client")]
+        public Client Client
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Client>("OAMSModel.FK_Contract_Client", "Client").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Client>("OAMSModel.FK_Contract_Client", "Client").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Client> ClientReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Client>("OAMSModel.FK_Contract_Client", "Client");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Client>("OAMSModel.FK_Contract_Client", "Client", value);
                 }
             }
         }
@@ -1804,30 +2227,6 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String PaymentTerm
-        {
-            get
-            {
-                return _PaymentTerm;
-            }
-            set
-            {
-                OnPaymentTermChanging(value);
-                ReportPropertyChanging("PaymentTerm");
-                _PaymentTerm = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("PaymentTerm");
-                OnPaymentTermChanged();
-            }
-        }
-        private global::System.String _PaymentTerm;
-        partial void OnPaymentTermChanging(global::System.String value);
-        partial void OnPaymentTermChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.DateTime> EffectiveDate
         {
             get
@@ -1905,44 +2304,6 @@ namespace OAMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Contract", "Contract")]
-        public Contract Contract
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Contract>("OAMSModel.FK_ContractDetail_Contract", "Contract").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Contract>("OAMSModel.FK_ContractDetail_Contract", "Contract").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Contract> ContractReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Contract>("OAMSModel.FK_ContractDetail_Contract", "Contract");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Contract>("OAMSModel.FK_ContractDetail_Contract", "Contract", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_CampaignDetail_ContractDetail", "CampaignDetail")]
         public EntityCollection<CampaignDetail> CampaignDetails
         {
@@ -1993,6 +2354,66 @@ namespace OAMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Site>("OAMSModel.FK_ContractDetail_Site", "Site", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_SiteMonitoring_ContractDetail", "SiteMonitoring")]
+        public EntityCollection<SiteMonitoring> SiteMonitorings
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SiteMonitoring>("OAMSModel.FK_SiteMonitoring_ContractDetail", "SiteMonitoring");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SiteMonitoring>("OAMSModel.FK_SiteMonitoring_ContractDetail", "SiteMonitoring", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Contract", "Contract")]
+        public Contract Contract
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Contract>("OAMSModel.FK_ContractDetail_Contract", "Contract").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Contract>("OAMSModel.FK_ContractDetail_Contract", "Contract").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Contract> ContractReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Contract>("OAMSModel.FK_ContractDetail_Contract", "Contract");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Contract>("OAMSModel.FK_ContractDetail_Contract", "Contract", value);
                 }
             }
         }
@@ -2205,28 +2626,6 @@ namespace OAMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Contract_Contractor", "Contract")]
-        public EntityCollection<Contract> Contracts
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Contract>("OAMSModel.FK_Contract_Contractor", "Contract");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Contract>("OAMSModel.FK_Contract_Contractor", "Contract", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Contractor", "Site")]
         public EntityCollection<Site> Sites
         {
@@ -2239,6 +2638,28 @@ namespace OAMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Site>("OAMSModel.FK_Site_Contractor", "Site", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Contract_Contractor", "Contract")]
+        public EntityCollection<Contract> Contracts
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Contract>("OAMSModel.FK_Contract_Contractor", "Contract");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Contract>("OAMSModel.FK_Contract_Contractor", "Contract", value);
                 }
             }
         }
@@ -4208,32 +4629,106 @@ namespace OAMS.Models
         private Nullable<global::System.Int32> _ContractorID;
         partial void OnContractorIDChanging(Nullable<global::System.Int32> value);
         partial void OnContractorIDChanged();
-
-        #endregion
-    
-        #region Navigation Properties
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Site", "ContractDetail")]
-        public EntityCollection<ContractDetail> ContractDetails
+        public Nullable<global::System.DateTime> CreatedDate
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Site", "ContractDetail");
+                return _CreatedDate;
             }
             set
             {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Site", "ContractDetail", value);
-                }
+                OnCreatedDateChanging(value);
+                ReportPropertyChanging("CreatedDate");
+                _CreatedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreatedDate");
+                OnCreatedDateChanged();
             }
         }
+        private Nullable<global::System.DateTime> _CreatedDate;
+        partial void OnCreatedDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnCreatedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CreatedBy
+        {
+            get
+            {
+                return _CreatedBy;
+            }
+            set
+            {
+                OnCreatedByChanging(value);
+                ReportPropertyChanging("CreatedBy");
+                _CreatedBy = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CreatedBy");
+                OnCreatedByChanged();
+            }
+        }
+        private global::System.String _CreatedBy;
+        partial void OnCreatedByChanging(global::System.String value);
+        partial void OnCreatedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LastUpdatedDate
+        {
+            get
+            {
+                return _LastUpdatedDate;
+            }
+            set
+            {
+                OnLastUpdatedDateChanging(value);
+                ReportPropertyChanging("LastUpdatedDate");
+                _LastUpdatedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastUpdatedDate");
+                OnLastUpdatedDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LastUpdatedDate;
+        partial void OnLastUpdatedDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLastUpdatedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastUpdatedBy
+        {
+            get
+            {
+                return _LastUpdatedBy;
+            }
+            set
+            {
+                OnLastUpdatedByChanging(value);
+                ReportPropertyChanging("LastUpdatedBy");
+                _LastUpdatedBy = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastUpdatedBy");
+                OnLastUpdatedByChanged();
+            }
+        }
+        private global::System.String _LastUpdatedBy;
+        partial void OnLastUpdatedByChanging(global::System.String value);
+        partial void OnLastUpdatedByChanged();
+
+        #endregion
+    
+        #region Navigation Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -4405,6 +4900,818 @@ namespace OAMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SitePhoto>("OAMSModel.FK_SitePhoto_Site", "SitePhoto", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Site", "ContractDetail")]
+        public EntityCollection<ContractDetail> ContractDetails
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Site", "ContractDetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Site", "ContractDetail", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="OAMSModel", Name="SiteMonitoring")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SiteMonitoring : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SiteMonitoring object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static SiteMonitoring CreateSiteMonitoring(global::System.Int32 id)
+        {
+            SiteMonitoring siteMonitoring = new SiteMonitoring();
+            siteMonitoring.ID = id;
+            return siteMonitoring;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ContractDetailID
+        {
+            get
+            {
+                return _ContractDetailID;
+            }
+            set
+            {
+                OnContractDetailIDChanging(value);
+                ReportPropertyChanging("ContractDetailID");
+                _ContractDetailID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ContractDetailID");
+                OnContractDetailIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ContractDetailID;
+        partial void OnContractDetailIDChanging(Nullable<global::System.Int32> value);
+        partial void OnContractDetailIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Working
+        {
+            get
+            {
+                return _Working;
+            }
+            set
+            {
+                OnWorkingChanging(value);
+                ReportPropertyChanging("Working");
+                _Working = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Working");
+                OnWorkingChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Working;
+        partial void OnWorkingChanging(Nullable<global::System.Boolean> value);
+        partial void OnWorkingChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> NoOfBullbs
+        {
+            get
+            {
+                return _NoOfBullbs;
+            }
+            set
+            {
+                OnNoOfBullbsChanging(value);
+                ReportPropertyChanging("NoOfBullbs");
+                _NoOfBullbs = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NoOfBullbs");
+                OnNoOfBullbsChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _NoOfBullbs;
+        partial void OnNoOfBullbsChanging(Nullable<global::System.Int32> value);
+        partial void OnNoOfBullbsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> BullsWorking
+        {
+            get
+            {
+                return _BullsWorking;
+            }
+            set
+            {
+                OnBullsWorkingChanging(value);
+                ReportPropertyChanging("BullsWorking");
+                _BullsWorking = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BullsWorking");
+                OnBullsWorkingChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _BullsWorking;
+        partial void OnBullsWorkingChanging(Nullable<global::System.Int32> value);
+        partial void OnBullsWorkingChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Issues
+        {
+            get
+            {
+                return _Issues;
+            }
+            set
+            {
+                OnIssuesChanging(value);
+                ReportPropertyChanging("Issues");
+                _Issues = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Issues");
+                OnIssuesChanged();
+            }
+        }
+        private global::System.String _Issues;
+        partial void OnIssuesChanging(global::System.String value);
+        partial void OnIssuesChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Clean
+        {
+            get
+            {
+                return _Clean;
+            }
+            set
+            {
+                OnCleanChanging(value);
+                ReportPropertyChanging("Clean");
+                _Clean = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Clean");
+                OnCleanChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Clean;
+        partial void OnCleanChanging(Nullable<global::System.Boolean> value);
+        partial void OnCleanChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> CreativeGoodConditon
+        {
+            get
+            {
+                return _CreativeGoodConditon;
+            }
+            set
+            {
+                OnCreativeGoodConditonChanging(value);
+                ReportPropertyChanging("CreativeGoodConditon");
+                _CreativeGoodConditon = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreativeGoodConditon");
+                OnCreativeGoodConditonChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _CreativeGoodConditon;
+        partial void OnCreativeGoodConditonChanging(Nullable<global::System.Boolean> value);
+        partial void OnCreativeGoodConditonChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> ExternalInterference
+        {
+            get
+            {
+                return _ExternalInterference;
+            }
+            set
+            {
+                OnExternalInterferenceChanging(value);
+                ReportPropertyChanging("ExternalInterference");
+                _ExternalInterference = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ExternalInterference");
+                OnExternalInterferenceChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _ExternalInterference;
+        partial void OnExternalInterferenceChanging(Nullable<global::System.Boolean> value);
+        partial void OnExternalInterferenceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Vandalism
+        {
+            get
+            {
+                return _Vandalism;
+            }
+            set
+            {
+                OnVandalismChanging(value);
+                ReportPropertyChanging("Vandalism");
+                _Vandalism = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Vandalism");
+                OnVandalismChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Vandalism;
+        partial void OnVandalismChanging(Nullable<global::System.Boolean> value);
+        partial void OnVandalismChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Comments
+        {
+            get
+            {
+                return _Comments;
+            }
+            set
+            {
+                OnCommentsChanging(value);
+                ReportPropertyChanging("Comments");
+                _Comments = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Comments");
+                OnCommentsChanged();
+            }
+        }
+        private global::System.String _Comments;
+        partial void OnCommentsChanging(global::System.String value);
+        partial void OnCommentsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> RequiredFollowUp
+        {
+            get
+            {
+                return _RequiredFollowUp;
+            }
+            set
+            {
+                OnRequiredFollowUpChanging(value);
+                ReportPropertyChanging("RequiredFollowUp");
+                _RequiredFollowUp = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RequiredFollowUp");
+                OnRequiredFollowUpChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _RequiredFollowUp;
+        partial void OnRequiredFollowUpChanging(Nullable<global::System.Boolean> value);
+        partial void OnRequiredFollowUpChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Action
+        {
+            get
+            {
+                return _Action;
+            }
+            set
+            {
+                OnActionChanging(value);
+                ReportPropertyChanging("Action");
+                _Action = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Action");
+                OnActionChanged();
+            }
+        }
+        private global::System.String _Action;
+        partial void OnActionChanging(global::System.String value);
+        partial void OnActionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> DateOfProblem
+        {
+            get
+            {
+                return _DateOfProblem;
+            }
+            set
+            {
+                OnDateOfProblemChanging(value);
+                ReportPropertyChanging("DateOfProblem");
+                _DateOfProblem = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateOfProblem");
+                OnDateOfProblemChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _DateOfProblem;
+        partial void OnDateOfProblemChanging(Nullable<global::System.DateTime> value);
+        partial void OnDateOfProblemChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> NowFixed
+        {
+            get
+            {
+                return _NowFixed;
+            }
+            set
+            {
+                OnNowFixedChanging(value);
+                ReportPropertyChanging("NowFixed");
+                _NowFixed = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NowFixed");
+                OnNowFixedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _NowFixed;
+        partial void OnNowFixedChanging(Nullable<global::System.Boolean> value);
+        partial void OnNowFixedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> DateFixed
+        {
+            get
+            {
+                return _DateFixed;
+            }
+            set
+            {
+                OnDateFixedChanging(value);
+                ReportPropertyChanging("DateFixed");
+                _DateFixed = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateFixed");
+                OnDateFixedChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _DateFixed;
+        partial void OnDateFixedChanging(Nullable<global::System.DateTime> value);
+        partial void OnDateFixedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> CreatedDate
+        {
+            get
+            {
+                return _CreatedDate;
+            }
+            set
+            {
+                OnCreatedDateChanging(value);
+                ReportPropertyChanging("CreatedDate");
+                _CreatedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreatedDate");
+                OnCreatedDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _CreatedDate;
+        partial void OnCreatedDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnCreatedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CreatedBy
+        {
+            get
+            {
+                return _CreatedBy;
+            }
+            set
+            {
+                OnCreatedByChanging(value);
+                ReportPropertyChanging("CreatedBy");
+                _CreatedBy = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CreatedBy");
+                OnCreatedByChanged();
+            }
+        }
+        private global::System.String _CreatedBy;
+        partial void OnCreatedByChanging(global::System.String value);
+        partial void OnCreatedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LastUpdatedDate
+        {
+            get
+            {
+                return _LastUpdatedDate;
+            }
+            set
+            {
+                OnLastUpdatedDateChanging(value);
+                ReportPropertyChanging("LastUpdatedDate");
+                _LastUpdatedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastUpdatedDate");
+                OnLastUpdatedDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LastUpdatedDate;
+        partial void OnLastUpdatedDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLastUpdatedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastUpdatedBy
+        {
+            get
+            {
+                return _LastUpdatedBy;
+            }
+            set
+            {
+                OnLastUpdatedByChanging(value);
+                ReportPropertyChanging("LastUpdatedBy");
+                _LastUpdatedBy = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastUpdatedBy");
+                OnLastUpdatedByChanged();
+            }
+        }
+        private global::System.String _LastUpdatedBy;
+        partial void OnLastUpdatedByChanging(global::System.String value);
+        partial void OnLastUpdatedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AlbumUrl
+        {
+            get
+            {
+                return _AlbumUrl;
+            }
+            set
+            {
+                OnAlbumUrlChanging(value);
+                ReportPropertyChanging("AlbumUrl");
+                _AlbumUrl = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AlbumUrl");
+                OnAlbumUrlChanged();
+            }
+        }
+        private global::System.String _AlbumUrl;
+        partial void OnAlbumUrlChanging(global::System.String value);
+        partial void OnAlbumUrlChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BackupAlbumUrl
+        {
+            get
+            {
+                return _BackupAlbumUrl;
+            }
+            set
+            {
+                OnBackupAlbumUrlChanging(value);
+                ReportPropertyChanging("BackupAlbumUrl");
+                _BackupAlbumUrl = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BackupAlbumUrl");
+                OnBackupAlbumUrlChanged();
+            }
+        }
+        private global::System.String _BackupAlbumUrl;
+        partial void OnBackupAlbumUrlChanging(global::System.String value);
+        partial void OnBackupAlbumUrlChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_SiteMonitoring_ContractDetail", "ContractDetail")]
+        public ContractDetail ContractDetail
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ContractDetail>("OAMSModel.FK_SiteMonitoring_ContractDetail", "ContractDetail").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ContractDetail>("OAMSModel.FK_SiteMonitoring_ContractDetail", "ContractDetail").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<ContractDetail> ContractDetailReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ContractDetail>("OAMSModel.FK_SiteMonitoring_ContractDetail", "ContractDetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ContractDetail>("OAMSModel.FK_SiteMonitoring_ContractDetail", "ContractDetail", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_SiteMonitoringPhoto_SiteMonitoring", "SiteMonitoringPhoto")]
+        public EntityCollection<SiteMonitoringPhoto> SiteMonitoringPhotoes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SiteMonitoringPhoto>("OAMSModel.FK_SiteMonitoringPhoto_SiteMonitoring", "SiteMonitoringPhoto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SiteMonitoringPhoto>("OAMSModel.FK_SiteMonitoringPhoto_SiteMonitoring", "SiteMonitoringPhoto", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="OAMSModel", Name="SiteMonitoringPhoto")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SiteMonitoringPhoto : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SiteMonitoringPhoto object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static SiteMonitoringPhoto CreateSiteMonitoringPhoto(global::System.Int32 id)
+        {
+            SiteMonitoringPhoto siteMonitoringPhoto = new SiteMonitoringPhoto();
+            siteMonitoringPhoto.ID = id;
+            return siteMonitoringPhoto;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SiteMonitoringID
+        {
+            get
+            {
+                return _SiteMonitoringID;
+            }
+            set
+            {
+                OnSiteMonitoringIDChanging(value);
+                ReportPropertyChanging("SiteMonitoringID");
+                _SiteMonitoringID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SiteMonitoringID");
+                OnSiteMonitoringIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SiteMonitoringID;
+        partial void OnSiteMonitoringIDChanging(Nullable<global::System.Int32> value);
+        partial void OnSiteMonitoringIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Url
+        {
+            get
+            {
+                return _Url;
+            }
+            set
+            {
+                OnUrlChanging(value);
+                ReportPropertyChanging("Url");
+                _Url = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Url");
+                OnUrlChanged();
+            }
+        }
+        private global::System.String _Url;
+        partial void OnUrlChanging(global::System.String value);
+        partial void OnUrlChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AtomUrl
+        {
+            get
+            {
+                return _AtomUrl;
+            }
+            set
+            {
+                OnAtomUrlChanging(value);
+                ReportPropertyChanging("AtomUrl");
+                _AtomUrl = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AtomUrl");
+                OnAtomUrlChanged();
+            }
+        }
+        private global::System.String _AtomUrl;
+        partial void OnAtomUrlChanging(global::System.String value);
+        partial void OnAtomUrlChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_SiteMonitoringPhoto_SiteMonitoring", "SiteMonitoring")]
+        public SiteMonitoring SiteMonitoring
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SiteMonitoring>("OAMSModel.FK_SiteMonitoringPhoto_SiteMonitoring", "SiteMonitoring").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SiteMonitoring>("OAMSModel.FK_SiteMonitoringPhoto_SiteMonitoring", "SiteMonitoring").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SiteMonitoring> SiteMonitoringReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SiteMonitoring>("OAMSModel.FK_SiteMonitoringPhoto_SiteMonitoring", "SiteMonitoring");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SiteMonitoring>("OAMSModel.FK_SiteMonitoringPhoto_SiteMonitoring", "SiteMonitoring", value);
                 }
             }
         }
