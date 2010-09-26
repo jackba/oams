@@ -5,38 +5,45 @@ using System.Web;
 
 namespace OAMS.Models
 {
-    public class ContractRepository
+    public class ContractRepository : BaseRepository<ContractRepository>
     {
-        private OAMSEntities db = new OAMSEntities();
-
         public IQueryable<Contract> GetAll()
         {
-            return db.Contracts;
+            return DB.Contracts;
         }
 
         public Contract Get(int ID)
         {
-            return db.Contracts.Where(r => r.ID == ID).SingleOrDefault();
+            return DB.Contracts.Where(r => r.ID == ID).SingleOrDefault();
         }
 
         public Contract Add(Contract e)
         {
-            db.Contracts.AddObject(e);
+            DB.Contracts.AddObject(e);
 
             return e;
         }
 
         public void Delete(Contract e)
         {
-            db.Contracts.DeleteObject(e);
+            DB.Contracts.DeleteObject(e);
         }
 
+        public void AddSite(int contractID, int siteID)
+        {
+            ContractDetail e = new ContractDetail();
+            e.ContractID = contractID;
+            e.SiteID = siteID;
 
+            DB.ContractDetails.AddObject(e);
+
+            Save();
+        }
 
         // Persistence 
         public void Save()
         {
-            db.SaveChanges();
+            DB.SaveChanges();
         }
     }
 }

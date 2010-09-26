@@ -58,5 +58,16 @@ namespace OAMS.Controllers
             return Json(result);
         }
 
+        [HttpPost]
+        public JsonResult ListClient(string searchText, int maxResults)
+        {
+            OAMSEntities db = new OAMSEntities();
+            var result = db.Clients.Where(r => r.Name.Contains(searchText))
+                .Take(maxResults)
+                .Select(r => new { r.ID, r.Name })
+                .ToList();
+            return Json(result);
+        }
+
     }
 }

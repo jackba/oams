@@ -39,7 +39,7 @@ namespace OAMS.Models
 
             if (string.IsNullOrEmpty(e.BackupAlbumUrl))
             {
-                e.BackupAlbumUrl = CreateAlbum(e.ID, true); ;
+                e.BackupAlbumUrl = CreateAlbum(e.ID.ToString(), true); ;
             }
 
             Uri postUri = new Uri(e.BackupAlbumUrl.Replace("entry", "feed"));
@@ -67,7 +67,7 @@ namespace OAMS.Models
 
             if (string.IsNullOrEmpty(e.AlbumUrl))
             {
-                e.AlbumUrl = CreateAlbum(e.ID);
+                e.AlbumUrl = CreateAlbum(e.ID.ToString());
             }
 
             Uri postUri = new Uri(e.AlbumUrl.Replace("entry", "feed"));
@@ -107,13 +107,13 @@ namespace OAMS.Models
         }
 
 
-        public string CreateAlbum(int siteKey, bool isBackup = false)
+        public string CreateAlbum(string name, bool isBackup = false)
         {
             PicasaService service = InitPicasaService();
 
             AlbumEntry newEntry = new AlbumEntry();
 
-            newEntry.Title.Text = siteKey.ToString() + (isBackup ? "B" : "");
+            newEntry.Title.Text = name + (isBackup ? "B" : "");
             newEntry.Summary.Text = newEntry.Title.Text;
 
             Uri feedUri = new Uri(PicasaQuery.CreatePicasaUri(OAMSSetting.GoogleUsername));
@@ -315,6 +315,103 @@ namespace OAMS.Models
 
 
 
+        }
+
+        public void UploadPhoto(SiteMonitoring e, IEnumerable<HttpPostedFileBase> files)
+        {
+
+            if (files == null
+                || files.Count() == 0
+                || files.Where(r => r != null).Count() == 0)
+            {
+                return;
+            }
+
+            PicasaService service = InitPicasaService();
+
+
+            if (string.IsNullOrEmpty(e.AlbumUrl))
+            {
+                e.AlbumUrl = CreateAlbum("M" + e.ID.ToString());
+            }
+
+            Uri postUri = new Uri(e.AlbumUrl.Replace("entry", "feed"));
+
+            foreach (var item in files)
+            {
+                if (item != null)
+                {
+                    MemoryStream mStream = new MemoryStream();
+
+                    item.InputStream.Position = 0;
+                    item.InputStream.CopyTo(mStream);
+                    mStream.Position = 0;
+
+                    //PicasaEntry entry = (PicasaEntry)service.Insert(postUri, mStream, "image/jpeg", "");
+                    //PicasaEntry entry = (PicasaEntry)service.Insert(postUri, item.InputStream, "image/jpeg", "");
+                    //photoUriList.Add(entry.Media.Content.Url);
+
+
+                    PicasaEntry entry = new PhotoEntry();
+                    entry.MediaSource = new Google.GData.Client.MediaFileSource(mStream, Path.GetFileName(item.FileName), "image/jpeg");
+
+                    //service.InsertAsync(postUri, entry, new { SiteID = e.ID, AM = asyncManager });
+                    PicasaEntry createdEntry = service.Insert(postUri, entry);
+
+                    if (createdEntry != null)
+                    {
+                        SiteMonitoringPhoto photo = new SiteMonitoringPhoto();
+
+                        photo.Url = createdEntry.Media.Content.Url;
+                        photo.AtomUrl = createdEntry.EditUri.Content;
+
+                        e.SiteMonitoringPhotoes.Add(photo);
+                    }
+                }
+            }
+        }
+
+        public void DeletePhoto(SiteMonitoringPhoto item)
+        {
+            PicasaService service = InitPicasaService();
+            PicasaEntry a = (PicasaEntry)service.Get(item.AtomUrl);
+
+            byte[] b;
+            HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create(item.Url);
+            WebResponse myResp = myReq.GetResponse();
+            Stream stream = myResp.GetResponseStream();
+
+            using (BinaryReader br = new BinaryReader(stream))
+            {
+                b = br.ReadBytes(500000);
+                br.Close();
+            }
+            myResp.Close();
+
+            MemoryStream mem = new MemoryStream(b);
+
+            UploadPhotoToBackupAlbum(item.SiteMonitoring, mem);
+
+            a.Delete();
+        }
+
+        public void UploadPhotoToBackupAlbum(SiteMonitoring e, Stream stream)
+        {
+            PicasaService service = InitPicasaService();
+
+            if (string.IsNullOrEmpty(e.BackupAlbumUrl))
+            {
+                e.BackupAlbumUrl = CreateAlbum("M" + e.ID.ToString(), true); 
+            }
+
+            Uri postUri = new Uri(e.BackupAlbumUrl.Replace("entry", "feed"));
+
+            stream.Position = 0;
+
+            PicasaEntry entry = new PhotoEntry();
+            entry.MediaSource = new Google.GData.Client.MediaFileSource(stream, "backup", "image/jpeg");
+
+            PicasaEntry createdEntry = service.Insert(postUri, entry);
         }
     }
 }

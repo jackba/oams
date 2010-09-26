@@ -90,7 +90,7 @@
                 <br />
                 <%: Html.CodeMasterDropDownListFor(r => r.Format, false)%>
                 <br />
-                Traffic
+                <%: Html.LabelFor(r => r.RoadType1) %>
                 <br />
                 <%: Html.CodeMasterDropDownListFor(r => r.RoadType2, false)%>
                 <br />
@@ -189,7 +189,8 @@
                     });
                 </script>
                 <div id="divMoreContractor">
-                    <br />Contractor<br />
+                    <br />
+                    Contractor<br />
                 </div>
                 <%--<input type="button" value="More..." onclick="addMoreContractor()" />--%>
                 <a id="addContractor" href="javascript:addMoreContractor();">More contractor</a>
@@ -283,7 +284,7 @@
     <script type="text/javascript">
         //showGeo2('Hồ Chí Minh City', false, 'dis. 1, Hồ Chí Minh City');
 
-        
+
         $('#Geo1FullName').val('Hồ Chí Minh City');
         showGeo2('Hồ Chí Minh City');
         //$('#Geo2List1').setAttribute('checked', 'checked');
@@ -490,10 +491,13 @@
             $("#" + btnMoreID).hide();
         }
 
+        function getURLParameter(name) {
+            return unescape((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]);
+        }
 
         function addResults(json) {
 
-
+            var contractID = getURLParameter('ContractID');
             //HideUncheck(document.forms[0].StyleList);
 
             HideUncheck(document.forms[0].Geo2List, 'Geo2ListMore');
@@ -667,23 +671,35 @@
                     rSel.appendChild(cStyle9);
 
                     //Edit
-                    var cEdit = document.createElement('td');
-                    cEdit.innerHTML = '<%: Html.ActionLink("Edit", "Edit", "Site", new {id=-1},null) %>';
-                    cEdit.innerHTML = cEdit.innerHTML.replace('-1', site.ID);
-                    rSel.appendChild(cEdit);
+                    //                    var cEdit = document.createElement('td');
+                    //                    cEdit.innerHTML = '<%: Html.ActionLink("Edit", "Edit", "Site", new {id=-1},null) %>';
+                    //                    cEdit.innerHTML = cEdit.innerHTML.replace('-1', site.ID);
+                    //                    rSel.appendChild(cEdit);
 
                     //Add2Campaign
-                    //var cAdd2Cam = document.createElement('td');
-                    //rSel.appendChild(cAdd2Cam);
+                    var cStyle10 = document.createElement('td');
+                    rSel.appendChild(cStyle10);
 
-                    //var aAdd2Cam = document.createElement('a');
-                    //aAdd2Cam.href = 'javascript:void(0);';
-                    //aAdd2Cam.innerHTML = 'Add to Campaign';
+                    var aAdd2Cam = document.createElement('a');
+                    //var contractID = 1;
+                    var siteID = site.ID;
+                    //aAdd2Cam.href = 'javascript:Add2Contract(aAdd2Cam,contractID,siteID);';
+                    aAdd2Cam.href = 'javascript:void(0);';
+
+                    if (site.Added) {
+                        aAdd2Cam.innerHTML = 'Added';
+                        //aAdd2Cam.onclick = Add2Campaign(aAdd2Cam, $("#CampaignID").val(), site.ContractDetailID);
+                        aAdd2Cam.onclick = null;
+                    }
+                    else {
+                        aAdd2Cam.innerHTML = 'Add to Contract';
+                        //aAdd2Cam.onclick = Add2Campaign(aAdd2Cam, $("#CampaignID").val(), site.ContractDetailID);
+                        aAdd2Cam.onclick = Add2Contract(aAdd2Cam, contractID, siteID);
+                    }
+
+                    cStyle10.appendChild(aAdd2Cam);
 
 
-                    //cAdd2Cam.appendChild(aAdd2Cam);
-
-                    //aAdd2Cam.onclick = Add2Campaign(aAdd2Cam, $("#CampaignID").val(), site.ContractDetailID);
 
 
 
@@ -731,6 +747,45 @@
 
             //$(results).html(html.join(''));
             //$('#results-wrapper').show();
+        }
+
+        function Add2Contract(link, contractID, siteID) {
+
+            var url = '<%= Url.Content("~/Contract/AddSite?ContractID=") %>' + contractID + '&SiteID=' + siteID;
+
+            return function () {
+                $.ajax({
+                    url: url, type: "POST", dataType: "json",
+                    success: function (data) {
+
+                        //aAdd2Cam.setAttribute('visible', 'invisible');
+
+                        link.innerHTML = 'Added';
+                        link.href = "javascript:void(0);";
+                        link.onclick = null;
+                        //link.setAttribute('visible', 'invisible');
+
+                        //link.visible = false;
+
+                        //                        if (data == 0) {
+                        //                            alert('Added.');
+                        //                        }
+                        //                        else { 
+
+                        //                        }
+
+                        //clearMarkers();
+
+                        //addResults(data);
+
+                        //                    $.map(data, function (item) {
+                        //                        var latlng = new google.maps.LatLng(item.Latitude, item.Longitude);
+                        //                        var marker = new google.maps.Marker({ position: latlng, map: map, title: item.Code });
+                        //                        bindInfoWindow(marker, map, infoWindow, item.Note);
+                        //                    })
+                    }
+                });
+            };
         }
 
         function bindInfoWindowToA(marker, map, infoWindow, html, link) {
@@ -868,43 +923,7 @@
             });
         }
 
-        function Add2Campaign(link, campaignID, contractDetailID) {
 
-            var url = '<%= Url.Content("~/Campaign/AddSiteDetail?CampaignID=") %>' + campaignID + '&ContractDetailID=' + contractDetailID;
-
-            return function () {
-                $.ajax({
-                    url: url, type: "POST", dataType: "json",
-                    success: function (data) {
-
-                        //aAdd2Cam.setAttribute('visible', 'invisible');
-
-                        link.innerHTML = 'Added';
-                        link.onclick = null;
-                        link.setAttribute('visible', 'invisible');
-
-                        //link.visible = false;
-
-                        //                        if (data == 0) {
-                        //                            alert('Added.');
-                        //                        }
-                        //                        else { 
-
-                        //                        }
-
-                        //clearMarkers();
-
-                        //addResults(data);
-
-                        //                    $.map(data, function (item) {
-                        //                        var latlng = new google.maps.LatLng(item.Latitude, item.Longitude);
-                        //                        var marker = new google.maps.Marker({ position: latlng, map: map, title: item.Code });
-                        //                        bindInfoWindow(marker, map, infoWindow, item.Note);
-                        //                    })
-                    }
-                });
-            };
-        }
 
         function search(e) {
             if (oTable != null) {
@@ -913,8 +932,10 @@
             }
             var tdata = $("form").serialize();
 
+            var contractID = getURLParameter("ContractID");
+
             $.ajax({
-                url: '<%= Url.Content("~/FindSite/FindJson") %>', type: "POST", dataType: "json",
+                url: '<%= Url.Content("~/FindSite/FindJson4Contract?ContractID=") %>' + contractID, type: "POST", dataType: "json",
                 data: tdata,
                 success: function (data) {
 

@@ -11,56 +11,53 @@
     <%: Html.ValidationSummary(true) %>
     <fieldset>
         <legend>Fields</legend>
+        <%: Html.HiddenFor(model => model.ID) %>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Contract.Number) %>
+            <%: Html.LabelFor(model => model.ContractID) %>
         </div>
         <div class="editor-field">
-            <%: Html.DisplayFor(model => model.Contract.Number) %>
-        </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.SiteID) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.DisplayFor(model => model.SiteID) %>
+            <%: Html.DisplayFor(model => model.ContractID) %>
+            <%: Html.ValidationMessageFor(model => model.ContractID) %>
         </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.Price) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.Price) %>
+            <%: Html.TextBoxFor(model => model.Price, String.Format("{0:c}", Model.Price)) %>
             <%: Html.ValidationMessageFor(model => model.Price) %>
         </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.ProductionPrice) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.ProductionPrice) %>
+            <%: Html.TextBoxFor(model => model.ProductionPrice, String.Format("{0:c}", Model.ProductionPrice)) %>
             <%: Html.ValidationMessageFor(model => model.ProductionPrice) %>
-        </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.PaymentTerm) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.PaymentTerm) %>
-            <%: Html.ValidationMessageFor(model => model.PaymentTerm) %>
         </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.EffectiveDate) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.EffectiveDate)%>
+            <%: Html.EditorFor(model => model.EffectiveDate) %>
             <%: Html.ValidationMessageFor(model => model.EffectiveDate) %>
         </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.TermDate) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.TermDate)%>
+            <%: Html.EditorFor(model => model.TermDate) %>
             <%: Html.ValidationMessageFor(model => model.TermDate) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.SiteID) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.DisplayFor(model => model.SiteID)%>
+            <%: Html.ValidationMessageFor(model => model.SiteID) %>
         </div>
         <p>
             <input type="submit" value="Save" />
         </p>
     </fieldset>
     <% } %>
+   
 </asp:Content>
