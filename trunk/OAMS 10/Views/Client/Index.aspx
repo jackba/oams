@@ -9,20 +9,24 @@
     <p>
         <%: Html.ActionLink("Create New", "Create") %>
     </p>
-    <table>
-        <tr>
-            <th>
-            </th>
-            <th>
-                ID
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                Note
-            </th>
-        </tr>
+    <div>
+    <table id="tblResult" class="display">
+        <thead>
+            <tr>
+                <th>
+                </th>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Note
+                </th>
+            </tr>
+        </thead>
+        <tbody>
         <% foreach (var item in Model)
            { %>
         <tr>
@@ -42,8 +46,28 @@
             </td>
         </tr>
         <% } %>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+            </tr>
+        </tfoot>
     </table>
+    </div>
+    <br />
     <p>
         <%: Html.ActionLink("Create New", "Create") %>
     </p>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var oTable = $('#tblResult').dataTable({ "aaSorting": [[1, "desc"]] });
+        });
+    </script>
 </asp:Content>
