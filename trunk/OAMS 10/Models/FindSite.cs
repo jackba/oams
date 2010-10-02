@@ -36,6 +36,7 @@ namespace OAMS.Models
         public DateTime? To { get; set; }
 
         public List<int> ContractorList { get; set; }
+        public List<string> ClientList { get; set; }
     }
 }
 
