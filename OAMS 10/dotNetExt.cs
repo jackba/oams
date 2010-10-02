@@ -463,5 +463,15 @@ namespace OAMS
 
             return htmlHelper.DropDownListFor(expression, geoRepository.GetByParentID().ToSelectListItem(), OAMSSetting.messageL.SelectNone);
         }
+
+        public static string ToLowerArray(this List<string> lst)
+        {
+            string s="";
+            for (int i = 0; i < lst.Count; i++)
+            {
+                s+= lst[i].ToLower()+";";
+            }
+            return s;
+        }
     }
 }

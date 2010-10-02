@@ -35,12 +35,12 @@
                     foreach (var category in (new OAMS.Models.CodeMasterRepository()).Get((new OAMS.Models.CodeMasterType()).Type))
                     {
                 %>
+                <div>
                 <input type="checkbox" name="StyleList" value="<%= category.Code %>" checked="checked"
-                    id='StyleItem + <%= category.ID %>' />
-                <label for='StyleItem + <%= category.ID %>'>
+                    id='StyleItem<%= category.ID %>' />
+                <label for='StyleItem<%= category.ID %>'>
                     <%: category.Note %>
                 </label>
-                &nbsp;
                 <% 
                     string profileImageUrl = "";
                     if (category.Code == "WMB")
@@ -80,12 +80,13 @@
                         profileImageUrl = Url.Content("~/Content/Image/other.png");
                     }
                 %>
-                <img alt="" border="0" src="<%= profileImageUrl %>" width="20" />
-                <br />
+                <img alt="" border="0" src="<%= profileImageUrl %>" width="20" id="ImgStyleItem<%= category.ID%>"/></div>
                 <%
                     }
                 %>
-                <br />
+                <a id="StyleListMore" href="javascript:ShowAllStyle(document.forms[0].StyleList,'StyleListMore');"
+                    style="display: none;">More...</a>
+                <br /><br />
                 <%: Html.LabelFor(r => r.Format) %>
                 <br />
                 <%: Html.CodeMasterDropDownListFor(r => r.Format, false)%>
@@ -120,6 +121,7 @@
                         input.setAttribute('type', 'text');
                         input.setAttribute('id', 'ContractorName' + count);
                         input.setAttribute('class', 'text-box single-line');
+                        input.setAttribute('onblur', "javascript:if($('#ContractorName" + count + "').val() == '') $('#ContractorID" + count + "').val(0);");
                         divAddMore.append(input);
 
                         var inputCollapse = document.createElement('input');
@@ -129,19 +131,11 @@
                         inputCollapse.setAttribute('id', 'ContractorID' + count);
                         divAddMore.append(inputCollapse);
 
-                        var lnkClear = document.createElement('a');
-                        lnkClear.setAttribute('id', 'LnkClear' + count);
-                        lnkClear.setAttribute('href', "javascript:$('#ContractorName" + count + "').val('');$('#ContractorID" + count + "').val(0);");
-                        lnkClear.innerText = 'C';
-                        lnkClear.setAttribute('style', 'color:red;font-weight:bold;text-decoration:none;');
-                        lnkClear.setAttribute('title', 'Clear current contractor to set new contractor');
-                        divAddMore.append(" ").append(lnkClear);
-
                         var lnkDelete = document.createElement('a');
                         lnkDelete.setAttribute('id', 'LnkDelete' + count);
-                        lnkDelete.setAttribute('href', "javascript:$('#ContractorName" + count + "').remove();$('#ContractorID" + count + "').remove();$('#LnkClear" + count + "').remove();$('#LnkDelete" + count + "').remove();");
-                        lnkDelete.innerText = 'X';
-                        lnkDelete.setAttribute('style', 'color:red;font-weight:bold;text-decoration:none;');
+                        lnkDelete.setAttribute('onclick', "$('#ContractorName" + count + "').remove();$('#ContractorID" + count + "').remove();$('#LnkDelete" + count + "').remove();");
+                        lnkDelete.innerHTML = 'X';
+                        lnkDelete.setAttribute('style', 'text-decoration:underline;cursor:pointer;');
                         lnkDelete.setAttribute('title', 'Remove this contractor out of search criteria');
                         divAddMore.append(" ").append(lnkDelete);
 
@@ -170,29 +164,61 @@
                 </script>
                 <br />
                 <%--Contractor--%>
-                <script type="text/javascript" language="javascript">
-                    $(function () {
-                        $("#ContractorName1").autocomplete({
-                            select: function (event, ui) { $("#ContractorID1").val(ui.item.id); },
-                            source: function (request, response) {
-                                $.ajax({
-                                    url: '/Listing/ListContractor', type: "POST", dataType: "json",
-                                    data: { searchText: request.term, maxResults: 10, type: "ContractorName" },
-                                    success: function (data) {
-                                        response($.map(data, function (item) {
-                                            return { label: item.Name, value: item.Name, id: item.ID }
-                                        }))
-                                    }
-                                })
-                            }
-                        });
-                    });
-                </script>
+                
                 <div id="divMoreContractor">
                     <br />Contractor<br />
                 </div>
                 <%--<input type="button" value="More..." onclick="addMoreContractor()" />--%>
                 <a id="addContractor" href="javascript:addMoreContractor();">More contractor</a>
+                <br />
+                <script type="text/javascript" language="javascript">
+                    var clientcount = 1;
+                    function addMoreClient() {
+                        var divAddMore = $('#divMoreClient');
+                        var input = document.createElement('input');
+                        input.setAttribute('type', 'text');
+                        input.setAttribute('id', 'ClientName' + clientcount);
+                        input.setAttribute('name', 'ClientList');
+                        input.setAttribute('class', 'text-box single-line');
+                        divAddMore.append(input);
+
+                        var lnkDelete = document.createElement('a');
+                        lnkDelete.setAttribute('id', 'LnkDeleteClient' + clientcount);
+                        lnkDelete.setAttribute('onclick', "$('#ClientName" + clientcount + "').remove();$('#LnkDeleteClient" + clientcount + "').remove();");
+                        lnkDelete.innerHTML = 'X';
+                        lnkDelete.setAttribute('style', 'text-decoration:underline;cursor:pointer;');
+                        lnkDelete.setAttribute('title', 'Remove this Client out of search criteria');
+                        divAddMore.append(" ").append(lnkDelete);
+
+                        $(function () {
+                            $("#ClientName" + clientcount).autocomplete({
+                                select: function (event, ui) {
+                                },
+                                source: function (request, response) {
+                                    $.ajax({
+                                        url: '/Listing/ListClient', type: "POST", dataType: "json",
+                                        data: { searchText: request.term, maxResults: 10, type: "ClientName" },
+                                        success: function (data) {
+                                            response($.map(data, function (item) {
+                                                return { label: item.Name, value: item.Name, id: item.ID }
+                                            }))
+                                        }
+                                    })
+                                }
+                            });
+                        });
+                        $("#ClientName" + clientcount).focus();
+                        clientcount = clientcount + 1;
+                    }
+                </script>
+                <br />
+                <%--Client--%>
+                
+                <div id="divMoreClient">
+                    <br />Client<br />
+                </div>
+                <%--<input type="button" value="More..." onclick="addMoreClient()" />--%>
+                <a id="addClient" href="javascript:addMoreClient();">More Client</a>
             </td>
             <td valign="top">
                 <input type="button" onclick="search(this)" value="Find" />
@@ -342,115 +368,28 @@
                 url: '<%= Url.Content("~/Listing/ListGeo2") %>', type: "POST", dataType: "json",
                 data: { parentFullName: str },
                 success: function (data) {
-
-                    //                    var lnkChkAll = document.createElement('a');
-                    //                    lnkChkAll.id = 'lnkCheckAllDistrict';
-                    //                    lnkChkAll.setAttribute('style', 'cursor:pointer;');
-                    //                    lnkChkAll.innerText = 'Check All';
-                    //                    lnkChkAll.onclick = function () {
-                    //                        var lst = document.forms[0].Geo2List;
-                    //                        for (i = 0; i < lst.length; i++) {
-                    //                            lst[i].checked = true;
-                    //                        }
-                    //                    };
-
-                    //                    var lnkUnChkAll = document.createElement('a');
-                    //                    lnkUnChkAll.id = 'lnkUnCheckAllDistrict';
-                    //                    lnkUnChkAll.setAttribute('style', 'cursor:pointer;');
-                    //                    lnkUnChkAll.innerText = 'Uncheck All';
-                    //                    lnkUnChkAll.onclick = function () {
-                    //                        var lst = document.forms[0].Geo2List;
-                    //                        for (i = 0; i < lst.length; i++) {
-                    //                            lst[i].checked = false;
-                    //                        }
-                    //                    };
-
-                    //                    div1.append(lnkChkAll);
-                    //                    div1.append('&nbsp;/&nbsp;');
-                    //                    div1.append(lnkUnChkAll);
-
-                    //                    var chkAll = document.createElement('input');
-                    //                    chkAll.type = 'checkbox';
-                    //                    chkAll.name = 'Geo2List';
-                    //                    chkAll.value = 'All';
-                    //                    chkAll.setAttribute('style', 'display:none;');
-                    //                    chkAll.setAttribute('checked', 'checked');
-                    //                    div1.append(chkAll);
                     div1.append('<br />');
                     var index = 0;
                     $.map(data, function (item) {
 
                         index++;
                         var divInner = document.createElement('div');
-
-
-
                         var chk = document.createElement('input');
                         chk.type = 'checkbox';
                         chk.name = 'Geo2List';
                         chk.value = item.FullName;
                         chk.id = 'Geo2List' + index;
-
-
-
-                        //                        if (checkAll) {
-                        //                            chk.setAttribute('checked', 'checked');
-                        //                        }
-                        //                        else if (checkName != '') {
-                        //                            if (item.FullName == checkName) {
-                        //                                chk.setAttribute('checked', 'checked');
-                        //                            }
-                        //                        }
-
-
-                        //                        chk.onclick = function () {
-                        //                            var lst = document.forms[0].Geo2List;
-                        //                            if (!this.checked) {
-                        //                                lst[0].checked = false;
-                        //                            }
-                        //                        };
-
-
-                        //div1.append(chk);
                         divInner.appendChild(chk);
-
                         var lbl = document.createElement('label');
-
                         lbl.innerHTML = item.FullName;
                         lbl.setAttribute('for', 'Geo2List' + index)
-                        //lbl.style.display = 'block';
-
-
-                        //div1.append(lbl);
                         divInner.appendChild(lbl);
-                        //div1.style.display = 'block';
-                        //div1.append('<br />');
-
                         div1.append(divInner);
-
-                        //div1.append(item.FullName);
-
-                        //                        var sp = document.createElement('a');
-                        //                        sp.innerText = item.FullName;
-                        //                        sp.id = chk.id + '_sp';
-                        //                        sp.name = 'Geo2List_sp';
-                        //                        div1.append(sp);
-                        //                        div1.append('<br />');
-
-                        //return { label: item.FullName, value: item.FullName, id: item.ID }
                     });
                 }
 
             })
-
-
-
-
-
-
-            //alert(v);
         }
-
 
         function HideUncheck(lst, btnHideID) {
 
@@ -490,6 +429,45 @@
             $("#" + btnMoreID).hide();
         }
 
+        function HideUncheckStyle(lst, btnHideID) {
+
+            var count = 0;
+
+            for (i = 0; i < lst.length; i++) {
+
+                if (lst[i].checked) {
+
+                }
+                else {
+                    count++;
+
+                    lst[i].style.visibility = 'collapse';
+                    lst[i].style.display = 'none';
+                    $('label[for=' + lst[i].id + ']').css({ display: "none", visibility: "collapse" });
+                    $('#Img' + lst[i].id).css({ display: "none", visibility: "collapse" });
+                }
+            }
+
+            if (count == 0) {
+                $("#" + btnHideID).hide();
+            }
+            else {
+
+                $("#" + btnHideID).show();
+            }
+        }
+
+        function ShowAllStyle(lst, btnMoreID) {
+            for (i = 0; i < lst.length; i++) {
+
+                lst[i].style.visibility = 'visible';
+                lst[i].style.display = '';
+                $('label[for=' + lst[i].id + ']').css({ display: "", visibility: "visible" });
+                $('#Img' + lst[i].id).css({ display: "", visibility: "visible" });
+            }
+
+            $("#" + btnMoreID).hide();
+        }
 
         function addResults(json) {
 
@@ -497,7 +475,7 @@
             //HideUncheck(document.forms[0].StyleList);
 
             HideUncheck(document.forms[0].Geo2List, 'Geo2ListMore');
-
+            HideUncheckStyle(document.forms[0].StyleList, 'StyleListMore');
             //  Create a new viewpoint bound
             var bounds = new google.maps.LatLngBounds();
 
