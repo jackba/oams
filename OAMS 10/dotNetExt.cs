@@ -18,6 +18,7 @@ using System.Linq.Expressions;
 using System.Web.Mvc;
 using OAMS.Models;
 using System.Web.Mvc.Html;
+using System.Security.Principal;
 
 
 namespace OAMS
@@ -446,7 +447,7 @@ namespace OAMS
         public static MvcHtmlString CodeMasterDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
         {
             CodeMasterRepository repo = new CodeMasterRepository();
-            
+
             return htmlHelper.DropDownListFor(expression, repo.Get(expression.Body).ToSelectListItem(), OAMSSetting.messageL.SelectNone);
         }
 
@@ -454,7 +455,7 @@ namespace OAMS
         {
             CodeMasterRepository repo = new CodeMasterRepository();
 
-            return htmlHelper.DropDownListFor(expression, repo.Get(expression.Body).ToSelectListItem(), isSelectNone?OAMSSetting.messageL.SelectNone:OAMSSetting.messageL.SelectAll);
+            return htmlHelper.DropDownListFor(expression, repo.Get(expression.Body).ToSelectListItem(), isSelectNone ? OAMSSetting.messageL.SelectNone : OAMSSetting.messageL.SelectAll);
         }
 
         public static MvcHtmlString DropDownListForGeo1<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
@@ -464,14 +465,37 @@ namespace OAMS
             return htmlHelper.DropDownListFor(expression, geoRepository.GetByParentID().ToSelectListItem(), OAMSSetting.messageL.SelectNone);
         }
 
+        public static MvcHtmlString ActionLinkWithRoles(this HtmlHelper html, string linkText, string actionName, string controllerName, params string[] roles)
+        {
+            if (HttpContext.Current.User.HasAnyRole(roles))
+                return html.ActionLink(linkText, actionName, controllerName);
+
+            return null;
+        }
+
         public static string ToLowerArray(this List<string> lst)
         {
-            string s="";
+            string s = "";
             for (int i = 0; i < lst.Count; i++)
             {
-                s+= lst[i].ToLower()+";";
+                s += lst[i].ToLower() + ";";
             }
             return s;
+        }
+    }
+
+    public static class IPrincipalExtend
+    {
+        public static bool HasAnyRole(this IPrincipal user, params string[] roles)
+        {
+            if (!roles.Contains(ProjectRoles.Admin))
+            {
+                List<string> rL = roles.ToList();
+                rL.Add(ProjectRoles.Admin);
+                roles = rL.ToArray();
+            }
+
+            return roles.Any(user.IsInRole);
         }
     }
 }

@@ -2293,6 +2293,30 @@ namespace OAMS.Models
         private Nullable<global::System.Int32> _SiteID;
         partial void OnSiteIDChanging(Nullable<global::System.Int32> value);
         partial void OnSiteIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PaymentTerm
+        {
+            get
+            {
+                return _PaymentTerm;
+            }
+            set
+            {
+                OnPaymentTermChanging(value);
+                ReportPropertyChanging("PaymentTerm");
+                _PaymentTerm = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PaymentTerm");
+                OnPaymentTermChanged();
+            }
+        }
+        private global::System.String _PaymentTerm;
+        partial void OnPaymentTermChanging(global::System.String value);
+        partial void OnPaymentTermChanged();
 
         #endregion
     

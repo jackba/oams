@@ -14,8 +14,8 @@
             <td style="width: 230px;" valign="top" id="SearchPane">
                 Geo1:
                 <br />
-                <%--<%: Html.DropDownListForGeo1(r => r.GeoID1) %>--%>
                 <%: Html.EditorFor(model => model.Geo1FullName, "AutoCompleteGeo", new { level = 1 }) %>
+                <br />
                 <br />
                 Geo2: <a id="A1" href="javascript:checkAll(document.forms[0].Geo2List, true);ShowAll(document.forms[0].Geo2List,'Geo2ListMore');">
                     All</a>&nbsp;/&nbsp;<a id="A2" href="javascript:checkAll(document.forms[0].Geo2List, false);">Clear</a>
@@ -23,11 +23,9 @@
                 </div>
                 <a id="Geo2ListMore" href="javascript:ShowAll(document.forms[0].Geo2List,'Geo2ListMore');"
                     style="display: none;">More...</a>
-                <br />
-                <br />
+                <br /><br />
                 Style List: <a id="lnkCheckAllStyle" href="javascript:checkAll(document.forms[0].StyleList, true);">
                     All</a>&nbsp;/&nbsp;<a id="lnkUnCheckAllStyle" href="javascript:checkAll(document.forms[0].StyleList, false);">Clear</a>
-                <br />
                 <%--  <input type="checkbox" name="StyleList" value="All" onclick="checkAll(document.forms[0].StyleList)"
                     style="display: none;" checked="checked" />--%>
                 <br />
@@ -86,7 +84,8 @@
                 %>
                 <a id="StyleListMore" href="javascript:ShowAllStyle(document.forms[0].StyleList,'StyleListMore');"
                     style="display: none;">More...</a>
-                <br /><br />
+                <br />
+                <br />
                 <%: Html.LabelFor(r => r.Format) %>
                 <br />
                 <%: Html.CodeMasterDropDownListFor(r => r.Format, false)%>
@@ -147,7 +146,7 @@
                                 },
                                 source: function (request, response) {
                                     $.ajax({
-                                        url: '/Listing/ListContractor', type: "POST", dataType: "json",
+                                        url: '../Listing/ListContractor', type: "POST", dataType: "json",
                                         data: { searchText: request.term, maxResults: 10, type: "ContractorName" },
                                         success: function (data) {
                                             response($.map(data, function (item) {
@@ -169,7 +168,7 @@
                     <br />Contractor<br />
                 </div>
                 <%--<input type="button" value="More..." onclick="addMoreContractor()" />--%>
-                <a id="addContractor" href="javascript:addMoreContractor();">More contractor</a>
+                <a id="addContractor" href="javascript:addMoreContractor();">More...</a>
                 <br />
                 <script type="text/javascript" language="javascript">
                     var clientcount = 1;
@@ -196,7 +195,7 @@
                                 },
                                 source: function (request, response) {
                                     $.ajax({
-                                        url: '/Listing/ListClient', type: "POST", dataType: "json",
+                                        url: '../Listing/ListClient', type: "POST", dataType: "json",
                                         data: { searchText: request.term, maxResults: 10, type: "ClientName" },
                                         success: function (data) {
                                             response($.map(data, function (item) {
@@ -218,7 +217,7 @@
                     <br />Client<br />
                 </div>
                 <%--<input type="button" value="More..." onclick="addMoreClient()" />--%>
-                <a id="addClient" href="javascript:addMoreClient();">More Client</a>
+                <a id="addClient" href="javascript:addMoreClient();">More...</a>
             </td>
             <td valign="top">
                 <input type="button" onclick="search(this)" value="Find" />
@@ -368,7 +367,7 @@
                 url: '<%= Url.Content("~/Listing/ListGeo2") %>', type: "POST", dataType: "json",
                 data: { parentFullName: str },
                 success: function (data) {
-                    div1.append('<br />');
+                    
                     var index = 0;
                     $.map(data, function (item) {
 
@@ -385,6 +384,7 @@
                         lbl.setAttribute('for', 'Geo2List' + index)
                         divInner.appendChild(lbl);
                         div1.append(divInner);
+                        //div1.append('<br />');
                     });
                 }
 
