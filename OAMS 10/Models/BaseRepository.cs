@@ -28,9 +28,6 @@ namespace OAMS.Models
             return DB.SaveChanges();
         }
 
-        public string Username
-        {
-            get { return HttpContext.Current.User.Identity.Name; }
-        }
+        
     }
 }

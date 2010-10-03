@@ -61,6 +61,13 @@ namespace OAMS
             }
         }
 
+        public static string Username
+        {
+            get {
+                return HttpContext.Current.User.Identity.Name; 
+            }
+        }
+
 
     }
 
