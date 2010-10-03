@@ -126,6 +126,7 @@
     <Compile Include="Models\ContractRepository.cs" />
     <Compile Include="Models\ClientRepository.cs" />
     <Compile Include="Models\CategoryRepository.cs" />
+    <Compile Include="Models\OAMSEntitiesPartial.cs" />
     <Compile Include="Models\RoleRepository.cs" />
     <Compile Include="Models\SiteMonitoringRepository.cs" />
     <Compile Include="Models\Partial\Contractor.cs" />
@@ -279,7 +280,6 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GoogleDLL\" />
     <Folder Include="Views\Shared\ViewTemplates\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -52,6 +52,16 @@ namespace OAMS
                 return ConfigurationManager.AppSettings["GooglePassword"];
             }
         }
+
+        static public bool ByPassLogin
+        {
+            get
+            {
+                return bool.Parse(ConfigurationManager.AppSettings["ByPassLogin"]);
+            }
+        }
+
+
     }
 
     public class Message
