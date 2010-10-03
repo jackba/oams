@@ -208,7 +208,7 @@ namespace OAMS.Controllers
                 {
                     // Step 1 - Send the request to the OpenId provider server
                     string openid_identifier = "https://www.google.com/accounts/o8/id";
-                    Identifier id;
+                    //Identifier id;
 
 
                     //if (Identifier.TryParse(Request.Form["openid_identifier"], out id))
@@ -248,7 +248,7 @@ namespace OAMS.Controllers
 
                         return req.RedirectingResponse.AsActionResult();
                     }
-                    catch (ProtocolException ex)
+                    catch (ProtocolException)
                     {
                         // display error by showing original LogOn view
                         //this.ErrorDisplay.ShowError("Unable to authenticate: " + ex.Message);

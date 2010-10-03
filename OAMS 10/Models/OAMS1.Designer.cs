@@ -34,6 +34,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Contract_Contractor", "Contractor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contractor), "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Contract), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Contract", "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contract), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetail), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Contract_Client", "Client", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Client), "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Contract), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Client", "Client", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Client), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
 
 #endregion
 
@@ -1377,6 +1378,28 @@ namespace OAMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Contract>("OAMSModel.FK_Contract_Client", "Contract", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Client", "Site")]
+        public EntityCollection<Site> Sites
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Site>("OAMSModel.FK_Site_Client", "Site");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Site>("OAMSModel.FK_Site_Client", "Site", value);
                 }
             }
         }
@@ -3219,30 +3242,6 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String CurrentClient
-        {
-            get
-            {
-                return _CurrentClient;
-            }
-            set
-            {
-                OnCurrentClientChanging(value);
-                ReportPropertyChanging("CurrentClient");
-                _CurrentClient = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("CurrentClient");
-                OnCurrentClientChanged();
-            }
-        }
-        private global::System.String _CurrentClient;
-        partial void OnCurrentClientChanging(global::System.String value);
-        partial void OnCurrentClientChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String Category
         {
             get
@@ -4749,6 +4748,30 @@ namespace OAMS.Models
         private global::System.String _LastUpdatedBy;
         partial void OnLastUpdatedByChanging(global::System.String value);
         partial void OnLastUpdatedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CurrentClientID
+        {
+            get
+            {
+                return _CurrentClientID;
+            }
+            set
+            {
+                OnCurrentClientIDChanging(value);
+                ReportPropertyChanging("CurrentClientID");
+                _CurrentClientID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CurrentClientID");
+                OnCurrentClientIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CurrentClientID;
+        partial void OnCurrentClientIDChanging(Nullable<global::System.Int32> value);
+        partial void OnCurrentClientIDChanged();
 
         #endregion
     
@@ -4946,6 +4969,44 @@ namespace OAMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Site", "ContractDetail", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Client", "Client")]
+        public Client Client
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Client>("OAMSModel.FK_Site_Client", "Client").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Client>("OAMSModel.FK_Site_Client", "Client").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Client> ClientReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Client>("OAMSModel.FK_Site_Client", "Client");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Client>("OAMSModel.FK_Site_Client", "Client", value);
                 }
             }
         }
@@ -5697,6 +5758,30 @@ namespace OAMS.Models
         private global::System.String _AtomUrl;
         partial void OnAtomUrlChanging(global::System.String value);
         partial void OnAtomUrlChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> TakenDate
+        {
+            get
+            {
+                return _TakenDate;
+            }
+            set
+            {
+                OnTakenDateChanging(value);
+                ReportPropertyChanging("TakenDate");
+                _TakenDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TakenDate");
+                OnTakenDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _TakenDate;
+        partial void OnTakenDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnTakenDateChanged();
 
         #endregion
     
@@ -5865,6 +5950,30 @@ namespace OAMS.Models
         private global::System.String _AtomUrl;
         partial void OnAtomUrlChanging(global::System.String value);
         partial void OnAtomUrlChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> TakenDate
+        {
+            get
+            {
+                return _TakenDate;
+            }
+            set
+            {
+                OnTakenDateChanging(value);
+                ReportPropertyChanging("TakenDate");
+                _TakenDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TakenDate");
+                OnTakenDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _TakenDate;
+        partial void OnTakenDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnTakenDateChanged();
 
         #endregion
     

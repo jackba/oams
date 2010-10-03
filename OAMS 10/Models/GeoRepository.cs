@@ -122,10 +122,7 @@ namespace OAMS.Models
         //}
 
         // Persistence 
-        public void Save()
-        {
-            db.SaveChanges();
-        }
+      
 
         public static void SetFullname(Geo e)
         {

@@ -43,9 +43,6 @@
     <Reference Include="DotNetOpenAuth">
       <HintPath>GoogleDLL\DotNetOpenAuth.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.Contracts">
-      <HintPath>GoogleDLL\DotNetOpenAuth.Contracts.dll</HintPath>
-    </Reference>
     <Reference Include="Google.GData.Client, Version=1.6.0.0, Culture=neutral, PublicKeyToken=04a59ca9b0273830, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>GoogleDLL\Google.GData.Client.dll</HintPath>

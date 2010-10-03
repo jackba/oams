@@ -36,8 +36,9 @@ namespace OAMS.Models
             if (user == null)
             {
                 user = Membership.CreateUser(username, "Oams123!@#");
-                Roles.AddUserToRole(username, ProjectRoles.Admin);
             }
+
+            Roles.AddUserToRole(username, ProjectRoles.Admin);
 
             return username;
         }

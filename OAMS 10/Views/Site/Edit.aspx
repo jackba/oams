@@ -230,11 +230,12 @@
                         <%: Html.TextBoxFor(model => model.ContractorID, new { @style = "visibility:collapse;" })%>
                     </div>
                     <div class="editor-label">
-                        <%: Html.LabelFor(model => model.CurrentClient) %>
+                        CurrentClient
                     </div>
                     <div class="editor-field">
-                        <%: Html.EditorFor(r => r.CurrentClient)%>
-                        <%: Html.ValidationMessageFor(model => model.CurrentClient)%>
+                        <%: Html.EditorFor(model => model.CurrentClientName, "AutoCompleteClient", new { HiddenID = "CurrentClientID" })%>
+                        <%: Html.ValidationMessageFor(r => r.CurrentClientName)%>
+                        <%: Html.TextBoxFor(model => model.CurrentClientID, new { @style = "visibility:collapse;" })%>
                     </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.Competition) %>
@@ -585,7 +586,7 @@
                 <br />
                 <label for="file1">
                     Filename:</label>
-                <input type="file" name="files" id="file3" size="65"/>
+                <input type="file" name="files" id="file3" size="65" />
                 <br />
                 <div id="divMoreFile">
                 </div>

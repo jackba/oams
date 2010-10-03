@@ -95,10 +95,7 @@ namespace OAMS.Models
         //}
 
         // Persistence 
-        public void Save()
-        {
-            db.SaveChanges();
-        }
+       
 
         public static void SetFullname(Category e)
         {
