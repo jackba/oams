@@ -26,6 +26,9 @@ namespace OAMS.Models
             UpdateFrontBackLit(e);
             UpdateGeo(e);
 
+            e.CreatedDate = DateTime.Now;
+            e.CreatedBy = Username;
+
             DB.Sites.AddObject(e);
             
             Save();

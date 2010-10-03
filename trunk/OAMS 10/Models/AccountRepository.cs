@@ -28,6 +28,20 @@ namespace OAMS.Models
             AccountProfile.GetByUsername(username).OpenId = openId;
         }
 
+        public string Create_ByPassLogin()
+        {
+            string username = "bypasslogin@gmail.com";
+            MembershipUser user = Membership.GetUser(username);
+
+            if (user == null)
+            {
+                user = Membership.CreateUser(username, "Oams123!@#");
+                Roles.AddUserToRole(username, ProjectRoles.Admin);
+            }
+
+            return username;
+        }
+
         public List<UserModel> GetAll()
         {
             RoleRepository roleRepo = new RoleRepository();

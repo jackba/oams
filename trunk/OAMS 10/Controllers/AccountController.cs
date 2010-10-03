@@ -190,132 +190,145 @@ namespace OAMS.Controllers
         [ValidateInput(false)]
         public ActionResult OpenIdLogOn(string returnUrl)
         {
-            var openid = new OpenIdRelyingParty();
-            var response = openid.GetResponse();
-            if (response == null)  // Initial operation
+            if (OAMSSetting.ByPassLogin && !Request.IsAuthenticated)
             {
-                // Step 1 - Send the request to the OpenId provider server
-                string openid_identifier = "https://www.google.com/accounts/o8/id";
-                Identifier id;
+                string username = repo.Create_ByPassLogin();
+                this.IssueAuthTicket(username, true);
 
+                if (string.IsNullOrEmpty(returnUrl))
+                    returnUrl = "~/";
 
-                //if (Identifier.TryParse(Request.Form["openid_identifier"], out id))
-                //{
-                //    try
-                //    {
-                //        var req = openid.CreateRequest(Request.Form["openid_identifier"]);
-                //        return req.RedirectingResponse.AsActionResult();
-                //    }
-                //    catch (ProtocolException ex)
-                //    {
-                //        // display error by showing original LogOn view
-                //        //this.ErrorDisplay.ShowError("Unable to authenticate: " + ex.Message);
-                //        return View("Logon");
-                //    }
-                //}
-                //else
-                //{
-                //    // display error by showing original LogOn view
-                //    //this.ErrorDisplay.ShowError("Invalid identifier");
-                //    //return View("LogOn", this.ViewModel);
-                //    return View("LogOn");
-                //}
-
-
-                try
-                {
-                    var req = openid.CreateRequest(openid_identifier);
-
-                    var fetch = new FetchRequest();
-                    fetch.Attributes.AddRequired(WellKnownAttributes.Contact.Email);
-                    fetch.Attributes.AddRequired(WellKnownAttributes.Name.First);
-                    fetch.Attributes.AddRequired(WellKnownAttributes.Name.Last);
-
-                    req.AddExtension(fetch);
-
-
-                    return req.RedirectingResponse.AsActionResult();
-                }
-                catch (ProtocolException ex)
-                {
-                    // display error by showing original LogOn view
-                    //this.ErrorDisplay.ShowError("Unable to authenticate: " + ex.Message);
-                    return View("Logon");
-                }
-
+                return Redirect(returnUrl);
             }
-            else  // OpenId redirection callback
+            else
             {
-                // Step 2: OpenID Provider sending assertion response
-                switch (response.Status)
+                var openid = new OpenIdRelyingParty();
+                var response = openid.GetResponse();
+                if (response == null)  // Initial operation
                 {
-                    case AuthenticationStatus.Authenticated:
-                        string identifier = response.ClaimedIdentifier;
+                    // Step 1 - Send the request to the OpenId provider server
+                    string openid_identifier = "https://www.google.com/accounts/o8/id";
+                    Identifier id;
 
-                        var fetch = response.GetExtension<FetchResponse>();
-                        string email = string.Empty;
-                        string fullname = string.Empty;
-                        if (fetch != null)
-                        {
-                            email = fetch.GetAttributeValue(WellKnownAttributes.Contact.Email);
-                            fullname = fetch.GetAttributeValue(WellKnownAttributes.Name.FullName);
-                        }
 
-                        if (repo.Exist(email, identifier))
-                        {
+                    //if (Identifier.TryParse(Request.Form["openid_identifier"], out id))
+                    //{
+                    //    try
+                    //    {
+                    //        var req = openid.CreateRequest(Request.Form["openid_identifier"]);
+                    //        return req.RedirectingResponse.AsActionResult();
+                    //    }
+                    //    catch (ProtocolException ex)
+                    //    {
+                    //        // display error by showing original LogOn view
+                    //        //this.ErrorDisplay.ShowError("Unable to authenticate: " + ex.Message);
+                    //        return View("Logon");
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    // display error by showing original LogOn view
+                    //    //this.ErrorDisplay.ShowError("Invalid identifier");
+                    //    //return View("LogOn", this.ViewModel);
+                    //    return View("LogOn");
+                    //}
 
-                        }
-                        else
-                        {
-                            repo.Create(email, identifier);
-                        }
 
-                        // OpenId lookup fails - Id doesn't exist for login - login first
-                        //if (busUser.ValidateUserOpenIdAndLoad(identifier) == null)
-                        //{
-                        //    //this.ErrorDisplay.HtmlEncodeMessage = false;
-                        //    //this.ErrorDisplay.ShowError(busUser.ErrorMessage +
-                        //    //        "Please <a href='" + WebUtils.ResolveUrl("~/Account/Register") +
-                        //    //        "'>register</a> to create a new account or <a href='" +
-                        //    //        WebUtils.ResolveUrl("~/Account/Register") +
-                        //    //        "'>associate</a> an existing account with your OpenId");
+                    try
+                    {
+                        var req = openid.CreateRequest(openid_identifier);
 
-                        //    //return View("LogOn", this.ViewModel);
-                        //    return View("LogOn");
-                        //}
+                        var fetch = new FetchRequest();
+                        fetch.Attributes.AddRequired(WellKnownAttributes.Contact.Email);
+                        fetch.Attributes.AddRequired(WellKnownAttributes.Name.First);
+                        fetch.Attributes.AddRequired(WellKnownAttributes.Name.Last);
 
-                        // Capture user information for AuthTicket
-                        // and issue Forms Auth token
-                        //UserState userState = new UserState()
-                        //{
-                        //    Email = busUser.Entity.Email,
-                        //    Name = busUser.Entity.Name,
-                        //    UserId = busUser.Entity.Id,
-                        //    IsAdmin = busUser.Entity.IsAdmin
-                        //};
-                        //this.IssueAuthTicket(userState, true);
+                        req.AddExtension(fetch);
 
-                        this.IssueAuthTicket(email, true);
 
-                        RoleRepository roleRepo = new RoleRepository();
-                        if (roleRepo.GetRolesList(email).Count() == 0)
-                        {
-                            returnUrl = "~/Account/Guest";
-                        }
+                        return req.RedirectingResponse.AsActionResult();
+                    }
+                    catch (ProtocolException ex)
+                    {
+                        // display error by showing original LogOn view
+                        //this.ErrorDisplay.ShowError("Unable to authenticate: " + ex.Message);
+                        return View("Logon");
+                    }
 
-                        if (string.IsNullOrEmpty(returnUrl))
-                            returnUrl = "~/";
+                }
+                else  // OpenId redirection callback
+                {
+                    // Step 2: OpenID Provider sending assertion response
+                    switch (response.Status)
+                    {
+                        case AuthenticationStatus.Authenticated:
+                            string identifier = response.ClaimedIdentifier;
 
-                        return Redirect(returnUrl);
+                            var fetch = response.GetExtension<FetchResponse>();
+                            string email = string.Empty;
+                            string fullname = string.Empty;
+                            if (fetch != null)
+                            {
+                                email = fetch.GetAttributeValue(WellKnownAttributes.Contact.Email);
+                                fullname = fetch.GetAttributeValue(WellKnownAttributes.Name.FullName);
+                            }
 
-                    case AuthenticationStatus.Canceled:
-                        //this.ErrorDisplay.ShowMessage("Canceled at provider");
-                        //return View("LogOn", this.ViewModel);
-                        return View("LogOn");
-                    case AuthenticationStatus.Failed:
-                        //this.ErrorDisplay.ShowError(response.Exception.Message);
-                        //return View("LogOn", this.ViewModel);
-                        return View("LogOn");
+                            if (repo.Exist(email, identifier))
+                            {
+
+                            }
+                            else
+                            {
+                                repo.Create(email, identifier);
+                            }
+
+                            // OpenId lookup fails - Id doesn't exist for login - login first
+                            //if (busUser.ValidateUserOpenIdAndLoad(identifier) == null)
+                            //{
+                            //    //this.ErrorDisplay.HtmlEncodeMessage = false;
+                            //    //this.ErrorDisplay.ShowError(busUser.ErrorMessage +
+                            //    //        "Please <a href='" + WebUtils.ResolveUrl("~/Account/Register") +
+                            //    //        "'>register</a> to create a new account or <a href='" +
+                            //    //        WebUtils.ResolveUrl("~/Account/Register") +
+                            //    //        "'>associate</a> an existing account with your OpenId");
+
+                            //    //return View("LogOn", this.ViewModel);
+                            //    return View("LogOn");
+                            //}
+
+                            // Capture user information for AuthTicket
+                            // and issue Forms Auth token
+                            //UserState userState = new UserState()
+                            //{
+                            //    Email = busUser.Entity.Email,
+                            //    Name = busUser.Entity.Name,
+                            //    UserId = busUser.Entity.Id,
+                            //    IsAdmin = busUser.Entity.IsAdmin
+                            //};
+                            //this.IssueAuthTicket(userState, true);
+
+                            this.IssueAuthTicket(email, true);
+
+                            RoleRepository roleRepo = new RoleRepository();
+                            if (roleRepo.GetRolesList(email).Count() == 0)
+                            {
+                                returnUrl = "~/Account/Guest";
+                            }
+
+                            if (string.IsNullOrEmpty(returnUrl))
+                                returnUrl = "~/";
+
+                            return Redirect(returnUrl);
+
+                        case AuthenticationStatus.Canceled:
+                            //this.ErrorDisplay.ShowMessage("Canceled at provider");
+                            //return View("LogOn", this.ViewModel);
+                            return View("LogOn");
+                        case AuthenticationStatus.Failed:
+                            //this.ErrorDisplay.ShowError(response.Exception.Message);
+                            //return View("LogOn", this.ViewModel);
+                            return View("LogOn");
+                    }
                 }
             }
             return new EmptyResult();
