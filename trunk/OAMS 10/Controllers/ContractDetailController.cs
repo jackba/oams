@@ -8,6 +8,7 @@ using OAMS.Models;
 namespace OAMS.Controllers
 {
     [HandleError]
+    [CustomAuthorize(AuthorizedRoles = new string[] { })]
     public class ContractDetailController : Controller
     {
         ContractDetailRepository repo = new ContractDetailRepository();

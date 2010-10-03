@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using OAMS.Models;
 
 namespace OAMS
 {
@@ -26,8 +27,9 @@ namespace OAMS
 
         protected void Application_Start()
         {
+            RoleRepository repo = new RoleRepository();
+            repo.InitRole();
             AreaRegistration.RegisterAllAreas();
-
             RegisterRoutes(RouteTable.Routes);
         }
     }

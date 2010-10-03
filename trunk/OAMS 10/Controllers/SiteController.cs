@@ -8,6 +8,7 @@ using Google.GData.Photos;
 
 namespace OAMS.Controllers
 {
+    [CustomAuthorize(AuthorizedRoles = new string[] { })]
     public class SiteController : AsyncController
     {
         //

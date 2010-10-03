@@ -32,21 +32,23 @@
             <div id="menucontainer">
                 <ul id="menu">
                     <li>
-                        <%: Html.ActionLink("Find Site", "Find","FindSite")%></li>
+                        <%: Html.ActionLinkWithRoles("Find Site", "Find","FindSite")%>
+                    </li>
                     <li>
-                        <%: Html.ActionLink("Site", "Index","Site")%></li>
+                        <%: Html.ActionLinkWithRoles("Site", "Index", "Site")%>
+                    </li>
                     <li>
-                        <%: Html.ActionLink("Contract", "Index","Contract")%></li>
+                        <%: Html.ActionLinkWithRoles("Contract", "Index", "Contract")%></li>
                     <li>
-                        <%: Html.ActionLink("Contractor", "Index","Contractor")%></li>
+                        <%: Html.ActionLinkWithRoles("Contractor", "Index", "Contractor")%></li>
                     <li>
-                        <%: Html.ActionLink("Geo", "Index","Geo")%></li>
+                        <%: Html.ActionLinkWithRoles("Geo", "Index", "Geo")%></li>
                     <li>
-                        <%: Html.ActionLink("Category", "Index","Category")%></li>
+                        <%: Html.ActionLinkWithRoles("Category", "Index", "Category")%></li>
                     <li>
-                        <%: Html.ActionLink("Home", "Index", "Home")%></li>
+                        <%: Html.ActionLinkWithRoles("Home", "Index", "Home")%></li>
                     <li>
-                        <%: Html.ActionLink("Client", "Index", "Client")%></li>
+                        <%: Html.ActionLinkWithRoles("Client", "Index", "Client")%></li>
                     <li>
                         <%: Html.ActionLink("About", "About", "Home")%></li>
                 </ul>

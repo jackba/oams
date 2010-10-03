@@ -13,6 +13,7 @@ using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.Messaging;
 using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
 using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
+using System.Web.Profile;
 
 namespace OAMS.Controllers
 {
@@ -20,6 +21,7 @@ namespace OAMS.Controllers
     [HandleError]
     public class AccountController : Controller
     {
+        AccountRepository repo = new AccountRepository();
 
         public IFormsAuthenticationService FormsService { get; set; }
         public IMembershipService MembershipService { get; set; }
@@ -36,37 +38,34 @@ namespace OAMS.Controllers
         // URL: /Account/LogOn
         // **************************************
 
-        public ActionResult LogOn()
-        {
-            return View();
-        }
 
-        [HttpPost]
-        public ActionResult LogOn(LogOnModel model, string returnUrl)
-        {
-            if (ModelState.IsValid)
-            {
-                if (MembershipService.ValidateUser(model.UserName, model.Password))
-                {
-                    FormsService.SignIn(model.UserName, model.RememberMe);
-                    if (!String.IsNullOrEmpty(returnUrl))
-                    {
-                        return Redirect(returnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                }
-            }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
+        //[HttpPost]
+        //public ActionResult LogOn(LogOnModel model, string returnUrl)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        if (MembershipService.ValidateUser(model.UserName, model.Password))
+        //        {
+        //            FormsService.SignIn(model.UserName, model.RememberMe);
+        //            if (!String.IsNullOrEmpty(returnUrl))
+        //            {
+        //                return Redirect(returnUrl);
+        //            }
+        //            else
+        //            {
+        //                return RedirectToAction("Index", "Home");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError("", "The user name or password provided is incorrect.");
+        //        }
+        //    }
+
+        //    // If we got this far, something failed, redisplay form
+        //    return View(model);
+        //}
 
         // **************************************
         // URL: /Account/LogOff
@@ -154,8 +153,41 @@ namespace OAMS.Controllers
             return View();
         }
 
+        public ActionResult Index()
+        {
+            return View(repo.GetAll());
+        }
 
-        [AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get), ValidateInput(false)]
+        public ActionResult Guest()
+        {
+            return View();
+        }
+
+        public ActionResult NoRight()
+        {
+            return View();
+        }
+
+        public ActionResult Edit(string id)
+        {
+            return View(new UserModel() { Username = id });
+        }
+
+        [HttpPost]
+        public ActionResult Edit(string id, string[] RoleList)
+        {
+            RoleRepository roleRepo = new RoleRepository();
+            roleRepo.SetRoles(id, RoleList);
+
+            return View(new UserModel() { Username = id });
+        }
+
+        public ActionResult LogOn()
+        {
+            return View();
+        }
+
+        [ValidateInput(false)]
         public ActionResult OpenIdLogOn(string returnUrl)
         {
             var openid = new OpenIdRelyingParty();
@@ -229,6 +261,14 @@ namespace OAMS.Controllers
                             fullname = fetch.GetAttributeValue(WellKnownAttributes.Name.FullName);
                         }
 
+                        if (repo.Exist(email, identifier))
+                        {
+
+                        }
+                        else
+                        {
+                            repo.Create(email, identifier);
+                        }
 
                         // OpenId lookup fails - Id doesn't exist for login - login first
                         //if (busUser.ValidateUserOpenIdAndLoad(identifier) == null)
@@ -254,12 +294,19 @@ namespace OAMS.Controllers
                         //    IsAdmin = busUser.Entity.IsAdmin
                         //};
                         //this.IssueAuthTicket(userState, true);
-                        this.IssueAuthTicket(identifier, true);
 
-                        if (!string.IsNullOrEmpty(returnUrl))
-                            return Redirect(returnUrl);
+                        this.IssueAuthTicket(email, true);
 
-                        return Redirect("~/new");
+                        RoleRepository roleRepo = new RoleRepository();
+                        if (roleRepo.GetRolesList(email).Count() == 0)
+                        {
+                            returnUrl = "~/Account/Guest";
+                        }
+
+                        if (string.IsNullOrEmpty(returnUrl))
+                            returnUrl = "~/";
+
+                        return Redirect(returnUrl);
 
                     case AuthenticationStatus.Canceled:
                         //this.ErrorDisplay.ShowMessage("Canceled at provider");

@@ -7,6 +7,7 @@ using OAMS.Models;
 
 namespace OAMS.Controllers
 {
+    [CustomAuthorize(AuthorizedRoles = new string[] { })]
     public class ContractorController : Controller
     {
         //
