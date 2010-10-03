@@ -84,7 +84,7 @@
                         <%: item.Format %>
                     </td>
                     <td>
-                        <%: item.CurrentClient %>
+                        <%: item.CurrentClientName %>
                     </td>
                     <td>
                         <%: item.CurrentProduct %>

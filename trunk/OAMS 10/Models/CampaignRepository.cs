@@ -22,11 +22,5 @@ namespace OAMS.Models
             DB.Campaigns.AddObject(e);
             return e;
         }
-
-
-        public void Save()
-        {
-            DB.SaveChanges();
-        }
     }
 }

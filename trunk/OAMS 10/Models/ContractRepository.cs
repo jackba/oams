@@ -41,9 +41,6 @@ namespace OAMS.Models
         }
 
         // Persistence 
-        public void Save()
-        {
-            DB.SaveChanges();
-        }
+    
     }
 }

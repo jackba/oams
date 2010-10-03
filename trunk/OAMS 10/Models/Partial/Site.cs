@@ -33,6 +33,14 @@ namespace OAMS.Models
             }
         }
 
+        public string CurrentClientName
+        {
+            get
+            {
+                return Client != null ? Client.Name : "";
+            }
+        }
+
         public int UpdateGeo(Guid? geoID1, Guid? geoID2, Guid? geoID3)
         {
             Geo1ID = geoID1;

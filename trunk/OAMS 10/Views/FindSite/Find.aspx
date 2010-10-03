@@ -23,7 +23,8 @@
                 </div>
                 <a id="Geo2ListMore" href="javascript:ShowAll(document.forms[0].Geo2List,'Geo2ListMore');"
                     style="display: none;">More...</a>
-                <br /><br />
+                <br />
+                <br />
                 Style List: <a id="lnkCheckAllStyle" href="javascript:checkAll(document.forms[0].StyleList, true);">
                     All</a>&nbsp;/&nbsp;<a id="lnkUnCheckAllStyle" href="javascript:checkAll(document.forms[0].StyleList, false);">Clear</a>
                 <%--  <input type="checkbox" name="StyleList" value="All" onclick="checkAll(document.forms[0].StyleList)"
@@ -34,51 +35,51 @@
                     {
                 %>
                 <div>
-                <input type="checkbox" name="StyleList" value="<%= category.Code %>" checked="checked"
-                    id='StyleItem<%= category.ID %>' />
-                <label for='StyleItem<%= category.ID %>'>
-                    <%: category.Note %>
-                </label>
-                <% 
-                    string profileImageUrl = "";
-                    if (category.Code == "WMB")
-                    {
-                        profileImageUrl = Url.Content("~/Content/Image/wallmountedbannee.png");
-                    }
-                    else if (category.Code == "BRL")
-                    {
-                        profileImageUrl = Url.Content("~/Content/Image/britelite.png");
-                    }
-                    else if (category.Code == "BSH")
-                    {
-                        profileImageUrl = Url.Content("~/Content/Image/busshelter.png");
-                    }
-                    else if (category.Code == "CMR")
-                    {
-                        profileImageUrl = Url.Content("~/Content/Image/covermarket.png");
-                    }
-                    else if (category.Code == "ELV")
-                    {
-                        profileImageUrl = Url.Content("~/Content/Image/elevator.png");
-                    }
-                    else if (category.Code == "ITK")
-                    {
-                        profileImageUrl = Url.Content("~/Content/Image/itkiosk.png");
-                    }
-                    else if (category.Code == "Billboard")
-                    {
-                        profileImageUrl = Url.Content("~/Content/Image/billboard.png");
-                    }
-                    else if (category.Code == "BillboardPole")
-                    {
-                        profileImageUrl = Url.Content("~/Content/Image/billboardpole.png");
-                    }
-                    else if (category.Code == "Other")
-                    {
-                        profileImageUrl = Url.Content("~/Content/Image/other.png");
-                    }
-                %>
-                <img alt="" border="0" src="<%= profileImageUrl %>" width="20" id="ImgStyleItem<%= category.ID%>"/></div>
+                    <input type="checkbox" name="StyleList" value="<%= category.Code %>" checked="checked"
+                        id='StyleItem<%= category.ID %>' />
+                    <label for='StyleItem<%= category.ID %>'>
+                        <%: category.Note %>
+                    </label>
+                    <% 
+                        string profileImageUrl = "";
+                        if (category.Code == "WMB")
+                        {
+                            profileImageUrl = Url.Content("~/Content/Image/wallmountedbannee.png");
+                        }
+                        else if (category.Code == "BRL")
+                        {
+                            profileImageUrl = Url.Content("~/Content/Image/britelite.png");
+                        }
+                        else if (category.Code == "BSH")
+                        {
+                            profileImageUrl = Url.Content("~/Content/Image/busshelter.png");
+                        }
+                        else if (category.Code == "CMR")
+                        {
+                            profileImageUrl = Url.Content("~/Content/Image/covermarket.png");
+                        }
+                        else if (category.Code == "ELV")
+                        {
+                            profileImageUrl = Url.Content("~/Content/Image/elevator.png");
+                        }
+                        else if (category.Code == "ITK")
+                        {
+                            profileImageUrl = Url.Content("~/Content/Image/itkiosk.png");
+                        }
+                        else if (category.Code == "Billboard")
+                        {
+                            profileImageUrl = Url.Content("~/Content/Image/billboard.png");
+                        }
+                        else if (category.Code == "BillboardPole")
+                        {
+                            profileImageUrl = Url.Content("~/Content/Image/billboardpole.png");
+                        }
+                        else if (category.Code == "Other")
+                        {
+                            profileImageUrl = Url.Content("~/Content/Image/other.png");
+                        }
+                    %>
+                    <img alt="" border="0" src="<%= profileImageUrl %>" width="20" id="ImgStyleItem<%= category.ID%>" /></div>
                 <%
                     }
                 %>
@@ -163,9 +164,9 @@
                 </script>
                 <br />
                 <%--Contractor--%>
-                
                 <div id="divMoreContractor">
-                    <br />Contractor<br />
+                    <br />
+                    Contractor<br />
                 </div>
                 <%--<input type="button" value="More..." onclick="addMoreContractor()" />--%>
                 <a id="addContractor" href="javascript:addMoreContractor();">More...</a>
@@ -211,13 +212,11 @@
                     }
                 </script>
                 <br />
-                <%--Client--%>
-                
-                <div id="divMoreClient">
-                    <br />Client<br />
+                <%--<div id="divMoreClient">
+                    <br />
+                    Client<br />
                 </div>
-                <%--<input type="button" value="More..." onclick="addMoreClient()" />--%>
-                <a id="addClient" href="javascript:addMoreClient();">More...</a>
+                <a id="addClient" href="javascript:addMoreClient();">More...</a>--%>
             </td>
             <td valign="top">
                 <input type="button" onclick="search(this)" value="Find" />
@@ -235,7 +234,7 @@
     </table>
     <table>
         <tr>
-            <td style="width: 100%;" style="vertical-align: top;">
+            <td style="width: 100%; vertical-align: top;">
                 <div id="divCol">
                     Display columns:
                     <input type="checkbox" id="chkColID" checked="checked" />
@@ -308,7 +307,7 @@
     <script type="text/javascript">
         //showGeo2('Hồ Chí Minh City', false, 'dis. 1, Hồ Chí Minh City');
 
-        
+
         $('#Geo1FullName').val('Hồ Chí Minh City');
         showGeo2('Hồ Chí Minh City');
         //$('#Geo2List1').setAttribute('checked', 'checked');
@@ -367,7 +366,7 @@
                 url: '<%= Url.Content("~/Listing/ListGeo2") %>', type: "POST", dataType: "json",
                 data: { parentFullName: str },
                 success: function (data) {
-                    
+
                     var index = 0;
                     $.map(data, function (item) {
 

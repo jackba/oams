@@ -1,9 +1,11 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%= Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, new { @class = "text-box single-line" }) %>
+<% var hiddenID = ViewData["HiddenID"] ?? "ClientID"; %>
+
 <script type="text/javascript" language="javascript">
     $(function () {
         $("#<%= ViewData.ModelMetadata.PropertyName %>").autocomplete({
-            select: function (event, ui) { $("#ClientID").val(ui.item.id); },
+            select: function (event, ui) { $("#<%= hiddenID %>").val(ui.item.id); },
             source: function (request, response) {
                 $.ajax({
                     url: '<%= Url.Content("~/Listing/ListClient") %>', type: "POST", dataType: "json",

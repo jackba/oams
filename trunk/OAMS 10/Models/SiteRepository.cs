@@ -22,7 +22,7 @@ namespace OAMS.Models
         {
             Site e = new Site();
             updateMethod(e);
-
+            
             UpdateFrontBackLit(e);
             UpdateGeo(e);
 
@@ -182,6 +182,25 @@ namespace OAMS.Models
             //    }
 
             //    item.Contractor1 = e;
+            //    Save();
+            //}
+
+
+            //List<Site> l = DB.Sites.Where(r => !string.IsNullOrEmpty(r.CurrentClient)).ToList();
+            //foreach (var item in l)
+            //{
+
+            //    Client e = DB.Clients.Where(r => r.Name == item.CurrentClient).FirstOrDefault();
+
+            //    if (e == null)
+            //    {
+            //        e = new Client();
+            //        e.Name = item.CurrentClient;
+            //    }
+
+            //    item.Client = e;
+                
+            //    //To eleminated duplicated client
             //    Save();
             //}
         }
