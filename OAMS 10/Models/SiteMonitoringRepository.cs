@@ -33,6 +33,21 @@ namespace OAMS.Models
             return e;
         }
 
+        public SiteMonitoring InitWithDefaultValue(int? ContractDetailID)
+        {
+            SiteMonitoring e = new SiteMonitoring();
+            e.Working = true;
+            e.Clean = true;
+            e.CreativeGoodConditon = true;
+            e.ExternalInterference = false;
+            e.Vandalism = false;
+            ContractDetailRepository cdrepo = new ContractDetailRepository();
+            ContractDetail cd = cdrepo.Get(ContractDetailID.ToInt());
+            e.NoOfBullbs = cd.Site.FrontlitNumerOfLamps;
+            e.Site = cd.Site;
+            return e;
+        }
+
         public SiteMonitoring Update(int ID, Action<SiteMonitoring> updateMethod, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList)
         {
             SiteMonitoring e = Get(ID);

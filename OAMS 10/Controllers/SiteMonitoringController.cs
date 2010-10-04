@@ -31,7 +31,8 @@ namespace OAMS.Controllers
 
         public ActionResult Create(int? contractDetailID)
         {
-            return View();
+            SiteMonitoring e = repo.InitWithDefaultValue(contractDetailID);
+            return View(e);
         }
 
         //

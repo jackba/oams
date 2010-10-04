@@ -472,16 +472,6 @@ namespace OAMS
 
             return null;
         }
-
-        public static string ToLowerArray(this List<string> lst)
-        {
-            string s = "";
-            for (int i = 0; i < lst.Count; i++)
-            {
-                s += lst[i].ToLower() + ";";
-            }
-            return s;
-        }
     }
 
     public static class IPrincipalExtend

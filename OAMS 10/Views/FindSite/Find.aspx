@@ -178,13 +178,20 @@
                         var input = document.createElement('input');
                         input.setAttribute('type', 'text');
                         input.setAttribute('id', 'ClientName' + clientcount);
-                        input.setAttribute('name', 'ClientList');
                         input.setAttribute('class', 'text-box single-line');
+                        input.setAttribute('onblur', "javascript:if($('#ClientName" + count + "').val() == '') $('#ClientID" + clientcount + "').val(0);");
                         divAddMore.append(input);
+
+                        var inputCollapse = document.createElement('input');
+                        inputCollapse.setAttribute('type', 'text');
+                        inputCollapse.setAttribute('style', 'display: none;');
+                        inputCollapse.setAttribute('name', 'ClientList');
+                        inputCollapse.setAttribute('id', 'ClientID' + clientcount);
+                        divAddMore.append(inputCollapse);
 
                         var lnkDelete = document.createElement('a');
                         lnkDelete.setAttribute('id', 'LnkDeleteClient' + clientcount);
-                        lnkDelete.setAttribute('onclick', "$('#ClientName" + clientcount + "').remove();$('#LnkDeleteClient" + clientcount + "').remove();");
+                        lnkDelete.setAttribute('onclick', "$('#ClientName" + clientcount + "').remove();$('#ClientID" + clientcount + "').remove();$('#LnkDeleteClient" + clientcount + "').remove();");
                         lnkDelete.innerHTML = 'X';
                         lnkDelete.setAttribute('style', 'text-decoration:underline;cursor:pointer;');
                         lnkDelete.setAttribute('title', 'Remove this Client out of search criteria');
@@ -193,6 +200,8 @@
                         $(function () {
                             $("#ClientName" + clientcount).autocomplete({
                                 select: function (event, ui) {
+                                    var index = this.id.substring(10);
+                                    $("#ClientID" + index).val(ui.item.id);
                                 },
                                 source: function (request, response) {
                                     $.ajax({
@@ -212,11 +221,11 @@
                     }
                 </script>
                 <br />
-                <%--<div id="divMoreClient">
+                <div id="divMoreClient">
                     <br />
                     Client<br />
                 </div>
-                <a id="addClient" href="javascript:addMoreClient();">More...</a>--%>
+                <a id="addClient" href="javascript:addMoreClient();">More...</a>
             </td>
             <td valign="top">
                 <input type="button" onclick="search(this)" value="Find" />
