@@ -218,7 +218,7 @@
 
             /* Add a select menu for each TH element in the table footer */
             $("tfoot th").each(function (i) {
-                if (i > 5) {
+                if (i > 5 || i==3) {
                     this.innerHTML = fnCreateSelect(oTable.fnGetColumnData(i));
                     $('select', this).change(function () {
                         oTable.fnFilter($(this).val(), i);

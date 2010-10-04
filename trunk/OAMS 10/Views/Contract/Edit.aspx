@@ -4,6 +4,12 @@
     Edit
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript" language="javascript">
+        var oTable;
+        $(document).ready(function () {
+            oTable = $('#tblResult').dataTable({ "aaSorting": [[1, "desc"]] });
+        });
+    </script>
     <h2>
         Edit</h2>
     <% using (Html.BeginForm())
@@ -137,29 +143,92 @@
             <td>
                 <%: Html.ActionLink("Add Sites", "Find4Contract", "FindSite", new { ContractID = Model.ID},null)%>
                 <div style="overflow: auto;">
-                    <table>
-                        <tr>
-                            <th>
-                            </th>
-                            <th>
-                                Site ID
-                            </th>
-                            <th>
-                                Price
-                            </th>
-                            <th>
-                                Production Price
-                            </th>
-                            <th>
-                                Effective Date
-                            </th>
-                            <th>
-                                Term Date
-                            </th>
-                            <th>
-                                Monitoring
-                            </th>
-                        </tr>
+                    <div id="divCol">
+                        Display columns:
+                        <input type="checkbox" id="chkColID" checked="checked" />
+                        ID
+                        <input type="checkbox" id="chkColPrice" checked="checked" />
+                        Price
+                        <input type="checkbox" id="chkColProductionPrice" checked="checked" />
+                        Production Price
+                        <input type="checkbox" id="chkColEffectiveDate" checked="checked" />
+                        Effective Date
+                        <input type="checkbox" id="chkColTermDate" checked="checked" />
+                        Term Date
+                        <input type="checkbox" id="chkColGeoFullName" checked="checked" />
+                        Geo Full Name
+                        <input type="checkbox" id="chkColAddressLine1" checked="checked" />
+                        Address Line 1
+                        <input type="checkbox" id="chkColAddressLine2" checked="checked" />
+                        Address Line 2
+                        <input type="checkbox" id="chkColType" checked="checked" />
+                        Type
+                        <input type="checkbox" id="chkColFormat" checked="checked" />
+                        Format
+                        <input type="checkbox" id="chkColCurrentClient" checked="checked" />
+                        Current Client
+                        <input type="checkbox" id="chkColCurrentProduct" checked="checked" />
+                        Current Product
+                        <input type="checkbox" id="chkColContractor" checked="checked" />
+                        Contractor
+                        <input type="checkbox" id="chkColPhotoCount" checked="checked" />
+                        PhotoCount
+                        <input type="button" id="hell" value="Ok" onclick='ShowHideCols();' />
+                    </div>
+                    <br />
+                    <table id="tblResult" class="display">
+                        <thead>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>
+                                    Site ID
+                                </th>
+                                <th>
+                                    Price
+                                </th>
+                                <th>
+                                    Production Price
+                                </th>
+                                <th>
+                                    Effective Date
+                                </th>
+                                <th>
+                                    Term Date
+                                </th>
+                                <th>
+                                    Geo Full Name
+                                </th>
+                                <th>
+                                    Address Line1
+                                </th>
+                                <th>
+                                    Address Line2
+                                </th>
+                                <th>
+                                    Type
+                                </th>
+                                <th>
+                                    Format
+                                </th>
+                                <th>
+                                    Current Client
+                                </th>
+                                <th>
+                                    Current Product
+                                </th>
+                                <th>
+                                    Contractor
+                                </th>
+                                <th>
+                                    Photo Count
+                                </th>
+                                <th>
+                                    Monitoring
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         <% foreach (var item in Model.ContractDetails)
                            { %>
                         <tr>
@@ -185,6 +254,33 @@
                                 <%: String.Format("{0:d}", item.TermDate) %>
                             </td>
                             <td>
+                                <%: item.Site.GeoFullName %>
+                            </td>
+                            <td>
+                                <%: item.Site.AddressLine1 %>
+                            </td>
+                            <td>
+                                <%: item.Site.AddressLine2 %>
+                            </td>
+                            <td>
+                                <%: item.Site.Type %>
+                            </td>
+                            <td>
+                                <%: item.Site.Format %>
+                            </td>
+                            <td>
+                                <%: item.Site.CurrentClientName %>
+                            </td>
+                            <td>
+                                <%: item.Site.CurrentProduct %>
+                            </td>
+                            <td>
+                                <%: item.Site.ContractorName %>
+                            </td>
+                            <td>
+                                <%: item.Site.SitePhotoes.Count %>
+                            </td>
+                            <td>
                                 <%: Html.ActionLink("New", "Create", "SiteMonitoring",  new { ContractDetailID=item.ID },null) %>
                                 
                                 <% 
@@ -200,6 +296,7 @@
                             </td>
                         </tr>
                         <% } %>
+                        </tbody>
                     </table>
                 </div>
                 <div id="divEditDetail">
@@ -212,6 +309,23 @@
         <%: Html.ActionLink("Back to List", "Index") %>
     </div>
     <script type="text/javascript" language="javascript">
+        function ShowHideCols() {
+            oTable.fnSetColumnVis(1, $('#chkColID').attr('checked'));
+            oTable.fnSetColumnVis(2, $('#chkColPrice').attr('checked'));
+            oTable.fnSetColumnVis(3, $('#chkColProductionPrice').attr('checked'));
+            oTable.fnSetColumnVis(4, $('#chkColEffectiveDate').attr('checked'));
+            oTable.fnSetColumnVis(5, $('#chkColTermDate').attr('checked'));
+            oTable.fnSetColumnVis(6, $('#chkColGeoFullName').attr('checked'));
+            oTable.fnSetColumnVis(7, $('#chkColAddressLine1').attr('checked'));
+            oTable.fnSetColumnVis(8, $('#chkColAddressLine2').attr('checked'));
+            oTable.fnSetColumnVis(9, $('#chkColType').attr('checked'));
+            oTable.fnSetColumnVis(10, $('#chkColFormat').attr('checked'));
+            oTable.fnSetColumnVis(11, $('#chkColCurrentClient').attr('checked'));
+            oTable.fnSetColumnVis(12, $('#chkColCurrentProduct').attr('checked'));
+            oTable.fnSetColumnVis(13, $('#chkColContractor').attr('checked'));
+            oTable.fnSetColumnVis(14, $('#chkColPhotoCount').attr('checked'));
+        }
+
         function EditDetail(contractDetailID) {
 
             $.ajax({
