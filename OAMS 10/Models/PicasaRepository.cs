@@ -122,7 +122,7 @@ namespace OAMS.Models
             if (prop != null)
             {
                 System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
-                takenDate = DateTime.Parse(encoding.GetString(prop.Value));
+                takenDate = DateTime.Parse(encoding.GetString(prop.Value).Trim('\0').Replace(4, '/').Replace(7, '/'));
             }
             return takenDate;
         }
