@@ -124,6 +124,7 @@
     <Compile Include="Models\ClientRepository.cs" />
     <Compile Include="Models\CategoryRepository.cs" />
     <Compile Include="Models\OAMSEntitiesPartial.cs" />
+    <Compile Include="Models\Partial\SiteMonitoring.cs" />
     <Compile Include="Models\RoleRepository.cs" />
     <Compile Include="Models\SiteMonitoringRepository.cs" />
     <Compile Include="Models\Partial\Contractor.cs" />

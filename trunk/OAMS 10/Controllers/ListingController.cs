@@ -52,7 +52,10 @@ namespace OAMS.Controllers
         public JsonResult ListContractor(string searchText, int maxResults)
         {
             OAMSEntities db = new OAMSEntities();
-            var result = db.Contractors.Where(r => r.Name.Contains(searchText))
+            var result = db.Contractors
+                .ToList()
+                .Where(r => r.Name != null)
+                .Where(r => r.Name.ToLower().Contains(searchText.ToLower()) || r.Name.ToLower().RemoveDiacritics().Contains(searchText.ToLower()))
                 .Take(maxResults)
                 .Select(r => new { r.ID, r.Name })
                 .ToList();
@@ -63,7 +66,10 @@ namespace OAMS.Controllers
         public JsonResult ListClient(string searchText, int maxResults)
         {
             OAMSEntities db = new OAMSEntities();
-            var result = db.Clients.Where(r => r.Name.Contains(searchText))
+            var result = db.Clients
+                .Where(r => r.Name != null)
+                .ToList()
+                .Where(r => r.Name.ToLower().Contains(searchText.ToLower()) || r.Name.ToLower().RemoveDiacritics().Contains(searchText.ToLower()))
                 .Take(maxResults)
                 .Select(r => new { r.ID, r.Name })
                 .ToList();
