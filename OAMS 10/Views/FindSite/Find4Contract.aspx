@@ -146,7 +146,7 @@
                                 },
                                 source: function (request, response) {
                                     $.ajax({
-                                        url: '/Listing/ListContractor', type: "POST", dataType: "json",
+                                        url: '../Listing/ListContractor', type: "POST", dataType: "json",
                                         data: { searchText: request.term, maxResults: 10, type: "ContractorName" },
                                         success: function (data) {
                                             response($.map(data, function (item) {
