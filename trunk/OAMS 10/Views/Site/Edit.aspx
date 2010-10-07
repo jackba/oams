@@ -138,6 +138,14 @@
                 $('#Lat').val(marker.getPosition().lat().toFixed(6));
             });
         }
+
+        $(document).ready(function () {
+            $('#CurrentClientName').blur(function () {
+                if ($('#CurrentClientName').val() == '') {
+                    $('#CurrentClientID').val('');
+                }
+            });
+        });
     </script>
     <h2>
         Edit Site</h2>
@@ -233,7 +241,7 @@
                         CurrentClient
                     </div>
                     <div class="editor-field">
-                        <%: Html.EditorFor(model => model.CurrentClientName, "AutoCompleteClient", new { HiddenID = "CurrentClientID" })%>
+                        <%: Html.EditorFor(model => model.CurrentClientName, "AutoCompleteClient", new { HiddenID = "CurrentClientID"})%>
                         <%: Html.ValidationMessageFor(r => r.CurrentClientName)%>
                         <%: Html.TextBoxFor(model => model.CurrentClientID, new { @style = "visibility:collapse;" })%>
                     </div>

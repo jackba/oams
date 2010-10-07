@@ -35,5 +35,30 @@ namespace OAMS.Models
             DB.Clients.DeleteObject(e);
             Save();
         }
+
+        public bool Replace(int id, int replaceID)
+        {
+            Client e = Get(id);
+            Client replaceClient = Get(replaceID);
+
+            if (e == null || replaceClient == null)
+            {
+                return false;
+            }
+            else
+            {
+                IQueryable<Site> sL = DB.Sites.Where(r => r.CurrentClientID == replaceID);
+                foreach (var item in sL)
+                {
+                    item.CurrentClientID = id;
+                }
+
+                Save();
+                DB.Clients.DeleteObject(replaceClient);
+                Save();
+
+                return true;
+            }
+        }
     }
 }
