@@ -33,4 +33,30 @@
     <div>
         <%: Html.ActionLink("Back to List", "Index") %>
     </div>
+    <br />
+    <div>
+        Replace:
+        <%: Html.EditorFor(model => model.ReplaceFor, "AutoCompleteClient")%>
+        <%--<%: Html.ActionLink("Replace", "Replace")%>--%>
+        <input type="button" id="btnReplace" value="Replace" onclick="replace();" />
+        <input id="ClientID" name="ClientID" style="visibility: collapse;" type="text"
+            value="" />
+    </div>
+    <script type="text/javascript">
+
+        function replace() {
+
+            var id = $("#ID").val();
+            var replaceID = $("#ClientID").val();
+
+            $.ajax({
+                url: '<%= Url.Content("~/Client/Replace") %>', type: "POST", dataType: "json",
+                data: { "id": id, "replaceID": replaceID },
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        }
+
+    </script>
 </asp:Content>

@@ -77,7 +77,10 @@ namespace OAMS.Controllers
         public ActionResult Delete(int id)
         {
             var v = repo.Get(id);
-            repo.Delete(v);
+            if (v.Sites.Count == 0)
+            {
+                repo.Delete(v);
+            }
             return RedirectToAction("Index");
         }
 
@@ -90,6 +93,18 @@ namespace OAMS.Controllers
             // TODO: Add delete logic here
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public JsonResult Replace(int id, int replaceID)
+        {
+            bool r = repo.Replace(id, replaceID);
+            string str = "";
+            if (r)
+                str = "Replace Done.";
+            else
+                str = "Replace Fail.";
+            return Json(str);
         }
     }
 }
