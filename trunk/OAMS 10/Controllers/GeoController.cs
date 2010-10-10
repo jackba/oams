@@ -7,7 +7,7 @@ using OAMS.Models;
 
 namespace OAMS.Controllers
 {
-    [CustomAuthorize(AuthorizedRoles = new string[] { })]
+    [CustomAuthorize]
     public class GeoController : Controller
     {
         GeoRepository repo = new GeoRepository();

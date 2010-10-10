@@ -8,7 +8,7 @@ using OAMS.Models;
 namespace OAMS.Controllers
 {
     [HandleError]
-    [CustomAuthorize(AuthorizedRoles = new string[] { })]
+    [CustomAuthorize]
     public class ContractController : Controller
     {
         //

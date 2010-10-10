@@ -6,6 +6,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
         Find Site</h2>
+    <div id="divTest">
+        as
+    </div>
     <% using (Html.BeginForm())
        {%>
     <%: Html.HiddenFor(r => r.CampaignID) %>
@@ -313,6 +316,14 @@
         </tr>
     </table>
     <% } %>
+    <script id="infoWindowTemplate" type="text/x-jquery-tmpl">
+        <div>
+        ${ID}
+        <br />
+        ${GeoFullName}
+        
+        </div>
+    </script>
     <script type="text/javascript">
         //showGeo2('Hồ Chí Minh City', false, 'dis. 1, Hồ Chí Minh City');
 
@@ -577,6 +588,11 @@
 
                     html += "</td></tr>";
                     html += "</table>";
+
+                    //$("#infoWindowTemplate").tmpl(site).appendTo("#divTest");
+                    html += $("#infoWindowTemplate").tmpl(site).html();
+
+
 
                     bindInfoWindow(marker, map, infoWindow, html);
                     //bindInfoWindow(marker, map, infoWindow, 'asdsa');
