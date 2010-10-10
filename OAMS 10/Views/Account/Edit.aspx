@@ -15,10 +15,6 @@
         <div class="editor-label">
             <%: Html.LabelFor(model => model.RolesList) %>
         </div>
-        <div class="editor-field">
-            <%: Html.TextBoxFor(model => model.RolesList) %>
-            <%: Html.ValidationMessageFor(model => model.RolesList) %>
-        </div>
         <%
             foreach (var item in OAMS.Models.ProjectRoles.All)
             {

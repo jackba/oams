@@ -19,6 +19,7 @@ using System.Web.Mvc;
 using OAMS.Models;
 using System.Web.Mvc.Html;
 using System.Security.Principal;
+using OAMS.Controllers;
 
 
 namespace OAMS
@@ -465,12 +466,103 @@ namespace OAMS
             return htmlHelper.DropDownListFor(expression, geoRepository.GetByParentID().ToSelectListItem(), OAMSSetting.messageL.SelectNone);
         }
 
+        public static MvcHtmlString ActionLinkWithRoles<T>(this HtmlHelper html, string linkText, Expression<Func<T, ActionResult>> action) where T : Controller
+        {
+            ControllerActionRepository actionAuthorizationRepo = new ControllerActionRepository();
+            actionAuthorizationRepo.UpdateActionList();
+
+            MvcHtmlString htmlStr = null;
+
+            ReflectedControllerDescriptor controllerDes = new ReflectedControllerDescriptor(typeof(T));
+            string controllerName = controllerDes.ControllerName;
+
+            MethodCallExpression methodExp = action.Body as MethodCallExpression;
+            if (methodExp != null)
+            {
+                string actionName = methodExp.Method.Name;
+                //List<ActionDescriptor> actionDescriptorList = controllerDes.GetCanonicalActions().Where(r => r.ActionName == actionName).ToList();
+                //ActionDescriptor actionDes = actionDescriptorList.FirstOrDefault();
+
+                ControllerActionRepository controllerActionRepository = new ControllerActionRepository();
+                ControllerAction controllerAction = controllerActionRepository.GetActionWithVerbHttpGet(controllerName, actionName);
+                if (controllerAction != null)
+                {
+                    MVCAuthorizationRepository mvcAuthorizationRepository = new MVCAuthorizationRepository();
+                    List<string> roles = mvcAuthorizationRepository.GetRolesByControllerAction(controllerAction);
+
+                    CustomAuthorize customAuthorize = new CustomAuthorize() { AuthorizedRoles = roles.ToArray() };
+                    if (customAuthorize.Authorize(html.ViewContext.HttpContext))
+                    {
+                        htmlStr = html.ActionLink(linkText, actionName, controllerName);
+                    }
+                }
+
+                //    if (actionDes != null)
+                //    {
+                //        List<CustomAuthorize> customAuthorizeList = actionDes.GetFilters().AuthorizationFilters.Where(r => r is CustomAuthorize).Select(r => r as CustomAuthorize).ToList();
+
+                //        if (customAuthorizeList.Count > 0)
+                //        {
+                //            if (customAuthorizeList.Select(r => r.Authorize(html.ViewContext.HttpContext)).Any(r => r))
+                //            {
+                //                htmlStr = html.ActionLink(linkText, actionName, controllerName);
+                //            }
+                //        }
+                //        else
+                //        {
+                //            htmlStr = html.ActionLink(linkText, actionName, controllerName);
+                //        }
+
+                //        //List<CustomAuthorize> ofController = controllerDes.GetCustomAttributes(typeof(CustomAuthorize), true).Select(r => r as CustomAuthorize).ToList();
+                //        //List<CustomAuthorize> ofAction = actionDes.GetCustomAttributes(typeof(CustomAuthorize), true).Select(r => r as CustomAuthorize).ToList();
+
+                //        //List<CustomAuthorize> ofAll = new List<CustomAuthorize>();
+                //        //ofAll.AddRange(ofController);
+                //        //ofAll.AddRange(ofAction);
+
+                //        //string[] roles = ofAll.SelectMany(r => r.AuthorizedRoles).Distinct().ToArray();
+                //        //string[] users = ofAll.SelectMany(r => r.AuthorizedUsers).Distinct().ToArray();
+
+                //        //if (HttpContext.Current.User.HasAnyRole(roles)
+                //        //    || users.Contains(OAMSSetting.Username))
+                //        //{
+                //        //    htmlStr = html.ActionLink(linkText, actionName, controllerName);
+                //        //}
+                //    }
+            }
+
+            return htmlStr;
+        }
+
         public static MvcHtmlString ActionLinkWithRoles(this HtmlHelper html, string linkText, string actionName, string controllerName, params string[] roles)
         {
+            //typeof(SiteController).ToString();
+
+            //(new SiteController).Index();
+
+            //ReflectedControllerDescriptor cd = new ReflectedControllerDescriptor();
+
+            //Reflec
             if (HttpContext.Current.User.HasAnyRole(roles))
                 return html.ActionLink(linkText, actionName, controllerName);
 
             return null;
+        }
+
+        public static string[] Add(this string[] array, string item)
+        {
+            List<string> l = array.ToList();
+            l.Add(item);
+            return l.ToArray();
+        }
+
+        public static string GetHttpVerb(this ActionDescriptor actionDesctiptor)
+        {
+            string httpPost = actionDesctiptor.GetCustomAttributes(typeof(HttpPostAttribute), false).FirstOrDefault() == null ? string.Empty : typeof(HttpPostAttribute).Name;
+            string httpGet = actionDesctiptor.GetCustomAttributes(typeof(HttpGetAttribute), false).FirstOrDefault() == null ? string.Empty : typeof(HttpGetAttribute).Name;
+
+            string httpVerb = string.Join(", ", new string[] { httpPost, httpGet }.Where(r => !string.IsNullOrEmpty(r)));
+            return httpVerb;
         }
     }
 
@@ -488,4 +580,8 @@ namespace OAMS
             return roles.Any(user.IsInRole);
         }
     }
+
+
+
+
 }

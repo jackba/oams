@@ -29,6 +29,10 @@ namespace OAMS
         {
             RoleRepository repo = new RoleRepository();
             repo.InitRole();
+
+            ControllerActionRepository actionAuthorizationRepo = new ControllerActionRepository();
+            actionAuthorizationRepo.UpdateActionList();
+
             AreaRegistration.RegisterAllAreas();
             RegisterRoutes(RouteTable.Routes);
         }
