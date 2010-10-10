@@ -8,7 +8,7 @@ using Google.GData.Photos;
 
 namespace OAMS.Controllers
 {
-    [CustomAuthorize(AuthorizedRoles = new string[] { })]
+    [CustomAuthorize]
     public class SiteMonitoringController : AsyncController
     {
         //
@@ -79,14 +79,10 @@ namespace OAMS.Controllers
         }
 
 
-        //public ActionResult Delete(int id)
-        //{
-        //    //repo.DeletePhoto(id);
-        //    repo.Delete(id);
-        //    return RedirectToAction("Index");
-
-        //    //return View();
-        //}
+        public ActionResult View(int id)
+        {
+            return View(repo.Get(id));
+        }
 
         //
         // POST: /Site/Delete/5

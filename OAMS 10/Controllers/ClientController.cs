@@ -33,7 +33,6 @@ namespace OAMS.Controllers
 
         //
         // GET: /Client/Create
-        //[CustomAuthorize(AuthorizedRoles = new string[] { ProjectRoles.SiteManager })]
         public ActionResult Create()
         {
             return View(new Client());
@@ -43,7 +42,6 @@ namespace OAMS.Controllers
         // POST: /Client/Create
 
         [HttpPost]
-        //[CustomAuthorize(AuthorizedRoles = new string[] { ProjectRoles.Monitoring })]
         public ActionResult Create(FormCollection collection)
         {
             // TODO: Add insert logic here

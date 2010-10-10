@@ -10,13 +10,15 @@ namespace OAMS.Models
     {
         //now constants for the attribute values
         public const string Admin = "Admin";
-        public const string SiteManager = "SiteManager";
-        public const string Monitoring = "Monitoring";
+        public const string SiteSupervisor = "SiteSupervisor";
+        public const string SiteMonitoring = "SiteMonitoring";
+        public const string Sale = "Sale";
+        public const string Makerting = "Makerting";
         //and roles continue
 
         public static string[] All
         {
-            get { return new string[] { Admin, SiteManager, Monitoring }; }
+            get { return new string[] { Admin, SiteSupervisor, SiteMonitoring, Sale, Makerting }; }
         }
     }
 
