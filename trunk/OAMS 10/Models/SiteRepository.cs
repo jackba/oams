@@ -25,6 +25,7 @@ namespace OAMS.Models
             
             UpdateFrontBackLit(e);
             UpdateGeo(e);
+            UpdateCategory(e);
 
             DB.Sites.AddObject(e);
             
@@ -47,6 +48,7 @@ namespace OAMS.Models
             updateMethod(e);
 
             UpdateGeo(e);
+            UpdateCategory(e);
 
             UpdateFrontBackLit(e);
 
@@ -72,6 +74,12 @@ namespace OAMS.Models
         {
             GeoRepository geoRepository = new GeoRepository();
             geoRepository.Set3LevelByFullname(e.NewGeoFullName, e.UpdateGeo);
+        }
+
+        public void UpdateCategory(Site e)
+        {
+            CategoryRepository catRepository = new CategoryRepository();
+            catRepository.Set3LevelByFullname(e.NewCategoryFullName, e.UpdateCategory);
         }
 
         public void UpdateFrontBackLit(Site e)

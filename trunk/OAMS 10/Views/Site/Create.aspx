@@ -225,11 +225,10 @@
                         <%: Html.ValidationMessageFor(model => model.Competition)%>
                     </div>
                     <div class="editor-label">
-                        <%: Html.LabelFor(model => model.Category) %>
+                        <%: Html.LabelFor(model => model.NewCategoryFullName)%>
                     </div>
                     <div class="editor-field">
-                        <%: Html.EditorFor(r => r.Category)%>
-                        <%: Html.ValidationMessageFor(model => model.Category)%>
+                        <%: Html.EditorFor(model => model.NewCategoryFullName, "AutoCompleteCategory")%>
                     </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.CurrentProduct) %>

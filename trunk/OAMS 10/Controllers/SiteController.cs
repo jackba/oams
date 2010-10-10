@@ -61,6 +61,7 @@ namespace OAMS.Controllers
         {
             Site e = repo.Get(id);
             e.NewGeoFullName = e.GeoFullName;
+            e.NewCategoryFullName = e.CategoryFullName;
             return View(e);
         }
 

@@ -48,9 +48,19 @@ namespace OAMS.Models
             else
             {
                 IQueryable<Site> sL = DB.Sites.Where(r => r.CurrentClientID == replaceID);
+                IQueryable<Contract> cL = DB.Contracts.Where(r => r.ClientID == replaceID);
+                IQueryable<Campaign> caL = DB.Campaigns.Where(r => r.ClientID == replaceID);
                 foreach (var item in sL)
                 {
                     item.CurrentClientID = id;
+                }
+                foreach (var item in cL)
+                {
+                    item.ClientID = id;
+                }
+                foreach (var item in caL)
+                {
+                    item.ClientID = id;
                 }
 
                 Save();

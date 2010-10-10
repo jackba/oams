@@ -15,8 +15,9 @@
     <% using (Html.BeginForm())
        {%>
     <%: Html.ValidationSummary(true) %>
-    <table>
-        <tr valign="top">
+    <div style="overflow:auto;">
+        <table>
+            <tr valign="top">
             <td>
                 <fieldset>
                     <legend>Fields</legend>
@@ -142,8 +143,7 @@
             </td>
             <td>
                 <%: Html.ActionLink("Add Sites", "Find4Contract", "FindSite", new { ContractID = Model.ID},null)%>
-                <div style="overflow: auto;">
-                    <div id="divCol">
+                    <div id="divCol" style="overflow:auto;">
                         Display columns:
                         <input type="checkbox" id="chkColID" checked="checked" />
                         ID
@@ -155,6 +155,7 @@
                         Effective Date
                         <input type="checkbox" id="chkColTermDate" checked="checked" />
                         Term Date
+                        <br />
                         <input type="checkbox" id="chkColGeoFullName" checked="checked" />
                         Geo Full Name
                         <input type="checkbox" id="chkColAddressLine1" checked="checked" />
@@ -165,6 +166,7 @@
                         Type
                         <input type="checkbox" id="chkColFormat" checked="checked" />
                         Format
+                        <br />
                         <input type="checkbox" id="chkColCurrentClient" checked="checked" />
                         Current Client
                         <input type="checkbox" id="chkColCurrentProduct" checked="checked" />
@@ -176,134 +178,148 @@
                         <input type="button" id="hell" value="Ok" onclick='ShowHideCols();' />
                     </div>
                     <br />
-                    <table id="tblResult" class="display">
-                        <thead>
+                    <div>
+                        <table id="tblResult" class="display">
+                            <thead>
+                                <tr>
+                                    <th>
+                                    </th>
+                                    <th>
+                                        Monitoring
+                                    </th>
+                                    <th>
+                                        Site ID
+                                    </th>
+                                    <th>
+                                        Price
+                                    </th>
+                                    <th>
+                                        Production Price
+                                    </th>
+                                    <th>
+                                        Effective Date
+                                    </th>
+                                    <th>
+                                        Term Date
+                                    </th>
+                                    <th>
+                                        Geo Full Name
+                                    </th>
+                                    <th>
+                                        Address Line1
+                                    </th>
+                                    <th>
+                                        Address Line2
+                                    </th>
+                                    <th>
+                                        Type
+                                    </th>
+                                    <th>
+                                        Format
+                                    </th>
+                                    <th>
+                                        Current Client
+                                    </th>
+                                    <th>
+                                        Current Product
+                                    </th>
+                                    <th>
+                                        Contractor
+                                    </th>
+                                    <th>
+                                        Photo Count
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <% foreach (var item in Model.ContractDetails)
+                                { %>
                             <tr>
-                                <th>
-                                </th>
-                                <th>
-                                    Site ID
-                                </th>
-                                <th>
-                                    Price
-                                </th>
-                                <th>
-                                    Production Price
-                                </th>
-                                <th>
-                                    Effective Date
-                                </th>
-                                <th>
-                                    Term Date
-                                </th>
-                                <th>
-                                    Geo Full Name
-                                </th>
-                                <th>
-                                    Address Line1
-                                </th>
-                                <th>
-                                    Address Line2
-                                </th>
-                                <th>
-                                    Type
-                                </th>
-                                <th>
-                                    Format
-                                </th>
-                                <th>
-                                    Current Client
-                                </th>
-                                <th>
-                                    Current Product
-                                </th>
-                                <th>
-                                    Contractor
-                                </th>
-                                <th>
-                                    Photo Count
-                                </th>
-                                <th>
-                                    Monitoring
-                                </th>
+                                <td>
+                                    <%: Html.ActionLink("Edit", "Edit", "ContractDetail", new { id=item.ID }, null) %>
+                                    <%--<a href='javascript:EditDetail( <%: item.ID %> )'>Edit</a>--%>
+                                    |
+                                    <%: Html.ActionLink("Remove", "Delete", "ContractDetail", new { id=item.ID }, null) %>
+                                </td>
+                                <td>
+                                    <div style='float:left;'>
+                                    <%: Html.ActionLink("New", "Create", "SiteMonitoring",  new { ContractDetailID=item.ID },null) %>
+                                
+                                    <% 
+                                        int i = 0;
+                                        foreach (var sm in item.SiteMonitorings)
+                                        {
+                                            i++;
+                                    %>
+                                    <%: "|" %>
+                                    <%: Html.ActionLink(i.ToString(), "Edit", "SiteMonitoring", new { id = sm.ID }, null)%>
+                                    <% if (sm.Issues != "" && sm.Issues != null)
+                                       {%>
+                                    <% if (sm.SiteMonitoringPhotoes.Count > 0)
+                                       {%>
+                                        <%: "(" + sm.SiteMonitoringPhotoes.Count.ToString() + ")"%> 
+                                    <% } %>
+                                    <% if (sm.RequiredFollowUp != null && (bool)sm.RequiredFollowUp)
+                                       { %>
+                                            <img border='0' src='/Content/Image/exclamation.gif' />
+                                    <% } %>
+                                    <% } %>
+                                    <% } %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <%: item.SiteID %>
+                                </td>
+                                <td>
+                                    <%: String.Format("{0:c}", item.Price) %>
+                                </td>
+                                <td>
+                                    <%: String.Format("{0:c}", item.ProductionPrice) %>
+                                </td>
+                                <td>
+                                    <%: String.Format("{0:d}", item.EffectiveDate) %>
+                                </td>
+                                <td>
+                                    <%: String.Format("{0:d}", item.TermDate) %>
+                                </td>
+                                <td>
+                                    <%: item.Site.GeoFullName %>
+                                </td>
+                                <td>
+                                    <%: item.Site.AddressLine1 %>
+                                </td>
+                                <td>
+                                    <%: item.Site.AddressLine2 %>
+                                </td>
+                                <td>
+                                    <%: item.Site.Type %>
+                                </td>
+                                <td>
+                                    <%: item.Site.Format %>
+                                </td>
+                                <td>
+                                    <%: item.Site.CurrentClientName %>
+                                </td>
+                                <td>
+                                    <%: item.Site.CurrentProduct %>
+                                </td>
+                                <td>
+                                    <%: item.Site.ContractorName %>
+                                </td>
+                                <td>
+                                    <%: item.Site.SitePhotoes.Count %>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                        <% foreach (var item in Model.ContractDetails)
-                           { %>
-                        <tr>
-                            <td>
-                                <%: Html.ActionLink("Edit", "Edit", "ContractDetail", new { id=item.ID }, null) %>
-                                <%--<a href='javascript:EditDetail( <%: item.ID %> )'>Edit</a>--%>
-                                |
-                                <%: Html.ActionLink("Remove", "Delete", "ContractDetail", new { id=item.ID }, null) %>
-                            </td>
-                            <td>
-                                <%: item.SiteID %>
-                            </td>
-                            <td>
-                                <%: String.Format("{0:c}", item.Price) %>
-                            </td>
-                            <td>
-                                <%: String.Format("{0:c}", item.ProductionPrice) %>
-                            </td>
-                            <td>
-                                <%: String.Format("{0:d}", item.EffectiveDate) %>
-                            </td>
-                            <td>
-                                <%: String.Format("{0:d}", item.TermDate) %>
-                            </td>
-                            <td>
-                                <%: item.Site.GeoFullName %>
-                            </td>
-                            <td>
-                                <%: item.Site.AddressLine1 %>
-                            </td>
-                            <td>
-                                <%: item.Site.AddressLine2 %>
-                            </td>
-                            <td>
-                                <%: item.Site.Type %>
-                            </td>
-                            <td>
-                                <%: item.Site.Format %>
-                            </td>
-                            <td>
-                                <%: item.Site.CurrentClientName %>
-                            </td>
-                            <td>
-                                <%: item.Site.CurrentProduct %>
-                            </td>
-                            <td>
-                                <%: item.Site.ContractorName %>
-                            </td>
-                            <td>
-                                <%: item.Site.SitePhotoes.Count %>
-                            </td>
-                            <td>
-                                <%: Html.ActionLink("New", "Create", "SiteMonitoring",  new { ContractDetailID=item.ID },null) %>
-                                
-                                <% 
-                                    int i = 0;
-                                    foreach (var sm in item.SiteMonitorings)
-                                    {
-                                        i++;
-                                %>
-                                <%: "|" %>
-                                <%: Html.ActionLink(i.ToString(), "Edit", "SiteMonitoring", new { id = sm.ID }, null)%>
-                                
-                                <% } %>
-                            </td>
-                        </tr>
-                        <% } %>
-                        </tbody>
-                    </table>
-                </div>
-                <div id="divEditDetail">
-                </div>
-            </td>
-        </tr>
-    </table>
+                            <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="divEditDetail">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
     <% } %>
     <div>
         <%: Html.ActionLink("Back to List", "Index") %>
