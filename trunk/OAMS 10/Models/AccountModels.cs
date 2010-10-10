@@ -18,6 +18,14 @@ namespace OAMS.Models
         public string RolesList { get; set; }
     }
 
+    public class RoleAuthenticationModel
+    {
+        public string RoleName { get; set; }
+        public List<int?> ControllerActionIDList { get; set; }
+    }
+
+    
+
     [PropertiesMustMatch("NewPassword", "ConfirmPassword", ErrorMessage = "The new password and confirmation password do not match.")]
     public class ChangePasswordModel
     {
@@ -293,11 +301,22 @@ namespace OAMS.Models
         private string[] _authorizedRoles;
         public string[] AuthorizedRoles
         {
-            get { return _authorizedRoles ?? new string[0]; }
+            get { return _authorizedRoles ?? new string[] { }; }
             set { _authorizedRoles = value; }
         }
+
+        private string[] _authorizedUsers;
+        public string[] AuthorizedUsers
+        {
+            get { return _authorizedUsers ?? new string[] { }; }
+            set { _authorizedUsers = value; }
+        }
+
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
+            MVCAuthorizationRepository mvcAuthorizationRepository = new MVCAuthorizationRepository();
+            AuthorizedRoles = mvcAuthorizationRepository.GetRolesByActionDescriptor(filterContext.ActionDescriptor).ToArray();
+
             base.OnAuthorization(filterContext);
 
             //If its an unauthorized/timed out ajax request go to top window and redirect to logon.
@@ -319,22 +338,35 @@ namespace OAMS.Models
             if (httpContext == null)
                 throw new ArgumentNullException("httpContext");
 
-            if (!httpContext.User.Identity.IsAuthenticated)
-                return false;
+            bool r = false;
 
-            //Bypass role check if user is Admin, prevents having to add Admin role across the whole project.
-            if (httpContext.User.IsInRole(ProjectRoles.Admin))
-                return true;
+            if (httpContext.User.Identity.IsAuthenticated)
+            {
+                if (!AuthorizedRoles.Contains(ProjectRoles.Admin))
+                {
+                    AuthorizedRoles = AuthorizedRoles.Add(ProjectRoles.Admin);
+                }
 
-            //If no roles are supplied to the attribute just check that the user is logged in.
-            if (AuthorizedRoles.Length == 0)
-                return false;
+                //Bypass role check if user is Admin, prevents having to add Admin role across the whole project.
+                if (httpContext.User.IsInRole(ProjectRoles.Admin)
+                    || AuthorizedUsers.Contains(httpContext.User.Identity.Name)
+                    || AuthorizedRoles.Any(httpContext.User.IsInRole))
+                {
+                    r = true;
+                }
+                //If no roles are supplied to the attribute just check that the user is logged in.
+                //if (AuthorizedRoles.Length == 0)
+                //    return false;
 
-            //Check to see if any of the authorized roles fits into any assigned roles only if roles have been supplied.
-            if (AuthorizedRoles.Any(httpContext.User.IsInRole))
-                return true;
+                //Check to see if any of the authorized roles fits into any assigned roles only if roles have been supplied.
+            }
 
-            return false;
+            return r;
+        }
+
+        public bool Authorize(HttpContextBase httpContext)
+        {
+            return AuthorizeCore(httpContext);
         }
     }
 

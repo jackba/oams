@@ -182,6 +182,21 @@ namespace OAMS.Controllers
             return View(new UserModel() { Username = id });
         }
 
+        public ActionResult EditRoleAuthentication(string roleName)
+        {
+            return View(repo.GetRole(roleName));
+        }
+
+        [HttpPost]
+        public ActionResult EditRoleAuthentication(string roleName, int?[] ControllerActionIDList)
+        {
+            MVCAuthorizationRepository _MVCAuthorizationRepository = new MVCAuthorizationRepository();
+            
+            _MVCAuthorizationRepository.SetRoleAuthorization(roleName, ControllerActionIDList.ToList());
+
+            return View(repo.GetRole(roleName));
+        }
+
         public ActionResult LogOn()
         {
             return View();

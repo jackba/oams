@@ -38,7 +38,15 @@ namespace OAMS.Models
                 user = Membership.CreateUser(username, "Oams123!@#");
             }
 
-            Roles.AddUserToRole(username, ProjectRoles.Admin);
+            try
+            {
+                Roles.AddUserToRole(username, ProjectRoles.Admin);
+            }
+            catch (Exception)
+            {
+
+            }
+
 
             return username;
         }
@@ -57,6 +65,19 @@ namespace OAMS.Models
             }
 
             return l;
+        }
+
+        public RoleAuthenticationModel GetRole(string roleName)
+        {
+            RoleAuthenticationModel e = new RoleAuthenticationModel();
+            aspnet_Roles role = DB.aspnet_Roles.Where(r => r.RoleName == roleName).FirstOrDefault();
+            if(role != null)
+            {
+                List<int?> controllerActionIDList = role.MVCAuthorizations.Select(r => r.ControllerActionID).ToList();
+                e.RoleName = role.RoleName;
+                e.ControllerActionIDList = controllerActionIDList;
+            }
+            return e;
         }
     }
 }

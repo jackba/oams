@@ -7,7 +7,8 @@ using OAMS.Models;
 
 namespace OAMS.Controllers
 {
-    [CustomAuthorize(AuthorizedRoles = new string[] { })]
+
+    [CustomAuthorize]
     public class ClientController : Controller
     {
         //
@@ -15,6 +16,7 @@ namespace OAMS.Controllers
 
         ClientRepository repo = new ClientRepository();
 
+        
         public ActionResult Index()
         {
             var v = repo.GetAll();
@@ -31,7 +33,7 @@ namespace OAMS.Controllers
 
         //
         // GET: /Client/Create
-
+        //[CustomAuthorize(AuthorizedRoles = new string[] { ProjectRoles.SiteManager })]
         public ActionResult Create()
         {
             return View(new Client());
@@ -41,6 +43,7 @@ namespace OAMS.Controllers
         // POST: /Client/Create
 
         [HttpPost]
+        //[CustomAuthorize(AuthorizedRoles = new string[] { ProjectRoles.Monitoring })]
         public ActionResult Create(FormCollection collection)
         {
             // TODO: Add insert logic here

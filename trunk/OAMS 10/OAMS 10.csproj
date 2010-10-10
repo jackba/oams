@@ -24,6 +24,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+    <PackageAsSingleFile>false</PackageAsSingleFile>
+    <DesktopBuildPackageLocation>..\..\oams-deploy</DesktopBuildPackageLocation>
+    <DeployIisAppPath>Default Web Site/OAMS</DeployIisAppPath>
+    <PublishDatabases>true</PublishDatabases>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -114,6 +118,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AccountProfile.cs" />
     <Compile Include="Models\AccountRepository.cs" />
+    <Compile Include="Models\ControllerActionRepository.cs" />
     <Compile Include="Models\BaseRepository.cs" />
     <Compile Include="Models\CampaignDetailRepository.cs" />
     <Compile Include="Models\CampaignRepository.cs" />
@@ -123,8 +128,10 @@
     <Compile Include="Models\ContractRepository.cs" />
     <Compile Include="Models\ClientRepository.cs" />
     <Compile Include="Models\CategoryRepository.cs" />
+    <Compile Include="Models\MVCAuthorizationRepository.cs" />
     <Compile Include="Models\OAMSEntitiesPartial.cs" />
     <Compile Include="Models\Partial\Client.cs" />
+    <Compile Include="Models\Partial\ControllerAction.cs" />
     <Compile Include="Models\Partial\SiteMonitoring.cs" />
     <Compile Include="Models\RoleRepository.cs" />
     <Compile Include="Models\SiteMonitoringRepository.cs" />
@@ -194,6 +201,7 @@
     <Content Include="Scripts\jquery-ui-1.8.1.custom.min.js" />
     <Content Include="Scripts\jquery.dataTables.js" />
     <Content Include="Views\Account\Edit.aspx" />
+    <Content Include="Views\Account\EditRoleAuthentication.aspx" />
     <Content Include="Views\Account\Guest.aspx" />
     <Content Include="Views\Account\Index.aspx" />
     <Content Include="Views\Account\NoRight.aspx" />

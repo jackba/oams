@@ -6,6 +6,9 @@
     <edmx:StorageModels>
     <Schema Namespace="OAMSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="OAMSModelStoreContainer">
+          <EntitySet Name="aspnet_Roles" EntityType="OAMSModel.Store.aspnet_Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_Users" EntityType="OAMSModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_UsersInRoles" EntityType="OAMSModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Campaign" EntityType="OAMSModel.Store.Campaign" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CampaignDetail" EntityType="OAMSModel.Store.CampaignDetail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Category" EntityType="OAMSModel.Store.Category" store:Type="Tables" Schema="dbo" />
@@ -14,11 +17,21 @@
           <EntitySet Name="Contract" EntityType="OAMSModel.Store.Contract" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ContractDetail" EntityType="OAMSModel.Store.ContractDetail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Contractor" EntityType="OAMSModel.Store.Contractor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ControllerAction" EntityType="OAMSModel.Store.ControllerAction" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Geo" EntityType="OAMSModel.Store.Geo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MVCAuthorization" EntityType="OAMSModel.Store.MVCAuthorization" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Site" EntityType="OAMSModel.Store.Site" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SiteMonitoring" EntityType="OAMSModel.Store.SiteMonitoring" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SiteMonitoringPhoto" EntityType="OAMSModel.Store.SiteMonitoringPhoto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SitePhoto" EntityType="OAMSModel.Store.SitePhoto" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__aspnet_Us__RoleI__4AB81AF0" Association="OAMSModel.Store.FK__aspnet_Us__RoleI__4AB81AF0">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__UserI__49C3F6B7" Association="OAMSModel.Store.FK__aspnet_Us__UserI__49C3F6B7">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+          </AssociationSet>
           <AssociationSet Name="FK_Campaign_Client" Association="OAMSModel.Store.FK_Campaign_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="Campaign" EntitySet="Campaign" />
@@ -50,6 +63,18 @@
           <AssociationSet Name="FK_Geo_Geo" Association="OAMSModel.Store.FK_Geo_Geo">
             <End Role="Geo" EntitySet="Geo" />
             <End Role="Geo1" EntitySet="Geo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MVCAuthorization_aspnet_Roles" Association="OAMSModel.Store.FK_MVCAuthorization_aspnet_Roles">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="MVCAuthorization" EntitySet="MVCAuthorization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MVCAuthorization_aspnet_Users" Association="OAMSModel.Store.FK_MVCAuthorization_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="MVCAuthorization" EntitySet="MVCAuthorization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MVCAuthorization_ControllerAction" Association="OAMSModel.Store.FK_MVCAuthorization_ControllerAction">
+            <End Role="ControllerAction" EntitySet="ControllerAction" />
+            <End Role="MVCAuthorization" EntitySet="MVCAuthorization" />
           </AssociationSet>
           <AssociationSet Name="FK_Site_Category1" Association="OAMSModel.Store.FK_Site_Category1">
             <End Role="Category" EntitySet="Category" />
@@ -92,6 +117,36 @@
             <End Role="SitePhoto" EntitySet="SitePhoto" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="aspnet_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="LoweredRoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="LoweredUserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="Campaign">
           <Key>
             <PropertyRef Name="ID" />
@@ -195,6 +250,16 @@
           <Property Name="ContactPhone" Type="nvarchar(max)" />
           <Property Name="ContactEmail" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="ControllerAction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Controller" Type="nvarchar(max)" />
+          <Property Name="Action" Type="nvarchar(max)" />
+          <Property Name="HttpVerb" Type="nvarchar(max)" />
+          <Property Name="Parameters" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Geo">
           <Key>
             <PropertyRef Name="ID" />
@@ -205,6 +270,15 @@
           <Property Name="Level" Type="int" />
           <Property Name="FullName" Type="nvarchar(max)" />
           <Property Name="FullNameNoDiacritics" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MVCAuthorization">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ControllerActionID" Type="int" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="RoleId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="Site">
           <Key>
@@ -333,6 +407,30 @@
           <Property Name="AtomUrl" Type="nvarchar(max)" />
           <Property Name="TakenDate" Type="datetime" />
         </EntityType>
+        <Association Name="FK__aspnet_Us__RoleI__4AB81AF0">
+          <End Role="aspnet_Roles" Type="OAMSModel.Store.aspnet_Roles" Multiplicity="1" />
+          <End Role="aspnet_UsersInRoles" Type="OAMSModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__UserI__49C3F6B7">
+          <End Role="aspnet_Users" Type="OAMSModel.Store.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_UsersInRoles" Type="OAMSModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Campaign_Client">
           <End Role="Client" Type="OAMSModel.Store.Client" Multiplicity="0..1" />
           <End Role="Campaign" Type="OAMSModel.Store.Campaign" Multiplicity="*" />
@@ -426,6 +524,42 @@
             </Principal>
             <Dependent Role="Geo1">
               <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MVCAuthorization_aspnet_Roles">
+          <End Role="aspnet_Roles" Type="OAMSModel.Store.aspnet_Roles" Multiplicity="0..1" />
+          <End Role="MVCAuthorization" Type="OAMSModel.Store.MVCAuthorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="MVCAuthorization">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MVCAuthorization_aspnet_Users">
+          <End Role="aspnet_Users" Type="OAMSModel.Store.aspnet_Users" Multiplicity="0..1" />
+          <End Role="MVCAuthorization" Type="OAMSModel.Store.MVCAuthorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="MVCAuthorization">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MVCAuthorization_ControllerAction">
+          <End Role="ControllerAction" Type="OAMSModel.Store.ControllerAction" Multiplicity="0..1" />
+          <End Role="MVCAuthorization" Type="OAMSModel.Store.MVCAuthorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ControllerAction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MVCAuthorization">
+              <PropertyRef Name="ControllerActionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -646,6 +780,26 @@
           <AssociationSet Name="FK_Site_Category3" Association="OAMSModel.FK_Site_Category3">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Site" EntitySet="Sites" />
+          </AssociationSet>
+          <EntitySet Name="ControllerActions" EntityType="OAMSModel.ControllerAction" />
+          <EntitySet Name="MVCAuthorizations" EntityType="OAMSModel.MVCAuthorization" />
+          <AssociationSet Name="FK_MVCAuthorization_ControllerAction" Association="OAMSModel.FK_MVCAuthorization_ControllerAction">
+            <End Role="ControllerAction" EntitySet="ControllerActions" />
+            <End Role="MVCAuthorization" EntitySet="MVCAuthorizations" />
+          </AssociationSet>
+          <EntitySet Name="aspnet_Roles" EntityType="OAMSModel.aspnet_Roles" />
+          <EntitySet Name="aspnet_Users" EntityType="OAMSModel.aspnet_Users" />
+          <AssociationSet Name="FK_MVCAuthorization_aspnet_Roles" Association="OAMSModel.FK_MVCAuthorization_aspnet_Roles">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="MVCAuthorization" EntitySet="MVCAuthorizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MVCAuthorization_aspnet_Users" Association="OAMSModel.FK_MVCAuthorization_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="MVCAuthorization" EntitySet="MVCAuthorizations" />
+          </AssociationSet>
+          <AssociationSet Name="aspnet_UsersInRoles" Association="OAMSModel.aspnet_UsersInRoles">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Geo">
@@ -1169,6 +1323,95 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ControllerAction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Controller" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Action" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="HttpVerb" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MVCAuthorizations" Relationship="OAMSModel.FK_MVCAuthorization_ControllerAction" FromRole="ControllerAction" ToRole="MVCAuthorization" />
+          <Property Type="String" Name="Parameters" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MVCAuthorization">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ControllerActionID" />
+          <Property Type="Guid" Name="UserId" />
+          <Property Type="Guid" Name="RoleId" />
+          <NavigationProperty Name="ControllerAction" Relationship="OAMSModel.FK_MVCAuthorization_ControllerAction" FromRole="MVCAuthorization" ToRole="ControllerAction" />
+          <NavigationProperty Name="aspnet_Roles" Relationship="OAMSModel.FK_MVCAuthorization_aspnet_Roles" FromRole="MVCAuthorization" ToRole="aspnet_Roles" />
+          <NavigationProperty Name="aspnet_Users" Relationship="OAMSModel.FK_MVCAuthorization_aspnet_Users" FromRole="MVCAuthorization" ToRole="aspnet_Users" />
+        </EntityType>
+        <Association Name="FK_MVCAuthorization_ControllerAction">
+          <End Type="OAMSModel.ControllerAction" Role="ControllerAction" Multiplicity="0..1" />
+          <End Type="OAMSModel.MVCAuthorization" Role="MVCAuthorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ControllerAction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MVCAuthorization">
+              <PropertyRef Name="ControllerActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="aspnet_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Type="Guid" Name="ApplicationId" Nullable="false" />
+          <Property Type="Guid" Name="RoleId" Nullable="false" />
+          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LoweredRoleName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MVCAuthorizations" Relationship="OAMSModel.FK_MVCAuthorization_aspnet_Roles" FromRole="aspnet_Roles" ToRole="MVCAuthorization" />
+          <NavigationProperty Name="aspnet_Users" Relationship="OAMSModel.aspnet_UsersInRoles" FromRole="aspnet_Roles" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Type="Guid" Name="ApplicationId" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LoweredUserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MobileAlias" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsAnonymous" Nullable="false" />
+          <Property Type="DateTime" Name="LastActivityDate" Nullable="false" />
+          <NavigationProperty Name="MVCAuthorizations" Relationship="OAMSModel.FK_MVCAuthorization_aspnet_Users" FromRole="aspnet_Users" ToRole="MVCAuthorization" />
+          <NavigationProperty Name="aspnet_Roles" Relationship="OAMSModel.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
+        </EntityType>
+        <Association Name="FK_MVCAuthorization_aspnet_Roles">
+          <End Type="OAMSModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="0..1" />
+          <End Type="OAMSModel.MVCAuthorization" Role="MVCAuthorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="MVCAuthorization">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MVCAuthorization_aspnet_Users">
+          <End Type="OAMSModel.aspnet_Users" Role="aspnet_Users" Multiplicity="0..1" />
+          <End Type="OAMSModel.MVCAuthorization" Role="MVCAuthorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="MVCAuthorization">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="aspnet_UsersInRoles">
+          <End Type="OAMSModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
+          <End Type="OAMSModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1429,6 +1672,59 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ControllerActions">
+            <EntityTypeMapping TypeName="OAMSModel.ControllerAction">
+              <MappingFragment StoreEntitySet="ControllerAction">
+                <ScalarProperty Name="Parameters" ColumnName="Parameters" />
+                <ScalarProperty Name="HttpVerb" ColumnName="HttpVerb" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MVCAuthorizations">
+            <EntityTypeMapping TypeName="OAMSModel.MVCAuthorization">
+              <MappingFragment StoreEntitySet="MVCAuthorization">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ControllerActionID" ColumnName="ControllerActionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Roles">
+            <EntityTypeMapping TypeName="OAMSModel.aspnet_Roles">
+              <MappingFragment StoreEntitySet="aspnet_Roles">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LoweredRoleName" ColumnName="LoweredRoleName" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Users">
+            <EntityTypeMapping TypeName="OAMSModel.aspnet_Users">
+              <MappingFragment StoreEntitySet="aspnet_Users">
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+                <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
+                <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="aspnet_UsersInRoles" TypeName="OAMSModel.aspnet_UsersInRoles" StoreEntitySet="aspnet_UsersInRoles">
+            <EndProperty Name="aspnet_Users">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="aspnet_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1452,10 +1748,10 @@
       <Diagram Name="OAMS" ZoomLevel="88">
         <EntityTypeShape EntityType="OAMSModel.Geo" Width="1.75" PointX="0.75" PointY="4.75" Height="2.7427376302083326" IsExpanded="true" />
         <AssociationConnector Association="OAMSModel.FK_Geo_Geo" >
-          <ConnectorPoint PointX="1.1644247604614315" PointY="7.4927376302083326" />
-          <ConnectorPoint PointX="1.1644247604614315" PointY="7.7427376302083326" />
-          <ConnectorPoint PointX="1.625" PointY="7.7427376302083326" />
-          <ConnectorPoint PointX="1.625" PointY="7.4927376302083326" />
+          <ConnectorPoint PointX="1.3705769230769231" PointY="7.8840950520833326" />
+          <ConnectorPoint PointX="1.3705769230769231" PointY="8.1340950520833317" />
+          <ConnectorPoint PointX="1.8915384615384618" PointY="8.1340950520833317" />
+          <ConnectorPoint PointX="1.8915384615384618" PointY="7.8840950520833326" />
         </AssociationConnector>
         <EntityTypeShape EntityType="OAMSModel.CodeMaster" Width="1.5" PointX="3.375" PointY="4.75" Height="1.5923063151041665" IsExpanded="true" />
         <EntityTypeShape EntityType="OAMSModel.Campaign" Width="1.5" PointX="9.75" PointY="19" Height="2.5783902994791674" />
@@ -1479,36 +1775,48 @@
           <ConnectorPoint PointX="2.5000000000000004" PointY="3.3744921875" />
           <ConnectorPoint PointX="2.875" PointY="3.7494921874999996" />
           <ConnectorPoint PointX="2.875" PointY="18.489401041666667" />
-          <ConnectorPoint PointX="5.260416666666667" PointY="18.489401041666667" />
-          <ConnectorPoint PointX="5.427083333333333" PointY="18.489401041666667" />
-          <ConnectorPoint PointX="8.1666666666666661" PointY="18.489401041666667" />
-          <ConnectorPoint PointX="8.3333333333333339" PointY="18.489401041666667" />
+          <ConnectorPoint PointX="5.104166666666667" PointY="18.489401041666667" />
+          <ConnectorPoint PointX="5.270833333333333" PointY="18.489401041666667" />
+          <ConnectorPoint PointX="8.3854166666666661" PointY="18.489401041666667" />
+          <ConnectorPoint PointX="8.5520833333333339" PointY="18.489401041666667" />
           <ConnectorPoint PointX="9.375" PointY="18.489401041666667" />
           <ConnectorPoint PointX="9.75" PointY="18.114401041666667" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Geo1" >
-          <ConnectorPoint PointX="2.5" PointY="7.35415535569884" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="7.3541553556988388" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="7.35415535569884" />
-          <ConnectorPoint PointX="5.260416666666667" PointY="7.3541553556988388" />
-          <ConnectorPoint PointX="5.427083333333333" PointY="7.35415535569884" />
-          <ConnectorPoint PointX="9.75" PointY="7.35415535569884" />
+          <ConnectorPoint PointX="2.5" PointY="7.3651432291666667" />
+          <ConnectorPoint PointX="2.7916666666666665" PointY="7.3651432291666659" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="7.3651432291666667" />
+          <ConnectorPoint PointX="5.104166666666667" PointY="7.3651432291666659" />
+          <ConnectorPoint PointX="5.270833333333333" PointY="7.3651432291666667" />
+          <ConnectorPoint PointX="7.619791666666667" PointY="7.3651432291666659" />
+          <ConnectorPoint PointX="7.786458333333333" PointY="7.3651432291666667" />
+          <ConnectorPoint PointX="8.0494816666666669" PointY="7.3651432291666659" />
+          <ConnectorPoint PointX="8.2161483333333347" PointY="7.3651432291666667" />
+          <ConnectorPoint PointX="9.75" PointY="7.3651432291666667" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Geo2" >
-          <ConnectorPoint PointX="2.5" PointY="7.6816252038910857" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="7.6816252038910848" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="7.6816252038910857" />
-          <ConnectorPoint PointX="5.260416666666667" PointY="7.6816252038910848" />
-          <ConnectorPoint PointX="5.427083333333333" PointY="7.6816252038910857" />
-          <ConnectorPoint PointX="9.75" PointY="7.6816252038910857" />
+          <ConnectorPoint PointX="2.5" PointY="7.0789648437500006" />
+          <ConnectorPoint PointX="2.7916666666666665" PointY="7.07896484375" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="7.0789648437500006" />
+          <ConnectorPoint PointX="5.104166666666667" PointY="7.07896484375" />
+          <ConnectorPoint PointX="5.270833333333333" PointY="7.0789648437500006" />
+          <ConnectorPoint PointX="7.619791666666667" PointY="7.07896484375" />
+          <ConnectorPoint PointX="7.786458333333333" PointY="7.0789648437500006" />
+          <ConnectorPoint PointX="8.0494816666666669" PointY="7.07896484375" />
+          <ConnectorPoint PointX="8.2161483333333347" PointY="7.0789648437500006" />
+          <ConnectorPoint PointX="9.75" PointY="7.0789648437500006" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Geo3" >
-          <ConnectorPoint PointX="2.5" PointY="7.0109709070160857" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="7.0109709070160848" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="7.0109709070160857" />
-          <ConnectorPoint PointX="5.260416666666667" PointY="7.0109709070160848" />
-          <ConnectorPoint PointX="5.427083333333333" PointY="7.0109709070160857" />
-          <ConnectorPoint PointX="9.75" PointY="7.0109709070160857" />
+          <ConnectorPoint PointX="2.5" PointY="7.6513216145833329" />
+          <ConnectorPoint PointX="2.7916666666666665" PointY="7.651321614583332" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="7.6513216145833329" />
+          <ConnectorPoint PointX="5.104166666666667" PointY="7.651321614583332" />
+          <ConnectorPoint PointX="5.270833333333333" PointY="7.6513216145833329" />
+          <ConnectorPoint PointX="7.619791666666667" PointY="7.651321614583332" />
+          <ConnectorPoint PointX="7.786458333333333" PointY="7.6513216145833329" />
+          <ConnectorPoint PointX="8.0494816666666669" PointY="7.651321614583332" />
+          <ConnectorPoint PointX="8.2161483333333347" PointY="7.6513216145833329" />
+          <ConnectorPoint PointX="9.75" PointY="7.6513216145833329" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_SitePhoto_Site" >
           <ConnectorPoint PointX="11.84375" PointY="18.114401041666667" />
@@ -1536,16 +1844,20 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="OAMSModel.Category" Width="1.5" PointX="3.5" PointY="0.75" Height="2.5571907552083388" />
         <AssociationConnector Association="OAMSModel.FK_Category_Category" >
-          <ConnectorPoint PointX="4.0319230769230767" PointY="3.8840950520833331" />
-          <ConnectorPoint PointX="4.0319230769230767" PointY="4.1340950520833335" />
-          <ConnectorPoint PointX="4.4784615384615378" PointY="4.1340950520833335" />
-          <ConnectorPoint PointX="4.4784615384615378" PointY="3.8840950520833331" />
+          <ConnectorPoint PointX="4.0319230769230767" PointY="0.75" />
+          <ConnectorPoint PointX="4.0319230769230767" PointY="0.5" />
+          <ConnectorPoint PointX="4.4784615384615378" PointY="0.5" />
+          <ConnectorPoint PointX="4.4784615384615378" PointY="0.75" />
         </AssociationConnector>
         <EntityTypeShape EntityType="OAMSModel.Contract" Width="1.5" PointX="4.125" PointY="19" Height="4.8648079427083388" />
         <AssociationConnector Association="OAMSModel.FK_Contract_Contractor" >
           <ConnectorPoint PointX="2.5" PointY="0.65625" />
-          <ConnectorPoint PointX="5.34375" PointY="0.65625" />
-          <ConnectorPoint PointX="5.34375" PointY="19" />
+          <ConnectorPoint PointX="3.9485897435897432" PointY="0.65624999999999944" />
+          <ConnectorPoint PointX="4.11525641025641" PointY="0.65625" />
+          <ConnectorPoint PointX="4.3951282051282048" PointY="0.65624999999999944" />
+          <ConnectorPoint PointX="4.5617948717948709" PointY="0.65625" />
+          <ConnectorPoint PointX="5.1875" PointY="0.65625" />
+          <ConnectorPoint PointX="5.1875" PointY="19" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_ContractDetail_Contract" >
           <ConnectorPoint PointX="5.625" PointY="22.321701160156252" />
@@ -1571,27 +1883,75 @@
           <ConnectorPoint PointX="5.625" PointY="20.5862939453125" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Client" >
-          <ConnectorPoint PointX="8.25" PointY="19.5" />
-          <ConnectorPoint PointX="8.25" PointY="12.898013122778878" />
-          <ConnectorPoint PointX="9.75" PointY="12.898013122778878" />
+          <ConnectorPoint PointX="8.46875" PointY="19.5" />
+          <ConnectorPoint PointX="8.46875" PointY="12.895958501810068" />
+          <ConnectorPoint PointX="9.75" PointY="12.895958501810068" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Category1" >
-          <ConnectorPoint PointX="5" PointY="2.3170475260416667" />
-          <ConnectorPoint PointX="5.260416666666667" PointY="2.3170475260416663" />
-          <ConnectorPoint PointX="5.427083333333333" PointY="2.3170475260416667" />
-          <ConnectorPoint PointX="9.75" PointY="2.3170475260416667" />
+          <ConnectorPoint PointX="5" PointY="3.5110665079134256" />
+          <ConnectorPoint PointX="5.104166666666667" PointY="3.5110665079134251" />
+          <ConnectorPoint PointX="5.270833333333333" PointY="3.5110665079134256" />
+          <ConnectorPoint PointX="6.541666666666667" PointY="3.5110665079134251" />
+          <ConnectorPoint PointX="6.708333333333333" PointY="3.5110665079134256" />
+          <ConnectorPoint PointX="7.322916666666667" PointY="3.5110665079134251" />
+          <ConnectorPoint PointX="7.489583333333333" PointY="3.5110665079134256" />
+          <ConnectorPoint PointX="7.619791666666667" PointY="3.5110665079134251" />
+          <ConnectorPoint PointX="7.786458333333333" PointY="3.5110665079134256" />
+          <ConnectorPoint PointX="9.75" PointY="3.5110665079134256" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Category2" >
-          <ConnectorPoint PointX="5" PointY="1.4710237630208334" />
-          <ConnectorPoint PointX="5.260416666666667" PointY="1.4710237630208327" />
-          <ConnectorPoint PointX="5.427083333333333" PointY="1.4710237630208334" />
-          <ConnectorPoint PointX="9.75" PointY="1.4710237630208334" />
+          <ConnectorPoint PointX="5" PointY="3.1659261677492285" />
+          <ConnectorPoint PointX="5.104166666666667" PointY="3.1659261677492281" />
+          <ConnectorPoint PointX="5.270833333333333" PointY="3.1659261677492285" />
+          <ConnectorPoint PointX="9.75" PointY="3.1659261677492285" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Site_Category3" >
-          <ConnectorPoint PointX="5" PointY="3.1630712890625" />
-          <ConnectorPoint PointX="5.260416666666667" PointY="3.1630712890624997" />
-          <ConnectorPoint PointX="5.427083333333333" PointY="3.1630712890625" />
-          <ConnectorPoint PointX="9.75" PointY="3.1630712890625" />
+          <ConnectorPoint PointX="5" PointY="3.7600807799983795" />
+          <ConnectorPoint PointX="5.104166666666667" PointY="3.7600807799983791" />
+          <ConnectorPoint PointX="5.270833333333333" PointY="3.7600807799983795" />
+          <ConnectorPoint PointX="6.541666666666667" PointY="3.7600807799983791" />
+          <ConnectorPoint PointX="6.708333333333333" PointY="3.7600807799983795" />
+          <ConnectorPoint PointX="7.322916666666667" PointY="3.7600807799983791" />
+          <ConnectorPoint PointX="7.489583333333333" PointY="3.7600807799983795" />
+          <ConnectorPoint PointX="7.619791666666667" PointY="3.7600807799983791" />
+          <ConnectorPoint PointX="7.786458333333333" PointY="3.7600807799983795" />
+          <ConnectorPoint PointX="9.75" PointY="3.7600807799983795" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="OAMSModel.ControllerAction" Width="1.5" PointX="5.375" PointY="4.875" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="OAMSModel.MVCAuthorization" Width="1.5" PointX="6.375" PointY="0.875" Height="1.7879850260416674" />
+        <AssociationConnector Association="OAMSModel.FK_MVCAuthorization_ControllerAction" >
+          <ConnectorPoint PointX="6.625" PointY="4.875" />
+          <ConnectorPoint PointX="6.625" PointY="3.239889322916667" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="OAMSModel.aspnet_Roles" Width="1.5" PointX="0.75" PointY="4.625" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="OAMSModel.aspnet_Users" Width="1.5" PointX="7" PointY="7.875" Height="2.749492187499996" />
+        <AssociationConnector Association="OAMSModel.FK_MVCAuthorization_aspnet_Roles" >
+          <ConnectorPoint PointX="2.25" PointY="4.65625" />
+          <ConnectorPoint PointX="2.7916666666666665" PointY="4.6562499999999991" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="4.65625" />
+          <ConnectorPoint PointX="5.104166666666667" PointY="4.6562499999999991" />
+          <ConnectorPoint PointX="5.270833333333333" PointY="4.65625" />
+          <ConnectorPoint PointX="6.541666666666667" PointY="4.6562499999999991" />
+          <ConnectorPoint PointX="6.708333333333333" PointY="4.65625" />
+          <ConnectorPoint PointX="7.40625" PointY="4.65625" />
+          <ConnectorPoint PointX="7.40625" PointY="3.239889322916667" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_MVCAuthorization_aspnet_Users" >
+          <ConnectorPoint PointX="7.703125" PointY="7.875" />
+          <ConnectorPoint PointX="7.703125" PointY="3.239889322916667" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.aspnet_UsersInRoles" >
+          <ConnectorPoint PointX="2.25" PointY="4.671875" />
+          <ConnectorPoint PointX="2.7916666666666665" PointY="4.6718749999999991" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="4.671875" />
+          <ConnectorPoint PointX="5.104166666666667" PointY="4.6718749999999991" />
+          <ConnectorPoint PointX="5.270833333333333" PointY="4.671875" />
+          <ConnectorPoint PointX="6.541666666666667" PointY="4.6718749999999991" />
+          <ConnectorPoint PointX="6.708333333333333" PointY="4.671875" />
+          <ConnectorPoint PointX="7.619791666666667" PointY="4.6718749999999991" />
+          <ConnectorPoint PointX="7.786458333333333" PointY="4.671875" />
+          <ConnectorPoint PointX="8.132815" PointY="4.671875" />
+          <ConnectorPoint PointX="8.132815" PointY="7.875" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

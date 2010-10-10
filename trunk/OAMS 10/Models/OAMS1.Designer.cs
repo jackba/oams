@@ -38,6 +38,10 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Category1", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Category), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Category2", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Category), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Category3", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Category), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_MVCAuthorization_ControllerAction", "ControllerAction", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.ControllerAction), "MVCAuthorization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.MVCAuthorization), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_MVCAuthorization_aspnet_Roles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.aspnet_Roles), "MVCAuthorization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.MVCAuthorization), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_MVCAuthorization_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.aspnet_Users), "MVCAuthorization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.MVCAuthorization), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.aspnet_Users))]
 
 #endregion
 
@@ -296,6 +300,70 @@ namespace OAMS.Models
             }
         }
         private ObjectSet<Contract> _Contracts;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ControllerAction> ControllerActions
+        {
+            get
+            {
+                if ((_ControllerActions == null))
+                {
+                    _ControllerActions = base.CreateObjectSet<ControllerAction>("ControllerActions");
+                }
+                return _ControllerActions;
+            }
+        }
+        private ObjectSet<ControllerAction> _ControllerActions;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<MVCAuthorization> MVCAuthorizations
+        {
+            get
+            {
+                if ((_MVCAuthorizations == null))
+                {
+                    _MVCAuthorizations = base.CreateObjectSet<MVCAuthorization>("MVCAuthorizations");
+                }
+                return _MVCAuthorizations;
+            }
+        }
+        private ObjectSet<MVCAuthorization> _MVCAuthorizations;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<aspnet_Roles> aspnet_Roles
+        {
+            get
+            {
+                if ((_aspnet_Roles == null))
+                {
+                    _aspnet_Roles = base.CreateObjectSet<aspnet_Roles>("aspnet_Roles");
+                }
+                return _aspnet_Roles;
+            }
+        }
+        private ObjectSet<aspnet_Roles> _aspnet_Roles;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<aspnet_Users> aspnet_Users
+        {
+            get
+            {
+                if ((_aspnet_Users == null))
+                {
+                    _aspnet_Users = base.CreateObjectSet<aspnet_Users>("aspnet_Users");
+                }
+                return _aspnet_Users;
+            }
+        }
+        private ObjectSet<aspnet_Users> _aspnet_Users;
 
         #endregion
         #region AddTo Methods
@@ -403,6 +471,38 @@ namespace OAMS.Models
         {
             base.AddObject("Contracts", contract);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ControllerActions EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToControllerActions(ControllerAction controllerAction)
+        {
+            base.AddObject("ControllerActions", controllerAction);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the MVCAuthorizations EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMVCAuthorizations(MVCAuthorization mVCAuthorization)
+        {
+            base.AddObject("MVCAuthorizations", mVCAuthorization);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the aspnet_Roles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToaspnet_Roles(aspnet_Roles aspnet_Roles)
+        {
+            base.AddObject("aspnet_Roles", aspnet_Roles);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the aspnet_Users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToaspnet_Users(aspnet_Users aspnet_Users)
+        {
+            base.AddObject("aspnet_Users", aspnet_Users);
+        }
 
         #endregion
     }
@@ -411,6 +511,466 @@ namespace OAMS.Models
     #endregion
     
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="OAMSModel", Name="aspnet_Roles")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class aspnet_Roles : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new aspnet_Roles object.
+        /// </summary>
+        /// <param name="applicationId">Initial value of the ApplicationId property.</param>
+        /// <param name="roleId">Initial value of the RoleId property.</param>
+        /// <param name="roleName">Initial value of the RoleName property.</param>
+        /// <param name="loweredRoleName">Initial value of the LoweredRoleName property.</param>
+        public static aspnet_Roles Createaspnet_Roles(global::System.Guid applicationId, global::System.Guid roleId, global::System.String roleName, global::System.String loweredRoleName)
+        {
+            aspnet_Roles aspnet_Roles = new aspnet_Roles();
+            aspnet_Roles.ApplicationId = applicationId;
+            aspnet_Roles.RoleId = roleId;
+            aspnet_Roles.RoleName = roleName;
+            aspnet_Roles.LoweredRoleName = loweredRoleName;
+            return aspnet_Roles;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid ApplicationId
+        {
+            get
+            {
+                return _ApplicationId;
+            }
+            set
+            {
+                OnApplicationIdChanging(value);
+                ReportPropertyChanging("ApplicationId");
+                _ApplicationId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ApplicationId");
+                OnApplicationIdChanged();
+            }
+        }
+        private global::System.Guid _ApplicationId;
+        partial void OnApplicationIdChanging(global::System.Guid value);
+        partial void OnApplicationIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid RoleId
+        {
+            get
+            {
+                return _RoleId;
+            }
+            set
+            {
+                if (_RoleId != value)
+                {
+                    OnRoleIdChanging(value);
+                    ReportPropertyChanging("RoleId");
+                    _RoleId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("RoleId");
+                    OnRoleIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _RoleId;
+        partial void OnRoleIdChanging(global::System.Guid value);
+        partial void OnRoleIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String RoleName
+        {
+            get
+            {
+                return _RoleName;
+            }
+            set
+            {
+                OnRoleNameChanging(value);
+                ReportPropertyChanging("RoleName");
+                _RoleName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("RoleName");
+                OnRoleNameChanged();
+            }
+        }
+        private global::System.String _RoleName;
+        partial void OnRoleNameChanging(global::System.String value);
+        partial void OnRoleNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String LoweredRoleName
+        {
+            get
+            {
+                return _LoweredRoleName;
+            }
+            set
+            {
+                OnLoweredRoleNameChanging(value);
+                ReportPropertyChanging("LoweredRoleName");
+                _LoweredRoleName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("LoweredRoleName");
+                OnLoweredRoleNameChanged();
+            }
+        }
+        private global::System.String _LoweredRoleName;
+        partial void OnLoweredRoleNameChanging(global::System.String value);
+        partial void OnLoweredRoleNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_MVCAuthorization_aspnet_Roles", "MVCAuthorization")]
+        public EntityCollection<MVCAuthorization> MVCAuthorizations
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MVCAuthorization>("OAMSModel.FK_MVCAuthorization_aspnet_Roles", "MVCAuthorization");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MVCAuthorization>("OAMSModel.FK_MVCAuthorization_aspnet_Roles", "MVCAuthorization", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "aspnet_UsersInRoles", "aspnet_Users")]
+        public EntityCollection<aspnet_Users> aspnet_Users
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<aspnet_Users>("OAMSModel.aspnet_UsersInRoles", "aspnet_Users");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<aspnet_Users>("OAMSModel.aspnet_UsersInRoles", "aspnet_Users", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="OAMSModel", Name="aspnet_Users")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class aspnet_Users : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new aspnet_Users object.
+        /// </summary>
+        /// <param name="applicationId">Initial value of the ApplicationId property.</param>
+        /// <param name="userId">Initial value of the UserId property.</param>
+        /// <param name="userName">Initial value of the UserName property.</param>
+        /// <param name="loweredUserName">Initial value of the LoweredUserName property.</param>
+        /// <param name="isAnonymous">Initial value of the IsAnonymous property.</param>
+        /// <param name="lastActivityDate">Initial value of the LastActivityDate property.</param>
+        public static aspnet_Users Createaspnet_Users(global::System.Guid applicationId, global::System.Guid userId, global::System.String userName, global::System.String loweredUserName, global::System.Boolean isAnonymous, global::System.DateTime lastActivityDate)
+        {
+            aspnet_Users aspnet_Users = new aspnet_Users();
+            aspnet_Users.ApplicationId = applicationId;
+            aspnet_Users.UserId = userId;
+            aspnet_Users.UserName = userName;
+            aspnet_Users.LoweredUserName = loweredUserName;
+            aspnet_Users.IsAnonymous = isAnonymous;
+            aspnet_Users.LastActivityDate = lastActivityDate;
+            return aspnet_Users;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid ApplicationId
+        {
+            get
+            {
+                return _ApplicationId;
+            }
+            set
+            {
+                OnApplicationIdChanging(value);
+                ReportPropertyChanging("ApplicationId");
+                _ApplicationId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ApplicationId");
+                OnApplicationIdChanged();
+            }
+        }
+        private global::System.Guid _ApplicationId;
+        partial void OnApplicationIdChanging(global::System.Guid value);
+        partial void OnApplicationIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                if (_UserId != value)
+                {
+                    OnUserIdChanging(value);
+                    ReportPropertyChanging("UserId");
+                    _UserId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("UserId");
+                    OnUserIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _UserId;
+        partial void OnUserIdChanging(global::System.Guid value);
+        partial void OnUserIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UserName
+        {
+            get
+            {
+                return _UserName;
+            }
+            set
+            {
+                OnUserNameChanging(value);
+                ReportPropertyChanging("UserName");
+                _UserName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("UserName");
+                OnUserNameChanged();
+            }
+        }
+        private global::System.String _UserName;
+        partial void OnUserNameChanging(global::System.String value);
+        partial void OnUserNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String LoweredUserName
+        {
+            get
+            {
+                return _LoweredUserName;
+            }
+            set
+            {
+                OnLoweredUserNameChanging(value);
+                ReportPropertyChanging("LoweredUserName");
+                _LoweredUserName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("LoweredUserName");
+                OnLoweredUserNameChanged();
+            }
+        }
+        private global::System.String _LoweredUserName;
+        partial void OnLoweredUserNameChanging(global::System.String value);
+        partial void OnLoweredUserNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MobileAlias
+        {
+            get
+            {
+                return _MobileAlias;
+            }
+            set
+            {
+                OnMobileAliasChanging(value);
+                ReportPropertyChanging("MobileAlias");
+                _MobileAlias = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MobileAlias");
+                OnMobileAliasChanged();
+            }
+        }
+        private global::System.String _MobileAlias;
+        partial void OnMobileAliasChanging(global::System.String value);
+        partial void OnMobileAliasChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsAnonymous
+        {
+            get
+            {
+                return _IsAnonymous;
+            }
+            set
+            {
+                OnIsAnonymousChanging(value);
+                ReportPropertyChanging("IsAnonymous");
+                _IsAnonymous = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsAnonymous");
+                OnIsAnonymousChanged();
+            }
+        }
+        private global::System.Boolean _IsAnonymous;
+        partial void OnIsAnonymousChanging(global::System.Boolean value);
+        partial void OnIsAnonymousChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime LastActivityDate
+        {
+            get
+            {
+                return _LastActivityDate;
+            }
+            set
+            {
+                OnLastActivityDateChanging(value);
+                ReportPropertyChanging("LastActivityDate");
+                _LastActivityDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastActivityDate");
+                OnLastActivityDateChanged();
+            }
+        }
+        private global::System.DateTime _LastActivityDate;
+        partial void OnLastActivityDateChanging(global::System.DateTime value);
+        partial void OnLastActivityDateChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_MVCAuthorization_aspnet_Users", "MVCAuthorization")]
+        public EntityCollection<MVCAuthorization> MVCAuthorizations
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MVCAuthorization>("OAMSModel.FK_MVCAuthorization_aspnet_Users", "MVCAuthorization");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MVCAuthorization>("OAMSModel.FK_MVCAuthorization_aspnet_Users", "MVCAuthorization", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "aspnet_UsersInRoles", "aspnet_Roles")]
+        public EntityCollection<aspnet_Roles> aspnet_Roles
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<aspnet_Roles>("OAMSModel.aspnet_UsersInRoles", "aspnet_Roles");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<aspnet_Roles>("OAMSModel.aspnet_UsersInRoles", "aspnet_Roles", value);
+                }
+            }
+        }
+
+        #endregion
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -2786,6 +3346,182 @@ namespace OAMS.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="OAMSModel", Name="ControllerAction")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ControllerAction : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ControllerAction object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static ControllerAction CreateControllerAction(global::System.Int32 id)
+        {
+            ControllerAction controllerAction = new ControllerAction();
+            controllerAction.ID = id;
+            return controllerAction;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Controller
+        {
+            get
+            {
+                return _Controller;
+            }
+            set
+            {
+                OnControllerChanging(value);
+                ReportPropertyChanging("Controller");
+                _Controller = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Controller");
+                OnControllerChanged();
+            }
+        }
+        private global::System.String _Controller;
+        partial void OnControllerChanging(global::System.String value);
+        partial void OnControllerChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Action
+        {
+            get
+            {
+                return _Action;
+            }
+            set
+            {
+                OnActionChanging(value);
+                ReportPropertyChanging("Action");
+                _Action = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Action");
+                OnActionChanged();
+            }
+        }
+        private global::System.String _Action;
+        partial void OnActionChanging(global::System.String value);
+        partial void OnActionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String HttpVerb
+        {
+            get
+            {
+                return _HttpVerb;
+            }
+            set
+            {
+                OnHttpVerbChanging(value);
+                ReportPropertyChanging("HttpVerb");
+                _HttpVerb = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("HttpVerb");
+                OnHttpVerbChanged();
+            }
+        }
+        private global::System.String _HttpVerb;
+        partial void OnHttpVerbChanging(global::System.String value);
+        partial void OnHttpVerbChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Parameters
+        {
+            get
+            {
+                return _Parameters;
+            }
+            set
+            {
+                OnParametersChanging(value);
+                ReportPropertyChanging("Parameters");
+                _Parameters = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Parameters");
+                OnParametersChanged();
+            }
+        }
+        private global::System.String _Parameters;
+        partial void OnParametersChanging(global::System.String value);
+        partial void OnParametersChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_MVCAuthorization_ControllerAction", "MVCAuthorization")]
+        public EntityCollection<MVCAuthorization> MVCAuthorizations
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MVCAuthorization>("OAMSModel.FK_MVCAuthorization_ControllerAction", "MVCAuthorization");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MVCAuthorization>("OAMSModel.FK_MVCAuthorization_ControllerAction", "MVCAuthorization", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="OAMSModel", Name="Geo")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -3080,6 +3816,250 @@ namespace OAMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Site>("OAMSModel.FK_Site_Geo3", "Site", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="OAMSModel", Name="MVCAuthorization")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class MVCAuthorization : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new MVCAuthorization object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static MVCAuthorization CreateMVCAuthorization(global::System.Int32 id)
+        {
+            MVCAuthorization mVCAuthorization = new MVCAuthorization();
+            mVCAuthorization.ID = id;
+            return mVCAuthorization;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ControllerActionID
+        {
+            get
+            {
+                return _ControllerActionID;
+            }
+            set
+            {
+                OnControllerActionIDChanging(value);
+                ReportPropertyChanging("ControllerActionID");
+                _ControllerActionID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ControllerActionID");
+                OnControllerActionIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ControllerActionID;
+        partial void OnControllerActionIDChanging(Nullable<global::System.Int32> value);
+        partial void OnControllerActionIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                OnUserIdChanging(value);
+                ReportPropertyChanging("UserId");
+                _UserId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserId");
+                OnUserIdChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _UserId;
+        partial void OnUserIdChanging(Nullable<global::System.Guid> value);
+        partial void OnUserIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> RoleId
+        {
+            get
+            {
+                return _RoleId;
+            }
+            set
+            {
+                OnRoleIdChanging(value);
+                ReportPropertyChanging("RoleId");
+                _RoleId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RoleId");
+                OnRoleIdChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _RoleId;
+        partial void OnRoleIdChanging(Nullable<global::System.Guid> value);
+        partial void OnRoleIdChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_MVCAuthorization_ControllerAction", "ControllerAction")]
+        public ControllerAction ControllerAction
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ControllerAction>("OAMSModel.FK_MVCAuthorization_ControllerAction", "ControllerAction").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ControllerAction>("OAMSModel.FK_MVCAuthorization_ControllerAction", "ControllerAction").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<ControllerAction> ControllerActionReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ControllerAction>("OAMSModel.FK_MVCAuthorization_ControllerAction", "ControllerAction");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ControllerAction>("OAMSModel.FK_MVCAuthorization_ControllerAction", "ControllerAction", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_MVCAuthorization_aspnet_Roles", "aspnet_Roles")]
+        public aspnet_Roles aspnet_Roles
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aspnet_Roles>("OAMSModel.FK_MVCAuthorization_aspnet_Roles", "aspnet_Roles").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aspnet_Roles>("OAMSModel.FK_MVCAuthorization_aspnet_Roles", "aspnet_Roles").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<aspnet_Roles> aspnet_RolesReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aspnet_Roles>("OAMSModel.FK_MVCAuthorization_aspnet_Roles", "aspnet_Roles");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<aspnet_Roles>("OAMSModel.FK_MVCAuthorization_aspnet_Roles", "aspnet_Roles", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_MVCAuthorization_aspnet_Users", "aspnet_Users")]
+        public aspnet_Users aspnet_Users
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aspnet_Users>("OAMSModel.FK_MVCAuthorization_aspnet_Users", "aspnet_Users").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aspnet_Users>("OAMSModel.FK_MVCAuthorization_aspnet_Users", "aspnet_Users").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<aspnet_Users> aspnet_UsersReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aspnet_Users>("OAMSModel.FK_MVCAuthorization_aspnet_Users", "aspnet_Users");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<aspnet_Users>("OAMSModel.FK_MVCAuthorization_aspnet_Users", "aspnet_Users", value);
                 }
             }
         }
