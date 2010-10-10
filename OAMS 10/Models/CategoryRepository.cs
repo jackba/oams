@@ -7,18 +7,18 @@ namespace OAMS.Models
 {
     public class CategoryRepository : BaseRepository<CategoryRepository>
     {
-        private OAMSEntities db = new OAMSEntities();
+        //private OAMSEntities DB = new OAMSEntities();
 
         public Category GetByFullname(string fullname)
         {
-            return (from e in db.Categories
+            return (from e in DB.Categories
                     where e.FullName.ToLower() == fullname.Trim().ToLower()
                     select e).SingleOrDefault();
         }
 
         public Category Get(Guid? ID = null)
         {
-            Category e = db.Categories.Where(r => r.ID == ID).SingleOrDefault();
+            Category e = DB.Categories.Where(r => r.ID == ID).SingleOrDefault();
 
             return e;
         }
@@ -26,8 +26,8 @@ namespace OAMS.Models
         public IQueryable<Category> GetByParentID(Guid? parentID = null)
         {
             return parentID.HasValue ?
-                db.Categories.Where(r => r.ParentID == parentID)
-                : db.Categories.Where(r => r.ParentID == null);
+                DB.Categories.Where(r => r.ParentID == parentID)
+                : DB.Categories.Where(r => r.ParentID == null);
         }
 
         // Add/Delete 
@@ -38,7 +38,7 @@ namespace OAMS.Models
         //    Category.Level = level;
         //    Category.ParentID = parentID;
 
-        //    db.Categories.AddObject(Category);
+        //    DB.Categories.AddObject(Category);
 
         //    return Category;
         //}
@@ -46,14 +46,12 @@ namespace OAMS.Models
         public Category Add(Category e)
         {
             e.ID = Guid.NewGuid();
-
-            db.Categories.AddObject(e);
-
             e.Level = e.Parent == null ? 1 : e.Parent.Level + 1;
             //SetFullname(e);
             //e.FullNameNoDiacritics = e.FullName.RemoveDiacritics();
             UpdateFullname(e);
-
+            DB.Categories.AddObject(e);
+            Save();
             return e;
         }
 
@@ -65,7 +63,7 @@ namespace OAMS.Models
 
         public void Delete(Category e)
         {
-            db.Categories.DeleteObject(e);
+            DB.Categories.DeleteObject(e);
         }
 
         //public void Add(string Category1Name, string Category2Name, string Category3Name)

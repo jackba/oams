@@ -222,6 +222,7 @@
     <Content Include="Views\Category\Index.aspx" />
     <Content Include="Views\Contract\Edit.aspx" />
     <Content Include="Views\Contract\Index.aspx" />
+    <Content Include="Views\FindSite\Copy of Find4Contract.aspx" />
     <Content Include="Views\FindSite\Find4Contract.aspx" />
     <Content Include="Views\FindSite\Find.aspx" />
     <Content Include="Views\Geo\Create.aspx" />
@@ -230,6 +231,7 @@
     <Content Include="Views\Shared\EditorTemplates\AutoCompleteContractor.ascx" />
     <Content Include="Views\Shared\EditorTemplates\AutoCompleteGeo.ascx" />
     <Content Include="Views\Shared\EditorTemplates\AutoCompleteClient.ascx" />
+    <Content Include="Views\Shared\EditorTemplates\AutoCompleteCategory.ascx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Content\Image\resize.png" />
     <Content Include="Views\SiteMonitoring\Create.aspx" />

@@ -19,7 +19,22 @@ namespace OAMS.Models
             }
         }
 
+        public string CategoryFullName
+        {
+            get
+            {
+                CategoryRepository catRepository = new CategoryRepository();
+                return catRepository.GetFullname(Category1, Category2, Category3);
+            }
+        }
+
         public string NewGeoFullName
+        {
+            get;
+            set;
+        }
+
+        public string NewCategoryFullName
         {
             get;
             set;
@@ -47,6 +62,15 @@ namespace OAMS.Models
             Geo2ID = geoID2;
             Geo3ID = geoID3;
             
+            return 0;
+        }
+
+        public int UpdateCategory(Guid? catID1, Guid? catID2, Guid? catID3)
+        {
+            CategoryID1 = catID1;
+            CategoryID2 = catID2;
+            CategoryID3 = catID3;
+
             return 0;
         }
     }

@@ -7,15 +7,15 @@ namespace OAMS.Models
 {
     public class GeoRepository : BaseRepository<GeoRepository>
     {
-        private OAMSEntities db = new OAMSEntities();
+        //private OAMSEntities DB = new OAMSEntities();
 
         // Query Methods 
-        //public IQueryable<Geo> GetAll() { return db.Geos; }
-        //public IQueryable<Geo> GetAll(int level) { return db.Geos.Where(r => r.Level == level); }
+        //public IQueryable<Geo> GetAll() { return DB.Geos; }
+        //public IQueryable<Geo> GetAll(int level) { return DB.Geos.Where(r => r.Level == level); }
 
         //public Geo Get(string name, int level, Guid? parentID)
         //{
-        //    return db.Geos.Where(r => r.Level == level
+        //    return DB.Geos.Where(r => r.Level == level
         //        && r.Name.Trim().ToLower() == name.Trim().ToLower()
         //        && object.Equals(r.ParentID, parentID)
         //        ).SingleOrDefault();
@@ -23,19 +23,19 @@ namespace OAMS.Models
 
         public Geo GetByFullname(string fullname)
         {
-            return (from e in db.Geos
+            return (from e in DB.Geos
                     where e.FullName.ToLower() == fullname.Trim().ToLower()
                     select e).SingleOrDefault();
         }
 
         //public IQueryable<Geo> Get(List<Guid> IDList, int level)
         //{
-        //    return db.Geos.Where(r => IDList.Contains(r.ID) && r.Level == level);
+        //    return DB.Geos.Where(r => IDList.Contains(r.ID) && r.Level == level);
         //}
 
         //public Geo Get(Guid ID, int level)
         //{
-        //    Geo e = db.Geos.Where(r => r.ID == ID && r.Level == level).SingleOrDefault();
+        //    Geo e = DB.Geos.Where(r => r.ID == ID && r.Level == level).SingleOrDefault();
 
         //    if (e == null)
         //        throw new Exception("Không tìm thấy đơn vị hành chính.");
@@ -45,7 +45,7 @@ namespace OAMS.Models
 
         public Geo Get(Guid? ID = null)
         {
-            Geo e = db.Geos.Where(r => r.ID == ID).SingleOrDefault();
+            Geo e = DB.Geos.Where(r => r.ID == ID).SingleOrDefault();
 
             return e;
         }
@@ -53,8 +53,8 @@ namespace OAMS.Models
         public IQueryable<Geo> GetByParentID(Guid? parentID = null)
         {
             return parentID.HasValue ?
-                db.Geos.Where(r => r.ParentID == parentID)
-                : db.Geos.Where(r => r.ParentID == null);
+                DB.Geos.Where(r => r.ParentID == parentID)
+                : DB.Geos.Where(r => r.ParentID == null);
         }
 
         // Add/Delete 
@@ -65,7 +65,7 @@ namespace OAMS.Models
         //    geo.Level = level;
         //    geo.ParentID = parentID;
 
-        //    db.Geos.AddObject(geo);
+        //    DB.Geos.AddObject(geo);
 
         //    return geo;
         //}
@@ -74,7 +74,7 @@ namespace OAMS.Models
         {
             e.ID = Guid.NewGuid();
 
-            db.Geos.AddObject(e);
+            DB.Geos.AddObject(e);
 
             e.Level = e.Parent == null ? 1 : e.Parent.Level + 1;
             //SetFullname(e);
@@ -92,7 +92,7 @@ namespace OAMS.Models
 
         public void Delete(Geo e)
         {
-            db.Geos.DeleteObject(e);
+            DB.Geos.DeleteObject(e);
         }
 
         //public void Add(string geo1Name, string geo2Name, string geo3Name)

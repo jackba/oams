@@ -16,6 +16,53 @@
                     <legend>Fields</legend>
                     <%: Html.HiddenFor(model => model.ID) %>
                     <%: Html.HiddenFor(model => model.ContractDetailID) %>
+                    <div id="map" style="width: 300px; height: 300px;">
+                    </div>
+                    <script type="text/javascript" language="javascript">
+                        var map;
+                        var marker;
+                        function init() {
+                            var mapDiv = document.getElementById('map');
+                            map = new google.maps.Map(mapDiv, {
+                                center: new google.maps.LatLng(10.77250, 106.69808),
+                                zoom: 12,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
+                            });
+                            google.maps.event.addListener(map, 'idle', txtGeoChanged);
+                        }
+
+                        google.maps.event.addDomListener(window, 'load', init);
+
+                        function txtGeoChanged() {
+
+                            var lng = $('#Site_Lng').val();
+                            var lat = $('#Site_Lat').val();
+
+                            if (marker != null) {
+                                marker.setMap(null);
+                            }
+
+                            marker = new google.maps.Marker({
+
+                                position: new google.maps.LatLng(lat, lng),
+                                map: map,
+                                draggable: true,
+                                title: 'Move me!'
+                            });
+
+                            if (!map.getBounds().contains(marker.position)) {
+                                var bounds = new google.maps.LatLngBounds();
+                                bounds.extend(marker.position);
+                                map.fitBounds(bounds);
+                            }
+                        }
+                    </script>
+                    <div class="editor-label">
+                        <%: Html.LabelFor(model => model.Site.GeoFullName)%>
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.EditorFor(model => model.Site.GeoFullName)%>
+                    </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.Working) %>
                     </div>
@@ -141,6 +188,40 @@
                     <div class="editor-field">
                         <%: Html.DisplayFor(model => model.LastUpdatedBy)%>
                         <%: Html.ValidationMessageFor(model => model.LastUpdatedBy) %>
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.HiddenFor(model => model.Site.Lat)%>
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.HiddenFor(model => model.Site.Lng)%>
+                    </div>
+                    <div class="editor-label">
+                        <%: Html.LabelFor(model => model.Site.Type) %>
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.CodeMasterDropDownListFor(r => r.Site.Type)%>
+                        <%: Html.ValidationMessageFor(model => model.Site.Type)%>
+                    </div>
+                    <div class="editor-label">
+                        <%: Html.LabelFor(model => model.Site.Format)%>
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.CodeMasterDropDownListFor(r => r.Site.Format)%>
+                        <%: Html.ValidationMessageFor(model => model.Site.Format)%>
+                    </div>
+                    <div class="editor-label">
+                        <%: Html.LabelFor(model => model.Site.Height)%>
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.TextBoxFor(model => model.Site.Height)%>
+                        <%: Html.ValidationMessageFor(model => model.Site.Height)%>
+                    </div>
+                    <div class="editor-label">
+                        <%: Html.LabelFor(model => model.Site.Width) %>
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.TextBoxFor(model => model.Site.Width)%>
+                        <%: Html.ValidationMessageFor(model => model.Site.Width)%>
                     </div>
                     <p>
                         <input type="submit" value="Save" />

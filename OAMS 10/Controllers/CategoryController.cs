@@ -55,13 +55,9 @@ namespace OAMS.Controllers
         {
             // TODO: Add insert logic here
             Category e = new Category();
-
             UpdateModel(e);
-
             repo.Add(e);
-
-            repo.Save();
-
+            //repo.Save();
             return RedirectToAction("Index", new { parentID = e.ParentID });
         }
 

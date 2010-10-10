@@ -36,7 +36,30 @@ namespace OAMS.Controllers
             return Json(e.Children.Select(r => new { r.ID, r.FullName }).OrderBy(r => r.FullName));
         }
 
+        [HttpPost]
+        public JsonResult ListCats(string searchText, int? level = null)
+        {
+            OAMSEntities db = new OAMSEntities();
+            var result = db.Categories.Where(r => (r.FullName.Contains(searchText) || r.FullNameNoDiacritics.Contains(searchText))
+                && (level == null || r.Level == level)
+                )
+                .Distinct()
+                //.Take(maxResults)
+                .Select(r => new { r.ID, r.FullName })
+                .ToList();
 
+            return Json(result);
+        }
+
+        [HttpPost]
+        public JsonResult ListCats2(string parentFullName)
+        {
+            CategoryRepository categoryRepository = new CategoryRepository();
+
+            Category e = categoryRepository.GetByFullname(parentFullName);
+
+            return Json(e.Children.Select(r => new { r.ID, r.FullName }).OrderBy(r => r.FullName));
+        }
 
         [HttpPost]
         public JsonResult ListCodeMaster(string searchText, int maxResults, string type)
