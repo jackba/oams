@@ -317,12 +317,47 @@
     </table>
     <% } %>
     <script id="infoWindowTemplate" type="text/x-jquery-tmpl">
-        <div>
-        ${ID}
-        <br />
-        ${GeoFullName}
-        
-        </div>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    ID: ${ID}
+                    <br />
+                    Site Code: ${Code}
+                    <br />
+                    Address: ${Address}
+                    <br />
+                    Location: ${GeoFullName}
+                    <br />
+                    Type: ${Type}
+                    <br />
+                    Orientation: ${Orientation}
+                    <br />
+                    Size: ${Size}
+                    <br />
+                    Lighting: ${Lighting}
+                    <br />
+                    Contractor: ${Contractor}
+                    <br />
+                    CurrentProduct: ${CurrentProduct}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{if AlbumID.length}} 
+                        <br />
+                        <embed type="application/x-shockwave-flash" src="http://picasaweb.google.com/s/c/bin/slideshow.swf"
+                        width="400" height="267" flashvars="host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F113917932111131696693%2Falbumid%2F
+                        ${AlbumID}
+                        %3Falt%3Drss%26kind%3Dphoto%26authkey%3D
+                        ${AuthID}
+                        %26hl%3Den_US" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>
+                    
+                    {{/if}}
+                </td>
+            </tr>
+        </table>
+    </div>
     </script>
     <script type="text/javascript">
         //showGeo2('Hồ Chí Minh City', false, 'dis. 1, Hồ Chí Minh City');
@@ -555,39 +590,39 @@
 
                     profileMarkers.push(marker);
                     var html = "";
-                    html += "<table><tr><td>";
-                    html += "ID: " + site.ID;
-                    html += "<br />";
-                    html += "Site Code: " + site.Code;
-                    html += "<br />";
-                    html += "Address: " + site.Address;
-                    html += "<br />";
-                    html += "Location: " + site.GeoFullName;
-                    html += "<br />";
-                    html += "Type: " + site.Type;
-                    html += "<br />";
-                    html += "Orientation: " + site.Orientation;
-                    html += "<br />";
-                    html += "Size: " + site.Size;
-                    html += "<br />";
-                    html += "Lighting: " + site.Lighting;
-                    html += "<br />";
-                    html += "Contractor: " + site.Contractor;
-                    html += "<br />";
-                    html += "CurrentProduct: " + site.CurrentProduct;
-                    html += "</td></tr>";
-                    html += "<tr><td>";
-                    if (site.AlbumID != '') {
-                        html += "<br />";
-                        html += '<embed type="application/x-shockwave-flash" src="http://picasaweb.google.com/s/c/bin/slideshow.swf" width="400" height="267" flashvars="host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F113917932111131696693%2Falbumid%2F';
-                        html += site.AlbumID;
-                        html += '%3Falt%3Drss%26kind%3Dphoto%26authkey%3D';
-                        html += site.AuthID;
-                        html += '%26hl%3Den_US" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>';
-                    }
+//                    html += "<table><tr><td>";
+//                    html += "ID: " + site.ID;
+//                    html += "<br />";
+//                    html += "Site Code: " + site.Code;
+//                    html += "<br />";
+//                    html += "Address: " + site.Address;
+//                    html += "<br />";
+//                    html += "Location: " + site.GeoFullName;
+//                    html += "<br />";
+//                    html += "Type: " + site.Type;
+//                    html += "<br />";
+//                    html += "Orientation: " + site.Orientation;
+//                    html += "<br />";
+//                    html += "Size: " + site.Size;
+//                    html += "<br />";
+//                    html += "Lighting: " + site.Lighting;
+//                    html += "<br />";
+//                    html += "Contractor: " + site.Contractor;
+//                    html += "<br />";
+//                    html += "CurrentProduct: " + site.CurrentProduct;
+//                    html += "</td></tr>";
+//                    html += "<tr><td>";
+//                    if (site.AlbumID != '') {
+//                        html += "<br />";
+//                        html += '<embed type="application/x-shockwave-flash" src="http://picasaweb.google.com/s/c/bin/slideshow.swf" width="400" height="267" flashvars="host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F113917932111131696693%2Falbumid%2F';
+//                        html += site.AlbumID;
+//                        html += '%3Falt%3Drss%26kind%3Dphoto%26authkey%3D';
+//                        html += site.AuthID;
+//                        html += '%26hl%3Den_US" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>';
+//                    }
 
-                    html += "</td></tr>";
-                    html += "</table>";
+//                    html += "</td></tr>";
+//                    html += "</table>";
 
                     //$("#infoWindowTemplate").tmpl(site).appendTo("#divTest");
                     html += $("#infoWindowTemplate").tmpl(site).html();
