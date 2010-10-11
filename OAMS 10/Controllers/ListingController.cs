@@ -11,7 +11,6 @@ namespace OAMS.Controllers
     public class ListingController : Controller
     {
         [HttpPost]
-        [HttpGet]
         public JsonResult ListGeos(string searchText, int? level = null)
         {
             OAMSEntities db = new OAMSEntities();
