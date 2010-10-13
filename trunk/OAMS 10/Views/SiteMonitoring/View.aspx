@@ -4,12 +4,5 @@
     View
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        View</h2>
     <%: Html.DisplayForModel("ViewDetail")%>
-    <p>
-        <%: Html.ActionLink("Edit", "Edit", new { id=Model.ID }) %>
-        |
-        <%: Html.ActionLink("Back to List", "Index") %>
-    </p>
 </asp:Content>
