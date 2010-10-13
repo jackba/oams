@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<OAMS.Models.SiteMonitoring>" %>
     
     <fieldset>
-        <legend>Fields</legend>
-        
+        <legend>Fieldasas</legend>
+        as
         <div class="display-label">ID</div>
         <div class="display-field"><%: Model.ID %></div>
         
