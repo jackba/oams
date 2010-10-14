@@ -58,10 +58,16 @@
                         }
                     </script>
                     <div class="editor-label">
+                        Address
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.DisplayFor(model => model.Site.AddressLine1)%>&nbsp;<%: Html.DisplayFor(model => model.Site.AddressLine2)%>
+                    </div>
+                    <div class="editor-label">
                         <%: Html.LabelFor(model => model.Site.GeoFullName)%>
                     </div>
                     <div class="editor-field">
-                        <%: Html.EditorFor(model => model.Site.GeoFullName)%>
+                        <%: Html.DisplayFor(model => model.Site.GeoFullName)%>
                     </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.Working) %>
@@ -199,29 +205,25 @@
                         <%: Html.LabelFor(model => model.Site.Type) %>
                     </div>
                     <div class="editor-field">
-                        <%: Html.CodeMasterDropDownListFor(r => r.Site.Type)%>
-                        <%: Html.ValidationMessageFor(model => model.Site.Type)%>
+                        <%: Html.DisplayFor(r => r.Site.Type)%>
                     </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.Site.Format)%>
                     </div>
                     <div class="editor-field">
-                        <%: Html.CodeMasterDropDownListFor(r => r.Site.Format)%>
-                        <%: Html.ValidationMessageFor(model => model.Site.Format)%>
+                        <%: Html.DisplayFor(r => r.Site.Format)%>
                     </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.Site.Height)%>
                     </div>
                     <div class="editor-field">
-                        <%: Html.TextBoxFor(model => model.Site.Height)%>
-                        <%: Html.ValidationMessageFor(model => model.Site.Height)%>
+                        <%: Html.DisplayFor(model => model.Site.Height)%>
                     </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.Site.Width) %>
                     </div>
                     <div class="editor-field">
-                        <%: Html.TextBoxFor(model => model.Site.Width)%>
-                        <%: Html.ValidationMessageFor(model => model.Site.Width)%>
+                        <%: Html.DisplayFor(model => model.Site.Width)%>
                     </div>
                     <p>
                         <input type="submit" value="Save" />

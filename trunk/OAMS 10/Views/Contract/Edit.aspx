@@ -325,20 +325,20 @@
     </div>
     <script type="text/javascript" language="javascript">
         function ShowHideCols() {
-            oTable.fnSetColumnVis(1, $('#chkColID').attr('checked'));
-            oTable.fnSetColumnVis(2, $('#chkColPrice').attr('checked'));
-            oTable.fnSetColumnVis(3, $('#chkColProductionPrice').attr('checked'));
-            oTable.fnSetColumnVis(4, $('#chkColEffectiveDate').attr('checked'));
-            oTable.fnSetColumnVis(5, $('#chkColTermDate').attr('checked'));
-            oTable.fnSetColumnVis(6, $('#chkColGeoFullName').attr('checked'));
-            oTable.fnSetColumnVis(7, $('#chkColAddressLine1').attr('checked'));
-            oTable.fnSetColumnVis(8, $('#chkColAddressLine2').attr('checked'));
-            oTable.fnSetColumnVis(9, $('#chkColType').attr('checked'));
-            oTable.fnSetColumnVis(10, $('#chkColFormat').attr('checked'));
-            oTable.fnSetColumnVis(11, $('#chkColCurrentClient').attr('checked'));
-            oTable.fnSetColumnVis(12, $('#chkColCurrentProduct').attr('checked'));
-            oTable.fnSetColumnVis(13, $('#chkColContractor').attr('checked'));
-            oTable.fnSetColumnVis(14, $('#chkColPhotoCount').attr('checked'));
+            oTable.fnSetColumnVis(2, $('#chkColID').attr('checked'));
+            oTable.fnSetColumnVis(3, $('#chkColPrice').attr('checked'));
+            oTable.fnSetColumnVis(4, $('#chkColProductionPrice').attr('checked'));
+            oTable.fnSetColumnVis(5, $('#chkColEffectiveDate').attr('checked'));
+            oTable.fnSetColumnVis(6, $('#chkColTermDate').attr('checked'));
+            oTable.fnSetColumnVis(7, $('#chkColGeoFullName').attr('checked'));
+            oTable.fnSetColumnVis(8, $('#chkColAddressLine1').attr('checked'));
+            oTable.fnSetColumnVis(9, $('#chkColAddressLine2').attr('checked'));
+            oTable.fnSetColumnVis(10, $('#chkColType').attr('checked'));
+            oTable.fnSetColumnVis(11, $('#chkColFormat').attr('checked'));
+            oTable.fnSetColumnVis(12, $('#chkColCurrentClient').attr('checked'));
+            oTable.fnSetColumnVis(13, $('#chkColCurrentProduct').attr('checked'));
+            oTable.fnSetColumnVis(14, $('#chkColContractor').attr('checked'));
+            oTable.fnSetColumnVis(15, $('#chkColPhotoCount').attr('checked'));
         }
 
         function EditDetail(contractDetailID) {

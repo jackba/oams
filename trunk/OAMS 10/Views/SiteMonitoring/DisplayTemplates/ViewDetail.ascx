@@ -155,7 +155,24 @@
                         </tr>
                         <tr>
                             <td>Latest Photo Taken:</td>
-                            <td><%: Model.ContractDetail.Site.LastUpdatedDate.ToStringVN() %></td>
+                            <td>
+                            <%
+                                DateTime? lastDate=null;
+                                foreach (OAMS.Models.SiteMonitoringPhoto item in Model.SiteMonitoringPhotoes)
+                                {
+                                    if (item.TakenDate != null && (lastDate == null || lastDate < item.TakenDate))
+                                    {
+                                        lastDate = item.TakenDate;                                        
+                                    }          
+                                }
+                                if (lastDate != null)
+                                { 
+                            %>
+                                <%: lastDate.ToStringVN()%>
+                            <%
+                                }
+                            %>
+                            </td>
                         </tr>
                         <tr><td><b>Lighting</b></td><td></td></tr>
                         <tr>
