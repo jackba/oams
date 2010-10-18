@@ -227,6 +227,7 @@
                     </div>
                     <p>
                         <input type="submit" value="Save" />
+                        <%: Html.ActionLink("View Report", "View", new { id = Model.ID })%>
                     </p>
                 </fieldset>
             </td>
