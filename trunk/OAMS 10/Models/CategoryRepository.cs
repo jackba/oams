@@ -46,11 +46,12 @@ namespace OAMS.Models
         public Category Add(Category e)
         {
             e.ID = Guid.NewGuid();
+            DB.Categories.AddObject(e);
             e.Level = e.Parent == null ? 1 : e.Parent.Level + 1;
             //SetFullname(e);
             //e.FullNameNoDiacritics = e.FullName.RemoveDiacritics();
             UpdateFullname(e);
-            DB.Categories.AddObject(e);
+            
             Save();
             return e;
         }

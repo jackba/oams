@@ -114,6 +114,10 @@
                 Within
                 <input type="text" style="width: 50px;" name="Distance" id="Distance" disabled="disabled"
                     onblur="updateDistanceFromTxt(this);" />
+                <br />
+                Current Product
+                <br />
+                <%: Html.EditorFor(r => r.CurrentProduct) %>
                 <%: Html.HiddenFor(r => r.Lat) %>
                 <%: Html.HiddenFor(r => r.Long) %>
                 <script type="text/javascript" language="javascript">
@@ -182,7 +186,7 @@
                         input.setAttribute('type', 'text');
                         input.setAttribute('id', 'ClientName' + clientcount);
                         input.setAttribute('class', 'text-box single-line');
-                        input.setAttribute('onblur', "javascript:if($('#ClientName" + count + "').val() == '') $('#ClientID" + clientcount + "').val(0);");
+                        input.setAttribute('onblur', "javascript:if($('#ClientName" + clientcount + "').val() == '') $('#ClientID" + clientcount + "').val(0);");
                         divAddMore.append(input);
 
                         var inputCollapse = document.createElement('input');
@@ -229,6 +233,62 @@
                     Client<br />
                 </div>
                 <a id="addClient" href="javascript:addMoreClient();">More...</a>
+                <br />
+                <script type="text/javascript" language="javascript">
+                    var catcount = 1;
+                    function addMoreCat() {
+                        var divAddMore = $('#divMoreCat');
+                        var input = document.createElement('input');
+                        input.setAttribute('type', 'text');
+                        input.setAttribute('id', 'CatName' + catcount);
+                        input.setAttribute('class', 'text-box single-line');
+                        input.setAttribute('onblur', "javascript:if($('#CatName" + catcount + "').val() == '') $('#CatID" + catcount + "').val('0');");
+                        divAddMore.append(input);
+
+                        var inputCollapse = document.createElement('input');
+                        inputCollapse.setAttribute('type', 'text');
+                        inputCollapse.setAttribute('style', 'display: none;');
+                        inputCollapse.setAttribute('name', 'CatList');
+                        inputCollapse.setAttribute('id', 'CatID' + catcount);
+                        divAddMore.append(inputCollapse);
+
+                        var lnkDelete = document.createElement('a');
+                        lnkDelete.setAttribute('id', 'LnkDeleteCat' + catcount);
+                        lnkDelete.setAttribute('onclick', "$('#CatName" + catcount + "').remove();$('#CatID" + catcount + "').remove();$('#LnkDeleteCat" + catcount + "').remove();");
+                        lnkDelete.innerHTML = 'X';
+                        lnkDelete.setAttribute('style', 'text-decoration:underline;cursor:pointer;');
+                        lnkDelete.setAttribute('title', 'Remove this Cat out of search criteria');
+                        divAddMore.append(" ").append(lnkDelete);
+
+                        $(function () {
+                            $("#CatName" + catcount).autocomplete({
+                                select: function (event, ui) {
+                                    var index = this.id.substring(7);
+                                    $("#CatID" + index).val(ui.item.id);
+                                },
+                                source: function (request, response) {
+                                    $.ajax({
+                                        url: '../Listing/ListCats', type: "POST", dataType: "json",
+                                        data: { searchText: request.term },
+                                        success: function (data) {
+                                            response($.map(data, function (item) {
+                                                return { label: item.FullName, value: item.FullName, id: item.ID }
+                                            }))
+                                        }
+                                    })
+                                }
+                            });
+                        });
+                        $("#CatName" + catcount).focus();
+                        catcount = catcount + 1;
+                    }
+                </script>
+                <br />
+                <div id="divMoreCat">
+                    <br />
+                    Category<br />
+                </div>
+                <a id="addCat" href="javascript:addMoreCat();">More...</a>
             </td>
             <td valign="top">
                 <input type="button" onclick="search(this)" value="Find" />

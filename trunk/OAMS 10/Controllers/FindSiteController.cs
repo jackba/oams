@@ -39,7 +39,6 @@ namespace OAMS.Controllers
         public JsonResult FindJson(FindSite e)
         {
             SiteRepository siteRepo = new SiteRepository();
-
             List<Site> l = siteRepo.GetAll().ToList()
                 .Where(r =>
                     //(e.StyleList == null || e.StyleList.Count == 0 || e.StyleList.Contains(r.Type) || e.StyleList.Contains("All"))
@@ -47,6 +46,8 @@ namespace OAMS.Controllers
                     e.StyleList.Contains(r.Type)
                 && (e.ContractorList == null || e.ContractorList.Contains(r.ContractorID.ToInt()))
                 && (e.ClientList == null || e.ClientList.Contains(r.CurrentClientID.ToInt()))
+                && (e.CatList == null || e.CatList.Contains(r.CategoryID1.ToString()) || e.CatList.Contains(r.CategoryID2.ToString()) || e.CatList.Contains(r.CategoryID3.ToString()))
+                //&& (e.CatList == null || (r.CategoryID2 != null && e.CatList.Contains(r.CategoryID2.ToString())))
                 //&& (e.ClientList == null || (r.CurrentClientName != null && e.ClientList.ToLowerArray().Contains(r.CurrentClientName.ToLower())) || (e.ClientList.Contains("") && r.CurrentClientName == null))
                 && (string.IsNullOrEmpty(e.Format) || r.Format == e.Format)
                 && (string.IsNullOrEmpty(e.RoadType1) || r.RoadType1 == e.RoadType1.ToInt())
@@ -66,7 +67,7 @@ namespace OAMS.Controllers
                 && (string.IsNullOrEmpty(e.ShopSignsBillboards) || r.ShopSignsBillboards == e.ShopSignsBillboards.ToInt())
                 && (string.IsNullOrEmpty(e.FlagsTemporaryBannersPromotionalItems) || r.FlagsTemporaryBannersPromotionalItems == e.FlagsTemporaryBannersPromotionalItems.ToInt())
                 && (string.IsNullOrEmpty(e.CompetitiveProductSigns) || r.CompetitiveProductSigns == e.CompetitiveProductSigns.ToInt())
-
+                && (string.IsNullOrEmpty(e.CurrentProduct) || r.CurrentProduct == e.CurrentProduct)
                 && (string.IsNullOrEmpty(e.Geo1FullName) || (r.Geo1 != null && r.Geo1.FullName == e.Geo1FullName))
                 && ((string.IsNullOrEmpty(e.Geo1FullName) && e.Geo2List == null)
                     || (e.Geo2List != null && (e.Geo2List.FirstOrDefault() == null || (r.Geo2 != null && e.Geo2List.Contains(r.Geo2.FullName)))))
@@ -183,7 +184,6 @@ namespace OAMS.Controllers
                 Added = r.ContractDetails.Where(r1 => r1.ContractID == contractID).Count() > 0 ? true : false
             }));
         }
-
     }
 }
 
