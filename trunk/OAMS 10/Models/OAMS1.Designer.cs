@@ -42,6 +42,8 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_MVCAuthorization_aspnet_Roles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.aspnet_Roles), "MVCAuthorization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.MVCAuthorization), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_MVCAuthorization_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.aspnet_Users), "MVCAuthorization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.MVCAuthorization), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.aspnet_Users))]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractTimeline_Contract", "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contract), "ContractTimeline", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractTimeline), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetailTimeline_ContractDetail", "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.ContractDetail), "ContractDetailTimeline", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetailTimeline), true)]
 
 #endregion
 
@@ -364,6 +366,38 @@ namespace OAMS.Models
             }
         }
         private ObjectSet<aspnet_Users> _aspnet_Users;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ContractDetailTimeline> ContractDetailTimelines
+        {
+            get
+            {
+                if ((_ContractDetailTimelines == null))
+                {
+                    _ContractDetailTimelines = base.CreateObjectSet<ContractDetailTimeline>("ContractDetailTimelines");
+                }
+                return _ContractDetailTimelines;
+            }
+        }
+        private ObjectSet<ContractDetailTimeline> _ContractDetailTimelines;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ContractTimeline> ContractTimelines
+        {
+            get
+            {
+                if ((_ContractTimelines == null))
+                {
+                    _ContractTimelines = base.CreateObjectSet<ContractTimeline>("ContractTimelines");
+                }
+                return _ContractTimelines;
+            }
+        }
+        private ObjectSet<ContractTimeline> _ContractTimelines;
 
         #endregion
         #region AddTo Methods
@@ -502,6 +536,22 @@ namespace OAMS.Models
         public void AddToaspnet_Users(aspnet_Users aspnet_Users)
         {
             base.AddObject("aspnet_Users", aspnet_Users);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ContractDetailTimelines EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToContractDetailTimelines(ContractDetailTimeline contractDetailTimeline)
+        {
+            base.AddObject("ContractDetailTimelines", contractDetailTimeline);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ContractTimelines EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToContractTimelines(ContractTimeline contractTimeline)
+        {
+            base.AddObject("ContractTimelines", contractTimeline);
         }
 
         #endregion
@@ -2747,6 +2797,28 @@ namespace OAMS.Models
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractTimeline_Contract", "ContractTimeline")]
+        public EntityCollection<ContractTimeline> ContractTimelines
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ContractTimeline>("OAMSModel.FK_ContractTimeline_Contract", "ContractTimeline");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ContractTimeline>("OAMSModel.FK_ContractTimeline_Contract", "ContractTimeline", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -3093,6 +3165,220 @@ namespace OAMS.Models
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetailTimeline_ContractDetail", "ContractDetailTimeline")]
+        public EntityCollection<ContractDetailTimeline> ContractDetailTimelines
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ContractDetailTimeline>("OAMSModel.FK_ContractDetailTimeline_ContractDetail", "ContractDetailTimeline");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ContractDetailTimeline>("OAMSModel.FK_ContractDetailTimeline_ContractDetail", "ContractDetailTimeline", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="OAMSModel", Name="ContractDetailTimeline")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ContractDetailTimeline : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ContractDetailTimeline object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static ContractDetailTimeline CreateContractDetailTimeline(global::System.Int32 id)
+        {
+            ContractDetailTimeline contractDetailTimeline = new ContractDetailTimeline();
+            contractDetailTimeline.ID = id;
+            return contractDetailTimeline;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ContractDetailID
+        {
+            get
+            {
+                return _ContractDetailID;
+            }
+            set
+            {
+                OnContractDetailIDChanging(value);
+                ReportPropertyChanging("ContractDetailID");
+                _ContractDetailID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ContractDetailID");
+                OnContractDetailIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ContractDetailID;
+        partial void OnContractDetailIDChanging(Nullable<global::System.Int32> value);
+        partial void OnContractDetailIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Order
+        {
+            get
+            {
+                return _Order;
+            }
+            set
+            {
+                OnOrderChanging(value);
+                ReportPropertyChanging("Order");
+                _Order = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Order");
+                OnOrderChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Order;
+        partial void OnOrderChanging(Nullable<global::System.Int32> value);
+        partial void OnOrderChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FromDate
+        {
+            get
+            {
+                return _FromDate;
+            }
+            set
+            {
+                OnFromDateChanging(value);
+                ReportPropertyChanging("FromDate");
+                _FromDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FromDate");
+                OnFromDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FromDate;
+        partial void OnFromDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnFromDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> ToDate
+        {
+            get
+            {
+                return _ToDate;
+            }
+            set
+            {
+                OnToDateChanging(value);
+                ReportPropertyChanging("ToDate");
+                _ToDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ToDate");
+                OnToDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _ToDate;
+        partial void OnToDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnToDateChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetailTimeline_ContractDetail", "ContractDetail")]
+        public ContractDetail ContractDetail
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ContractDetail>("OAMSModel.FK_ContractDetailTimeline_ContractDetail", "ContractDetail").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ContractDetail>("OAMSModel.FK_ContractDetailTimeline_ContractDetail", "ContractDetail").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<ContractDetail> ContractDetailReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ContractDetail>("OAMSModel.FK_ContractDetailTimeline_ContractDetail", "ContractDetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ContractDetail>("OAMSModel.FK_ContractDetailTimeline_ContractDetail", "ContractDetail", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -3336,6 +3622,198 @@ namespace OAMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Contract>("OAMSModel.FK_Contract_Contractor", "Contract", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="OAMSModel", Name="ContractTimeline")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ContractTimeline : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ContractTimeline object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static ContractTimeline CreateContractTimeline(global::System.Int32 id)
+        {
+            ContractTimeline contractTimeline = new ContractTimeline();
+            contractTimeline.ID = id;
+            return contractTimeline;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ContractID
+        {
+            get
+            {
+                return _ContractID;
+            }
+            set
+            {
+                OnContractIDChanging(value);
+                ReportPropertyChanging("ContractID");
+                _ContractID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ContractID");
+                OnContractIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ContractID;
+        partial void OnContractIDChanging(Nullable<global::System.Int32> value);
+        partial void OnContractIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Order
+        {
+            get
+            {
+                return _Order;
+            }
+            set
+            {
+                OnOrderChanging(value);
+                ReportPropertyChanging("Order");
+                _Order = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Order");
+                OnOrderChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Order;
+        partial void OnOrderChanging(Nullable<global::System.Int32> value);
+        partial void OnOrderChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FromDate
+        {
+            get
+            {
+                return _FromDate;
+            }
+            set
+            {
+                OnFromDateChanging(value);
+                ReportPropertyChanging("FromDate");
+                _FromDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FromDate");
+                OnFromDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FromDate;
+        partial void OnFromDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnFromDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> ToDate
+        {
+            get
+            {
+                return _ToDate;
+            }
+            set
+            {
+                OnToDateChanging(value);
+                ReportPropertyChanging("ToDate");
+                _ToDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ToDate");
+                OnToDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _ToDate;
+        partial void OnToDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnToDateChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractTimeline_Contract", "Contract")]
+        public Contract Contract
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Contract>("OAMSModel.FK_ContractTimeline_Contract", "Contract").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Contract>("OAMSModel.FK_ContractTimeline_Contract", "Contract").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Contract> ContractReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Contract>("OAMSModel.FK_ContractTimeline_Contract", "Contract");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Contract>("OAMSModel.FK_ContractTimeline_Contract", "Contract", value);
                 }
             }
         }
@@ -6803,6 +7281,30 @@ namespace OAMS.Models
         private global::System.String _BackupAlbumUrl;
         partial void OnBackupAlbumUrlChanging(global::System.String value);
         partial void OnBackupAlbumUrlChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Order
+        {
+            get
+            {
+                return _Order;
+            }
+            set
+            {
+                OnOrderChanging(value);
+                ReportPropertyChanging("Order");
+                _Order = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Order");
+                OnOrderChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Order;
+        partial void OnOrderChanging(Nullable<global::System.Int32> value);
+        partial void OnOrderChanged();
 
         #endregion
     

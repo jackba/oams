@@ -13,7 +13,7 @@ using System.Drawing.Imaging;
 
 namespace OAMS.Models
 {
-    public class PicasaRepository : BaseRepository<PicasaRepository>
+    public class PicasaRepository : BaseRepository
     {
         public PicasaService InitPicasaService()
         {

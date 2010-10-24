@@ -5,7 +5,7 @@ using System.Web;
 
 namespace OAMS.Models
 {
-    public class CampaignRepository : BaseRepository<CampaignRepository>
+    public class CampaignRepository : BaseRepository
     {
         public IQueryable<Campaign> GetAll()
         {

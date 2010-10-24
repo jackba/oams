@@ -22,7 +22,7 @@ namespace OAMS.Models
         }
     }
 
-    public class RoleRepository : BaseRepository<RoleRepository>
+    public class RoleRepository : BaseRepository
     {
         //public IEnumerable<aspnet_Roles> GetAll()
         //{

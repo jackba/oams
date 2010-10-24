@@ -5,7 +5,7 @@ using System.Web;
 
 namespace OAMS.Models
 {
-    public class ContractRepository : BaseRepository<ContractRepository>
+    public class ContractRepository : BaseRepository
     {
         public IQueryable<Contract> GetAll()
         {
@@ -38,9 +38,12 @@ namespace OAMS.Models
             DB.ContractDetails.AddObject(e);
 
             Save();
+
+            ContractDetailRepository contractDetailRepository = new ContractDetailRepository();
+            contractDetailRepository.CopyTimeline(e.ID);
         }
 
-        // Persistence 
+        
     
     }
 }

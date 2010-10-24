@@ -5,7 +5,7 @@ using System.Web;
 
 namespace OAMS.Models
 {
-    public class SiteMonitoringRepository : BaseRepository<SiteMonitoringRepository>
+    public class SiteMonitoringRepository : BaseRepository
     {
         public SiteMonitoring Get(int id)
         {
