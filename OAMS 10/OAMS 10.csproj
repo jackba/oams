@@ -98,12 +98,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\ContractController.cs" />
+    <Compile Include="Controllers\ContractDetailTimelineController.cs" />
     <Compile Include="Controllers\ContractorController.cs" />
     <Compile Include="Controllers\ContractDetailController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ContractTimelineController.cs" />
     <Compile Include="Controllers\SiteMonitoringController.cs" />
     <Compile Include="Controllers\FindSiteController.cs" />
     <Compile Include="Controllers\GeoController.cs" />
@@ -118,6 +121,8 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AccountProfile.cs" />
     <Compile Include="Models\AccountRepository.cs" />
+    <Compile Include="Models\ContractDetailTimelineRepository.cs" />
+    <Compile Include="Models\ContractTimelineRepository.cs" />
     <Compile Include="Models\ControllerActionRepository.cs" />
     <Compile Include="Models\BaseRepository.cs" />
     <Compile Include="Models\CampaignDetailRepository.cs" />
@@ -128,10 +133,13 @@
     <Compile Include="Models\ContractRepository.cs" />
     <Compile Include="Models\ClientRepository.cs" />
     <Compile Include="Models\CategoryRepository.cs" />
+    <Compile Include="Models\ITimeRange.cs" />
     <Compile Include="Models\MVCAuthorizationRepository.cs" />
     <Compile Include="Models\OAMSEntitiesPartial.cs" />
     <Compile Include="Models\Partial\Client.cs" />
+    <Compile Include="Models\Partial\ContractTimeline.cs" />
     <Compile Include="Models\Partial\ControllerAction.cs" />
+    <Compile Include="Models\Partial\ContractDetailTimeline.cs" />
     <Compile Include="Models\Partial\SiteMonitoring.cs" />
     <Compile Include="Models\RoleRepository.cs" />
     <Compile Include="Models\SiteMonitoringRepository.cs" />
@@ -148,6 +156,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OAMS.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomeValidationAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -211,17 +220,22 @@
     <Content Include="Views\Client\Create.aspx" />
     <Content Include="Views\Client\Edit.aspx" />
     <Content Include="Views\Client\Index.aspx" />
+    <Content Include="Views\ContractDetailTimeline\Edit.ascx" />
+    <Content Include="Views\ContractDetailTimeline\View.ascx" />
     <Content Include="Views\ContractDetail\Edit.aspx" />
+    <Content Include="Views\ContractDetail\ManageContractDetailTimeline.ascx" />
     <Content Include="Views\Contractor\Create.aspx" />
     <Content Include="Views\Contractor\Details.aspx" />
     <Content Include="Views\Contractor\Edit.aspx" />
     <Content Include="Views\Contractor\Index.aspx" />
+    <Content Include="Views\ContractTimeline\Edit.ascx" />
     <Content Include="Views\Contract\Create.aspx" />
     <Content Include="Views\Category\Create.aspx" />
     <Content Include="Views\Category\Edit.aspx" />
     <Content Include="Views\Category\Index.aspx" />
     <Content Include="Views\Contract\Edit.aspx" />
     <Content Include="Views\Contract\Index.aspx" />
+    <Content Include="Views\Contract\ManageContractTimeline.ascx" />
     <Content Include="Views\FindSite\Find4Contract.aspx" />
     <Content Include="Views\FindSite\Find.aspx" />
     <Content Include="Views\Geo\Create.aspx" />
@@ -233,6 +247,7 @@
     <Content Include="Views\Shared\EditorTemplates\AutoCompleteCategory.ascx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Content\Image\resize.png" />
+    <Content Include="Views\ContractTimeline\View.ascx" />
     <Content Include="Views\SiteMonitoring\Create.aspx" />
     <Content Include="Views\SiteMonitoring\DisplayTemplates\ViewDetail.ascx" />
     <Content Include="Views\SiteMonitoring\Edit.aspx" />

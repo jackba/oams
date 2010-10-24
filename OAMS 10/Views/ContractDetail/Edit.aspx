@@ -54,10 +54,12 @@
             <%: Html.DisplayFor(model => model.SiteID)%>
             <%: Html.ValidationMessageFor(model => model.SiteID) %>
         </div>
+        <div>
+            <% Html.RenderPartial("ManageContractDetailTimeline", Model); %>
+        </div>
         <p>
             <input type="submit" value="Save" />
         </p>
     </fieldset>
     <% } %>
-   
 </asp:Content>

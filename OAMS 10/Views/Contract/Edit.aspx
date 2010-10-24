@@ -136,6 +136,9 @@
                             <%: Html.TextBoxFor(model => model.Email2) %>
                             <%: Html.ValidationMessageFor(model => model.Email2) %>
                         </div>
+                        <div>
+                            <% Html.RenderPartial("ManageContractTimeline", Model); %>
+                        </div>
                         <p>
                             <input type="submit" value="Save" />
                         </p>

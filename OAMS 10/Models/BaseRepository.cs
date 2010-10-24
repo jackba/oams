@@ -5,17 +5,8 @@ using System.Web;
 
 namespace OAMS.Models
 {
-    public class BaseRepository<T> where T : new()
+    public class BaseRepository 
     {
-        //public static T Repo
-        //{
-        //    get
-        //    {
-        //        T t = new T();
-        //        return t;
-        //    }
-        //}
-
         private OAMSEntities _db = new OAMSEntities();
         public OAMSEntities DB
         {
@@ -27,7 +18,5 @@ namespace OAMS.Models
         {
             return DB.SaveChanges();
         }
-
-        
     }
 }

@@ -9,7 +9,7 @@ namespace OAMS.Controllers
 {
     [HandleError]
     [CustomAuthorize]
-    public class ContractController : Controller
+    public class ContractController : BaseController<ContractRepository>
     {
         //
         // GET: /Contractor/
@@ -117,5 +117,7 @@ namespace OAMS.Controllers
             repo.AddSite(contractID, siteID);
             return Json(0);
         }
+
+       
     }
 }

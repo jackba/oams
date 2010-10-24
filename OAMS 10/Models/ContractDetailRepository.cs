@@ -5,11 +5,11 @@ using System.Web;
 
 namespace OAMS.Models
 {
-    public class ContractDetailRepository : BaseRepository<ContractDetailRepository>
+    public class ContractDetailRepository : BaseRepository
     {
         public ContractDetail Get(int id)
         {
-            return DB.ContractDetails.SingleOrDefault(r => r.ID == id);
+            return DB.ContractDetails.Single(r => r.ID == id);
         }
 
         public IQueryable<ContractDetail> GetAll()
@@ -29,6 +29,25 @@ namespace OAMS.Models
             return contractID;
         }
 
-       
+        public void CopyTimeline(int id)
+        {
+            var r = Get(id);
+            if (r.ContractDetailTimelines.Count == 0)
+            {
+                foreach (var item in r.Contract.ContractTimelines)
+                {
+                    var newItem = new ContractDetailTimeline();
+                    newItem.ContractDetailID = id;
+                    newItem.Order = item.Order;
+                    newItem.FromDate = item.FromDate;
+                    newItem.ToDate = item.ToDate;
+
+                    DB.ContractDetailTimelines.AddObject(newItem);
+                }
+
+                DB.SaveChanges();
+            }
+        }
+
     }
 }
