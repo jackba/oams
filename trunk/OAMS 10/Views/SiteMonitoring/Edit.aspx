@@ -16,6 +16,19 @@
                     <legend>Fields</legend>
                     <%: Html.HiddenFor(model => model.ID) %>
                     <%: Html.HiddenFor(model => model.ContractDetailID) %>
+                    <div class="editor-label">
+                        <%: Html.LabelFor(model => model.Order)%>
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.DropDownListForSiteMonitoringOrder(r => r.Order,Model) %>
+                    </div>
+                    <%--<div class="editor-field">
+                        <% 
+                            var timeline = Model.ContractDetail.ContractDetailTimelines.Where(r => r.Order == Model.Order).FirstOrDefault();
+                            if (timeline == null) timeline = new OAMS.Models.ContractDetailTimeline();
+                            Html.RenderPartial("~/Views/ContractDetailTimeline/ViewOnly.ascx", timeline); 
+                        %>
+                    </div>--%>
                     <div id="map" style="width: 300px; height: 300px;">
                     </div>
                     <script type="text/javascript" language="javascript">

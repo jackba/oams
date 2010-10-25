@@ -564,6 +564,20 @@ namespace OAMS
             string httpVerb = string.Join(", ", new string[] { httpPost, httpGet }.Where(r => !string.IsNullOrEmpty(r)));
             return httpVerb;
         }
+
+        public static MvcHtmlString DropDownListForSiteMonitoringOrder<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, SiteMonitoring siteMonitoring)
+        {
+            SiteMonitoringRepository repo = new SiteMonitoringRepository();
+
+            return htmlHelper.DropDownListFor(expression, repo.FilterOrder(siteMonitoring), OAMSSetting.messageL.SelectNone);
+        }
+
+        public static MvcHtmlString DropDownListForCreateSiteMonitoringOrder<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, int contractDetailID)
+        {
+            SiteMonitoringRepository repo = new SiteMonitoringRepository();
+
+            return htmlHelper.DropDownListFor(expression, repo.FilterOrderForCreate(contractDetailID), OAMSSetting.messageL.SelectNone);
+        }
     }
 
     public static class IPrincipalExtend

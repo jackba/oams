@@ -16,6 +16,12 @@
                 <fieldset>
                     <legend>Fields</legend>
                     <%: Html.HiddenFor(model => model.ContractDetailID) %>
+                    <div class="editor-label">
+                        <%: Html.LabelFor(model => model.Order)%>
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.DropDownListForCreateSiteMonitoringOrder(r => r.Order, Model.ContractDetailID.Value)%>
+                    </div>
                     <div id="map" style="width: 300px; height: 300px;">
                     </div>
                     <script type="text/javascript" language="javascript">
@@ -192,7 +198,6 @@
                     <div class="editor-field">
                         <%: Html.HiddenFor(model => model.Site.Lat)%>
                     </div>
-                    
                     <div class="editor-field">
                         <%: Html.HiddenFor(model => model.Site.Lng)%>
                     </div>

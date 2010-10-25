@@ -62,5 +62,17 @@ namespace OAMS.Models
 
             return range.IsValid() ? range : new TimeRange();
         }
+
+        public static bool Contains(this ITimeRange timerange, DateTime? datetime)
+        {
+            return timerange.IsValid()
+                && datetime.HasValue
+                && timerange.FromDate <= datetime
+                &&
+                (
+                    !timerange.ToDate.HasValue
+                    || (timerange.ToDate >= datetime)
+                );
+        }
     }
 }

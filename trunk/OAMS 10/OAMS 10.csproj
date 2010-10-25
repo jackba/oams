@@ -220,6 +220,7 @@
     <Content Include="Views\Client\Create.aspx" />
     <Content Include="Views\Client\Edit.aspx" />
     <Content Include="Views\Client\Index.aspx" />
+    <Content Include="Views\ContractDetailTimeline\ViewOnly.ascx" />
     <Content Include="Views\ContractDetailTimeline\Edit.ascx" />
     <Content Include="Views\ContractDetailTimeline\View.ascx" />
     <Content Include="Views\ContractDetail\Edit.aspx" />

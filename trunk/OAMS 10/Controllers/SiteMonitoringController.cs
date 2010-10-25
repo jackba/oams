@@ -68,11 +68,9 @@ namespace OAMS.Controllers
         // POST: /Site/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList)
+        public ActionResult Edit(int id, FormCollection collection, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList, SiteMonitoring siteMonitoring)
         {
-            // TODO: Add update logic here
             SiteMonitoring e = repo.Update(id, UpdateModel, files, DeletePhotoList);
-
             return RedirectToAction("Edit", "Contract", new { id = e.ContractDetail.ContractID });
         }
 
