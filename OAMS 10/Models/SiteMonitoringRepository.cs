@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace OAMS.Models
 {
@@ -36,6 +37,7 @@ namespace OAMS.Models
         public SiteMonitoring InitWithDefaultValue(int? ContractDetailID)
         {
             SiteMonitoring e = new SiteMonitoring();
+            e.ContractDetailID = ContractDetailID;
             e.Working = true;
             e.Clean = true;
             e.CreativeGoodConditon = true;
@@ -89,5 +91,58 @@ namespace OAMS.Models
             return DB.SiteMonitorings.Where(r => r.ContractDetailID == contractDetailID).ToList().LastOrDefault().ID;
         }
 
+        public IEnumerable<SelectListItem> FilterOrder(SiteMonitoring e)
+        {
+            SiteMonitoringRepository siteMonitoringRepository = new SiteMonitoringRepository();
+
+            var orderList = e.ContractDetail.SiteMonitorings.Select(r => r.Order).Distinct();
+
+            var timelineList = e.ContractDetail.ContractDetailTimelines
+                .ToList()
+                .Where(r => !orderList.Contains(r.Order) || r.Order == e.Order)
+                .Where(r => siteMonitoringRepository.ValidateOrder(e.ID, r.Order))
+                .OrderBy(r => r.Order)
+                .Select(r => new SelectListItem() { Value = r.Order.ToString(), Text = string.Format("{0}: {1} - {2}", r.Order, String.Format("{0:d}", r.FromDate), String.Format("{0:d}", r.ToDate)) });
+            ;
+
+            return timelineList;
+        }
+
+        public IEnumerable<SelectListItem> FilterOrderForCreate(int contractDetailID)
+        {
+            ContractDetailRepository contractDetailRepository = new ContractDetailRepository();
+            SiteMonitoringRepository siteMonitoringRepository = new SiteMonitoringRepository();
+
+            var contractDetail = contractDetailRepository.Get(contractDetailID);
+
+            var orderList = contractDetail.SiteMonitorings.Select(r => r.Order).Distinct();
+
+            var timelineList = contractDetail.ContractDetailTimelines
+                .ToList()
+                .Where(r => !orderList.Contains(r.Order))
+                .OrderBy(r => r.Order)
+                .Select(r => new SelectListItem() { Value = r.Order.ToString(), Text = string.Format("{0}: {1} - {2}", r.Order, String.Format("{0:d}", r.FromDate), String.Format("{0:d}", r.ToDate)) });
+            ;
+
+            return timelineList;
+        }
+
+        public bool ValidateOrder(int id, int? newOrder)
+        {
+            bool isValid = true;
+            var e = Get(id);
+
+            if (e != null)
+            {
+                var timeline = e.ContractDetail.ContractDetailTimelines.SingleOrDefault(r => r.Order == newOrder);
+
+                if (timeline != null)
+                {
+                    isValid = e.SiteMonitoringPhotoes.Where(r => r.TakenDate.HasValue && !timeline.Contains(r.TakenDate)).Count() == 0;
+                }
+            }
+
+            return isValid;
+        }
     }
 }

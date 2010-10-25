@@ -6,9 +6,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
         Find Site</h2>
-    <div id="divTest">
-        as
-    </div>
     <% using (Html.BeginForm())
        {%>
     <%: Html.HiddenFor(r => r.CampaignID) %>

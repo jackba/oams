@@ -184,7 +184,6 @@ namespace OAMS.Models
 
             PicasaService service = InitPicasaService();
 
-
             if (string.IsNullOrEmpty(e.AlbumUrl))
             {
                 e.AlbumUrl = CreateAlbum("M" + e.ID.ToString());
@@ -198,31 +197,37 @@ namespace OAMS.Models
                 {
                     DateTime? takenDate = GetMetadata_TakenDate(item);
 
-                    MemoryStream mStream = new MemoryStream();
-
-                    item.InputStream.Position = 0;
-                    item.InputStream.CopyTo(mStream);
-                    mStream.Position = 0;
-
-                    //PicasaEntry entry = (PicasaEntry)service.Insert(postUri, mStream, "image/jpeg", "");
-                    //PicasaEntry entry = (PicasaEntry)service.Insert(postUri, item.InputStream, "image/jpeg", "");
-                    //photoUriList.Add(entry.Media.Content.Url);
-
-
-                    PicasaEntry entry = new PhotoEntry();
-                    entry.MediaSource = new Google.GData.Client.MediaFileSource(mStream, Path.GetFileName(item.FileName), "image/jpeg");
-
-                    //service.InsertAsync(postUri, entry, new { SiteID = e.ID, AM = asyncManager });
-                    PicasaEntry createdEntry = service.Insert(postUri, entry);
-
-                    if (createdEntry != null)
+                    ContractDetailTimeline timeline = e.ContractDetail.ContractDetailTimelines.Where(r => r.Order == e.Order).FirstOrDefault();
+                    if (timeline != null
+                        && takenDate.HasValue
+                        && timeline.Contains(takenDate))
                     {
-                        SiteMonitoringPhoto photo = new SiteMonitoringPhoto();
+                        MemoryStream mStream = new MemoryStream();
 
-                        photo.Url = createdEntry.Media.Content.Url;
-                        photo.AtomUrl = createdEntry.EditUri.Content;
-                        photo.TakenDate = takenDate;
-                        e.SiteMonitoringPhotoes.Add(photo);
+                        item.InputStream.Position = 0;
+                        item.InputStream.CopyTo(mStream);
+                        mStream.Position = 0;
+
+                        //PicasaEntry entry = (PicasaEntry)service.Insert(postUri, mStream, "image/jpeg", "");
+                        //PicasaEntry entry = (PicasaEntry)service.Insert(postUri, item.InputStream, "image/jpeg", "");
+                        //photoUriList.Add(entry.Media.Content.Url);
+
+
+                        PicasaEntry entry = new PhotoEntry();
+                        entry.MediaSource = new Google.GData.Client.MediaFileSource(mStream, Path.GetFileName(item.FileName), "image/jpeg");
+
+                        //service.InsertAsync(postUri, entry, new { SiteID = e.ID, AM = asyncManager });
+                        PicasaEntry createdEntry = service.Insert(postUri, entry);
+
+                        if (createdEntry != null)
+                        {
+                            SiteMonitoringPhoto photo = new SiteMonitoringPhoto();
+
+                            photo.Url = createdEntry.Media.Content.Url;
+                            photo.AtomUrl = createdEntry.EditUri.Content;
+                            photo.TakenDate = takenDate;
+                            e.SiteMonitoringPhotoes.Add(photo);
+                        }
                     }
                 }
             }
