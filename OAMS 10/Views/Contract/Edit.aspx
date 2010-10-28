@@ -37,7 +37,7 @@
                             <%: Html.ValidationMessageFor(model => model.ContractType) %>
                         </div>
                         <div class="editor-label">
-                            <%: Html.LabelFor(model => model.ContractorName)%>
+                            Supplier
                         </div>
                         <div class="editor-field">
                             <%: Html.EditorFor(model => model.ContractorName, "AutoCompleteContractor")%>
@@ -241,7 +241,7 @@
                                     <td>
                                         <%: Html.ActionLink("Edit", "Edit", "ContractDetail", new { id=item.ID }, null) %>
                                         <%--<a href='javascript:EditDetail( <%: item.ID %> )'>Edit</a>--%>
-                                        |
+                                        <br /><br />
                                         <%: Html.ActionLink("Remove", "Delete", "ContractDetail", new { id=item.ID }, null) %>
                                     </td>
                                     <td>

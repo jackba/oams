@@ -14,14 +14,14 @@
                                     <tr>
                                         <td>Site code:</td>
                                         <td><%: Model.ContractDetail.Site.Code %></td>
-                                        <td>Supplier:</td>
-                                        <td><%: Model.ContractDetail.Site.ContractorName %></td>
+                                        <td>Contractor:</td>
+                                        <td><%: Model.ContractDetail.Contract.ContractorName%></td>
                                     </tr>
                                     <tr>
                                         <td>Site location:</td>
                                         <td><%: Model.ContractDetail.Site.AddressLine1 + " " + Model.ContractDetail.Site.AddressLine2 + " " + Model.ContractDetail.Site.Geo3.Name%></td>
                                         <td>Current Client:</td>
-                                        <td><%: Model.ContractDetail.Site.CurrentClientName%></td>
+                                        <td><%: Model.ContractDetail.Contract.ClientName%></td>
                                     </tr>
                                     <tr>
                                         <td>Province:</td>
@@ -43,7 +43,7 @@
                                 <table>
                                     <tr>
                                         <td>
-                                            <div id="map" style="width: 300px; height: 300px;">
+                                            <div id="map" style="width: 300px; height: 225px;">
                                             </div>
                                             <script type="text/javascript" language="javascript">
                                                 var map;
@@ -96,7 +96,7 @@
                                                 { 
                                         %>
                                                     <td valign="top">
-                                                    <img src='<%= item.Url %>' alt="" width="300"/>
+                                                    <img src='<%= item.Url %>' alt="" width="300" height="225"/>
                                                     </td></tr>
                                         <%
                                                     hasCloseTr = true;
@@ -105,7 +105,7 @@
                                                 {
                                         %>
                                                     <tr><td valign="top">
-                                                        <img src='<%= item.Url %>' alt="" width="300"/>
+                                                        <img src='<%= item.Url %>' alt="" width="300" height="225"/>
                                                     </td>
                                         <% 
                                                     hasCloseTr = false;
@@ -129,8 +129,8 @@
                 <td valign="top">
                     <table>
                         <tr>
-                            <td>Current Creative:</td>
-                            <td><%: Model.ContractDetail.Site.CurrentClientName%></td>
+                            <td>Current Product:</td>
+                            <td><%: Model.ContractDetail.Site.CurrentProduct%></td>
                         </tr>
                         <tr>
                             <td>Advertising Type:</td>
