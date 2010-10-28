@@ -176,6 +176,7 @@
     <Content Include="Content\Image\busshelter.png" />
     <Content Include="Content\Image\covermarket.png" />
     <Content Include="Content\Image\elevator.png" />
+    <Content Include="Content\Image\exclamation.gif" />
     <Content Include="Content\Image\forward_disabled.jpg" />
     <Content Include="Content\Image\forward_enabled.jpg" />
     <Content Include="Content\Image\itkiosk.png" />

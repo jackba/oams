@@ -45,6 +45,7 @@ namespace OAMS.Models
             e.Vandalism = false;
             ContractDetailRepository cdrepo = new ContractDetailRepository();
             ContractDetail cd = cdrepo.Get(ContractDetailID.ToInt());
+            e.ContractDetail = cd;
             e.NoOfBullbs = cd.Site.FrontlitNumerOfLamps;
             e.Site = cd.Site;
             return e;

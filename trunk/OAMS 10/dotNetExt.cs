@@ -345,6 +345,11 @@ namespace OAMS
             return i.HasValue ? i.Value.ToStringRemoveZero() : "";
         }
 
+        public static string ToStringOrDefault(this int? i,string nodata = "0")
+        {
+            return i.HasValue ? i.Value.ToString() : nodata;
+        }
+
         public static int ToInt(this object o)
         {
             if (o == null) return 0;
