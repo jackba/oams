@@ -59,7 +59,7 @@
                 <tr>
                     <td>
                         <%: Html.ActionLink("Edit", "Edit", new { id=item.ID }) %>
-                        |
+                        <br /><br />
                         <%: Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { onclick="return confirm('Delete?');" })%>
                     </td>
                     <td>
