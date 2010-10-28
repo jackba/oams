@@ -241,7 +241,8 @@
                                     <td>
                                         <%: Html.ActionLink("Edit", "Edit", "ContractDetail", new { id=item.ID }, null) %>
                                         <%--<a href='javascript:EditDetail( <%: item.ID %> )'>Edit</a>--%>
-                                        <br /><br />
+                                        <br />
+                                        <br />
                                         <%: Html.ActionLink("Remove", "Delete", "ContractDetail", new { id=item.ID }, null) %>
                                     </td>
                                     <td>
@@ -254,17 +255,18 @@
                                                     i++;
                                             %>
                                             <%: "|" %>
-                                            <%: Html.ActionLink(i.ToString(), "Edit", "SiteMonitoring", new { id = sm.ID }, null)%>
-                                            <% if (sm.Issues != "" && sm.Issues != null)
-                                               {%>
+                                            <%--<%: Html.ActionLink(i.ToString(), "Edit", "SiteMonitoring", new { id = sm.ID }, null)%>--%>
+                                            <%: Html.ActionLink(sm.Order.ToStringOrDefault(), "Edit", "SiteMonitoring", new { id = sm.ID }, null)%>
                                             <% if (sm.SiteMonitoringPhotoes.Count > 0)
                                                {%>
                                             <%: "(" + sm.SiteMonitoringPhotoes.Count.ToString() + ")"  %>
                                             <% } %>
+                                            <% if (sm.Issues != "" && sm.Issues != null)
+                                               {%>
+                                            <% } %>
                                             <% if (sm.RequiredFollowUp != null && sm.RequiredFollowUp.Value)
                                                { %>
                                             <img border='0' src='<%= Url.Content("~/Content/Image/exclamation.gif")%>' alt="RequiredFollowUp" />
-                                            <% } %>
                                             <% } %>
                                             <% } %>
                                         </div>

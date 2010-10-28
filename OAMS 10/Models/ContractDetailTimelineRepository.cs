@@ -63,8 +63,11 @@ namespace OAMS.Models
             var lastTimeline = r.ContractDetailTimelines.OrderByDescending(r1 => r1.Order).FirstOrDefault();
             if (lastTimeline != null)
             {
-                DB.DeleteObject(lastTimeline);
-                Save();
+                if (r.SiteMonitorings.Where(r1 => r1.Order == lastTimeline.Order).Count() == 0)
+                {
+                    DB.DeleteObject(lastTimeline);
+                    Save();
+                }
             }
             return r;
         }
