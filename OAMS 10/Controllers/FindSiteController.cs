@@ -47,8 +47,8 @@ namespace OAMS.Controllers
                 && (e.ContractorList == null || e.ContractorList.Contains(r.ContractorID.ToInt()))
                 && (e.ClientList == null || e.ClientList.Contains(r.CurrentClientID.ToInt()))
                 && (e.CatList == null || e.CatList.Contains(r.CategoryID1.ToString()) || e.CatList.Contains(r.CategoryID2.ToString()) || e.CatList.Contains(r.CategoryID3.ToString()))
-                //&& (e.CatList == null || (r.CategoryID2 != null && e.CatList.Contains(r.CategoryID2.ToString())))
-                //&& (e.ClientList == null || (r.CurrentClientName != null && e.ClientList.ToLowerArray().Contains(r.CurrentClientName.ToLower())) || (e.ClientList.Contains("") && r.CurrentClientName == null))
+                        //&& (e.CatList == null || (r.CategoryID2 != null && e.CatList.Contains(r.CategoryID2.ToString())))
+                        //&& (e.ClientList == null || (r.CurrentClientName != null && e.ClientList.ToLowerArray().Contains(r.CurrentClientName.ToLower())) || (e.ClientList.Contains("") && r.CurrentClientName == null))
                 && (string.IsNullOrEmpty(e.Format) || r.Format == e.Format)
                 && (string.IsNullOrEmpty(e.RoadType1) || r.RoadType1 == e.RoadType1.ToInt())
                 && (string.IsNullOrEmpty(e.RoadType2) || r.RoadType2 == e.RoadType2.ToInt())
@@ -101,9 +101,12 @@ namespace OAMS.Controllers
                 CurrentProduct = r.CurrentProduct ?? "",
                 CurrentClient = r.CurrentClientName ?? "",
                 r.Score,
+                Rating = r.Score.ToRating(),
                 AlbumID = string.IsNullOrEmpty(r.AlbumUrl) ? "" : r.AlbumUrl.Split('/')[9].Split('?')[0],
                 AuthID = string.IsNullOrEmpty(r.AlbumUrl) ? "" : r.AlbumUrl.Split('?')[1].Split('=')[1]
             }));
+
+           
         }
 
         public ActionResult Find4Contract(int campaignID = 0)
