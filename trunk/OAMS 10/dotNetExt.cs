@@ -350,6 +350,61 @@ namespace OAMS
             return i.HasValue ? i.Value.ToString() : nodata;
         }
 
+        public static string ToRating(this int? i, string nodata = "Not rate")
+        {
+            string str = nodata;
+
+            if (i.HasValue)
+            {
+                if (i > 100)
+                {
+                   
+                }
+                else if (i == 100)
+                {
+                    str = "Prime";
+                }
+                else if (i >= 90)
+                {
+                    str = "Superb";
+                }
+                else if (i >= 80)
+                {
+                    str = "Great";
+                }
+                else if (i >= 70)
+                {
+                    str = "Good";
+                }
+                else if (i >= 60)
+                {
+                    str = "Fair";
+                }
+                else if (i >= 50)
+                {
+                    str = "Mediocre";
+                }
+                else if (i >= 40)
+                {
+                    str = "Poor";
+                }
+                else if (i >= 30)
+                {
+                    str = "Bad";
+                }
+                else if (i >= 20)
+                {
+                    str = "Terrible";
+                }
+                else if (i >= 1)
+                {
+                    str = "Abysmal";
+                }
+            }
+
+            return str;
+        }
+
         public static int ToInt(this object o)
         {
             if (o == null) return 0;
