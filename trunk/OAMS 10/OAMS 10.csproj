@@ -296,6 +296,7 @@
   <ItemGroup>
     <None Include="Content\smoothness\images\Thumbs.db" />
     <None Include="GNKey.pfx" />
+    <Content Include="Views\Shared\SiteFull.Master" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Models\OAMS.edmx">

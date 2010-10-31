@@ -27,39 +27,43 @@
                     <script type="text/javascript" language="javascript">
                         var map;
                         var marker;
+                        var first = true;
                         function init() {
                             var mapDiv = document.getElementById('map');
                             map = new google.maps.Map(mapDiv, {
                                 center: new google.maps.LatLng(10.77250, 106.69808),
-                                zoom: 12,
+                                zoom: 17,
                                 mapTypeId: google.maps.MapTypeId.ROADMAP
                             });
-                            google.maps.event.addListener(map, 'idle', txtGeoChanged);
+                            google.maps.event.addListener(map, 'idle', MapIdle);
                         }
 
                         google.maps.event.addDomListener(window, 'load', init);
 
-                        function txtGeoChanged() {
+                        function MapIdle() {
+                            if (first) {
+                                var lng = $('#Site_Lng').val();
+                                var lat = $('#Site_Lat').val();
 
-                            var lng = $('#Site_Lng').val();
-                            var lat = $('#Site_Lat').val();
+                                if (marker != null) {
+                                    marker.setMap(null);
+                                }
 
-                            if (marker != null) {
-                                marker.setMap(null);
-                            }
+                                marker = new google.maps.Marker({
 
-                            marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(lat, lng),
+                                    map: map,
+                                    draggable: true,
+                                    title: 'Move me!'
+                                });
 
-                                position: new google.maps.LatLng(lat, lng),
-                                map: map,
-                                draggable: true,
-                                title: 'Move me!'
-                            });
-
-                            if (!map.getBounds().contains(marker.position)) {
-                                var bounds = new google.maps.LatLngBounds();
-                                bounds.extend(marker.position);
-                                map.fitBounds(bounds);
+                                if (!map.getBounds().contains(marker.position)) {
+                                    var bounds = new google.maps.LatLngBounds();
+                                    bounds.extend(marker.position);
+                                    map.fitBounds(bounds);
+                                    map.setZoom(17);
+                                }
+                                first = false;
                             }
                         }
                     </script>

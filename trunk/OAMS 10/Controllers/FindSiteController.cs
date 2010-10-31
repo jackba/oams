@@ -103,7 +103,9 @@ namespace OAMS.Controllers
                 r.Score,
                 Rating = r.Score.ToRating(),
                 AlbumID = string.IsNullOrEmpty(r.AlbumUrl) ? "" : r.AlbumUrl.Split('/')[9].Split('?')[0],
-                AuthID = string.IsNullOrEmpty(r.AlbumUrl) ? "" : r.AlbumUrl.Split('?')[1].Split('=')[1]
+                AuthID = string.IsNullOrEmpty(r.AlbumUrl) ? "" : r.AlbumUrl.Split('?')[1].Split('=')[1],
+                CategoryLevel1 = r.Category1 != null ? r.Category1.Name : "",
+                CategoryLevel2 = r.Category2 != null ? r.Category2.Name : ""
             }));
 
            
