@@ -111,11 +111,40 @@
                 <input type="text" style="width: 50px;" name="Distance" id="Distance" disabled="disabled"
                     onblur="updateDistanceFromTxt(this);" />
                 <br />
-                Current Product
-                <br />
-                <%: Html.EditorFor(r => r.CurrentProduct) %>
                 <%: Html.HiddenFor(r => r.Lat) %>
                 <%: Html.HiddenFor(r => r.Long) %>
+                <script type="text/javascript" language="javascript">
+                    var Productcount = 1;
+                    function addMoreProduct() {
+                        var divAddMore = $('#divMoreProduct');
+                        var input = document.createElement('input');
+                        input.setAttribute('type', 'text');
+                        input.setAttribute('id', 'Product' + Productcount);
+                        input.setAttribute('name', 'ProductList');
+                        input.setAttribute('class', 'text-box single-line');
+                        divAddMore.append(input);
+
+                        var lnkDelete = document.createElement('a');
+                        lnkDelete.setAttribute('id', 'LnkDelete' + Productcount);
+                        lnkDelete.setAttribute('onclick', "$('#Product" + Productcount + "').remove();$('#LnkDelete" + Productcount + "').remove();");
+                        lnkDelete.innerHTML = 'X';
+                        lnkDelete.setAttribute('style', 'text-decoration:underline;cursor:pointer;');
+                        lnkDelete.setAttribute('title', 'Remove this product out of search criteria');
+                        divAddMore.append(" ").append(lnkDelete);
+
+                        $("#Product" + Productcount).focus();
+                        Productcount = Productcount + 1;
+                    }
+                </script>
+                <br />
+                <%--Product--%>
+                <div id="divMoreProduct">
+                    <br />
+                    Current Product<br />
+                </div>
+                <%--<input type="button" value="More..." onclick="addMoreContractor()" />--%>
+                <a id="addProduct" href="javascript:addMoreProduct();">More...</a>
+                <br />
                 <script type="text/javascript" language="javascript">
                     var count = 1;
                     function addMoreContractor() {
@@ -238,7 +267,7 @@
                         input.setAttribute('type', 'text');
                         input.setAttribute('id', 'CatName' + catcount);
                         input.setAttribute('class', 'text-box single-line');
-                        input.setAttribute('onblur', "javascript:if($('#CatName" + catcount + "').val() == '') $('#CatID" + catcount + "').val('0');");
+                        input.setAttribute('onblur', "javascript:if($('#CatName" + catcount + "').val() == '') $('#CatID" + catcount + "').val('');");
                         divAddMore.append(input);
 
                         var inputCollapse = document.createElement('input');

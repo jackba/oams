@@ -56,23 +56,62 @@
             });
         });
 
+//        function addMoreFileInput() {
+
+//            var divAddMore = $('#divMoreFile');
+
+//            var lbl = document.createElement('label');
+//            lbl.innerHTML = 'Filename:';
+
+//            divAddMore.append(lbl);
+
+
+//            var input = document.createElement('input');
+//            input.setAttribute('type', 'file');
+//            input.setAttribute('name', 'files');
+//            input.setAttribute('size', '65');
+
+//            divAddMore.append(input);
+//            divAddMore.append('<br />');
+//        }
+
+        index = 4;
         function addMoreFileInput() {
 
             var divAddMore = $('#divMoreFile');
 
             var lbl = document.createElement('label');
+            lbl.setAttribute('id', 'lblfile' + index);
             lbl.innerHTML = 'Filename:';
 
             divAddMore.append(lbl);
-
 
             var input = document.createElement('input');
             input.setAttribute('type', 'file');
             input.setAttribute('name', 'files');
             input.setAttribute('size', '65');
+            input.setAttribute('id', 'file' + index);
+            input.setAttribute('onchange', 'preview(this, ' + index + ')');
 
             divAddMore.append(input);
+
+            var lnkDelete = document.createElement('a');
+            lnkDelete.setAttribute('id', 'LnkDeleteFile' + index);
+            lnkDelete.setAttribute('onclick', "$('#lblfile" + index + "').remove();$('#file" + index + "').remove();$('#previewField" + index + "').remove();$('#LnkDeleteFile" + index + "').remove();");
+            lnkDelete.innerHTML = 'X';
+            lnkDelete.setAttribute('style', 'text-decoration:underline;cursor:pointer;');
+            lnkDelete.setAttribute('title', 'Remove this Image');
+            divAddMore.append(" ").append(lnkDelete);
+
             divAddMore.append('<br />');
+
+            var previewImg = document.createElement('img');
+            previewImg.setAttribute('id', 'previewField' + index + '');
+            previewImg.setAttribute('alt', 'Graphic will preview here');
+
+            divAddMore.append(previewImg);
+            divAddMore.append('<br />');
+            index = index + 1;
         }
 
         var map;
@@ -553,10 +592,10 @@
                 </fieldset>
             </td>
             <td>
-                <label for="file1">
+                <%--<label for="file1">
                     Filename:</label>
                 <input type="file" name="files" id="file3" size="65" />
-                <br />
+                <br />--%>
                 <div id="divMoreFile">
                 </div>
                 <br />
