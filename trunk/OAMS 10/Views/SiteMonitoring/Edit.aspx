@@ -277,7 +277,15 @@
                 <div id="divMoreFile">
                 </div>
                 <br />
-                <input type="button" value="Add more" onclick="addMoreFileInput()" />
+                <input type="button" value="Add more" onclick="addMoreFileInput('divMoreFile','files')" />
+                <br />
+                <fieldset>
+                    <legend>Add fixed photos.</legend>
+                    <div id="divMoreFileOfFixed">
+                    </div>
+                    <br />
+                    <input type="button" value="Add more" onclick="addMoreFileInput('divMoreFileOfFixed','filesOfFixed')" />
+                </fieldset>
             </td>
         </tr>
     </table>
@@ -287,9 +295,9 @@
     </div>
     <script type="text/javascript">
         index = 4;
-        function addMoreFileInput() {
+        function addMoreFileInput(divId, nameOfFileInput) {
 
-            var divAddMore = $('#divMoreFile');
+            var divAddMore = $('#' + divId);
 
             var lbl = document.createElement('label');
             lbl.setAttribute('id', 'lblfile' + index);
@@ -299,7 +307,7 @@
 
             var input = document.createElement('input');
             input.setAttribute('type', 'file');
-            input.setAttribute('name', 'files');
+            input.setAttribute('name', nameOfFileInput);
             input.setAttribute('size', '65');
             input.setAttribute('id', 'file' + index);
             input.setAttribute('onchange', 'preview(this, ' + index + ')');
