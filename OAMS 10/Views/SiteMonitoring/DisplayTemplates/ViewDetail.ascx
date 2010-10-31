@@ -80,11 +80,11 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <img alt="Map" src="http://maps.google.com/maps/api/staticmap?center=<%: Model.ContractDetail.Site.Lat%>,<%: Model.ContractDetail.Site.Lng%>&zoom=17&size=300x225&maptype=roadmap&markers=color:red|<%: Model.ContractDetail.Site.Lat%>,<%: Model.ContractDetail.Site.Lng%>&sensor=false" />
+                                        <img alt="Map" src="http://maps.google.com/maps/api/staticmap?center=<%: Model.ContractDetail.Site.Lat%>,<%: Model.ContractDetail.Site.Lng%>&zoom=17&size=300x225&maptype=hybrid&markers=color:red|<%: Model.ContractDetail.Site.Lat%>,<%: Model.ContractDetail.Site.Lng%>&sensor=false" />
                                         <%--http://maps.google.com/maps/api/staticmap?center=10.80129,106.71272&zoom=17&size=300x225&maptype=roadmap%20&markers=color:red|10.80129,106.71272&sensor=false--%>
                                         <%--<div id="map" style="width: 300px; height: 225px;">
                                         </div>--%>
-                                        <script type="text/javascript" language="javascript">
+                                        <%--<script type="text/javascript" language="javascript">
                                             var map;
                                             var marker;
                                             var first = true;
@@ -128,7 +128,7 @@
                                             }
                                         </script>
                                         <%: Html.HiddenFor(model => model.ContractDetail.Site.Lat)%>
-                                        <%: Html.HiddenFor(model => model.ContractDetail.Site.Lng)%>
+                                        <%: Html.HiddenFor(model => model.ContractDetail.Site.Lng)%>--%>
                                     </td>
                                     <%  int i = 0;
                                         bool hasCloseTr = false;
