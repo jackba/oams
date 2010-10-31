@@ -666,6 +666,28 @@ namespace OAMS
 
             return htmlHelper.DropDownListFor(expression, repo.FilterOrderForCreate(contractDetailID), OAMSSetting.messageL.SelectNone);
         }
+
+        public static bool Match(this List<string> lst, string str)
+        {
+            foreach (string item in lst)
+            {
+                if (item == "")
+                {
+                    if (str.ToLower() == "blank")
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (str.ToLower().Contains(item.ToLower()))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 
     public static class IPrincipalExtend
@@ -682,8 +704,4 @@ namespace OAMS
             return roles.Any(user.IsInRole);
         }
     }
-
-
-
-
 }

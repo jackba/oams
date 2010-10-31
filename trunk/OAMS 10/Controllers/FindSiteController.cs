@@ -67,7 +67,7 @@ namespace OAMS.Controllers
                 && (string.IsNullOrEmpty(e.ShopSignsBillboards) || r.ShopSignsBillboards == e.ShopSignsBillboards.ToInt())
                 && (string.IsNullOrEmpty(e.FlagsTemporaryBannersPromotionalItems) || r.FlagsTemporaryBannersPromotionalItems == e.FlagsTemporaryBannersPromotionalItems.ToInt())
                 && (string.IsNullOrEmpty(e.CompetitiveProductSigns) || r.CompetitiveProductSigns == e.CompetitiveProductSigns.ToInt())
-                && (string.IsNullOrEmpty(e.CurrentProduct) || r.CurrentProduct == e.CurrentProduct)
+                && (e.ProductList == null || e.ProductList.Match(r.CurrentProduct))
                 && (string.IsNullOrEmpty(e.Geo1FullName) || (r.Geo1 != null && r.Geo1.FullName == e.Geo1FullName))
                 && ((string.IsNullOrEmpty(e.Geo1FullName) && e.Geo2List == null)
                     || (e.Geo2List != null && (e.Geo2List.FirstOrDefault() == null || (r.Geo2 != null && e.Geo2List.Contains(r.Geo2.FullName)))))

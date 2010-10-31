@@ -38,7 +38,7 @@ namespace OAMS.Models
         public List<int> ContractorList { get; set; }
         //public List<string> ClientList { get; set; }
         public List<int> ClientList { get; set; }
-        public string CurrentProduct { get; set; }
+        public List<string> ProductList { get; set; }
         public List<string> CatList { get; set; }
     }
 }

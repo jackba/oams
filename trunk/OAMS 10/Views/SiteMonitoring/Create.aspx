@@ -248,10 +248,10 @@
                     width="600" height="400" flashvars="host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F113917932111131696693%2Falbumid%2F<%=AlbumID%>%3Falt%3Drss%26kind%3Dphoto%26authkey%3D<%=AuthID%>%26hl%3Den_US"
                     pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>
                 <br />
-                <label for="file1">
+                <%--<label for="file1">
                     Filename:</label>
                 <input type="file" name="files" id="file3" size="65" />
-                <br />
+                <br />--%>
                 <div id="divMoreFile">
                 </div>
                 <br />
@@ -265,24 +265,62 @@
     </div>
     <script type="text/javascript">
 
+//        function addMoreFileInput() {
+
+//            var divAddMore = $('#divMoreFile');
+
+//            var lbl = document.createElement('label');
+//            lbl.innerHTML = 'Filename:';
+
+//            divAddMore.append(lbl);
+
+
+//            var input = document.createElement('input');
+//            input.setAttribute('type', 'file');
+//            input.setAttribute('name', 'files');
+//            input.setAttribute('size', '65');
+
+//            divAddMore.append(input);
+//            divAddMore.append('<br />');
+//        }
+
+        index = 4;
         function addMoreFileInput() {
 
             var divAddMore = $('#divMoreFile');
 
             var lbl = document.createElement('label');
+            lbl.setAttribute('id', 'lblfile' + index);
             lbl.innerHTML = 'Filename:';
 
             divAddMore.append(lbl);
-
 
             var input = document.createElement('input');
             input.setAttribute('type', 'file');
             input.setAttribute('name', 'files');
             input.setAttribute('size', '65');
+            input.setAttribute('id', 'file' + index);
+            input.setAttribute('onchange', 'preview(this, ' + index + ')');
 
             divAddMore.append(input);
-            divAddMore.append('<br />');
-        }
 
+            var lnkDelete = document.createElement('a');
+            lnkDelete.setAttribute('id', 'LnkDeleteFile' + index);
+            lnkDelete.setAttribute('onclick', "$('#lblfile" + index + "').remove();$('#file" + index + "').remove();$('#previewField" + index + "').remove();$('#LnkDeleteFile" + index + "').remove();");
+            lnkDelete.innerHTML = 'X';
+            lnkDelete.setAttribute('style', 'text-decoration:underline;cursor:pointer;');
+            lnkDelete.setAttribute('title', 'Remove this Image');
+            divAddMore.append(" ").append(lnkDelete);
+
+            divAddMore.append('<br />');
+
+            var previewImg = document.createElement('img');
+            previewImg.setAttribute('id', 'previewField' + index + '');
+            previewImg.setAttribute('alt', 'Graphic will preview here');
+
+            divAddMore.append(previewImg);
+            divAddMore.append('<br />');
+            index = index + 1;
+        }
     </script>
 </asp:Content>
