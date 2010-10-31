@@ -71,7 +71,7 @@ namespace OAMS.Models
                 &&
                 (
                     !timerange.ToDate.HasValue
-                    || (timerange.ToDate >= datetime)
+                    || (timerange.ToDate.Ceiling() >= datetime)
                 );
         }
     }

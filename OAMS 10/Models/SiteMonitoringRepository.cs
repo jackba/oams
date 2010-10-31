@@ -51,7 +51,7 @@ namespace OAMS.Models
             return e;
         }
 
-        public SiteMonitoring Update(int ID, Action<SiteMonitoring> updateMethod, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList)
+        public SiteMonitoring Update(int ID, Action<SiteMonitoring> updateMethod, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList, IEnumerable<HttpPostedFileBase> filesOfFixed)
         {
             SiteMonitoring e = Get(ID);
 
@@ -63,6 +63,7 @@ namespace OAMS.Models
             picasaRepository.DB = DB;
 
             picasaRepository.UploadPhoto(e, files);
+            picasaRepository.UploadPhoto(e, filesOfFixed, false);
 
             DeletePhoto(DeletePhotoList);
 
@@ -139,7 +140,9 @@ namespace OAMS.Models
 
                 if (timeline != null)
                 {
-                    isValid = e.SiteMonitoringPhotoes.Where(r => r.TakenDate.HasValue && !timeline.Contains(r.TakenDate)).Count() == 0;
+                    //TODO: SiteMonitoringPhotoes contain fixed photo that out date of timeline
+                    //isValid = e.SiteMonitoringPhotoes.Where(r => r.TakenDate.HasValue && !timeline.Contains(r.TakenDate)).Count() == 0;
+                    isValid = true;
                 }
             }
 

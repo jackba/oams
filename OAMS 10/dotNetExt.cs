@@ -314,6 +314,15 @@ namespace OAMS
             return dt <= DateTime.Now.Date.AddDays(days);
         }
 
+        public static DateTime? Ceiling(this DateTime? dt)
+        {
+            if (dt.HasValue)
+            {
+                return dt.Value.Date.AddDays(1).AddSeconds(-1);
+            }
+            return dt;
+        }
+
         #endregion
 
         public static void SelectByText(this DropDownList ddl, string text)

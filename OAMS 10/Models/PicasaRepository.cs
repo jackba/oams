@@ -172,7 +172,7 @@ namespace OAMS.Models
 
 
 
-        public void UploadPhoto(SiteMonitoring e, IEnumerable<HttpPostedFileBase> files)
+        public void UploadPhoto(SiteMonitoring e, IEnumerable<HttpPostedFileBase> files, bool isCheckDate = true)
         {
 
             if (files == null
@@ -198,9 +198,12 @@ namespace OAMS.Models
                     DateTime? takenDate = GetMetadata_TakenDate(item);
 
                     ContractDetailTimeline timeline = e.ContractDetail.ContractDetailTimelines.Where(r => r.Order == e.Order).FirstOrDefault();
-                    if (timeline != null
+                    if (
+                        !isCheckDate ||
+                        (timeline != null
                         && takenDate.HasValue
                         && timeline.Contains(takenDate))
+                        )
                     {
                         MemoryStream mStream = new MemoryStream();
 
