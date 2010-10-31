@@ -13,7 +13,8 @@ namespace OAMS.Models
         {
             DB.ControllerActions.ToList();
 
-            List<Type> typeList = Assembly.GetExecutingAssembly().GetExportedTypes().Where(r => r.BaseType == typeof(Controller)).ToList();
+            List<Type> typeList = Assembly.GetExecutingAssembly().GetExportedTypes().Where(r => r.HasBaseType(typeof(Controller))).ToList();
+
 
             //Delete non-existing controllers
             foreach (var item in typeList)

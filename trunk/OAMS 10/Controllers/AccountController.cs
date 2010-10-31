@@ -364,5 +364,15 @@ namespace OAMS.Controllers
             HttpContext.Response.Cookies.Add(cookie);
         }
 
+        public ActionResult UpdateControllerAction()
+        {
+            RoleRepository repo = new RoleRepository();
+            repo.InitRole();
+
+            ControllerActionRepository actionAuthorizationRepo = new ControllerActionRepository();
+            actionAuthorizationRepo.UpdateActionList();
+
+            return RedirectToAction("Index", "Home");
+        } 
     }
 }

@@ -434,6 +434,25 @@ namespace OAMS
             }
         }
 
+        public static bool HasBaseType(this Type type, Type baseType)
+        {
+            if (type == null || type.BaseType == null)
+            {
+                return false;
+            }
+            else
+            {
+                if (type.BaseType == baseType)
+                {
+                    return true;
+                }
+                else
+                {
+                    return type.BaseType.HasBaseType(baseType);
+                }
+            }
+        }
+
         //public static void Apply(this CssStyleCollection style, PrintSetting setting)
         //{
         //    if (setting == null) return;
