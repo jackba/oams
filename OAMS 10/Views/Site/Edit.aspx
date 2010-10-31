@@ -95,23 +95,52 @@
 
         var map;
         var marker;
+        var first = true;
         function init() {
             var mapDiv = document.getElementById('map');
             map = new google.maps.Map(mapDiv, {
                 center: new google.maps.LatLng(10.77250, 106.69808),
-                zoom: 12,
+                zoom: 17,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
-
-            //txtGeoChanged();
-
-            google.maps.event.addListener(map, 'idle', txtGeoChanged);
+            google.maps.event.addListener(map, 'idle', MapIdle);
         }
 
         google.maps.event.addDomListener(window, 'load', init);
 
-        function txtGeoChanged() {
+        function MapIdle() {
+            if (first) {
+                var lng = $('#Lng').val();
+                var lat = $('#Lat').val();
 
+                if (marker != null) {
+                    marker.setMap(null);
+                }
+
+                marker = new google.maps.Marker({
+
+                    position: new google.maps.LatLng(lat, lng),
+                    map: map,
+                    draggable: true,
+                    title: 'Move me!'
+                });
+
+                if (!map.getBounds().contains(marker.position)) {
+                    var bounds = new google.maps.LatLngBounds();
+                    bounds.extend(marker.position);
+                    map.fitBounds(bounds);
+                    map.setZoom(17);
+                }
+
+                google.maps.event.addListener(marker, 'drag', function () {
+                    $('#Lng').val(marker.getPosition().lng().toFixed(6));
+                    $('#Lat').val(marker.getPosition().lat().toFixed(6));
+                });
+                first = false;
+            }
+        }
+
+        function txtGeoChanged() {
             var lng = $('#Lng').val();
             var lat = $('#Lat').val();
 
@@ -131,6 +160,7 @@
                 var bounds = new google.maps.LatLngBounds();
                 bounds.extend(marker.position);
                 map.fitBounds(bounds);
+                map.setZoom(17);
             }
 
             google.maps.event.addListener(marker, 'drag', function () {

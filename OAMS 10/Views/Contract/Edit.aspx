@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<OAMS.Models.Contract>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/SiteFull.Master" Inherits="System.Web.Mvc.ViewPage<OAMS.Models.Contract>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Edit
@@ -8,6 +8,7 @@
         var oTable;
         $(document).ready(function () {
             oTable = $('#tblResult').dataTable({ "aaSorting": [[1, "desc"]] });
+            ShowHideCols();
         });
     </script>
     <h2>
@@ -150,13 +151,13 @@
                         Display columns:
                         <input type="checkbox" id="chkColID" checked="checked" />
                         ID
-                        <input type="checkbox" id="chkColPrice" checked="checked" />
+                        <input type="checkbox" id="chkColPrice" />
                         Price
-                        <input type="checkbox" id="chkColProductionPrice" checked="checked" />
+                        <input type="checkbox" id="chkColProductionPrice" />
                         Production Price
-                        <input type="checkbox" id="chkColEffectiveDate" checked="checked" />
+                        <input type="checkbox" id="chkColEffectiveDate" />
                         Effective Date
-                        <input type="checkbox" id="chkColTermDate" checked="checked" />
+                        <input type="checkbox" id="chkColTermDate" />
                         Term Date
                         <br />
                         <input type="checkbox" id="chkColGeoFullName" checked="checked" />

@@ -307,6 +307,10 @@
                     Display columns:
                     <input type="checkbox" id="chkColID" checked="checked" />
                     ID
+                    <input type="checkbox" id="chkColCat1" checked="checked" />
+                    Category Level 1
+                    <input type="checkbox" id="chkColCat2" checked="checked" />
+                    Category Level 2
                     <input type="checkbox" id="chkColType" checked="checked" />
                     Type
                     <input type="checkbox" id="chkColFormat" checked="checked" />
@@ -332,6 +336,12 @@
                         <tr>
                             <th>
                                 ID
+                            </th>
+                            <th>
+                                Category Level 1
+                            </th>
+                            <th>
+                                Category Level 2
                             </th>
                             <th>
                                 Type
@@ -451,20 +461,18 @@
 
         var oTable;
         function ShowHideCols() {
-
-
-
             oTable.fnSetColumnVis(0, $('#chkColID').attr('checked'));
-            oTable.fnSetColumnVis(1, $('#chkColType').attr('checked'));
-            oTable.fnSetColumnVis(2, $('#chkColFormat').attr('checked'));
-            oTable.fnSetColumnVis(3, $('#chkColAddressLine1').attr('checked'));
-            oTable.fnSetColumnVis(4, $('#chkColAddressLine2').attr('checked'));
-            oTable.fnSetColumnVis(5, $('#chkColSize').attr('checked'));
-            oTable.fnSetColumnVis(6, $('#chkColCurrentProduct').attr('checked'));
-            oTable.fnSetColumnVis(7, $('#chkColCurrentClient').attr('checked'));
-            oTable.fnSetColumnVis(8, $('#chkColContractor').attr('checked'));
-            oTable.fnSetColumnVis(9, $('#chkColScore').attr('checked'));
-
+            oTable.fnSetColumnVis(1, $('#chkColCat1').attr('checked'));
+            oTable.fnSetColumnVis(2, $('#chkColCat2').attr('checked'));
+            oTable.fnSetColumnVis(3, $('#chkColType').attr('checked'));
+            oTable.fnSetColumnVis(4, $('#chkColFormat').attr('checked'));
+            oTable.fnSetColumnVis(5, $('#chkColAddressLine1').attr('checked'));
+            oTable.fnSetColumnVis(6, $('#chkColAddressLine2').attr('checked'));
+            oTable.fnSetColumnVis(7, $('#chkColSize').attr('checked'));
+            oTable.fnSetColumnVis(8, $('#chkColCurrentProduct').attr('checked'));
+            oTable.fnSetColumnVis(9, $('#chkColCurrentClient').attr('checked'));
+            oTable.fnSetColumnVis(10, $('#chkColContractor').attr('checked'));
+            oTable.fnSetColumnVis(11, $('#chkColScore').attr('checked'));
         }
         function showGeo2(str) {
             //alert(str);
@@ -717,6 +725,16 @@
                     var cStyle = document.createElement('td');
                     cStyle.innerHTML = site.ID;
                     rSel.appendChild(cStyle);
+
+                    //Cat1
+                    var cStyleCat1 = document.createElement('td');
+                    cStyleCat1.innerHTML = site.CategoryLevel1;
+                    rSel.appendChild(cStyleCat1);
+
+                    //Cat2
+                    var cStyleCat2 = document.createElement('td');
+                    cStyleCat2.innerHTML = site.CategoryLevel2;
+                    rSel.appendChild(cStyleCat2);
 
                     //Type
                     var cStyle1 = document.createElement('td');

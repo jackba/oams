@@ -34,39 +34,43 @@
                     <script type="text/javascript" language="javascript">
                         var map;
                         var marker;
+                        var first = true;
                         function init() {
                             var mapDiv = document.getElementById('map');
                             map = new google.maps.Map(mapDiv, {
                                 center: new google.maps.LatLng(10.77250, 106.69808),
-                                zoom: 12,
+                                zoom: 17,
                                 mapTypeId: google.maps.MapTypeId.ROADMAP
                             });
-                            google.maps.event.addListener(map, 'idle', txtGeoChanged);
+                            google.maps.event.addListener(map, 'idle', MapIdle);
                         }
 
                         google.maps.event.addDomListener(window, 'load', init);
 
-                        function txtGeoChanged() {
+                        function MapIdle() {
+                            if (first) {
+                                var lng = $('#Site_Lng').val();
+                                var lat = $('#Site_Lat').val();
 
-                            var lng = $('#Site_Lng').val();
-                            var lat = $('#Site_Lat').val();
+                                if (marker != null) {
+                                    marker.setMap(null);
+                                }
 
-                            if (marker != null) {
-                                marker.setMap(null);
-                            }
+                                marker = new google.maps.Marker({
 
-                            marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(lat, lng),
+                                    map: map,
+                                    draggable: true,
+                                    title: 'Move me!'
+                                });
 
-                                position: new google.maps.LatLng(lat, lng),
-                                map: map,
-                                draggable: true,
-                                title: 'Move me!'
-                            });
-
-                            if (!map.getBounds().contains(marker.position)) {
-                                var bounds = new google.maps.LatLngBounds();
-                                bounds.extend(marker.position);
-                                map.fitBounds(bounds);
+                                if (!map.getBounds().contains(marker.position)) {
+                                    var bounds = new google.maps.LatLngBounds();
+                                    bounds.extend(marker.position);
+                                    map.fitBounds(bounds);
+                                    map.setZoom(17);
+                                }
+                                first = false;
                             }
                         }
                     </script>
@@ -265,10 +269,11 @@
                 <br />
                 <% } %>
                 <br />
-                <label for="file1">
+                <%--<label for="file1">
                     Filename:</label>
-                <input type="file" name="files" id="file3" size="65" />
+                <input type="file" name="files" id="file3" size="65" onchange="preview(this, 3)"/>
                 <br />
+                <img alt="Graphic will preview here" id="previewField3"/>--%>
                 <div id="divMoreFile">
                 </div>
                 <br />
@@ -281,24 +286,43 @@
         <%: Html.ActionLink("Back to List", "Index") %>
     </div>
     <script type="text/javascript">
-
+        index = 4;
         function addMoreFileInput() {
 
             var divAddMore = $('#divMoreFile');
 
             var lbl = document.createElement('label');
+            lbl.setAttribute('id', 'lblfile' + index);
             lbl.innerHTML = 'Filename:';
 
             divAddMore.append(lbl);
-
 
             var input = document.createElement('input');
             input.setAttribute('type', 'file');
             input.setAttribute('name', 'files');
             input.setAttribute('size', '65');
+            input.setAttribute('id', 'file' + index);
+            input.setAttribute('onchange', 'preview(this, ' + index + ')');
 
             divAddMore.append(input);
+
+            var lnkDelete = document.createElement('a');
+            lnkDelete.setAttribute('id', 'LnkDeleteFile' + index);
+            lnkDelete.setAttribute('onclick', "$('#lblfile" + index + "').remove();$('#file" + index + "').remove();$('#previewField" + index + "').remove();$('#LnkDeleteFile" + index + "').remove();");
+            lnkDelete.innerHTML = 'X';
+            lnkDelete.setAttribute('style', 'text-decoration:underline;cursor:pointer;');
+            lnkDelete.setAttribute('title', 'Remove this Image');
+            divAddMore.append(" ").append(lnkDelete);
+
             divAddMore.append('<br />');
+
+            var previewImg = document.createElement('img');
+            previewImg.setAttribute('id', 'previewField' + index + '');
+            previewImg.setAttribute('alt', 'Graphic will preview here');
+
+            divAddMore.append(previewImg);
+            divAddMore.append('<br />');
+            index = index + 1;
         }
 
         function deleteSitePhoto(btn, id) {
