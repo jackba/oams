@@ -9,6 +9,7 @@ namespace OAMS.Models
     public static class ProjectRoles
     {
         //now constants for the attribute values
+        public const string Account = "Account";
         public const string Admin = "Admin";
         public const string SiteSupervisor = "SiteSupervisor";
         public const string SiteMonitoring = "SiteMonitoring";
@@ -18,7 +19,7 @@ namespace OAMS.Models
 
         public static string[] All
         {
-            get { return new string[] { Admin, SiteSupervisor, SiteMonitoring, Sale, Makerting }; }
+            get { return new string[] { Account, Admin, SiteSupervisor, SiteMonitoring, Sale, Makerting }; }
         }
     }
 
