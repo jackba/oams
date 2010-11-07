@@ -59,7 +59,8 @@
                 <tr>
                     <td>
                         <%: Html.ActionLink("Edit", "Edit", new { id=item.ID }) %>
-                        <br /><br />
+                        <br />
+                        <br />
                         <%: Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { onclick="return confirm('Delete?');" })%>
                     </td>
                     <td>
@@ -81,13 +82,16 @@
                         <%: item.Type %>
                     </td>
                     <td>
-                        <%: item.Format %>
+                        <%--<%: item.Format %>--%>
+                        <%: string.Join(", ", item.SiteDetails.Select(r => r.Format)) %>
                     </td>
                     <td>
-                        <%: item.CurrentClientName %>
+                        <%--<%: item.CurrentClientName %>--%>
+                        <%: string.Join(", ", item.SiteDetails.Select(r => r.CurrentClientName)) %>
                     </td>
                     <td>
-                        <%: item.CurrentProduct %>
+                        <%--<%: item.CurrentProduct %>--%>
+                        <%: string.Join(", ", item.SiteDetails.Select(r => r.Product)) %>
                     </td>
                     <td>
                         <%: item.Score %>
@@ -128,7 +132,6 @@
             </tfoot>
         </table>
     </div>
-    
     <br />
     <p>
         <%: Html.ActionLink("Create New", "Create") %>
@@ -218,7 +221,7 @@
 
             /* Add a select menu for each TH element in the table footer */
             $("tfoot th").each(function (i) {
-                if (i > 5 || i==3) {
+                if (i > 5 || i == 3) {
                     this.innerHTML = fnCreateSelect(oTable.fnGetColumnData(i));
                     $('select', this).change(function () {
                         oTable.fnFilter($(this).val(), i);

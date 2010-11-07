@@ -23,6 +23,7 @@
           <EntitySet Name="Geo" EntityType="OAMSModel.Store.Geo" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MVCAuthorization" EntityType="OAMSModel.Store.MVCAuthorization" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Site" EntityType="OAMSModel.Store.Site" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SiteDetail" EntityType="OAMSModel.Store.SiteDetail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SiteMonitoring" EntityType="OAMSModel.Store.SiteMonitoring" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SiteMonitoringPhoto" EntityType="OAMSModel.Store.SiteMonitoringPhoto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SitePhoto" EntityType="OAMSModel.Store.SitePhoto" store:Type="Tables" Schema="dbo" />
@@ -58,6 +59,18 @@
             <End Role="Contractor" EntitySet="Contractor" />
             <End Role="Contract" EntitySet="Contract" />
           </AssociationSet>
+          <AssociationSet Name="FK_ContractDetail_Category1" Association="OAMSModel.Store.FK_ContractDetail_Category1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ContractDetail" EntitySet="ContractDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContractDetail_Category2" Association="OAMSModel.Store.FK_ContractDetail_Category2">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ContractDetail" EntitySet="ContractDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContractDetail_Category3" Association="OAMSModel.Store.FK_ContractDetail_Category3">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ContractDetail" EntitySet="ContractDetail" />
+          </AssociationSet>
           <AssociationSet Name="FK_ContractDetail_Site" Association="OAMSModel.Store.FK_ContractDetail_Site">
             <End Role="Site" EntitySet="Site" />
             <End Role="ContractDetail" EntitySet="ContractDetail" />
@@ -86,22 +99,6 @@
             <End Role="ControllerAction" EntitySet="ControllerAction" />
             <End Role="MVCAuthorization" EntitySet="MVCAuthorization" />
           </AssociationSet>
-          <AssociationSet Name="FK_Site_Category1" Association="OAMSModel.Store.FK_Site_Category1">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Site" EntitySet="Site" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Site_Category2" Association="OAMSModel.Store.FK_Site_Category2">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Site" EntitySet="Site" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Site_Category3" Association="OAMSModel.Store.FK_Site_Category3">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Site" EntitySet="Site" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Site_Client" Association="OAMSModel.Store.FK_Site_Client">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Site" EntitySet="Site" />
-          </AssociationSet>
           <AssociationSet Name="FK_Site_Contractor" Association="OAMSModel.Store.FK_Site_Contractor">
             <End Role="Contractor" EntitySet="Contractor" />
             <End Role="Site" EntitySet="Site" />
@@ -117,6 +114,26 @@
           <AssociationSet Name="FK_Site_Geo3" Association="OAMSModel.Store.FK_Site_Geo3">
             <End Role="Geo" EntitySet="Geo" />
             <End Role="Site" EntitySet="Site" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteDetail_Category1" Association="OAMSModel.Store.FK_SiteDetail_Category1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="SiteDetail" EntitySet="SiteDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteDetail_Category2" Association="OAMSModel.Store.FK_SiteDetail_Category2">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="SiteDetail" EntitySet="SiteDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteDetail_Category3" Association="OAMSModel.Store.FK_SiteDetail_Category3">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="SiteDetail" EntitySet="SiteDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteDetail_Client" Association="OAMSModel.Store.FK_SiteDetail_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="SiteDetail" EntitySet="SiteDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteDetail_Site" Association="OAMSModel.Store.FK_SiteDetail_Site">
+            <End Role="Site" EntitySet="Site" />
+            <End Role="SiteDetail" EntitySet="SiteDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_SiteMonitoring_ContractDetail" Association="OAMSModel.Store.FK_SiteMonitoring_ContractDetail">
             <End Role="ContractDetail" EntitySet="ContractDetail" />
@@ -247,6 +264,12 @@
           <Property Name="EffectiveDate" Type="date" />
           <Property Name="TermDate" Type="date" />
           <Property Name="SiteID" Type="int" />
+          <Property Name="SiteDetailName" Type="nvarchar(max)" />
+          <Property Name="Product" Type="nvarchar(max)" />
+          <Property Name="CategoryID1" Type="uniqueidentifier" />
+          <Property Name="CategoryID2" Type="uniqueidentifier" />
+          <Property Name="CategoryID3" Type="uniqueidentifier" />
+          <Property Name="Format" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ContractDetailTimeline">
           <Key>
@@ -321,10 +344,7 @@
           <Property Name="AddressLine1" Type="nvarchar(max)" />
           <Property Name="Code" Type="nvarchar(max)" />
           <Property Name="Type" Type="nvarchar(max)" />
-          <Property Name="Format" Type="nvarchar(max)" />
-          <Property Name="Category" Type="nvarchar(max)" />
           <Property Name="Competition" Type="nvarchar(max)" />
-          <Property Name="CurrentProduct" Type="nvarchar(max)" />
           <Property Name="Height" Type="decimal" Scale="2" />
           <Property Name="Width" Type="decimal" Scale="2" />
           <Property Name="Size" Type="decimal" Precision="37" Scale="4" StoreGeneratedPattern="Computed" />
@@ -385,10 +405,20 @@
           <Property Name="CreatedBy" Type="nvarchar(max)" />
           <Property Name="LastUpdatedDate" Type="datetime" />
           <Property Name="LastUpdatedBy" Type="nvarchar(max)" />
-          <Property Name="CurrentClientID" Type="int" />
+        </EntityType>
+        <EntityType Name="SiteDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SiteID" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="ClientID" Type="int" />
           <Property Name="CategoryID1" Type="uniqueidentifier" />
           <Property Name="CategoryID2" Type="uniqueidentifier" />
           <Property Name="CategoryID3" Type="uniqueidentifier" />
+          <Property Name="Product" Type="nvarchar(max)" />
+          <Property Name="Format" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="SiteMonitoring">
           <Key>
@@ -427,6 +457,7 @@
           <Property Name="Url" Type="nvarchar(max)" />
           <Property Name="AtomUrl" Type="nvarchar(max)" />
           <Property Name="TakenDate" Type="datetime" />
+          <Property Name="IsReview" Type="bit" />
         </EntityType>
         <EntityType Name="SitePhoto">
           <Key>
@@ -534,6 +565,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ContractDetail_Category1">
+          <End Role="Category" Type="OAMSModel.Store.Category" Multiplicity="0..1" />
+          <End Role="ContractDetail" Type="OAMSModel.Store.ContractDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ContractDetail">
+              <PropertyRef Name="CategoryID1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContractDetail_Category2">
+          <End Role="Category" Type="OAMSModel.Store.Category" Multiplicity="0..1" />
+          <End Role="ContractDetail" Type="OAMSModel.Store.ContractDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ContractDetail">
+              <PropertyRef Name="CategoryID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContractDetail_Category3">
+          <End Role="Category" Type="OAMSModel.Store.Category" Multiplicity="0..1" />
+          <End Role="ContractDetail" Type="OAMSModel.Store.ContractDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ContractDetail">
+              <PropertyRef Name="CategoryID3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ContractDetail_Site">
           <End Role="Site" Type="OAMSModel.Store.Site" Multiplicity="0..1" />
           <End Role="ContractDetail" Type="OAMSModel.Store.ContractDetail" Multiplicity="*" />
@@ -618,54 +685,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Site_Category1">
-          <End Role="Category" Type="OAMSModel.Store.Category" Multiplicity="0..1" />
-          <End Role="Site" Type="OAMSModel.Store.Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="CategoryID1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Site_Category2">
-          <End Role="Category" Type="OAMSModel.Store.Category" Multiplicity="0..1" />
-          <End Role="Site" Type="OAMSModel.Store.Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="CategoryID2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Site_Category3">
-          <End Role="Category" Type="OAMSModel.Store.Category" Multiplicity="0..1" />
-          <End Role="Site" Type="OAMSModel.Store.Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="CategoryID3" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Site_Client">
-          <End Role="Client" Type="OAMSModel.Store.Client" Multiplicity="0..1" />
-          <End Role="Site" Type="OAMSModel.Store.Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="CurrentClientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Site_Contractor">
           <End Role="Contractor" Type="OAMSModel.Store.Contractor" Multiplicity="0..1" />
           <End Role="Site" Type="OAMSModel.Store.Site" Multiplicity="*" />
@@ -711,6 +730,66 @@
             </Principal>
             <Dependent Role="Site">
               <PropertyRef Name="Geo3ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteDetail_Category1">
+          <End Role="Category" Type="OAMSModel.Store.Category" Multiplicity="0..1" />
+          <End Role="SiteDetail" Type="OAMSModel.Store.SiteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SiteDetail">
+              <PropertyRef Name="CategoryID1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteDetail_Category2">
+          <End Role="Category" Type="OAMSModel.Store.Category" Multiplicity="0..1" />
+          <End Role="SiteDetail" Type="OAMSModel.Store.SiteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SiteDetail">
+              <PropertyRef Name="CategoryID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteDetail_Category3">
+          <End Role="Category" Type="OAMSModel.Store.Category" Multiplicity="0..1" />
+          <End Role="SiteDetail" Type="OAMSModel.Store.SiteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SiteDetail">
+              <PropertyRef Name="CategoryID3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteDetail_Client">
+          <End Role="Client" Type="OAMSModel.Store.Client" Multiplicity="0..1" />
+          <End Role="SiteDetail" Type="OAMSModel.Store.SiteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SiteDetail">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteDetail_Site">
+          <End Role="Site" Type="OAMSModel.Store.Site" Multiplicity="0..1" />
+          <End Role="SiteDetail" Type="OAMSModel.Store.SiteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Site">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SiteDetail">
+              <PropertyRef Name="SiteID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -762,35 +841,10 @@
           </AssociationSet>
           <EntitySet Name="SitePhotoes" EntityType="OAMSModel.SitePhoto" />
           <EntitySet Name="Contractors" EntityType="OAMSModel.Contractor" />
-          <EntitySet Name="Sites" EntityType="OAMSModel.Site" />
-          <AssociationSet Name="FK_Site_Contractor" Association="OAMSModel.FK_Site_Contractor">
-            <End Role="Contractor" EntitySet="Contractors" />
-            <End Role="Site" EntitySet="Sites" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Site_Geo1" Association="OAMSModel.FK_Site_Geo1">
-            <End Role="Geo" EntitySet="Geos" />
-            <End Role="Site" EntitySet="Sites" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Site_Geo2" Association="OAMSModel.FK_Site_Geo2">
-            <End Role="Geo" EntitySet="Geos" />
-            <End Role="Site" EntitySet="Sites" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Site_Geo3" Association="OAMSModel.FK_Site_Geo3">
-            <End Role="Geo" EntitySet="Geos" />
-            <End Role="Site" EntitySet="Sites" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SitePhoto_Site" Association="OAMSModel.FK_SitePhoto_Site">
-            <End Role="Site" EntitySet="Sites" />
-            <End Role="SitePhoto" EntitySet="SitePhotoes" />
-          </AssociationSet>
           <EntitySet Name="ContractDetails" EntityType="OAMSModel.ContractDetail" />
           <AssociationSet Name="FK_CampaignDetail_ContractDetail" Association="OAMSModel.FK_CampaignDetail_ContractDetail">
             <End Role="ContractDetail" EntitySet="ContractDetails" />
             <End Role="CampaignDetail" EntitySet="CampaignDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ContractDetail_Site" Association="OAMSModel.FK_ContractDetail_Site">
-            <End Role="Site" EntitySet="Sites" />
-            <End Role="ContractDetail" EntitySet="ContractDetails" />
           </AssociationSet>
           <EntitySet Name="SiteMonitorings" EntityType="OAMSModel.SiteMonitoring" />
           <EntitySet Name="SiteMonitoringPhotoes" EntityType="OAMSModel.SiteMonitoringPhoto" />
@@ -819,22 +873,6 @@
           <AssociationSet Name="FK_Contract_Client" Association="OAMSModel.FK_Contract_Client">
             <End Role="Client" EntitySet="Clients" />
             <End Role="Contract" EntitySet="Contracts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Site_Client" Association="OAMSModel.FK_Site_Client">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="Site" EntitySet="Sites" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Site_Category1" Association="OAMSModel.FK_Site_Category1">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Site" EntitySet="Sites" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Site_Category2" Association="OAMSModel.FK_Site_Category2">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Site" EntitySet="Sites" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Site_Category3" Association="OAMSModel.FK_Site_Category3">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Site" EntitySet="Sites" />
           </AssociationSet>
           <EntitySet Name="ControllerActions" EntityType="OAMSModel.ControllerAction" />
           <EntitySet Name="MVCAuthorizations" EntityType="OAMSModel.MVCAuthorization" />
@@ -865,6 +903,64 @@
           <AssociationSet Name="FK_ContractDetailTimeline_ContractDetail" Association="OAMSModel.FK_ContractDetailTimeline_ContractDetail">
             <End Role="ContractDetail" EntitySet="ContractDetails" />
             <End Role="ContractDetailTimeline" EntitySet="ContractDetailTimelines" />
+          </AssociationSet>
+          <EntitySet Name="SiteDetails" EntityType="OAMSModel.SiteDetail" />
+          <AssociationSet Name="FK_ContractDetail_Category1" Association="OAMSModel.FK_ContractDetail_Category1">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="ContractDetail" EntitySet="ContractDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContractDetail_Category2" Association="OAMSModel.FK_ContractDetail_Category2">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="ContractDetail" EntitySet="ContractDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContractDetail_Category3" Association="OAMSModel.FK_ContractDetail_Category3">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="ContractDetail" EntitySet="ContractDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteDetail_Category1" Association="OAMSModel.FK_SiteDetail_Category1">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="SiteDetail" EntitySet="SiteDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteDetail_Category2" Association="OAMSModel.FK_SiteDetail_Category2">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="SiteDetail" EntitySet="SiteDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteDetail_Category3" Association="OAMSModel.FK_SiteDetail_Category3">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="SiteDetail" EntitySet="SiteDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteDetail_Client" Association="OAMSModel.FK_SiteDetail_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="SiteDetail" EntitySet="SiteDetails" />
+          </AssociationSet>
+          <EntitySet Name="Sites" EntityType="OAMSModel.Site" />
+          <AssociationSet Name="FK_ContractDetail_Site" Association="OAMSModel.FK_ContractDetail_Site">
+            <End Role="Site" EntitySet="Sites" />
+            <End Role="ContractDetail" EntitySet="ContractDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Site_Contractor" Association="OAMSModel.FK_Site_Contractor">
+            <End Role="Contractor" EntitySet="Contractors" />
+            <End Role="Site" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Site_Geo1" Association="OAMSModel.FK_Site_Geo1">
+            <End Role="Geo" EntitySet="Geos" />
+            <End Role="Site" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Site_Geo2" Association="OAMSModel.FK_Site_Geo2">
+            <End Role="Geo" EntitySet="Geos" />
+            <End Role="Site" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Site_Geo3" Association="OAMSModel.FK_Site_Geo3">
+            <End Role="Geo" EntitySet="Geos" />
+            <End Role="Site" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteDetail_Site" Association="OAMSModel.FK_SiteDetail_Site">
+            <End Role="Site" EntitySet="Sites" />
+            <End Role="SiteDetail" EntitySet="SiteDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SitePhoto_Site" Association="OAMSModel.FK_SitePhoto_Site">
+            <End Role="Site" EntitySet="Sites" />
+            <End Role="SitePhoto" EntitySet="SitePhotoes" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Geo">
@@ -944,7 +1040,7 @@
           <Property Type="String" Name="Note" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Campaigns" Relationship="OAMSModel.FK_Campaign_Client" FromRole="Client" ToRole="Campaign" />
           <NavigationProperty Name="Contracts" Relationship="OAMSModel.FK_Contract_Client" FromRole="Client" ToRole="Contract" />
-          <NavigationProperty Name="Sites" Relationship="OAMSModel.FK_Site_Client" FromRole="Client" ToRole="Site" />
+          <NavigationProperty Name="SiteDetails" Relationship="OAMSModel.FK_SiteDetail_Client" FromRole="Client" ToRole="SiteDetail" />
         </EntityType>
         <Association Name="FK_Campaign_Client">
           <End Type="OAMSModel.Client" Role="Client" Multiplicity="0..1" />
@@ -978,8 +1074,8 @@
           <Property Type="Int32" Name="SiteID" />
           <Property Type="String" Name="Url" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="AtomUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Site" Relationship="OAMSModel.FK_SitePhoto_Site" FromRole="SitePhoto" ToRole="Site" />
           <Property Type="DateTime" Name="TakenDate" />
+          <NavigationProperty Name="Site" Relationship="OAMSModel.FK_SitePhoto_Site" FromRole="SitePhoto" ToRole="Site" />
         </EntityType>
         <EntityType Name="Contractor">
           <Key>
@@ -992,159 +1088,9 @@
           <Property Type="String" Name="ContactName" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ContactPhone" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ContactEmail" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Sites" Relationship="OAMSModel.FK_Site_Contractor" FromRole="Contractor" ToRole="Site" />
           <NavigationProperty Name="Contracts" Relationship="OAMSModel.FK_Contract_Contractor" FromRole="Contractor" ToRole="Contract" />
+          <NavigationProperty Name="Sites" Relationship="OAMSModel.FK_Site_Contractor" FromRole="Contractor" ToRole="Site" />
         </EntityType>
-        <EntityType Name="Site">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Guid" Name="Geo1ID" />
-          <Property Type="Guid" Name="Geo2ID" />
-          <Property Type="Guid" Name="Geo3ID" />
-          <Property Type="String" Name="AddressLine1" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Code" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Type" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Format" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Category" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Competition" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CurrentProduct" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="Height" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Width" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Size" Precision="37" Scale="4" annotation:StoreGeneratedPattern="Computed" />
-          <Property Type="Double" Name="Lng" />
-          <Property Type="Double" Name="Lat" />
-          <Property Type="String" Name="CBDViewed" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="SurroundingAreaLight" />
-          <Property Type="Boolean" Name="StreetLight" />
-          <Property Type="Int32" Name="FrontlitNumerOfLamps" />
-          <Property Type="String" Name="FrontlitTopBottom" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="FrontlitSideLighting" />
-          <Property Type="String" Name="FontlitArmsPlacement" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="FontlitIlluminationDistribution" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="FontLightArmsStraight" />
-          <Property Type="String" Name="BacklitFormat" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="BacklitIlluninationSpread" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="BacklitLightingBlocks" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="BacklitLightBoxLeakage" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="BacklitVisualLegibility" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="RoadType1" />
-          <Property Type="Int32" Name="RoadType2" />
-          <Property Type="Int32" Name="RoadTypePoint" annotation:StoreGeneratedPattern="Computed" />
-          <Property Type="Int32" Name="InstallationPosition1" />
-          <Property Type="Int32" Name="InstallationPosition2" />
-          <Property Type="Int32" Name="InstallationPositionPoint" annotation:StoreGeneratedPattern="Computed" />
-          <Property Type="Int32" Name="ViewingDistance" />
-          <Property Type="Int32" Name="ViewingSpeed" />
-          <Property Type="Int32" Name="High" />
-          <Property Type="Int32" Name="VisibilityBuilding" />
-          <Property Type="Int32" Name="VisibilityTrees" />
-          <Property Type="Int32" Name="VisibilityBridgeWalkway" />
-          <Property Type="Int32" Name="VisibilityElectricityPolesOther" />
-          <Property Type="Int32" Name="DirectionalTrafficPublicTransport" />
-          <Property Type="Int32" Name="ShopSignsBillboards" />
-          <Property Type="Int32" Name="FlagsTemporaryBannersPromotionalItems" />
-          <Property Type="Int32" Name="CompetitiveProductSigns" />
-          <Property Type="Boolean" Name="CloseToUniversity" />
-          <Property Type="Boolean" Name="CloseToHopistal" />
-          <Property Type="Boolean" Name="CloseToAirport" />
-          <Property Type="Boolean" Name="CloseToFactory" />
-          <Property Type="Boolean" Name="CloseToGasStation" />
-          <Property Type="Boolean" Name="CloseToMarket" />
-          <Property Type="Boolean" Name="CloseToOffice" />
-          <Property Type="Boolean" Name="CloseToParking" />
-          <Property Type="Boolean" Name="CloseToResident" />
-          <Property Type="Boolean" Name="CloseToSchool" />
-          <Property Type="Boolean" Name="CloseToShopping" />
-          <Property Type="Boolean" Name="CloseToStadium" />
-          <Property Type="Boolean" Name="CloseToStation" />
-          <Property Type="Boolean" Name="CloseToTownCenter" />
-          <Property Type="Int32" Name="Score" annotation:StoreGeneratedPattern="Computed" />
-          <Property Type="String" Name="AlbumUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="VisibilityHight" />
-          <Property Type="String" Name="AddressLine2" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="BackupAlbumUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="ContractorID" />
-          <NavigationProperty Name="Contractor" Relationship="OAMSModel.FK_Site_Contractor" FromRole="Site" ToRole="Contractor" />
-          <NavigationProperty Name="Geo1" Relationship="OAMSModel.FK_Site_Geo1" FromRole="Site" ToRole="Geo" />
-          <NavigationProperty Name="Geo2" Relationship="OAMSModel.FK_Site_Geo2" FromRole="Site" ToRole="Geo" />
-          <NavigationProperty Name="Geo3" Relationship="OAMSModel.FK_Site_Geo3" FromRole="Site" ToRole="Geo" />
-          <NavigationProperty Name="SitePhotoes" Relationship="OAMSModel.FK_SitePhoto_Site" FromRole="Site" ToRole="SitePhoto" />
-          <NavigationProperty Name="ContractDetails" Relationship="OAMSModel.FK_ContractDetail_Site" FromRole="Site" ToRole="ContractDetail" />
-          <Property Type="DateTime" Name="CreatedDate" />
-          <Property Type="String" Name="CreatedBy" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="LastUpdatedDate" />
-          <Property Type="String" Name="LastUpdatedBy" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="CurrentClientID" />
-          <NavigationProperty Name="Client" Relationship="OAMSModel.FK_Site_Client" FromRole="Site" ToRole="Client" />
-          <Property Type="Guid" Name="CategoryID1" />
-          <Property Type="Guid" Name="CategoryID2" />
-          <Property Type="Guid" Name="CategoryID3" />
-          <NavigationProperty Name="Category1" Relationship="OAMSModel.FK_Site_Category1" FromRole="Site" ToRole="Category" />
-          <NavigationProperty Name="Category2" Relationship="OAMSModel.FK_Site_Category2" FromRole="Site" ToRole="Category" />
-          <NavigationProperty Name="Category3" Relationship="OAMSModel.FK_Site_Category3" FromRole="Site" ToRole="Category" />
-        </EntityType>
-        <Association Name="FK_Site_Contractor">
-          <End Type="OAMSModel.Contractor" Role="Contractor" Multiplicity="0..1" />
-          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contractor">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="ContractorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Site_Geo1">
-          <End Type="OAMSModel.Geo" Role="Geo" Multiplicity="0..1" />
-          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Geo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="Geo1ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Site_Geo2">
-          <End Type="OAMSModel.Geo" Role="Geo" Multiplicity="0..1" />
-          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Geo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="Geo2ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Site_Geo3">
-          <End Type="OAMSModel.Geo" Role="Geo" Multiplicity="0..1" />
-          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Geo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="Geo3ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SitePhoto_Site">
-          <End Type="OAMSModel.Site" Role="Site" Multiplicity="0..1" />
-          <End Type="OAMSModel.SitePhoto" Role="SitePhoto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Site">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SitePhoto">
-              <PropertyRef Name="SiteID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="ContractDetail">
           <Key>
             <PropertyRef Name="ID" />
@@ -1157,11 +1103,20 @@
           <Property Type="DateTime" Name="TermDate" />
           <Property Type="Int32" Name="SiteID" />
           <NavigationProperty Name="CampaignDetails" Relationship="OAMSModel.FK_CampaignDetail_ContractDetail" FromRole="ContractDetail" ToRole="CampaignDetail" />
-          <NavigationProperty Name="Site" Relationship="OAMSModel.FK_ContractDetail_Site" FromRole="ContractDetail" ToRole="Site" />
           <NavigationProperty Name="SiteMonitorings" Relationship="OAMSModel.FK_SiteMonitoring_ContractDetail" FromRole="ContractDetail" ToRole="SiteMonitoring" />
           <NavigationProperty Name="Contract" Relationship="OAMSModel.FK_ContractDetail_Contract" FromRole="ContractDetail" ToRole="Contract" />
           <Property Type="String" Name="PaymentTerm" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ContractDetailTimelines" Relationship="OAMSModel.FK_ContractDetailTimeline_ContractDetail" FromRole="ContractDetail" ToRole="ContractDetailTimeline" />
+          <Property Type="String" Name="SiteDetailName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Product" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="CategoryID1" />
+          <Property Type="Guid" Name="CategoryID2" />
+          <Property Type="Guid" Name="CategoryID3" />
+          <Property Type="String" Name="Format" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="OAMSModel.FK_ContractDetail_Category1" FromRole="ContractDetail" ToRole="Category" />
+          <NavigationProperty Name="Category1" Relationship="OAMSModel.FK_ContractDetail_Category2" FromRole="ContractDetail" ToRole="Category" />
+          <NavigationProperty Name="Category2" Relationship="OAMSModel.FK_ContractDetail_Category3" FromRole="ContractDetail" ToRole="Category" />
+          <NavigationProperty Name="Site" Relationship="OAMSModel.FK_ContractDetail_Site" FromRole="ContractDetail" ToRole="Site" />
         </EntityType>
         <Association Name="FK_CampaignDetail_ContractDetail">
           <End Type="OAMSModel.ContractDetail" Role="ContractDetail" Multiplicity="0..1" />
@@ -1172,18 +1127,6 @@
             </Principal>
             <Dependent Role="CampaignDetail">
               <PropertyRef Name="ContractDetailID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ContractDetail_Site">
-          <End Type="OAMSModel.Site" Role="Site" Multiplicity="0..1" />
-          <End Type="OAMSModel.ContractDetail" Role="ContractDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Site">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ContractDetail">
-              <PropertyRef Name="SiteID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1227,6 +1170,7 @@
           <Property Type="String" Name="AtomUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SiteMonitoring" Relationship="OAMSModel.FK_SiteMonitoringPhoto_SiteMonitoring" FromRole="SiteMonitoringPhoto" ToRole="SiteMonitoring" />
           <Property Type="DateTime" Name="TakenDate" />
+          <Property Type="Boolean" Name="IsReview" />
         </EntityType>
         <Association Name="FK_SiteMonitoring_ContractDetail">
           <End Type="OAMSModel.ContractDetail" Role="ContractDetail" Multiplicity="0..1" />
@@ -1264,9 +1208,12 @@
           <Property Type="String" Name="FullNameNoDiacritics" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Children" Relationship="OAMSModel.FK_Category_Category" FromRole="Category" ToRole="Category1" />
           <NavigationProperty Name="Parent" Relationship="OAMSModel.FK_Category_Category" FromRole="Category1" ToRole="Category" />
-          <NavigationProperty Name="Sites1" Relationship="OAMSModel.FK_Site_Category1" FromRole="Category" ToRole="Site" />
-          <NavigationProperty Name="Sites2" Relationship="OAMSModel.FK_Site_Category2" FromRole="Category" ToRole="Site" />
-          <NavigationProperty Name="Sites3" Relationship="OAMSModel.FK_Site_Category3" FromRole="Category" ToRole="Site" />
+          <NavigationProperty Name="ContractDetails" Relationship="OAMSModel.FK_ContractDetail_Category1" FromRole="Category" ToRole="ContractDetail" />
+          <NavigationProperty Name="ContractDetails1" Relationship="OAMSModel.FK_ContractDetail_Category2" FromRole="Category" ToRole="ContractDetail" />
+          <NavigationProperty Name="ContractDetails2" Relationship="OAMSModel.FK_ContractDetail_Category3" FromRole="Category" ToRole="ContractDetail" />
+          <NavigationProperty Name="SiteDetails1" Relationship="OAMSModel.FK_SiteDetail_Category1" FromRole="Category" ToRole="SiteDetail" />
+          <NavigationProperty Name="SiteDetails2" Relationship="OAMSModel.FK_SiteDetail_Category2" FromRole="Category" ToRole="SiteDetail" />
+          <NavigationProperty Name="SiteDetails3" Relationship="OAMSModel.FK_SiteDetail_Category3" FromRole="Category" ToRole="SiteDetail" />
         </EntityType>
         <Association Name="FK_Category_Category">
           <End Type="OAMSModel.Category" Role="Category" Multiplicity="0..1" />
@@ -1340,54 +1287,6 @@
             </Principal>
             <Dependent Role="Contract">
               <PropertyRef Name="ClientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Site_Client">
-          <End Type="OAMSModel.Client" Role="Client" Multiplicity="0..1" />
-          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="CurrentClientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Site_Category1">
-          <End Type="OAMSModel.Category" Role="Category" Multiplicity="0..1" />
-          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="CategoryID1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Site_Category2">
-          <End Type="OAMSModel.Category" Role="Category" Multiplicity="0..1" />
-          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="CategoryID2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Site_Category3">
-          <End Type="OAMSModel.Category" Role="Category" Multiplicity="0..1" />
-          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="CategoryID3" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1526,6 +1425,273 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SiteDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="SiteID" />
+          <Property Type="String" Name="Name" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ClientID" />
+          <Property Type="Guid" Name="CategoryID1" />
+          <Property Type="Guid" Name="CategoryID2" />
+          <Property Type="Guid" Name="CategoryID3" />
+          <Property Type="String" Name="Product" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Format" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category1" Relationship="OAMSModel.FK_SiteDetail_Category1" FromRole="SiteDetail" ToRole="Category" />
+          <NavigationProperty Name="Category2" Relationship="OAMSModel.FK_SiteDetail_Category2" FromRole="SiteDetail" ToRole="Category" />
+          <NavigationProperty Name="Category3" Relationship="OAMSModel.FK_SiteDetail_Category3" FromRole="SiteDetail" ToRole="Category" />
+          <NavigationProperty Name="Client" Relationship="OAMSModel.FK_SiteDetail_Client" FromRole="SiteDetail" ToRole="Client" />
+          <NavigationProperty Name="Site" Relationship="OAMSModel.FK_SiteDetail_Site" FromRole="SiteDetail" ToRole="Site" />
+        </EntityType>
+        <Association Name="FK_ContractDetail_Category1">
+          <End Type="OAMSModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="OAMSModel.ContractDetail" Role="ContractDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ContractDetail">
+              <PropertyRef Name="CategoryID1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContractDetail_Category2">
+          <End Type="OAMSModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="OAMSModel.ContractDetail" Role="ContractDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ContractDetail">
+              <PropertyRef Name="CategoryID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContractDetail_Category3">
+          <End Type="OAMSModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="OAMSModel.ContractDetail" Role="ContractDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ContractDetail">
+              <PropertyRef Name="CategoryID3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteDetail_Category1">
+          <End Type="OAMSModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="OAMSModel.SiteDetail" Role="SiteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SiteDetail">
+              <PropertyRef Name="CategoryID1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteDetail_Category2">
+          <End Type="OAMSModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="OAMSModel.SiteDetail" Role="SiteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SiteDetail">
+              <PropertyRef Name="CategoryID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteDetail_Category3">
+          <End Type="OAMSModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="OAMSModel.SiteDetail" Role="SiteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SiteDetail">
+              <PropertyRef Name="CategoryID3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteDetail_Client">
+          <End Type="OAMSModel.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="OAMSModel.SiteDetail" Role="SiteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SiteDetail">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Guid" Name="Geo1ID" />
+          <Property Type="Guid" Name="Geo2ID" />
+          <Property Type="Guid" Name="Geo3ID" />
+          <Property Type="String" Name="AddressLine1" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Code" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Type" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Competition" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Height" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Width" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Size" Precision="37" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Double" Name="Lng" />
+          <Property Type="Double" Name="Lat" />
+          <Property Type="String" Name="CBDViewed" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="SurroundingAreaLight" />
+          <Property Type="Boolean" Name="StreetLight" />
+          <Property Type="Int32" Name="FrontlitNumerOfLamps" />
+          <Property Type="String" Name="FrontlitTopBottom" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="FrontlitSideLighting" />
+          <Property Type="String" Name="FontlitArmsPlacement" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FontlitIlluminationDistribution" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="FontLightArmsStraight" />
+          <Property Type="String" Name="BacklitFormat" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BacklitIlluninationSpread" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BacklitLightingBlocks" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BacklitLightBoxLeakage" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BacklitVisualLegibility" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="RoadType1" />
+          <Property Type="Int32" Name="RoadType2" />
+          <Property Type="Int32" Name="RoadTypePoint" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Int32" Name="InstallationPosition1" />
+          <Property Type="Int32" Name="InstallationPosition2" />
+          <Property Type="Int32" Name="InstallationPositionPoint" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Int32" Name="ViewingDistance" />
+          <Property Type="Int32" Name="ViewingSpeed" />
+          <Property Type="Int32" Name="High" />
+          <Property Type="Int32" Name="VisibilityBuilding" />
+          <Property Type="Int32" Name="VisibilityTrees" />
+          <Property Type="Int32" Name="VisibilityBridgeWalkway" />
+          <Property Type="Int32" Name="VisibilityElectricityPolesOther" />
+          <Property Type="Int32" Name="DirectionalTrafficPublicTransport" />
+          <Property Type="Int32" Name="ShopSignsBillboards" />
+          <Property Type="Int32" Name="FlagsTemporaryBannersPromotionalItems" />
+          <Property Type="Int32" Name="CompetitiveProductSigns" />
+          <Property Type="Boolean" Name="CloseToUniversity" />
+          <Property Type="Boolean" Name="CloseToHopistal" />
+          <Property Type="Boolean" Name="CloseToAirport" />
+          <Property Type="Boolean" Name="CloseToFactory" />
+          <Property Type="Boolean" Name="CloseToGasStation" />
+          <Property Type="Boolean" Name="CloseToMarket" />
+          <Property Type="Boolean" Name="CloseToOffice" />
+          <Property Type="Boolean" Name="CloseToParking" />
+          <Property Type="Boolean" Name="CloseToResident" />
+          <Property Type="Boolean" Name="CloseToSchool" />
+          <Property Type="Boolean" Name="CloseToShopping" />
+          <Property Type="Boolean" Name="CloseToStadium" />
+          <Property Type="Boolean" Name="CloseToStation" />
+          <Property Type="Boolean" Name="CloseToTownCenter" />
+          <Property Type="Int32" Name="Score" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="String" Name="AlbumUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="VisibilityHight" />
+          <Property Type="String" Name="AddressLine2" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BackupAlbumUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ContractorID" />
+          <Property Type="DateTime" Name="CreatedDate" />
+          <Property Type="String" Name="CreatedBy" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastUpdatedDate" />
+          <Property Type="String" Name="LastUpdatedBy" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ContractDetails" Relationship="OAMSModel.FK_ContractDetail_Site" FromRole="Site" ToRole="ContractDetail" />
+          <NavigationProperty Name="Contractor" Relationship="OAMSModel.FK_Site_Contractor" FromRole="Site" ToRole="Contractor" />
+          <NavigationProperty Name="Geo1" Relationship="OAMSModel.FK_Site_Geo1" FromRole="Site" ToRole="Geo" />
+          <NavigationProperty Name="Geo2" Relationship="OAMSModel.FK_Site_Geo2" FromRole="Site" ToRole="Geo" />
+          <NavigationProperty Name="Geo3" Relationship="OAMSModel.FK_Site_Geo3" FromRole="Site" ToRole="Geo" />
+          <NavigationProperty Name="SiteDetails" Relationship="OAMSModel.FK_SiteDetail_Site" FromRole="Site" ToRole="SiteDetail" />
+          <NavigationProperty Name="SitePhotoes" Relationship="OAMSModel.FK_SitePhoto_Site" FromRole="Site" ToRole="SitePhoto" />
+        </EntityType>
+        <Association Name="FK_ContractDetail_Site">
+          <End Type="OAMSModel.Site" Role="Site" Multiplicity="0..1" />
+          <End Type="OAMSModel.ContractDetail" Role="ContractDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Site">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ContractDetail">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Site_Contractor">
+          <End Type="OAMSModel.Contractor" Role="Contractor" Multiplicity="0..1" />
+          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contractor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Site">
+              <PropertyRef Name="ContractorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Site_Geo1">
+          <End Type="OAMSModel.Geo" Role="Geo" Multiplicity="0..1" />
+          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Geo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Site">
+              <PropertyRef Name="Geo1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Site_Geo2">
+          <End Type="OAMSModel.Geo" Role="Geo" Multiplicity="0..1" />
+          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Geo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Site">
+              <PropertyRef Name="Geo2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Site_Geo3">
+          <End Type="OAMSModel.Geo" Role="Geo" Multiplicity="0..1" />
+          <End Type="OAMSModel.Site" Role="Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Geo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Site">
+              <PropertyRef Name="Geo3ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteDetail_Site">
+          <End Type="OAMSModel.Site" Role="Site" Multiplicity="0..1" />
+          <End Type="OAMSModel.SiteDetail" Role="SiteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Site">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SiteDetail">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SitePhoto_Site">
+          <End Type="OAMSModel.Site" Role="Site" Multiplicity="0..1" />
+          <End Type="OAMSModel.SitePhoto" Role="SitePhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Site">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SitePhoto">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1616,90 +1782,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sites">
-            <EntityTypeMapping TypeName="OAMSModel.Site">
-              <MappingFragment StoreEntitySet="Site">
-                <ScalarProperty Name="CategoryID3" ColumnName="CategoryID3" />
-                <ScalarProperty Name="CategoryID2" ColumnName="CategoryID2" />
-                <ScalarProperty Name="CategoryID1" ColumnName="CategoryID1" />
-                <ScalarProperty Name="CurrentClientID" ColumnName="CurrentClientID" />
-                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
-                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ContractorID" ColumnName="ContractorID" />
-                <ScalarProperty Name="BackupAlbumUrl" ColumnName="BackupAlbumUrl" />
-                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
-                <ScalarProperty Name="VisibilityHight" ColumnName="VisibilityHight" />
-                <ScalarProperty Name="AlbumUrl" ColumnName="AlbumUrl" />
-                <ScalarProperty Name="Score" ColumnName="Score" />
-                <ScalarProperty Name="CloseToTownCenter" ColumnName="CloseToTownCenter" />
-                <ScalarProperty Name="CloseToStation" ColumnName="CloseToStation" />
-                <ScalarProperty Name="CloseToStadium" ColumnName="CloseToStadium" />
-                <ScalarProperty Name="CloseToShopping" ColumnName="CloseToShopping" />
-                <ScalarProperty Name="CloseToSchool" ColumnName="CloseToSchool" />
-                <ScalarProperty Name="CloseToResident" ColumnName="CloseToResident" />
-                <ScalarProperty Name="CloseToParking" ColumnName="CloseToParking" />
-                <ScalarProperty Name="CloseToOffice" ColumnName="CloseToOffice" />
-                <ScalarProperty Name="CloseToMarket" ColumnName="CloseToMarket" />
-                <ScalarProperty Name="CloseToGasStation" ColumnName="CloseToGasStation" />
-                <ScalarProperty Name="CloseToFactory" ColumnName="CloseToFactory" />
-                <ScalarProperty Name="CloseToAirport" ColumnName="CloseToAirport" />
-                <ScalarProperty Name="CloseToHopistal" ColumnName="CloseToHopistal" />
-                <ScalarProperty Name="CloseToUniversity" ColumnName="CloseToUniversity" />
-                <ScalarProperty Name="CompetitiveProductSigns" ColumnName="CompetitiveProductSigns" />
-                <ScalarProperty Name="FlagsTemporaryBannersPromotionalItems" ColumnName="FlagsTemporaryBannersPromotionalItems" />
-                <ScalarProperty Name="ShopSignsBillboards" ColumnName="ShopSignsBillboards" />
-                <ScalarProperty Name="DirectionalTrafficPublicTransport" ColumnName="DirectionalTrafficPublicTransport" />
-                <ScalarProperty Name="VisibilityElectricityPolesOther" ColumnName="VisibilityElectricityPolesOther" />
-                <ScalarProperty Name="VisibilityBridgeWalkway" ColumnName="VisibilityBridgeWalkway" />
-                <ScalarProperty Name="VisibilityTrees" ColumnName="VisibilityTrees" />
-                <ScalarProperty Name="VisibilityBuilding" ColumnName="VisibilityBuilding" />
-                <ScalarProperty Name="High" ColumnName="High" />
-                <ScalarProperty Name="ViewingSpeed" ColumnName="ViewingSpeed" />
-                <ScalarProperty Name="ViewingDistance" ColumnName="ViewingDistance" />
-                <ScalarProperty Name="InstallationPositionPoint" ColumnName="InstallationPositionPoint" />
-                <ScalarProperty Name="InstallationPosition2" ColumnName="InstallationPosition2" />
-                <ScalarProperty Name="InstallationPosition1" ColumnName="InstallationPosition1" />
-                <ScalarProperty Name="RoadTypePoint" ColumnName="RoadTypePoint" />
-                <ScalarProperty Name="RoadType2" ColumnName="RoadType2" />
-                <ScalarProperty Name="RoadType1" ColumnName="RoadType1" />
-                <ScalarProperty Name="BacklitVisualLegibility" ColumnName="BacklitVisualLegibility" />
-                <ScalarProperty Name="BacklitLightBoxLeakage" ColumnName="BacklitLightBoxLeakage" />
-                <ScalarProperty Name="BacklitLightingBlocks" ColumnName="BacklitLightingBlocks" />
-                <ScalarProperty Name="BacklitIlluninationSpread" ColumnName="BacklitIlluninationSpread" />
-                <ScalarProperty Name="BacklitFormat" ColumnName="BacklitFormat" />
-                <ScalarProperty Name="FontLightArmsStraight" ColumnName="FontLightArmsStraight" />
-                <ScalarProperty Name="FontlitIlluminationDistribution" ColumnName="FontlitIlluminationDistribution" />
-                <ScalarProperty Name="FontlitArmsPlacement" ColumnName="FontlitArmsPlacement" />
-                <ScalarProperty Name="FrontlitSideLighting" ColumnName="FrontlitSideLighting" />
-                <ScalarProperty Name="FrontlitTopBottom" ColumnName="FrontlitTopBottom" />
-                <ScalarProperty Name="FrontlitNumerOfLamps" ColumnName="FrontlitNumerOfLamps" />
-                <ScalarProperty Name="StreetLight" ColumnName="StreetLight" />
-                <ScalarProperty Name="SurroundingAreaLight" ColumnName="SurroundingAreaLight" />
-                <ScalarProperty Name="CBDViewed" ColumnName="CBDViewed" />
-                <ScalarProperty Name="Lat" ColumnName="Lat" />
-                <ScalarProperty Name="Lng" ColumnName="Lng" />
-                <ScalarProperty Name="Size" ColumnName="Size" />
-                <ScalarProperty Name="Width" ColumnName="Width" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="CurrentProduct" ColumnName="CurrentProduct" />
-                <ScalarProperty Name="Competition" ColumnName="Competition" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Format" ColumnName="Format" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
-                <ScalarProperty Name="Geo3ID" ColumnName="Geo3ID" />
-                <ScalarProperty Name="Geo2ID" ColumnName="Geo2ID" />
-                <ScalarProperty Name="Geo1ID" ColumnName="Geo1ID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ContractDetails">
             <EntityTypeMapping TypeName="OAMSModel.ContractDetail">
               <MappingFragment StoreEntitySet="ContractDetail">
+                <ScalarProperty Name="Format" ColumnName="Format" />
+                <ScalarProperty Name="CategoryID3" ColumnName="CategoryID3" />
+                <ScalarProperty Name="CategoryID2" ColumnName="CategoryID2" />
+                <ScalarProperty Name="CategoryID1" ColumnName="CategoryID1" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="SiteDetailName" ColumnName="SiteDetailName" />
                 <ScalarProperty Name="PaymentTerm" ColumnName="PaymentTerm" />
                 <ScalarProperty Name="SiteID" ColumnName="SiteID" />
                 <ScalarProperty Name="TermDate" ColumnName="TermDate" />
@@ -1743,6 +1834,7 @@
           <EntitySetMapping Name="SiteMonitoringPhotoes">
             <EntityTypeMapping TypeName="OAMSModel.SiteMonitoringPhoto">
               <MappingFragment StoreEntitySet="SiteMonitoringPhoto">
+                <ScalarProperty Name="IsReview" ColumnName="IsReview" />
                 <ScalarProperty Name="TakenDate" ColumnName="TakenDate" />
                 <ScalarProperty Name="AtomUrl" ColumnName="AtomUrl" />
                 <ScalarProperty Name="Url" ColumnName="Url" />
@@ -1862,6 +1954,95 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SiteDetails">
+            <EntityTypeMapping TypeName="OAMSModel.SiteDetail">
+              <MappingFragment StoreEntitySet="SiteDetail">
+                <ScalarProperty Name="Format" ColumnName="Format" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="CategoryID3" ColumnName="CategoryID3" />
+                <ScalarProperty Name="CategoryID2" ColumnName="CategoryID2" />
+                <ScalarProperty Name="CategoryID1" ColumnName="CategoryID1" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sites">
+            <EntityTypeMapping TypeName="OAMSModel.Site">
+              <MappingFragment StoreEntitySet="Site">
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ContractorID" ColumnName="ContractorID" />
+                <ScalarProperty Name="BackupAlbumUrl" ColumnName="BackupAlbumUrl" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="VisibilityHight" ColumnName="VisibilityHight" />
+                <ScalarProperty Name="AlbumUrl" ColumnName="AlbumUrl" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="CloseToTownCenter" ColumnName="CloseToTownCenter" />
+                <ScalarProperty Name="CloseToStation" ColumnName="CloseToStation" />
+                <ScalarProperty Name="CloseToStadium" ColumnName="CloseToStadium" />
+                <ScalarProperty Name="CloseToShopping" ColumnName="CloseToShopping" />
+                <ScalarProperty Name="CloseToSchool" ColumnName="CloseToSchool" />
+                <ScalarProperty Name="CloseToResident" ColumnName="CloseToResident" />
+                <ScalarProperty Name="CloseToParking" ColumnName="CloseToParking" />
+                <ScalarProperty Name="CloseToOffice" ColumnName="CloseToOffice" />
+                <ScalarProperty Name="CloseToMarket" ColumnName="CloseToMarket" />
+                <ScalarProperty Name="CloseToGasStation" ColumnName="CloseToGasStation" />
+                <ScalarProperty Name="CloseToFactory" ColumnName="CloseToFactory" />
+                <ScalarProperty Name="CloseToAirport" ColumnName="CloseToAirport" />
+                <ScalarProperty Name="CloseToHopistal" ColumnName="CloseToHopistal" />
+                <ScalarProperty Name="CloseToUniversity" ColumnName="CloseToUniversity" />
+                <ScalarProperty Name="CompetitiveProductSigns" ColumnName="CompetitiveProductSigns" />
+                <ScalarProperty Name="FlagsTemporaryBannersPromotionalItems" ColumnName="FlagsTemporaryBannersPromotionalItems" />
+                <ScalarProperty Name="ShopSignsBillboards" ColumnName="ShopSignsBillboards" />
+                <ScalarProperty Name="DirectionalTrafficPublicTransport" ColumnName="DirectionalTrafficPublicTransport" />
+                <ScalarProperty Name="VisibilityElectricityPolesOther" ColumnName="VisibilityElectricityPolesOther" />
+                <ScalarProperty Name="VisibilityBridgeWalkway" ColumnName="VisibilityBridgeWalkway" />
+                <ScalarProperty Name="VisibilityTrees" ColumnName="VisibilityTrees" />
+                <ScalarProperty Name="VisibilityBuilding" ColumnName="VisibilityBuilding" />
+                <ScalarProperty Name="High" ColumnName="High" />
+                <ScalarProperty Name="ViewingSpeed" ColumnName="ViewingSpeed" />
+                <ScalarProperty Name="ViewingDistance" ColumnName="ViewingDistance" />
+                <ScalarProperty Name="InstallationPositionPoint" ColumnName="InstallationPositionPoint" />
+                <ScalarProperty Name="InstallationPosition2" ColumnName="InstallationPosition2" />
+                <ScalarProperty Name="InstallationPosition1" ColumnName="InstallationPosition1" />
+                <ScalarProperty Name="RoadTypePoint" ColumnName="RoadTypePoint" />
+                <ScalarProperty Name="RoadType2" ColumnName="RoadType2" />
+                <ScalarProperty Name="RoadType1" ColumnName="RoadType1" />
+                <ScalarProperty Name="BacklitVisualLegibility" ColumnName="BacklitVisualLegibility" />
+                <ScalarProperty Name="BacklitLightBoxLeakage" ColumnName="BacklitLightBoxLeakage" />
+                <ScalarProperty Name="BacklitLightingBlocks" ColumnName="BacklitLightingBlocks" />
+                <ScalarProperty Name="BacklitIlluninationSpread" ColumnName="BacklitIlluninationSpread" />
+                <ScalarProperty Name="BacklitFormat" ColumnName="BacklitFormat" />
+                <ScalarProperty Name="FontLightArmsStraight" ColumnName="FontLightArmsStraight" />
+                <ScalarProperty Name="FontlitIlluminationDistribution" ColumnName="FontlitIlluminationDistribution" />
+                <ScalarProperty Name="FontlitArmsPlacement" ColumnName="FontlitArmsPlacement" />
+                <ScalarProperty Name="FrontlitSideLighting" ColumnName="FrontlitSideLighting" />
+                <ScalarProperty Name="FrontlitTopBottom" ColumnName="FrontlitTopBottom" />
+                <ScalarProperty Name="FrontlitNumerOfLamps" ColumnName="FrontlitNumerOfLamps" />
+                <ScalarProperty Name="StreetLight" ColumnName="StreetLight" />
+                <ScalarProperty Name="SurroundingAreaLight" ColumnName="SurroundingAreaLight" />
+                <ScalarProperty Name="CBDViewed" ColumnName="CBDViewed" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Competition" ColumnName="Competition" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="Geo3ID" ColumnName="Geo3ID" />
+                <ScalarProperty Name="Geo2ID" ColumnName="Geo2ID" />
+                <ScalarProperty Name="Geo1ID" ColumnName="Geo1ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1883,231 +2064,220 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="OAMS" ZoomLevel="88">
-        <EntityTypeShape EntityType="OAMSModel.Geo" Width="1.75" PointX="0.75" PointY="4.75" Height="2.7427376302083326" IsExpanded="true" />
+        <EntityTypeShape EntityType="OAMSModel.Geo" Width="1.75" PointX="1.25" PointY="21.5" Height="3.1340950520833317" IsExpanded="true" />
         <AssociationConnector Association="OAMSModel.FK_Geo_Geo" >
-          <ConnectorPoint PointX="1.3705769230769231" PointY="7.8840950520833326" />
-          <ConnectorPoint PointX="1.3705769230769231" PointY="8.1340950520833317" />
-          <ConnectorPoint PointX="1.8915384615384618" PointY="8.1340950520833317" />
-          <ConnectorPoint PointX="1.8915384615384618" PointY="7.8840950520833326" />
+          <ConnectorPoint PointX="1.8705769230769231" PointY="24.634095052083332" />
+          <ConnectorPoint PointX="1.8705769230769231" PointY="24.884095052083332" />
+          <ConnectorPoint PointX="2.0394551282051281" PointY="24.884095052083332" />
+          <ConnectorPoint PointX="2.206121794871795" PointY="24.884095052083332" />
+          <ConnectorPoint PointX="2.3915384615384614" PointY="24.884095052083332" />
+          <ConnectorPoint PointX="2.3915384615384614" PointY="24.634095052083332" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="OAMSModel.CodeMaster" Width="1.5" PointX="3.375" PointY="4.75" Height="1.5923063151041665" IsExpanded="true" />
-        <EntityTypeShape EntityType="OAMSModel.Campaign" Width="1.5" PointX="9.75" PointY="19" Height="2.5783902994791674" />
-        <EntityTypeShape EntityType="OAMSModel.CampaignDetail" Width="1.875" PointX="12.875" PointY="8" Height="2.5783902994791674" />
-        <EntityTypeShape EntityType="OAMSModel.Client" Width="1.5" PointX="7.5" PointY="19.5" Height="1.5923063151041674" />
+        <EntityTypeShape EntityType="OAMSModel.CodeMaster" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="OAMSModel.Campaign" Width="1.5" PointX="6" PointY="20.625" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="OAMSModel.CampaignDetail" Width="1.875" PointX="8.25" PointY="8.625" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="OAMSModel.Client" Width="1.5" PointX="1.5" PointY="53" Height="2.1725878906250102" />
         <AssociationConnector Association="OAMSModel.FK_Campaign_Client" >
-          <ConnectorPoint PointX="9" PointY="20.5862939453125" />
-          <ConnectorPoint PointX="9.75" PointY="20.5862939453125" />
+          <ConnectorPoint PointX="3" PointY="54.086293945312505" />
+          <ConnectorPoint PointX="6.75" PointY="54.086293945312505" />
+          <ConnectorPoint PointX="6.75" PointY="23.566793619791667" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_CampaignDetail_Campaign" >
-          <ConnectorPoint PointX="11.25" PointY="20.470896809895834" />
-          <ConnectorPoint PointX="11.760416666666666" PointY="20.470896809895834" />
-          <ConnectorPoint PointX="11.927083333333334" PointY="20.470896809895834" />
-          <ConnectorPoint PointX="13.8125" PointY="20.470896809895834" />
-          <ConnectorPoint PointX="13.8125" PointY="10.941793619791666" />
+          <ConnectorPoint PointX="7.5" PointY="22.095896809895834" />
+          <ConnectorPoint PointX="8.2916666666666661" PointY="22.095896809895834" />
+          <ConnectorPoint PointX="8.5833333333333339" PointY="22.095896809895834" />
+          <ConnectorPoint PointX="9.1875" PointY="22.095896809895834" />
+          <ConnectorPoint PointX="9.1875" PointY="11.566793619791667" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="OAMSModel.SitePhoto" Width="1.5" PointX="5.25" PointY="27.625" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="OAMSModel.Contractor" Width="1.5" PointX="1" PointY="0.625" Height="2.7494921875" />
-        <EntityTypeShape EntityType="OAMSModel.Site" Width="2.625" PointX="9.75" PointY="0.75" Height="16.210592447916667" />
-        <AssociationConnector Association="OAMSModel.FK_Site_Contractor" >
-          <ConnectorPoint PointX="2.5000000000000004" PointY="3.3744921875" />
-          <ConnectorPoint PointX="2.875" PointY="3.7494921874999996" />
-          <ConnectorPoint PointX="2.875" PointY="18.489401041666667" />
-          <ConnectorPoint PointX="5.104166666666667" PointY="18.489401041666667" />
-          <ConnectorPoint PointX="5.270833333333333" PointY="18.489401041666667" />
-          <ConnectorPoint PointX="8.6979166666666661" PointY="18.489401041666667" />
-          <ConnectorPoint PointX="8.8645833333333339" PointY="18.489401041666667" />
-          <ConnectorPoint PointX="9.375" PointY="18.489401041666667" />
-          <ConnectorPoint PointX="9.75" PointY="18.114401041666667" />
-        </AssociationConnector>
-        <AssociationConnector Association="OAMSModel.FK_Site_Geo1" >
-          <ConnectorPoint PointX="2.5" PointY="7.4022147526199067" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="7.4022147526199058" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="7.4022147526199067" />
-          <ConnectorPoint PointX="5.104166666666667" PointY="7.4022147526199058" />
-          <ConnectorPoint PointX="5.270833333333333" PointY="7.4022147526199067" />
-          <ConnectorPoint PointX="7.5611966666666666" PointY="7.4022147526199058" />
-          <ConnectorPoint PointX="7.7278633333333326" PointY="7.4022147526199067" />
-          <ConnectorPoint PointX="8.0201841666666649" PointY="7.4022147526199058" />
-          <ConnectorPoint PointX="8.1868508333333327" PointY="7.4022147526199067" />
-          <ConnectorPoint PointX="9.75" PointY="7.4022147526199067" />
-        </AssociationConnector>
-        <AssociationConnector Association="OAMSModel.FK_Site_Geo2" >
-          <ConnectorPoint PointX="2.5" PointY="7.1936513216224531" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="7.1936513216224522" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="7.1936513216224531" />
-          <ConnectorPoint PointX="5.104166666666667" PointY="7.1936513216224522" />
-          <ConnectorPoint PointX="5.270833333333333" PointY="7.1936513216224531" />
-          <ConnectorPoint PointX="7.5611966666666666" PointY="7.1936513216224522" />
-          <ConnectorPoint PointX="7.7278633333333326" PointY="7.1936513216224531" />
-          <ConnectorPoint PointX="8.0201841666666649" PointY="7.1936513216224522" />
-          <ConnectorPoint PointX="8.1868508333333327" PointY="7.1936513216224531" />
-          <ConnectorPoint PointX="9.75" PointY="7.1936513216224531" />
-        </AssociationConnector>
-        <AssociationConnector Association="OAMSModel.FK_Site_Geo3" >
-          <ConnectorPoint PointX="2.5" PointY="7.6698573763099533" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="7.6698573763099525" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="7.6698573763099533" />
-          <ConnectorPoint PointX="5.104166666666667" PointY="7.6698573763099525" />
-          <ConnectorPoint PointX="5.270833333333333" PointY="7.6698573763099533" />
-          <ConnectorPoint PointX="7.5611966666666666" PointY="7.6698573763099525" />
-          <ConnectorPoint PointX="7.7278633333333326" PointY="7.6698573763099533" />
-          <ConnectorPoint PointX="8.0201841666666649" PointY="7.6698573763099525" />
-          <ConnectorPoint PointX="8.1868508333333327" PointY="7.6698573763099533" />
-          <ConnectorPoint PointX="9.75" PointY="7.6698573763099533" />
-        </AssociationConnector>
-        <AssociationConnector Association="OAMSModel.FK_SitePhoto_Site" >
-          <ConnectorPoint PointX="11.84375" PointY="18.114401041666667" />
-          <ConnectorPoint PointX="11.84375" PointY="28.7112939453125" />
-          <ConnectorPoint PointX="6.75" PointY="28.7112939453125" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="OAMSModel.ContractDetail" Width="1.5" PointX="13.125" PointY="3.875" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="OAMSModel.SitePhoto" Width="1.5" PointX="3" PointY="33" Height="2.1725878906250102" />
+        <EntityTypeShape EntityType="OAMSModel.Contractor" Width="1.5" PointX="1.5" PointY="49.5" Height="2.749492187499996" />
+        <EntityTypeShape EntityType="OAMSModel.ContractDetail" Width="1.5" PointX="3" PointY="7.5" Height="5.2494108072916639" />
         <AssociationConnector Association="OAMSModel.FK_CampaignDetail_ContractDetail" >
-          <ConnectorPoint PointX="14.153661192993162" PointY="7.3936979166666656" />
-          <ConnectorPoint PointX="14.153661192993162" PointY="8" />
+          <ConnectorPoint PointX="4.5" PointY="12.386455078125001" />
+          <ConnectorPoint PointX="6.2604146666666667" PointY="12.386455078125001" />
+          <ConnectorPoint PointX="6.4270813333333328" PointY="12.386455078125001" />
+          <ConnectorPoint PointX="8.2916666666666661" PointY="12.386455078125001" />
+          <ConnectorPoint PointX="8.4583333333333339" PointY="12.386455078125001" />
+          <ConnectorPoint PointX="8.6874975" PointY="12.386455078125001" />
+          <ConnectorPoint PointX="8.6874975" PointY="11.566793619791667" />
         </AssociationConnector>
-        <AssociationConnector Association="OAMSModel.FK_ContractDetail_Site" >
-          <ConnectorPoint PointX="12.375" PointY="5.6343489583333328" />
-          <ConnectorPoint PointX="13.125" PointY="5.6343489583333328" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="OAMSModel.SiteMonitoring" Width="1.5" PointX="15.375" PointY="2.25" Height="4.480205078124996" />
-        <EntityTypeShape EntityType="OAMSModel.SiteMonitoringPhoto" Width="2.375" PointX="17.625" PointY="3.5" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="OAMSModel.SiteMonitoring" Width="1.5" PointX="5.25" PointY="0.75" Height="5.8263151041666656" />
+        <EntityTypeShape EntityType="OAMSModel.SiteMonitoringPhoto" Width="2.375" PointX="7.5" PointY="2.5" Height="2.3648893229166674" />
         <AssociationConnector Association="OAMSModel.FK_SiteMonitoring_ContractDetail" >
-          <ConnectorPoint PointX="14.625" PointY="5.6343489583333328" />
-          <ConnectorPoint PointX="15.375" PointY="5.6343489583333328" />
+          <ConnectorPoint PointX="3.75" PointY="7.5" />
+          <ConnectorPoint PointX="3.75" PointY="3.6631575520833328" />
+          <ConnectorPoint PointX="5.25" PointY="3.6631575520833328" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_SiteMonitoringPhoto_SiteMonitoring" >
-          <ConnectorPoint PointX="16.875" PointY="4.5862939453125" />
-          <ConnectorPoint PointX="17.625" PointY="4.5862939453125" />
+          <ConnectorPoint PointX="6.75" PointY="3.6824446614583337" />
+          <ConnectorPoint PointX="7.5" PointY="3.6824446614583337" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="OAMSModel.Category" Width="1.5" PointX="3.5" PointY="0.75" Height="2.5571907552083388" />
+        <EntityTypeShape EntityType="OAMSModel.Category" Width="1.5" PointX="0.75" PointY="8.25" Height="3.7109993489583317" />
         <AssociationConnector Association="OAMSModel.FK_Category_Category" >
-          <ConnectorPoint PointX="4.0319230769230767" PointY="0.75" />
-          <ConnectorPoint PointX="4.0319230769230767" PointY="0.5" />
-          <ConnectorPoint PointX="4.4784615384615378" PointY="0.5" />
-          <ConnectorPoint PointX="4.4784615384615378" PointY="0.75" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="11.960999348958332" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="12.210999348958332" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="12.210999348958332" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="11.960999348958332" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="OAMSModel.Contract" Width="1.5" PointX="4.125" PointY="19" Height="4.8648079427083388" />
+        <EntityTypeShape EntityType="OAMSModel.Contract" Width="1.5" PointX="0.75" PointY="42.75" Height="5.2494108072916674" />
         <AssociationConnector Association="OAMSModel.FK_Contract_Contractor" >
-          <ConnectorPoint PointX="2.5" PointY="0.65625" />
-          <ConnectorPoint PointX="3.9485897435897432" PointY="0.65624999999999944" />
-          <ConnectorPoint PointX="4.11525641025641" PointY="0.65625" />
-          <ConnectorPoint PointX="4.3951282051282048" PointY="0.65624999999999944" />
-          <ConnectorPoint PointX="4.5617948717948709" PointY="0.65625" />
-          <ConnectorPoint PointX="5.1875" PointY="0.65625" />
-          <ConnectorPoint PointX="5.1875" PointY="19" />
+          <ConnectorPoint PointX="1.875" PointY="49.5" />
+          <ConnectorPoint PointX="1.875" PointY="47.999410807291667" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_ContractDetail_Contract" >
-          <ConnectorPoint PointX="5.625" PointY="21.494885373291009" />
-          <ConnectorPoint PointX="7.25" PointY="21.494885373291009" />
-          <ConnectorPoint PointX="7.25" PointY="18.75" />
-          <ConnectorPoint PointX="8.6979166666666661" PointY="18.75" />
-          <ConnectorPoint PointX="8.8645833333333339" PointY="18.75" />
-          <ConnectorPoint PointX="11.760416666666666" PointY="18.75" />
-          <ConnectorPoint PointX="11.927083333333334" PointY="18.75" />
-          <ConnectorPoint PointX="13.729166666666666" PointY="18.75" />
-          <ConnectorPoint PointX="13.895833333333334" PointY="18.75" />
-          <ConnectorPoint PointX="15" PointY="18.75" />
-          <ConnectorPoint PointX="15" PointY="7.7686979166666656" />
-          <ConnectorPoint PointX="14.236994526326496" PointY="7.7686979166666648" />
-          <ConnectorPoint PointX="14.070327859659829" PointY="7.7686979166666656" />
-          <ConnectorPoint PointX="13.608078596496581" PointY="7.7686979166666656" />
-          <ConnectorPoint PointX="13.608078596496581" PointY="7.3936979166666656" />
+          <ConnectorPoint PointX="2.25" PointY="45.374705403645834" />
+          <ConnectorPoint PointX="2.4479191666666664" PointY="45.374705403645834" />
+          <ConnectorPoint PointX="2.6145858333333334" PointY="45.374705403645834" />
+          <ConnectorPoint PointX="2.75" PointY="45.374705403645834" />
+          <ConnectorPoint PointX="2.75" PointY="24.884095052083332" />
+          <ConnectorPoint PointX="3.2604146666666667" PointY="24.884095052083332" />
+          <ConnectorPoint PointX="3.4270813333333336" PointY="24.884095052083332" />
+          <ConnectorPoint PointX="3.75" PointY="24.884095052083332" />
+          <ConnectorPoint PointX="3.75" PointY="12.749410807291664" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_Contract_Client" >
-          <ConnectorPoint PointX="7.5" PointY="20.427267746582032" />
-          <ConnectorPoint PointX="7.333333333333333" PointY="20.427267746582032" />
-          <ConnectorPoint PointX="7.166666666666667" PointY="20.427267746582032" />
-          <ConnectorPoint PointX="5.625" PointY="20.427267746582032" />
+          <ConnectorPoint PointX="1.5" PointY="54.086293945312505" />
+          <ConnectorPoint PointX="1.1249995" PointY="54.086293945312505" />
+          <ConnectorPoint PointX="1.1249995" PointY="47.999410807291667" />
         </AssociationConnector>
-        <AssociationConnector Association="OAMSModel.FK_Site_Client" >
-          <ConnectorPoint PointX="8.78125" PointY="19.5" />
-          <ConnectorPoint PointX="8.78125" PointY="14.369444114583338" />
-          <ConnectorPoint PointX="9.75" PointY="14.369444114583338" />
-        </AssociationConnector>
-        <AssociationConnector Association="OAMSModel.FK_Site_Category1" >
-          <ConnectorPoint PointX="5" PointY="3.5600473456587505" />
-          <ConnectorPoint PointX="5.104166666666667" PointY="3.56004734565875" />
-          <ConnectorPoint PointX="5.270833333333333" PointY="3.5600473456587505" />
-          <ConnectorPoint PointX="6.541666666666667" PointY="3.56004734565875" />
-          <ConnectorPoint PointX="6.708333333333333" PointY="3.5600473456587505" />
-          <ConnectorPoint PointX="7.2057266666666671" PointY="3.56004734565875" />
-          <ConnectorPoint PointX="7.3723933333333331" PointY="3.5600473456587505" />
-          <ConnectorPoint PointX="7.5611966666666666" PointY="3.56004734565875" />
-          <ConnectorPoint PointX="7.7278633333333326" PointY="3.5600473456587505" />
-          <ConnectorPoint PointX="9.75" PointY="3.5600473456587505" />
-        </AssociationConnector>
-        <AssociationConnector Association="OAMSModel.FK_Site_Category2" >
-          <ConnectorPoint PointX="5" PointY="3.3849824909535871" />
-          <ConnectorPoint PointX="5.104166666666667" PointY="3.3849824909535866" />
-          <ConnectorPoint PointX="5.270833333333333" PointY="3.3849824909535871" />
-          <ConnectorPoint PointX="6.541666666666667" PointY="3.3849824909535866" />
-          <ConnectorPoint PointX="6.708333333333333" PointY="3.3849824909535871" />
-          <ConnectorPoint PointX="7.2057266666666671" PointY="3.3849824909535866" />
-          <ConnectorPoint PointX="7.3723933333333331" PointY="3.3849824909535871" />
-          <ConnectorPoint PointX="7.5611966666666666" PointY="3.3849824909535866" />
-          <ConnectorPoint PointX="7.7278633333333326" PointY="3.3849824909535871" />
-          <ConnectorPoint PointX="9.75" PointY="3.3849824909535871" />
-        </AssociationConnector>
-        <AssociationConnector Association="OAMSModel.FK_Site_Category3" >
-          <ConnectorPoint PointX="5" PointY="3.8305416104410273" />
-          <ConnectorPoint PointX="5.104166666666667" PointY="3.8305416104410268" />
-          <ConnectorPoint PointX="5.270833333333333" PointY="3.8305416104410273" />
-          <ConnectorPoint PointX="6.541666666666667" PointY="3.8305416104410268" />
-          <ConnectorPoint PointX="6.708333333333333" PointY="3.8305416104410273" />
-          <ConnectorPoint PointX="7.2057266666666671" PointY="3.8305416104410268" />
-          <ConnectorPoint PointX="7.3723933333333331" PointY="3.8305416104410273" />
-          <ConnectorPoint PointX="7.5611966666666666" PointY="3.8305416104410268" />
-          <ConnectorPoint PointX="7.7278633333333326" PointY="3.8305416104410273" />
-          <ConnectorPoint PointX="9.75" PointY="3.8305416104410273" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="OAMSModel.ControllerAction" Width="1.5" PointX="5.375" PointY="4.875" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="OAMSModel.MVCAuthorization" Width="1.5" PointX="6.375" PointY="0.875" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="OAMSModel.ControllerAction" Width="1.5" PointX="13" PointY="2.625" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="OAMSModel.MVCAuthorization" Width="1.5" PointX="15.25" PointY="4.5" Height="2.3648893229166674" />
         <AssociationConnector Association="OAMSModel.FK_MVCAuthorization_ControllerAction" >
-          <ConnectorPoint PointX="6.625" PointY="4.875" />
-          <ConnectorPoint PointX="6.625" PointY="3.239889322916667" />
+          <ConnectorPoint PointX="14.5" PointY="3.5624995" />
+          <ConnectorPoint PointX="16" PointY="3.5624995" />
+          <ConnectorPoint PointX="16" PointY="4.5" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="OAMSModel.aspnet_Roles" Width="1.5" PointX="0.75" PointY="4.625" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="OAMSModel.aspnet_Users" Width="1.5" PointX="7" PointY="7.875" Height="2.749492187499996" />
+        <EntityTypeShape EntityType="OAMSModel.aspnet_Roles" Width="1.5" PointX="10.75" PointY="2.875" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="OAMSModel.aspnet_Users" Width="1.5" PointX="13" PointY="5.75" Height="2.7494921874999951" />
         <AssociationConnector Association="OAMSModel.FK_MVCAuthorization_aspnet_Roles" >
-          <ConnectorPoint PointX="2.25" PointY="4.65625" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="4.6562499999999991" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="4.65625" />
-          <ConnectorPoint PointX="5.104166666666667" PointY="4.6562499999999991" />
-          <ConnectorPoint PointX="5.270833333333333" PointY="4.65625" />
-          <ConnectorPoint PointX="6.541666666666667" PointY="4.6562499999999991" />
-          <ConnectorPoint PointX="6.708333333333333" PointY="4.65625" />
-          <ConnectorPoint PointX="7.28906" PointY="4.65625" />
-          <ConnectorPoint PointX="7.28906" PointY="3.239889322916667" />
+          <ConnectorPoint PointX="12.25" PointY="5.0499886067708335" />
+          <ConnectorPoint PointX="15.25" PointY="5.0499886067708335" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_MVCAuthorization_aspnet_Users" >
-          <ConnectorPoint PointX="7.703125" PointY="7.875" />
-          <ConnectorPoint PointX="7.703125" PointY="3.239889322916667" />
+          <ConnectorPoint PointX="14.5" PointY="6.3074446614583337" />
+          <ConnectorPoint PointX="15.25" PointY="6.3074446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.aspnet_UsersInRoles" >
-          <ConnectorPoint PointX="2.25" PointY="4.671875" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="4.6718749999999991" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="4.671875" />
-          <ConnectorPoint PointX="5.104166666666667" PointY="4.6718749999999991" />
-          <ConnectorPoint PointX="5.270833333333333" PointY="4.671875" />
-          <ConnectorPoint PointX="6.541666666666667" PointY="4.6718749999999991" />
-          <ConnectorPoint PointX="6.708333333333333" PointY="4.671875" />
-          <ConnectorPoint PointX="7.5611966666666666" PointY="4.6718749999999991" />
-          <ConnectorPoint PointX="7.7278633333333326" PointY="4.671875" />
-          <ConnectorPoint PointX="8.1035174999999988" PointY="4.671875" />
-          <ConnectorPoint PointX="8.1035174999999988" PointY="7.875" />
+          <ConnectorPoint PointX="11.5" PointY="5.2398893229166674" />
+          <ConnectorPoint PointX="11.5" PointY="7.124746093749998" />
+          <ConnectorPoint PointX="13" PointY="7.124746093749998" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="OAMSModel.ContractDetailTimeline" Width="2.875" PointX="15.375" PointY="12.5" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="OAMSModel.ContractTimeline" Width="2.25" PointX="6.375" PointY="22.5" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="OAMSModel.ContractDetailTimeline" Width="2.875" PointX="5.25" PointY="16" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="OAMSModel.ContractTimeline" Width="2.25" PointX="3" PointY="44.25" Height="2.1725878906250102" />
         <AssociationConnector Association="OAMSModel.FK_ContractTimeline_Contract" >
-          <ConnectorPoint PointX="5.625" PointY="23.374705403645834" />
-          <ConnectorPoint PointX="6.375" PointY="23.374705403645834" />
+          <ConnectorPoint PointX="2.25" PointY="44.749852701822917" />
+          <ConnectorPoint PointX="2.4479191666666664" PointY="44.749852701822917" />
+          <ConnectorPoint PointX="2.6145858333333334" PointY="44.749852701822917" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="44.749852701822917" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="44.749852701822917" />
+          <ConnectorPoint PointX="3" PointY="44.749852701822917" />
         </AssociationConnector>
         <AssociationConnector Association="OAMSModel.FK_ContractDetailTimeline_ContractDetail" >
-          <ConnectorPoint PointX="14.625" PointY="6.3763449974882613" />
-          <ConnectorPoint PointX="15.125" PointY="6.3763449974882613" />
-          <ConnectorPoint PointX="15.125" PointY="8.3263151041666656" />
-          <ConnectorPoint PointX="16.8125" PointY="8.3263151041666656" />
-          <ConnectorPoint PointX="16.8125" PointY="12.5" />
+          <ConnectorPoint PointX="4.1562525" PointY="12.749410807291664" />
+          <ConnectorPoint PointX="4.1562525" PointY="17.0862939453125" />
+          <ConnectorPoint PointX="5.25" PointY="17.0862939453125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="OAMSModel.SiteDetail" Width="1.5" PointX="6" PointY="8.25" Height="3.7109993489583388" />
+        <AssociationConnector Association="OAMSModel.FK_ContractDetail_Category1" >
+          <ConnectorPoint PointX="2.25" PointY="10.105499674479166" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="10.105499674479166" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="10.105499674479166" />
+          <ConnectorPoint PointX="3" PointY="10.105499674479166" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_ContractDetail_Category2" >
+          <ConnectorPoint PointX="2.25" PointY="9.1152498372395829" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="9.1152498372395829" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="9.1152498372395829" />
+          <ConnectorPoint PointX="3" PointY="9.1152498372395829" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_ContractDetail_Category3" >
+          <ConnectorPoint PointX="2.25" PointY="11.095749511718749" />
+          <ConnectorPoint PointX="3" PointY="11.095749511718749" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_SiteDetail_Category1" >
+          <ConnectorPoint PointX="2.25" PointY="10.600624593098956" />
+          <ConnectorPoint PointX="2.75" PointY="10.600624593098956" />
+          <ConnectorPoint PointX="2.75" PointY="7.25" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="7.2499999999999991" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="7.25" />
+          <ConnectorPoint PointX="6.75" PointY="7.25" />
+          <ConnectorPoint PointX="6.75" PointY="8.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_SiteDetail_Category2" >
+          <ConnectorPoint PointX="2.25" PointY="9.6103747558593753" />
+          <ConnectorPoint PointX="2.75" PointY="9.6103747558593753" />
+          <ConnectorPoint PointX="2.75" PointY="7.1875" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="7.1874999999999991" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="7.1875" />
+          <ConnectorPoint PointX="6.343748" PointY="7.1875" />
+          <ConnectorPoint PointX="6.343748" PointY="8.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_SiteDetail_Category3" >
+          <ConnectorPoint PointX="2.25" PointY="8.6513729186197974" />
+          <ConnectorPoint PointX="2.75" PointY="8.6513729186197974" />
+          <ConnectorPoint PointX="2.75" PointY="7.125" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="7.1249999999999991" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="7.125" />
+          <ConnectorPoint PointX="7.156252" PointY="7.125" />
+          <ConnectorPoint PointX="7.156252" PointY="8.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_SiteDetail_Client" >
+          <ConnectorPoint PointX="3" PointY="53.511894972656251" />
+          <ConnectorPoint PointX="6.666666666666667" PointY="53.511894972656251" />
+          <ConnectorPoint PointX="6.833333333333333" PointY="53.511894972656251" />
+          <ConnectorPoint PointX="8.375" PointY="53.511894972656251" />
+          <ConnectorPoint PointX="8.375" PointY="12.210999348958339" />
+          <ConnectorPoint PointX="6.75" PointY="12.210999348958339" />
+          <ConnectorPoint PointX="6.75" PointY="11.960999348958339" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="OAMSModel.Site" Width="1.5" PointX="0.75" PointY="26.375" Height="15.441386718749996" />
+        <AssociationConnector Association="OAMSModel.FK_ContractDetail_Site" >
+          <ConnectorPoint PointX="2.25" PointY="26.376152846153843" />
+          <ConnectorPoint PointX="2.6261528461538433" PointY="26" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="26" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="26" />
+          <ConnectorPoint PointX="3.343748" PointY="26" />
+          <ConnectorPoint PointX="3.343748" PointY="12.749410807291664" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_Site_Contractor" >
+          <ConnectorPoint PointX="2.5312525" PointY="49.5" />
+          <ConnectorPoint PointX="2.5312525" PointY="34.12752228245197" />
+          <ConnectorPoint PointX="2.25" PointY="34.12752228245197" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_Site_Geo1" >
+          <ConnectorPoint PointX="1.4977884615384616" PointY="24.634095052083332" />
+          <ConnectorPoint PointX="1.4977884615384616" PointY="26.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_Site_Geo2" >
+          <ConnectorPoint PointX="2.1227884615384616" PointY="24.634095052083332" />
+          <ConnectorPoint PointX="2.1227884615384616" PointY="26.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_Site_Geo3" >
+          <ConnectorPoint PointX="1.6841826923076924" PointY="24.634095052083332" />
+          <ConnectorPoint PointX="1.6841826923076924" PointY="26.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_SiteDetail_Site" >
+          <ConnectorPoint PointX="2.25" PointY="30.251837564302907" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="30.251837564302907" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="30.251837564302907" />
+          <ConnectorPoint PointX="3" PointY="30.251837564302907" />
+          <ConnectorPoint PointX="3" PointY="32.75" />
+          <ConnectorPoint PointX="6.666666666666667" PointY="32.75" />
+          <ConnectorPoint PointX="6.833333333333333" PointY="32.75" />
+          <ConnectorPoint PointX="8.2916666666666661" PointY="32.75" />
+          <ConnectorPoint PointX="8.4583333333333339" PointY="32.75" />
+          <ConnectorPoint PointX="8.5" PointY="32.75" />
+          <ConnectorPoint PointX="8.5" PointY="12.585999348958339" />
+          <ConnectorPoint PointX="8.4583333333333339" PointY="12.585999348958339" />
+          <ConnectorPoint PointX="8.2916666666666661" PointY="12.585999348958339" />
+          <ConnectorPoint PointX="6.343748" PointY="12.585999348958339" />
+          <ConnectorPoint PointX="6.343748" PointY="11.960999348958339" />
+        </AssociationConnector>
+        <AssociationConnector Association="OAMSModel.FK_SitePhoto_Site" >
+          <ConnectorPoint PointX="2.25" PointY="33.501261141225982" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="33.501261141225982" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="33.501261141225982" />
+          <ConnectorPoint PointX="3" PointY="33.501261141225982" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

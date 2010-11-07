@@ -78,7 +78,7 @@ namespace OAMS.Controllers
         public ActionResult Delete(int id)
         {
             var v = repo.Get(id);
-            if (v.Sites.Count == 0)
+            if (v.SiteDetails.Count == 0)
             {
                 repo.Delete(v);
             }

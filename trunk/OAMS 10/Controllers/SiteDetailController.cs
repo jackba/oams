@@ -7,23 +7,24 @@ using OAMS.Models;
 
 namespace OAMS.Controllers
 {
-    public class ContractTimelineController : BaseController<ContractTimelineRepository>
+    public class SiteDetailController : BaseController<SiteDetailRepository>
     {
-        public PartialViewResult Add(int contractID, int timeCount, string timeUnit)
+        public PartialViewResult Add(int siteID)
         {
-            ContractTimeline r = Repo.Add(contractID, timeCount, timeUnit);
+            var r = Repo.Add(siteID);
             return PartialView("View", r);
         }
 
         [HttpGet]
         public PartialViewResult Edit(int id)
         {
-            ContractTimeline r = Repo.Get(id);
+            var r = Repo.Get(id);
+            r.NewCategoryFullName = r.CategoryFullName;
             return PartialView("Edit", r);
         }
 
         [HttpPost]
-        public PartialViewResult Edit(ContractTimeline r)
+        public PartialViewResult Edit(SiteDetail r)
         {
             if (ModelState.IsValid)
             {
@@ -33,22 +34,19 @@ namespace OAMS.Controllers
             return PartialView("Edit", r);
         }
 
-        
         public PartialViewResult View(int id)
         {
-            ContractTimeline r = Repo.Get(id);
+            var r = Repo.Get(id);
 
             return PartialView("View", r);
         }
 
         [HttpPost]
-        public PartialViewResult DeleteTheLastTimeline(int contractID)
+        public PartialViewResult Delete(int id)
         {
-            var r = Repo.DeleteTheLastTimeline(contractID);
+            Repo.Delete(id);
 
-            //return new JsonResult { Data = new { Err = "as", Html = PartialView("ContractTimelineView", r) } };
-
-            return PartialView("~/Views/Contract/ManageContractTimeline.ascx", r);
+            return null;
         }
 
     }

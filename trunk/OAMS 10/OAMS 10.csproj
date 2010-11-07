@@ -107,6 +107,7 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContractTimelineController.cs" />
+    <Compile Include="Controllers\SiteDetailController.cs" />
     <Compile Include="Controllers\SiteMonitoringController.cs" />
     <Compile Include="Controllers\FindSiteController.cs" />
     <Compile Include="Controllers\GeoController.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Models\ContractRepository.cs" />
     <Compile Include="Models\ClientRepository.cs" />
     <Compile Include="Models\CategoryRepository.cs" />
+    <Compile Include="Models\SiteDetailRepository.cs" />
     <Compile Include="Models\ITimeRange.cs" />
     <Compile Include="Models\MVCAuthorizationRepository.cs" />
     <Compile Include="Models\OAMSEntitiesPartial.cs" />
@@ -140,6 +142,7 @@
     <Compile Include="Models\Partial\ContractTimeline.cs" />
     <Compile Include="Models\Partial\ControllerAction.cs" />
     <Compile Include="Models\Partial\ContractDetailTimeline.cs" />
+    <Compile Include="Models\Partial\SiteDetail.cs" />
     <Compile Include="Models\Partial\SiteMonitoring.cs" />
     <Compile Include="Models\RoleRepository.cs" />
     <Compile Include="Models\SiteMonitoringRepository.cs" />
@@ -250,6 +253,8 @@
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Content\Image\resize.png" />
     <Content Include="Views\ContractTimeline\View.ascx" />
+    <Content Include="Views\SiteDetail\Edit.ascx" />
+    <Content Include="Views\SiteDetail\View.ascx" />
     <Content Include="Views\SiteMonitoring\Create.aspx" />
     <Content Include="Views\SiteMonitoring\DisplayTemplates\ViewDetail.ascx" />
     <Content Include="Views\SiteMonitoring\Edit.aspx" />
@@ -258,6 +263,7 @@
     <Content Include="Views\Site\Edit.aspx" />
     <Content Include="Views\Site\GMap.ascx" />
     <Content Include="Views\Site\Index.aspx" />
+    <Content Include="Views\Site\ManageSiteDetail.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

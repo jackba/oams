@@ -112,9 +112,9 @@ namespace OAMS.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddSite(int contractID, int siteID)
+        public JsonResult AddSite(int contractID, int siteDetailID)
         {
-            repo.AddSite(contractID, siteID);
+            repo.AddSite(contractID, siteDetailID);
             return Json(0);
         }
 

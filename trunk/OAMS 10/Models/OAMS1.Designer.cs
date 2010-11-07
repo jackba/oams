@@ -21,29 +21,33 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Geo_Geo", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Geo1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Geo), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Campaign_Client", "Client", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Client), "Campaign", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Campaign), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_CampaignDetail_Campaign", "Campaign", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Campaign), "CampaignDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.CampaignDetail), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Contractor", "Contractor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contractor), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo1", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo2", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo3", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_SitePhoto_Site", "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Site), "SitePhoto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.SitePhoto), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_CampaignDetail_ContractDetail", "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.ContractDetail), "CampaignDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.CampaignDetail), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Site", "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Site), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetail), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_SiteMonitoring_ContractDetail", "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.ContractDetail), "SiteMonitoring", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.SiteMonitoring), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_SiteMonitoringPhoto_SiteMonitoring", "SiteMonitoring", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.SiteMonitoring), "SiteMonitoringPhoto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.SiteMonitoringPhoto), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Category_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Category), "Category1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Category), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Contract_Contractor", "Contractor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contractor), "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Contract), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Contract", "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contract), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetail), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_Contract_Client", "Client", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Client), "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Contract), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Client", "Client", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Client), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Category1", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Category), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Category2", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Category), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
-[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Category3", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Category), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_MVCAuthorization_ControllerAction", "ControllerAction", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.ControllerAction), "MVCAuthorization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.MVCAuthorization), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_MVCAuthorization_aspnet_Roles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.aspnet_Roles), "MVCAuthorization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.MVCAuthorization), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_MVCAuthorization_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.aspnet_Users), "MVCAuthorization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.MVCAuthorization), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.aspnet_Users))]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractTimeline_Contract", "Contract", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contract), "ContractTimeline", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractTimeline), true)]
 [assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetailTimeline_ContractDetail", "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.ContractDetail), "ContractDetailTimeline", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetailTimeline), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Category1", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Category), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Category2", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Category), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Category3", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Category), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_SiteDetail_Category1", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Category), "SiteDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.SiteDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_SiteDetail_Category2", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Category), "SiteDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.SiteDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_SiteDetail_Category3", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Category), "SiteDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.SiteDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_SiteDetail_Client", "Client", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Client), "SiteDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.SiteDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_ContractDetail_Site", "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Site), "ContractDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.ContractDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Contractor", "Contractor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Contractor), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo1", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo2", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_Site_Geo3", "Geo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Geo), "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.Site), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_SiteDetail_Site", "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Site), "SiteDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.SiteDetail), true)]
+[assembly: EdmRelationshipAttribute("OAMSModel", "FK_SitePhoto_Site", "Site", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(OAMS.Models.Site), "SitePhoto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OAMS.Models.SitePhoto), true)]
 
 #endregion
 
@@ -206,22 +210,6 @@ namespace OAMS.Models
             }
         }
         private ObjectSet<Contractor> _Contractors;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Site> Sites
-        {
-            get
-            {
-                if ((_Sites == null))
-                {
-                    _Sites = base.CreateObjectSet<Site>("Sites");
-                }
-                return _Sites;
-            }
-        }
-        private ObjectSet<Site> _Sites;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -398,6 +386,38 @@ namespace OAMS.Models
             }
         }
         private ObjectSet<ContractTimeline> _ContractTimelines;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SiteDetail> SiteDetails
+        {
+            get
+            {
+                if ((_SiteDetails == null))
+                {
+                    _SiteDetails = base.CreateObjectSet<SiteDetail>("SiteDetails");
+                }
+                return _SiteDetails;
+            }
+        }
+        private ObjectSet<SiteDetail> _SiteDetails;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Site> Sites
+        {
+            get
+            {
+                if ((_Sites == null))
+                {
+                    _Sites = base.CreateObjectSet<Site>("Sites");
+                }
+                return _Sites;
+            }
+        }
+        private ObjectSet<Site> _Sites;
 
         #endregion
         #region AddTo Methods
@@ -456,14 +476,6 @@ namespace OAMS.Models
         public void AddToContractors(Contractor contractor)
         {
             base.AddObject("Contractors", contractor);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Sites EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToSites(Site site)
-        {
-            base.AddObject("Sites", site);
         }
     
         /// <summary>
@@ -552,6 +564,22 @@ namespace OAMS.Models
         public void AddToContractTimelines(ContractTimeline contractTimeline)
         {
             base.AddObject("ContractTimelines", contractTimeline);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SiteDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSiteDetails(SiteDetail siteDetail)
+        {
+            base.AddObject("SiteDetails", siteDetail);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Sites EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSites(Site site)
+        {
+            base.AddObject("Sites", site);
         }
 
         #endregion
@@ -1851,18 +1879,18 @@ namespace OAMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Category1", "Site")]
-        public EntityCollection<Site> Sites1
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Category1", "ContractDetail")]
+        public EntityCollection<ContractDetail> ContractDetails
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Site>("OAMSModel.FK_Site_Category1", "Site");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Category1", "ContractDetail");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Site>("OAMSModel.FK_Site_Category1", "Site", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Category1", "ContractDetail", value);
                 }
             }
         }
@@ -1873,18 +1901,18 @@ namespace OAMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Category2", "Site")]
-        public EntityCollection<Site> Sites2
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Category2", "ContractDetail")]
+        public EntityCollection<ContractDetail> ContractDetails1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Site>("OAMSModel.FK_Site_Category2", "Site");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Category2", "ContractDetail");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Site>("OAMSModel.FK_Site_Category2", "Site", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Category2", "ContractDetail", value);
                 }
             }
         }
@@ -1895,18 +1923,84 @@ namespace OAMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Category3", "Site")]
-        public EntityCollection<Site> Sites3
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Category3", "ContractDetail")]
+        public EntityCollection<ContractDetail> ContractDetails2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Site>("OAMSModel.FK_Site_Category3", "Site");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Category3", "ContractDetail");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Site>("OAMSModel.FK_Site_Category3", "Site", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Category3", "ContractDetail", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_SiteDetail_Category1", "SiteDetail")]
+        public EntityCollection<SiteDetail> SiteDetails1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SiteDetail>("OAMSModel.FK_SiteDetail_Category1", "SiteDetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SiteDetail>("OAMSModel.FK_SiteDetail_Category1", "SiteDetail", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_SiteDetail_Category2", "SiteDetail")]
+        public EntityCollection<SiteDetail> SiteDetails2
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SiteDetail>("OAMSModel.FK_SiteDetail_Category2", "SiteDetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SiteDetail>("OAMSModel.FK_SiteDetail_Category2", "SiteDetail", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_SiteDetail_Category3", "SiteDetail")]
+        public EntityCollection<SiteDetail> SiteDetails3
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SiteDetail>("OAMSModel.FK_SiteDetail_Category3", "SiteDetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SiteDetail>("OAMSModel.FK_SiteDetail_Category3", "SiteDetail", value);
                 }
             }
         }
@@ -2067,18 +2161,18 @@ namespace OAMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Client", "Site")]
-        public EntityCollection<Site> Sites
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_SiteDetail_Client", "SiteDetail")]
+        public EntityCollection<SiteDetail> SiteDetails
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Site>("OAMSModel.FK_Site_Client", "Site");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SiteDetail>("OAMSModel.FK_SiteDetail_Client", "SiteDetail");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Site>("OAMSModel.FK_Site_Client", "Site", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SiteDetail>("OAMSModel.FK_SiteDetail_Client", "SiteDetail", value);
                 }
             }
         }
@@ -3041,6 +3135,150 @@ namespace OAMS.Models
         private global::System.String _PaymentTerm;
         partial void OnPaymentTermChanging(global::System.String value);
         partial void OnPaymentTermChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SiteDetailName
+        {
+            get
+            {
+                return _SiteDetailName;
+            }
+            set
+            {
+                OnSiteDetailNameChanging(value);
+                ReportPropertyChanging("SiteDetailName");
+                _SiteDetailName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SiteDetailName");
+                OnSiteDetailNameChanged();
+            }
+        }
+        private global::System.String _SiteDetailName;
+        partial void OnSiteDetailNameChanging(global::System.String value);
+        partial void OnSiteDetailNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Product
+        {
+            get
+            {
+                return _Product;
+            }
+            set
+            {
+                OnProductChanging(value);
+                ReportPropertyChanging("Product");
+                _Product = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Product");
+                OnProductChanged();
+            }
+        }
+        private global::System.String _Product;
+        partial void OnProductChanging(global::System.String value);
+        partial void OnProductChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> CategoryID1
+        {
+            get
+            {
+                return _CategoryID1;
+            }
+            set
+            {
+                OnCategoryID1Changing(value);
+                ReportPropertyChanging("CategoryID1");
+                _CategoryID1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CategoryID1");
+                OnCategoryID1Changed();
+            }
+        }
+        private Nullable<global::System.Guid> _CategoryID1;
+        partial void OnCategoryID1Changing(Nullable<global::System.Guid> value);
+        partial void OnCategoryID1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> CategoryID2
+        {
+            get
+            {
+                return _CategoryID2;
+            }
+            set
+            {
+                OnCategoryID2Changing(value);
+                ReportPropertyChanging("CategoryID2");
+                _CategoryID2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CategoryID2");
+                OnCategoryID2Changed();
+            }
+        }
+        private Nullable<global::System.Guid> _CategoryID2;
+        partial void OnCategoryID2Changing(Nullable<global::System.Guid> value);
+        partial void OnCategoryID2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> CategoryID3
+        {
+            get
+            {
+                return _CategoryID3;
+            }
+            set
+            {
+                OnCategoryID3Changing(value);
+                ReportPropertyChanging("CategoryID3");
+                _CategoryID3 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CategoryID3");
+                OnCategoryID3Changed();
+            }
+        }
+        private Nullable<global::System.Guid> _CategoryID3;
+        partial void OnCategoryID3Changing(Nullable<global::System.Guid> value);
+        partial void OnCategoryID3Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Format
+        {
+            get
+            {
+                return _Format;
+            }
+            set
+            {
+                OnFormatChanging(value);
+                ReportPropertyChanging("Format");
+                _Format = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Format");
+                OnFormatChanged();
+            }
+        }
+        private global::System.String _Format;
+        partial void OnFormatChanging(global::System.String value);
+        partial void OnFormatChanged();
 
         #endregion
     
@@ -3064,44 +3302,6 @@ namespace OAMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CampaignDetail>("OAMSModel.FK_CampaignDetail_ContractDetail", "CampaignDetail", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Site", "Site")]
-        public Site Site
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Site>("OAMSModel.FK_ContractDetail_Site", "Site").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Site>("OAMSModel.FK_ContractDetail_Site", "Site").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Site> SiteReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Site>("OAMSModel.FK_ContractDetail_Site", "Site");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Site>("OAMSModel.FK_ContractDetail_Site", "Site", value);
                 }
             }
         }
@@ -3184,6 +3384,158 @@ namespace OAMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ContractDetailTimeline>("OAMSModel.FK_ContractDetailTimeline_ContractDetail", "ContractDetailTimeline", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Category1", "Category")]
+        public Category Category
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_ContractDetail_Category1", "Category").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_ContractDetail_Category1", "Category").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Category> CategoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_ContractDetail_Category1", "Category");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("OAMSModel.FK_ContractDetail_Category1", "Category", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Category2", "Category")]
+        public Category Category1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_ContractDetail_Category2", "Category").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_ContractDetail_Category2", "Category").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Category> Category1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_ContractDetail_Category2", "Category");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("OAMSModel.FK_ContractDetail_Category2", "Category", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Category3", "Category")]
+        public Category Category2
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_ContractDetail_Category3", "Category").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_ContractDetail_Category3", "Category").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Category> Category2Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_ContractDetail_Category3", "Category");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("OAMSModel.FK_ContractDetail_Category3", "Category", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Site", "Site")]
+        public Site Site
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Site>("OAMSModel.FK_ContractDetail_Site", "Site").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Site>("OAMSModel.FK_ContractDetail_Site", "Site").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Site> SiteReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Site>("OAMSModel.FK_ContractDetail_Site", "Site");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Site>("OAMSModel.FK_ContractDetail_Site", "Site", value);
                 }
             }
         }
@@ -3588,28 +3940,6 @@ namespace OAMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Contractor", "Site")]
-        public EntityCollection<Site> Sites
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Site>("OAMSModel.FK_Site_Contractor", "Site");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Site>("OAMSModel.FK_Site_Contractor", "Site", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Contract_Contractor", "Contract")]
         public EntityCollection<Contract> Contracts
         {
@@ -3622,6 +3952,28 @@ namespace OAMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Contract>("OAMSModel.FK_Contract_Contractor", "Contract", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Contractor", "Site")]
+        public EntityCollection<Site> Sites
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Site>("OAMSModel.FK_Site_Contractor", "Site");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Site>("OAMSModel.FK_Site_Contractor", "Site", value);
                 }
             }
         }
@@ -4745,54 +5097,6 @@ namespace OAMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Format
-        {
-            get
-            {
-                return _Format;
-            }
-            set
-            {
-                OnFormatChanging(value);
-                ReportPropertyChanging("Format");
-                _Format = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Format");
-                OnFormatChanged();
-            }
-        }
-        private global::System.String _Format;
-        partial void OnFormatChanging(global::System.String value);
-        partial void OnFormatChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Category
-        {
-            get
-            {
-                return _Category;
-            }
-            set
-            {
-                OnCategoryChanging(value);
-                ReportPropertyChanging("Category");
-                _Category = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Category");
-                OnCategoryChanged();
-            }
-        }
-        private global::System.String _Category;
-        partial void OnCategoryChanging(global::System.String value);
-        partial void OnCategoryChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String Competition
         {
             get
@@ -4811,30 +5115,6 @@ namespace OAMS.Models
         private global::System.String _Competition;
         partial void OnCompetitionChanging(global::System.String value);
         partial void OnCompetitionChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String CurrentProduct
-        {
-            get
-            {
-                return _CurrentProduct;
-            }
-            set
-            {
-                OnCurrentProductChanging(value);
-                ReportPropertyChanging("CurrentProduct");
-                _CurrentProduct = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("CurrentProduct");
-                OnCurrentProductChanged();
-            }
-        }
-        private global::System.String _CurrentProduct;
-        partial void OnCurrentProductChanging(global::System.String value);
-        partial void OnCurrentProductChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -6275,106 +6555,32 @@ namespace OAMS.Models
         private global::System.String _LastUpdatedBy;
         partial void OnLastUpdatedByChanging(global::System.String value);
         partial void OnLastUpdatedByChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CurrentClientID
-        {
-            get
-            {
-                return _CurrentClientID;
-            }
-            set
-            {
-                OnCurrentClientIDChanging(value);
-                ReportPropertyChanging("CurrentClientID");
-                _CurrentClientID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CurrentClientID");
-                OnCurrentClientIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _CurrentClientID;
-        partial void OnCurrentClientIDChanging(Nullable<global::System.Int32> value);
-        partial void OnCurrentClientIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Guid> CategoryID1
-        {
-            get
-            {
-                return _CategoryID1;
-            }
-            set
-            {
-                OnCategoryID1Changing(value);
-                ReportPropertyChanging("CategoryID1");
-                _CategoryID1 = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CategoryID1");
-                OnCategoryID1Changed();
-            }
-        }
-        private Nullable<global::System.Guid> _CategoryID1;
-        partial void OnCategoryID1Changing(Nullable<global::System.Guid> value);
-        partial void OnCategoryID1Changed();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Guid> CategoryID2
-        {
-            get
-            {
-                return _CategoryID2;
-            }
-            set
-            {
-                OnCategoryID2Changing(value);
-                ReportPropertyChanging("CategoryID2");
-                _CategoryID2 = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CategoryID2");
-                OnCategoryID2Changed();
-            }
-        }
-        private Nullable<global::System.Guid> _CategoryID2;
-        partial void OnCategoryID2Changing(Nullable<global::System.Guid> value);
-        partial void OnCategoryID2Changed();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Guid> CategoryID3
-        {
-            get
-            {
-                return _CategoryID3;
-            }
-            set
-            {
-                OnCategoryID3Changing(value);
-                ReportPropertyChanging("CategoryID3");
-                _CategoryID3 = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CategoryID3");
-                OnCategoryID3Changed();
-            }
-        }
-        private Nullable<global::System.Guid> _CategoryID3;
-        partial void OnCategoryID3Changing(Nullable<global::System.Guid> value);
-        partial void OnCategoryID3Changed();
 
         #endregion
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Site", "ContractDetail")]
+        public EntityCollection<ContractDetail> ContractDetails
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Site", "ContractDetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Site", "ContractDetail", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -6534,6 +6740,28 @@ namespace OAMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_SiteDetail_Site", "SiteDetail")]
+        public EntityCollection<SiteDetail> SiteDetails
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SiteDetail>("OAMSModel.FK_SiteDetail_Site", "SiteDetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SiteDetail>("OAMSModel.FK_SiteDetail_Site", "SiteDetail", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_SitePhoto_Site", "SitePhoto")]
         public EntityCollection<SitePhoto> SitePhotoes
         {
@@ -6549,28 +6777,256 @@ namespace OAMS.Models
                 }
             }
         }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="OAMSModel", Name="SiteDetail")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SiteDetail : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SiteDetail object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static SiteDetail CreateSiteDetail(global::System.Int32 id)
+        {
+            SiteDetail siteDetail = new SiteDetail();
+            siteDetail.ID = id;
+            return siteDetail;
+        }
+
+        #endregion
+        #region Primitive Properties
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Site", "ContractDetail")]
-        public EntityCollection<ContractDetail> ContractDetails
+        public global::System.Int32 ID
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Site", "ContractDetail");
+                return _ID;
             }
             set
             {
-                if ((value != null))
+                if (_ID != value)
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ContractDetail>("OAMSModel.FK_ContractDetail_Site", "ContractDetail", value);
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
                 }
             }
         }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SiteID
+        {
+            get
+            {
+                return _SiteID;
+            }
+            set
+            {
+                OnSiteIDChanging(value);
+                ReportPropertyChanging("SiteID");
+                _SiteID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SiteID");
+                OnSiteIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SiteID;
+        partial void OnSiteIDChanging(Nullable<global::System.Int32> value);
+        partial void OnSiteIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ClientID
+        {
+            get
+            {
+                return _ClientID;
+            }
+            set
+            {
+                OnClientIDChanging(value);
+                ReportPropertyChanging("ClientID");
+                _ClientID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ClientID");
+                OnClientIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ClientID;
+        partial void OnClientIDChanging(Nullable<global::System.Int32> value);
+        partial void OnClientIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> CategoryID1
+        {
+            get
+            {
+                return _CategoryID1;
+            }
+            set
+            {
+                OnCategoryID1Changing(value);
+                ReportPropertyChanging("CategoryID1");
+                _CategoryID1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CategoryID1");
+                OnCategoryID1Changed();
+            }
+        }
+        private Nullable<global::System.Guid> _CategoryID1;
+        partial void OnCategoryID1Changing(Nullable<global::System.Guid> value);
+        partial void OnCategoryID1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> CategoryID2
+        {
+            get
+            {
+                return _CategoryID2;
+            }
+            set
+            {
+                OnCategoryID2Changing(value);
+                ReportPropertyChanging("CategoryID2");
+                _CategoryID2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CategoryID2");
+                OnCategoryID2Changed();
+            }
+        }
+        private Nullable<global::System.Guid> _CategoryID2;
+        partial void OnCategoryID2Changing(Nullable<global::System.Guid> value);
+        partial void OnCategoryID2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> CategoryID3
+        {
+            get
+            {
+                return _CategoryID3;
+            }
+            set
+            {
+                OnCategoryID3Changing(value);
+                ReportPropertyChanging("CategoryID3");
+                _CategoryID3 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CategoryID3");
+                OnCategoryID3Changed();
+            }
+        }
+        private Nullable<global::System.Guid> _CategoryID3;
+        partial void OnCategoryID3Changing(Nullable<global::System.Guid> value);
+        partial void OnCategoryID3Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Product
+        {
+            get
+            {
+                return _Product;
+            }
+            set
+            {
+                OnProductChanging(value);
+                ReportPropertyChanging("Product");
+                _Product = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Product");
+                OnProductChanged();
+            }
+        }
+        private global::System.String _Product;
+        partial void OnProductChanging(global::System.String value);
+        partial void OnProductChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Format
+        {
+            get
+            {
+                return _Format;
+            }
+            set
+            {
+                OnFormatChanging(value);
+                ReportPropertyChanging("Format");
+                _Format = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Format");
+                OnFormatChanged();
+            }
+        }
+        private global::System.String _Format;
+        partial void OnFormatChanging(global::System.String value);
+        partial void OnFormatChanged();
+
+        #endregion
+    
+        #region Navigation Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -6578,54 +7034,16 @@ namespace OAMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Client", "Client")]
-        public Client Client
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Client>("OAMSModel.FK_Site_Client", "Client").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Client>("OAMSModel.FK_Site_Client", "Client").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Client> ClientReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Client>("OAMSModel.FK_Site_Client", "Client");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Client>("OAMSModel.FK_Site_Client", "Client", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Category1", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_SiteDetail_Category1", "Category")]
         public Category Category1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_Site_Category1", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_SiteDetail_Category1", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_Site_Category1", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_SiteDetail_Category1", "Category").Value = value;
             }
         }
         /// <summary>
@@ -6637,13 +7055,13 @@ namespace OAMS.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_Site_Category1", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_SiteDetail_Category1", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("OAMSModel.FK_Site_Category1", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("OAMSModel.FK_SiteDetail_Category1", "Category", value);
                 }
             }
         }
@@ -6654,16 +7072,16 @@ namespace OAMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Category2", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_SiteDetail_Category2", "Category")]
         public Category Category2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_Site_Category2", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_SiteDetail_Category2", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_Site_Category2", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_SiteDetail_Category2", "Category").Value = value;
             }
         }
         /// <summary>
@@ -6675,13 +7093,13 @@ namespace OAMS.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_Site_Category2", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_SiteDetail_Category2", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("OAMSModel.FK_Site_Category2", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("OAMSModel.FK_SiteDetail_Category2", "Category", value);
                 }
             }
         }
@@ -6692,16 +7110,16 @@ namespace OAMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_Site_Category3", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_SiteDetail_Category3", "Category")]
         public Category Category3
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_Site_Category3", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_SiteDetail_Category3", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_Site_Category3", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_SiteDetail_Category3", "Category").Value = value;
             }
         }
         /// <summary>
@@ -6713,13 +7131,89 @@ namespace OAMS.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_Site_Category3", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("OAMSModel.FK_SiteDetail_Category3", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("OAMSModel.FK_Site_Category3", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("OAMSModel.FK_SiteDetail_Category3", "Category", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_SiteDetail_Client", "Client")]
+        public Client Client
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Client>("OAMSModel.FK_SiteDetail_Client", "Client").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Client>("OAMSModel.FK_SiteDetail_Client", "Client").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Client> ClientReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Client>("OAMSModel.FK_SiteDetail_Client", "Client");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Client>("OAMSModel.FK_SiteDetail_Client", "Client", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_SiteDetail_Site", "Site")]
+        public Site Site
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Site>("OAMSModel.FK_SiteDetail_Site", "Site").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Site>("OAMSModel.FK_SiteDetail_Site", "Site").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Site> SiteReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Site>("OAMSModel.FK_SiteDetail_Site", "Site");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Site>("OAMSModel.FK_SiteDetail_Site", "Site", value);
                 }
             }
         }
@@ -7519,6 +8013,30 @@ namespace OAMS.Models
         private Nullable<global::System.DateTime> _TakenDate;
         partial void OnTakenDateChanging(Nullable<global::System.DateTime> value);
         partial void OnTakenDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsReview
+        {
+            get
+            {
+                return _IsReview;
+            }
+            set
+            {
+                OnIsReviewChanging(value);
+                ReportPropertyChanging("IsReview");
+                _IsReview = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsReview");
+                OnIsReviewChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsReview;
+        partial void OnIsReviewChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsReviewChanged();
 
         #endregion
     
