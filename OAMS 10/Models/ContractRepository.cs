@@ -29,11 +29,17 @@ namespace OAMS.Models
             DB.Contracts.DeleteObject(e);
         }
 
-        public void AddSite(int contractID, int siteID)
+        public void AddSite(int contractID, int siteDetailID)
         {
+            var siteDetailRepo = new SiteDetailRepository() { DB = DB };
+            var siteDetail = siteDetailRepo.Get(siteDetailID);
+
             ContractDetail e = new ContractDetail();
             e.ContractID = contractID;
-            e.SiteID = siteID;
+            e.SiteID = siteDetail.SiteID;
+            
+            e.Format = siteDetail.Format;
+            e.SiteDetailName = siteDetail.Name;
 
             DB.ContractDetails.AddObject(e);
 
@@ -43,7 +49,7 @@ namespace OAMS.Models
             contractDetailRepository.CopyTimeline(e.ID);
         }
 
-        
-    
+
+
     }
 }

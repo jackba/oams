@@ -6,8 +6,8 @@
     <%: Html.HiddenFor(model => model.Order) %>
     <%: Html.HiddenFor(model => model.ContractDetailID)%>
     <div class="editor-label">
-        <%: Html.LabelFor(model => model.Order) %>: <%: Html.DisplayFor(model => model.Order) %>
-        
+        <%: Html.LabelFor(model => model.Order) %>:
+        <%: Html.DisplayFor(model => model.Order) %>
     </div>
     <div class="editor-label">
         <%: Html.LabelFor(model => model.FromDate) %>
@@ -24,8 +24,8 @@
         <%: Html.ValidationMessageFor(model => model.ToDate) %>
     </div>
     <p>
-        <%: Html.ActionLink("Save", "Edit", "ContractDetailTimeline", new { href = string.Format("javascript:SaveTimeline({0},'{1}','{2}');", Model.ID, "divContractDetailTimeline_" + Model.ID.ToString(), Url.Content("~/ContractDetailTimeLine/Edit")) })%>
+        <%: Html.ActionLink("Save", "Edit", "ContractDetailTimeline", new { href = string.Format("javascript:AjaxSave('{0}','{1}');", "divContractDetailTimeline_" + Model.ID.ToString(), Url.Content("~/ContractDetailTimeLine/Edit")) })%>
         |
-        <%: Html.ActionLink("Cancel", "View", "ContractDetailTimeline", new { href = string.Format("javascript:ViewTimeline({0},'{1}','{2}');", Model.ID, "divContractDetailTimeline_" + Model.ID.ToString(), Url.Content("~/ContractDetailTimeLine/View")) })%>
+        <%: Html.ActionLink("Cancel", "View", "ContractDetailTimeline", new { href = string.Format("javascript:AjaxView({0},'{1}','{2}');", Model.ID, "divContractDetailTimeline_" + Model.ID.ToString(), Url.Content("~/ContractDetailTimeLine/View")) })%>
     </p>
 </fieldset>

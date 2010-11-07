@@ -180,7 +180,7 @@ hasCloseTr = false;
                             Current Product:
                         </td>
                         <td>
-                            <%: Model.ContractDetail.Site.CurrentProduct%>
+                            <%: Model.ContractDetail.Product%>
                         </td>
                     </tr>
                     <tr>
@@ -196,7 +196,8 @@ hasCloseTr = false;
                             Format Execution:
                         </td>
                         <td>
-                            <%: Model.ContractDetail.Site.Format %>
+                            <%--<%: Model.ContractDetail.Site.Format %>--%>
+                            <%: Model.ContractDetail.Format %>
                         </td>
                     </tr>
                     <tr>

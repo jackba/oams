@@ -300,13 +300,13 @@
                                         <%: item.Site.Type %>
                                     </td>
                                     <td>
-                                        <%: item.Site.Format %>
+                                        <%: item.Format %>
                                     </td>
                                     <td>
-                                        <%: item.Site.CurrentClientName %>
+                                        <%: Model.ClientName %>
                                     </td>
                                     <td>
-                                        <%: item.Site.CurrentProduct %>
+                                        <%: item.Product %>
                                     </td>
                                     <td>
                                         <%: item.Site.ContractorName %>

@@ -225,10 +225,10 @@
                         <%: Html.DisplayFor(r => r.Site.Type)%>
                     </div>
                     <div class="editor-label">
-                        <%: Html.LabelFor(model => model.Site.Format)%>
+                        <%: Html.LabelFor(model => model.ContractDetail.Format)%>
                     </div>
                     <div class="editor-field">
-                        <%: Html.DisplayFor(r => r.Site.Format)%>
+                        <%: Html.DisplayFor(r => r.ContractDetail.Format)%>
                     </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.Site.Height)%>

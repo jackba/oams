@@ -213,11 +213,11 @@
                         <%: Html.ValidationMessageFor(model => model.Site.Type)%>
                     </div>
                     <div class="editor-label">
-                        <%: Html.LabelFor(model => model.Site.Format)%>
+                        <%: Html.LabelFor(model => model.ContractDetail.Format)%>
                     </div>
                     <div class="editor-field">
-                        <%: Html.CodeMasterDropDownListFor(r => r.Site.Format)%>
-                        <%: Html.ValidationMessageFor(model => model.Site.Format)%>
+                        <%: Html.CodeMasterDropDownListFor(r => r.ContractDetail.Format)%>
+                        <%: Html.ValidationMessageFor(model => model.ContractDetail.Format)%>
                     </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.Site.Height)%>

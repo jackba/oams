@@ -666,20 +666,18 @@
                     rSel.appendChild(cStyle10);
 
                     var aAdd2Cam = document.createElement('a');
-                    //var contractID = 1;
-                    var siteID = site.ID;
-                    //aAdd2Cam.href = 'javascript:Add2Contract(aAdd2Cam,contractID,siteID);';
+                    //var siteID = site.ID;
+                    var siteDetailID = site.ID;
                     aAdd2Cam.href = 'javascript:void(0);';
 
                     if (site.Added) {
                         aAdd2Cam.innerHTML = 'Added';
-                        //aAdd2Cam.onclick = Add2Campaign(aAdd2Cam, $("#CampaignID").val(), site.ContractDetailID);
                         aAdd2Cam.onclick = null;
                     }
                     else {
                         aAdd2Cam.innerHTML = 'Add to Contract';
-                        //aAdd2Cam.onclick = Add2Campaign(aAdd2Cam, $("#CampaignID").val(), site.ContractDetailID);
-                        aAdd2Cam.onclick = Add2Contract(aAdd2Cam, contractID, siteID);
+                        //aAdd2Cam.onclick = Add2Contract(aAdd2Cam, contractID, siteID);
+                        aAdd2Cam.onclick = Add2Contract(aAdd2Cam, contractID, siteDetailID);
                     }
 
                     cStyle10.appendChild(aAdd2Cam);
@@ -734,40 +732,19 @@
             //$('#results-wrapper').show();
         }
 
-        function Add2Contract(link, contractID, siteID) {
+        function Add2Contract(link, contractID, siteDetailID) {
+        //function Add2Contract(link, contractID, siteID) {
 
-            var url = '<%= Url.Content("~/Contract/AddSite?ContractID=") %>' + contractID + '&SiteID=' + siteID;
+            var url = '<%= Url.Content("~/Contract/AddSite?ContractID=") %>' + contractID + '&SiteDetailID=' + siteDetailID;
 
             return function () {
                 $.ajax({
                     url: url, type: "POST", dataType: "json",
                     success: function (data) {
 
-                        //aAdd2Cam.setAttribute('visible', 'invisible');
-
                         link.innerHTML = 'Added';
                         link.href = "javascript:void(0);";
                         link.onclick = null;
-                        //link.setAttribute('visible', 'invisible');
-
-                        //link.visible = false;
-
-                        //                        if (data == 0) {
-                        //                            alert('Added.');
-                        //                        }
-                        //                        else { 
-
-                        //                        }
-
-                        //clearMarkers();
-
-                        //addResults(data);
-
-                        //                    $.map(data, function (item) {
-                        //                        var latlng = new google.maps.LatLng(item.Latitude, item.Longitude);
-                        //                        var marker = new google.maps.Marker({ position: latlng, map: map, title: item.Code });
-                        //                        bindInfoWindow(marker, map, infoWindow, item.Note);
-                        //                    })
                     }
                 });
             };

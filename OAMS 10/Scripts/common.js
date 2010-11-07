@@ -18,10 +18,10 @@ function SetAutoCompleteForContractor(nameOfTxtContractorName, nameOfTxtContract
 }
 
 
-function EditTimeline(timelineID, divID, editUrl) {
+function AjaxEdit(ID, divID, editUrl) {
     $.ajax({
         url: editUrl, type: "GET",
-        data: { id: timelineID },
+        data: { id: ID },
         success: function (data) {
 
             $('#' + divID).empty().append(data);
@@ -31,7 +31,7 @@ function EditTimeline(timelineID, divID, editUrl) {
 
 }
 
-function SaveTimeline(timelineID, divID, editUrl) {
+function AjaxSave(divID, editUrl) {
     var inputData = $('#' + divID + ' *').serialize();
     $.ajax({
         url: editUrl, type: "POST",
@@ -45,9 +45,9 @@ function SaveTimeline(timelineID, divID, editUrl) {
 
 }
 
-function ViewTimeline(timelineID, divID, editUrl) {
+function AjaxView(timelineID, divID, editUrl) {
     $.ajax({
-        url: editUrl, type: "GET",
+        url: editUrl, type: "POST",
         data: { id: timelineID },
         success: function (data) {
             $('#' + divID).empty().append(data);
@@ -57,19 +57,22 @@ function ViewTimeline(timelineID, divID, editUrl) {
 
 }
 
-function DeleteTimeline(timelineID, divID, editUrl) {
+function AjaxDelete(ID, divID, editUrl) {
     if (confirm('Delete?')) {
         $.ajax({
-            url: editUrl, type: "GET",
-            data: { id: timelineID },
+            url: editUrl, type: "POST",
+            data: { id: ID },
             success: function (data) {
                 //$('#' + divID).empty().append(data);
-                $('#' + divID).empty();
+                $('#' + divID).remove();
             }
 
         })
     }
 }
+
+
+
 //Begin Preview image on client drive
 /***** CUSTOMIZE THESE VARIABLES *****/
 // width to resize large images to
@@ -125,3 +128,5 @@ function applyChanges(index) {
     field.width = x;
     field.height = y;
 }
+
+

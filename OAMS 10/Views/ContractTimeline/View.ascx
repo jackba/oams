@@ -10,7 +10,7 @@
         ToDate:
         <%: String.Format("{0:d}", Model.ToDate) %></div>
     <p>
-        <%: Html.ActionLink("Edit", "Edit", "ContractTimeline", new { href = string.Format("javascript:EditTimeline({0},'{1}','{2}');", Model.ID, "divContractTimeline_" + Model.ID.ToString(), Url.Content("~/ContractTimeLine/Edit")) })%>
+        <%: Html.ActionLink("Edit", "Edit", "ContractTimeline", new { href = string.Format("javascript:AjaxEdit({0},'{1}','{2}');", Model.ID, "divContractTimeline_" + Model.ID.ToString(), Url.Content("~/ContractTimeLine/Edit")) })%>
         <%--|
         <%: Html.ActionLink("Delete", "Delete", "ContractTimeline", new { href = string.Format("javascript:DeleteTimeline({0},'{1}','{2}');", Model.ID, "divContractTimeline_" + Model.ID.ToString(), Url.Content("~/ContractTimeLine/Delete  ")) })%>--%>
     </p>

@@ -220,13 +220,13 @@
                         <%: Html.CodeMasterDropDownListFor(r => r.Type)%>
                         <%: Html.ValidationMessageFor(model => model.Type)%>
                     </div>
-                    <div class="editor-label">
+                   <%-- <div class="editor-label">
                         <%: Html.LabelFor(model => model.Format) %>
                     </div>
                     <div class="editor-field">
                         <%: Html.CodeMasterDropDownListFor(r => r.Format)%>
                         <%: Html.ValidationMessageFor(model => model.Format)%>
-                    </div>
+                    </div>--%>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.Height) %>
                     </div>
@@ -249,14 +249,14 @@
                         <%: Html.ValidationMessageFor(r => r.ContractorName)%>
                         <%: Html.TextBoxFor(model => model.ContractorID, new { @style = "visibility:collapse;" })%>
                     </div>
-                    <div class="editor-label">
+                   <%-- <div class="editor-label">
                         CurrentClient
                     </div>
                     <div class="editor-field">
                         <%: Html.EditorFor(model => model.CurrentClientName, "AutoCompleteClient", new { HiddenID = "CurrentClientID" })%>
                         <%: Html.ValidationMessageFor(r => r.CurrentClientName)%>
                         <%: Html.TextBoxFor(model => model.CurrentClientID, new { @style = "visibility:collapse;" })%>
-                    </div>
+                    </div>--%>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.Competition) %>
                     </div>
@@ -264,19 +264,19 @@
                         <%: Html.EditorFor(r => r.Competition)%>
                         <%: Html.ValidationMessageFor(model => model.Competition)%>
                     </div>
-                    <div class="editor-label">
+                   <%-- <div class="editor-label">
                         <%: Html.LabelFor(model => model.NewCategoryFullName)%>
                     </div>
                     <div class="editor-field">
                         <%: Html.EditorFor(model => model.NewCategoryFullName, "AutoCompleteCategory")%>
-                    </div>
-                    <div class="editor-label">
+                    </div>--%>
+                    <%--<div class="editor-label">
                         <%: Html.LabelFor(model => model.CurrentProduct) %>
                     </div>
                     <div class="editor-field">
                         <%: Html.EditorFor(r => r.CurrentProduct)%>
                         <%: Html.ValidationMessageFor(model => model.CurrentProduct)%>
-                    </div>
+                    </div>--%>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.CBDViewed) %>
                     </div>
