@@ -47,11 +47,18 @@ namespace OAMS.Controllers
 
         [HttpPost]
         //public ActionResult Create(IEnumerable<HttpPostedFileBase> files)
-        public ActionResult Create(int? contractID, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Create(int? contractID, IEnumerable<HttpPostedFileBase> files, bool? IsFirstSave)
         {
-            repo.Add(UpdateModel, files);
+            var site = repo.Add(UpdateModel, files);
 
-            return RedirectToAction("Index");
+            if (IsFirstSave.HasValue && IsFirstSave.Value)
+            {
+                return RedirectToAction("Edit", new { id = site.ID });
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         //
