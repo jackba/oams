@@ -56,24 +56,24 @@
             });
         });
 
-//        function addMoreFileInput() {
+        //        function addMoreFileInput() {
 
-//            var divAddMore = $('#divMoreFile');
+        //            var divAddMore = $('#divMoreFile');
 
-//            var lbl = document.createElement('label');
-//            lbl.innerHTML = 'Filename:';
+        //            var lbl = document.createElement('label');
+        //            lbl.innerHTML = 'Filename:';
 
-//            divAddMore.append(lbl);
+        //            divAddMore.append(lbl);
 
 
-//            var input = document.createElement('input');
-//            input.setAttribute('type', 'file');
-//            input.setAttribute('name', 'files');
-//            input.setAttribute('size', '65');
+        //            var input = document.createElement('input');
+        //            input.setAttribute('type', 'file');
+        //            input.setAttribute('name', 'files');
+        //            input.setAttribute('size', '65');
 
-//            divAddMore.append(input);
-//            divAddMore.append('<br />');
-//        }
+        //            divAddMore.append(input);
+        //            divAddMore.append('<br />');
+        //        }
 
         index = 4;
         function addMoreFileInput() {
@@ -185,6 +185,8 @@
                     <div class="editor-field">
                         <%: Html.TextBoxFor(model => model.Lng, new { onblur = "txtGeoChanged();" })%>
                         <%: Html.ValidationMessageFor(model => model.Lng)%>
+                        <input type="hidden" name="IsFirstSave" id="IsFirstSave" value="false" />
+                        <input type="submit" value="Create" onclick='$("#IsFirstSave").val(true); ' />
                     </div>
                     <div class="editor-label">
                         <%: Html.LabelFor(model => model.Code) %>
@@ -220,7 +222,7 @@
                         <%: Html.CodeMasterDropDownListFor(r => r.Type)%>
                         <%: Html.ValidationMessageFor(model => model.Type)%>
                     </div>
-                   <%-- <div class="editor-label">
+                    <%-- <div class="editor-label">
                         <%: Html.LabelFor(model => model.Format) %>
                     </div>
                     <div class="editor-field">
@@ -249,7 +251,7 @@
                         <%: Html.ValidationMessageFor(r => r.ContractorName)%>
                         <%: Html.TextBoxFor(model => model.ContractorID, new { @style = "visibility:collapse;" })%>
                     </div>
-                   <%-- <div class="editor-label">
+                    <%-- <div class="editor-label">
                         CurrentClient
                     </div>
                     <div class="editor-field">
@@ -264,7 +266,7 @@
                         <%: Html.EditorFor(r => r.Competition)%>
                         <%: Html.ValidationMessageFor(model => model.Competition)%>
                     </div>
-                   <%-- <div class="editor-label">
+                    <%-- <div class="editor-label">
                         <%: Html.LabelFor(model => model.NewCategoryFullName)%>
                     </div>
                     <div class="editor-field">
@@ -607,14 +609,12 @@
         <input type="submit" value="Create" />
     </p>
     <% } %>
-    <div>
+   <%-- <div>
         <%: Html.ActionLink("Back to List", "Index") %>
     </div>
-    
     <div align="center" style="line-height: 1.9em;">
         <input type="file" id="pic" onchange="preview(this)" />
-        <br/>
-        <img alt="Graphic will preview here" id="previewField"/>
-    </div>
-
+        <br />
+        <img alt="Graphic will preview here" id="previewField" />
+    </div>--%>
 </asp:Content>

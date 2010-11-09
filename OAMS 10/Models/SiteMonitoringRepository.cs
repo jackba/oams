@@ -15,12 +15,15 @@ namespace OAMS.Models
 
         public SiteMonitoring Create(Action<SiteMonitoring> updateMethod, IEnumerable<HttpPostedFileBase> files, int? contractDetailID)
         {
+            var contractDetailRepository = new ContractDetailRepository() { DB = DB };
+            
+            var contractDetail = contractDetailRepository.Get(contractDetailID.Value);
+            
             SiteMonitoring e = new SiteMonitoring();
+            
             updateMethod(e);
 
-            e.ContractDetailID = contractDetailID;
-
-            DB.SiteMonitorings.AddObject(e);
+            e.ContractDetail = contractDetail;
 
             Save();
 
