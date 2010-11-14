@@ -13,6 +13,37 @@
     </script>
     <h2>
         Edit</h2>
+    View report sumary from 
+    <div class="editor-field">
+        <input class="text-box single-line" id="dFrom" name="dFrom" type="text" value="<%: DateTime.Now.ToShortDateString() %>" />
+        <script type="text/javascript">
+            $(function () {
+                $("#dFrom").datepicker({ showAnim: '' });
+            });
+        </script>
+    </div> to 
+    <div class="editor-field">
+        <input class="text-box single-line" id="dTo" name="dTo" type="text" value="<%: DateTime.Now.ToShortDateString() %>" />
+        <script type="text/javascript">
+            $(function () {
+                $("#dTo").datepicker({ showAnim: '' });
+            });
+        </script>
+    </div>
+    <button id="btnView" onclick="btnView_Click()">View</button>
+    <%
+        RouteValueDictionary dic = new RouteValueDictionary();
+        dic.Add("ID", Model.ID);
+        dic.Add("dFrom", "~~~");
+        dic.Add("dTo", "!!!");
+    %>
+    <script type="text/javascript">
+        function btnView_Click() {
+            url = '<%: Url.Action("ViewReport", "Contract", dic)%>';
+            url = url.replace("~~~", $("#dFrom").val()).replace("!!!", $("#dTo").val()).replace("amp;","");
+            window.open(url);
+        }
+    </script>
     <% using (Html.BeginForm())
        {%>
     <%: Html.ValidationSummary(true) %>

@@ -688,6 +688,16 @@ namespace OAMS
             }
             return false;
         }
+
+        public static bool IsIn(this ITimeRange timerange, DateTime? dFrom, DateTime? dTo)
+        {
+            return timerange.IsValid()
+                && dFrom.HasValue
+                && dTo.HasValue
+                && dFrom <= dTo
+                && timerange.FromDate >= dFrom
+                && timerange.ToDate <= dTo;
+        }
     }
 
     public static class IPrincipalExtend

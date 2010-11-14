@@ -128,7 +128,9 @@ namespace OAMS.Controllers
                 AlbumID = string.IsNullOrEmpty(r.Site.AlbumUrl) ? "" : r.Site.AlbumUrl.Split('/')[9].Split('?')[0],
                 AuthID = string.IsNullOrEmpty(r.Site.AlbumUrl) ? "" : r.Site.AlbumUrl.Split('?')[1].Split('=')[1],
                 CategoryLevel1 = r.Category1 != null ? r.Category1.Name : "",
-                CategoryLevel2 = r.Category2 != null ? r.Category2.Name : ""
+                CategoryLevel2 = r.Category2 != null ? r.Category2.Name : "",
+                Geo2 = r.Site.Geo2!=null?r.Site.Geo2.Name:"",
+                Geo3 = r.Site.Geo3!=null?r.Site.Geo3.Name:""
             }));
         }
 
@@ -177,6 +179,7 @@ namespace OAMS.Controllers
                     e.StyleList.Contains(r.Site.Type)
                 && (e.ContractorList == null || e.ContractorList.Contains(r.Site.ContractorID.ToInt()))
                 && (e.ClientList == null || e.ClientList.Contains(r.ClientID.ToInt()))
+                && (e.CatList == null || e.CatList.Contains(r.CategoryID1.ToString()) || e.CatList.Contains(r.CategoryID2.ToString()) || e.CatList.Contains(r.CategoryID3.ToString()))
                 && (string.IsNullOrEmpty(e.Format) || r.Format == e.Format)
                 && (string.IsNullOrEmpty(e.RoadType1) || r.Site.RoadType1 == e.RoadType1.ToInt())
                 && (string.IsNullOrEmpty(e.RoadType2) || r.Site.RoadType2 == e.RoadType2.ToInt())
@@ -189,6 +192,7 @@ namespace OAMS.Controllers
                 && (string.IsNullOrEmpty(e.ShopSignsBillboards) || r.Site.ShopSignsBillboards == e.ShopSignsBillboards.ToInt())
                 && (string.IsNullOrEmpty(e.FlagsTemporaryBannersPromotionalItems) || r.Site.FlagsTemporaryBannersPromotionalItems == e.FlagsTemporaryBannersPromotionalItems.ToInt())
                 && (string.IsNullOrEmpty(e.CompetitiveProductSigns) || r.Site.CompetitiveProductSigns == e.CompetitiveProductSigns.ToInt())
+                && (e.ProductList == null || e.ProductList.Match(r.Product))
                 && (string.IsNullOrEmpty(e.Geo1FullName) || (r.Site.Geo1 != null && r.Site.Geo1.FullName == e.Geo1FullName))
                 && ((string.IsNullOrEmpty(e.Geo1FullName) && e.Geo2List == null)
                     || (e.Geo2List != null && (e.Geo2List.FirstOrDefault() == null || (r.Site.Geo2 != null && e.Geo2List.Contains(r.Site.Geo2.FullName)))))
