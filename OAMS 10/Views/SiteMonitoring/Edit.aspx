@@ -12,6 +12,7 @@
     <table>
         <tr valign="top">
             <td>
+                <%: Html.ActionLink("View Report", "View", new { id = Model.ID })%>
                 <fieldset>
                     <legend>Fields</legend>
                     <%: Html.HiddenFor(model => model.ID) %>

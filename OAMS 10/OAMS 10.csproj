@@ -238,9 +238,11 @@
     <Content Include="Views\Category\Create.aspx" />
     <Content Include="Views\Category\Edit.aspx" />
     <Content Include="Views\Category\Index.aspx" />
+    <Content Include="Views\Contract\DisplayTemplates\ViewReportSumary.ascx" />
     <Content Include="Views\Contract\Edit.aspx" />
     <Content Include="Views\Contract\Index.aspx" />
     <Content Include="Views\Contract\ManageContractTimeline.ascx" />
+    <Content Include="Views\Contract\ViewReport.aspx" />
     <Content Include="Views\FindSite\Find4Contract.aspx" />
     <Content Include="Views\FindSite\Find.aspx" />
     <Content Include="Views\Geo\Create.aspx" />

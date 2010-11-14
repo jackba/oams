@@ -201,7 +201,7 @@
 
             //alert(typeof (aData.length));
 
-            var r = '<select style="width:100px;"><option value=""></option>', i, iLen = aData.length;
+            var r = '<select style="width:55px;"><option value=""></option>', i, iLen = aData.length;
             for (i = 0; i < iLen; i++) {
                 r += '<option value="' + aData[i] + '">' + aData[i] + '</option>';
             }

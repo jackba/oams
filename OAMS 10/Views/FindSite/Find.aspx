@@ -358,6 +358,10 @@
                     Contractor
                     <input type="checkbox" id="chkColScore" checked="checked" />
                     Total
+                    <input type="checkbox" id="chkColDistrict" checked="checked" />
+                    District
+                    <input type="checkbox" id="chkColWard" checked="checked" />
+                    Ward
                     <input type="button" id="hell" value="Ok" onclick='ShowHideCols();' />
                 </div>
                 <table id="tblResult" class="display">
@@ -398,6 +402,12 @@
                             </th>
                             <th>
                                 Total
+                            </th>
+                            <th>
+                                District
+                            </th>
+                            <th>
+                                Ward
                             </th>
                             <th>
                                 Edit
@@ -502,6 +512,8 @@
             oTable.fnSetColumnVis(9, $('#chkColCurrentClient').attr('checked'));
             oTable.fnSetColumnVis(10, $('#chkColContractor').attr('checked'));
             oTable.fnSetColumnVis(11, $('#chkColScore').attr('checked'));
+            oTable.fnSetColumnVis(12, $('#chkColDistrict').attr('checked'));
+            oTable.fnSetColumnVis(13, $('#chkColWard').attr('checked'));
         }
         function showGeo2(str) {
             //alert(str);
@@ -809,6 +821,16 @@
                     var cStyle9 = document.createElement('td');
                     cStyle9.innerHTML = site.Score;
                     rSel.appendChild(cStyle9);
+
+                    //District
+                    var cStyle10 = document.createElement('td');
+                    cStyle10.innerHTML = site.Geo2;
+                    rSel.appendChild(cStyle10);
+
+                    //Ward
+                    var cStyle11 = document.createElement('td');
+                    cStyle11.innerHTML = site.Geo3;
+                    rSel.appendChild(cStyle11);
 
                     //Edit
                     var cEdit = document.createElement('td');

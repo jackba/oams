@@ -113,6 +113,38 @@
                 <%: Html.HiddenFor(r => r.Lat) %>
                 <%: Html.HiddenFor(r => r.Long) %>
                 <script type="text/javascript" language="javascript">
+                    var Productcount = 1;
+                    function addMoreProduct() {
+                        var divAddMore = $('#divMoreProduct');
+                        var input = document.createElement('input');
+                        input.setAttribute('type', 'text');
+                        input.setAttribute('id', 'Product' + Productcount);
+                        input.setAttribute('name', 'ProductList');
+                        input.setAttribute('class', 'text-box single-line');
+                        divAddMore.append(input);
+
+                        var lnkDelete = document.createElement('a');
+                        lnkDelete.setAttribute('id', 'LnkDelete' + Productcount);
+                        lnkDelete.setAttribute('onclick', "$('#Product" + Productcount + "').remove();$('#LnkDelete" + Productcount + "').remove();");
+                        lnkDelete.innerHTML = 'X';
+                        lnkDelete.setAttribute('style', 'text-decoration:underline;cursor:pointer;');
+                        lnkDelete.setAttribute('title', 'Remove this product out of search criteria');
+                        divAddMore.append(" ").append(lnkDelete);
+
+                        $("#Product" + Productcount).focus();
+                        Productcount = Productcount + 1;
+                    }
+                </script>
+                <br />
+                <%--Product--%>
+                <div id="divMoreProduct">
+                    <br />
+                    Current Product<br />
+                </div>
+                <%--<input type="button" value="More..." onclick="addMoreContractor()" />--%>
+                <a id="addProduct" href="javascript:addMoreProduct();">More...</a>
+                <br />
+                <script type="text/javascript" language="javascript">
                     var count = 1;
                     function addMoreContractor() {
                         var divAddMore = $('#divMoreContractor');
@@ -225,6 +257,62 @@
                     Client<br />
                 </div>
                 <a id="addClient" href="javascript:addMoreClient();">More...</a>
+                <br />
+                <script type="text/javascript" language="javascript">
+                    var catcount = 1;
+                    function addMoreCat() {
+                        var divAddMore = $('#divMoreCat');
+                        var input = document.createElement('input');
+                        input.setAttribute('type', 'text');
+                        input.setAttribute('id', 'CatName' + catcount);
+                        input.setAttribute('class', 'text-box single-line');
+                        input.setAttribute('onblur', "javascript:if($('#CatName" + catcount + "').val() == '') $('#CatID" + catcount + "').val('');");
+                        divAddMore.append(input);
+
+                        var inputCollapse = document.createElement('input');
+                        inputCollapse.setAttribute('type', 'text');
+                        inputCollapse.setAttribute('style', 'display: none;');
+                        inputCollapse.setAttribute('name', 'CatList');
+                        inputCollapse.setAttribute('id', 'CatID' + catcount);
+                        divAddMore.append(inputCollapse);
+
+                        var lnkDelete = document.createElement('a');
+                        lnkDelete.setAttribute('id', 'LnkDeleteCat' + catcount);
+                        lnkDelete.setAttribute('onclick', "$('#CatName" + catcount + "').remove();$('#CatID" + catcount + "').remove();$('#LnkDeleteCat" + catcount + "').remove();");
+                        lnkDelete.innerHTML = 'X';
+                        lnkDelete.setAttribute('style', 'text-decoration:underline;cursor:pointer;');
+                        lnkDelete.setAttribute('title', 'Remove this Cat out of search criteria');
+                        divAddMore.append(" ").append(lnkDelete);
+
+                        $(function () {
+                            $("#CatName" + catcount).autocomplete({
+                                select: function (event, ui) {
+                                    var index = this.id.substring(7);
+                                    $("#CatID" + index).val(ui.item.id);
+                                },
+                                source: function (request, response) {
+                                    $.ajax({
+                                        url: '../Listing/ListCats', type: "POST", dataType: "json",
+                                        data: { searchText: request.term },
+                                        success: function (data) {
+                                            response($.map(data, function (item) {
+                                                return { label: item.FullName, value: item.FullName, id: item.ID }
+                                            }))
+                                        }
+                                    })
+                                }
+                            });
+                        });
+                        $("#CatName" + catcount).focus();
+                        catcount = catcount + 1;
+                    }
+                </script>
+                <br />
+                <div id="divMoreCat">
+                    <br />
+                    Category<br />
+                </div>
+                <a id="addCat" href="javascript:addMoreCat();">More...</a>
             </td>
             <td valign="top">
                 <input type="button" onclick="search(this)" value="Find" />
