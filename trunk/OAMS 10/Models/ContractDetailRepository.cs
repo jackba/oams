@@ -49,5 +49,18 @@ namespace OAMS.Models
             }
         }
 
+        public void Update(int ID, Action<ContractDetail> updateMethod)
+        {
+            ContractDetail e = Get(ID);
+            updateMethod(e);
+            UpdateCategory(e);
+            Save();
+        }
+
+        public void UpdateCategory(ContractDetail e)
+        {
+            CategoryRepository catRepository = new CategoryRepository();
+            catRepository.Set3LevelByFullname(e.NewCategoryFullName, e.UpdateCategory);
+        }
     }
 }

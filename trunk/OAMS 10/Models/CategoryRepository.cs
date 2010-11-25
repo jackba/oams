@@ -130,7 +130,7 @@ namespace OAMS.Models
             if (string.IsNullOrEmpty(fullname)
                        || string.IsNullOrEmpty(fullname.Trim()))
             {
-                //throw new Exception("Nhập đơn vị hành chính.");
+                setCategoryFunc(null, null, null);
             }
             else
             {

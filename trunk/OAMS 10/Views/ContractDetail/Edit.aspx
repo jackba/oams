@@ -54,6 +54,19 @@
             <%: Html.DisplayFor(model => model.SiteID)%>
             <%: Html.ValidationMessageFor(model => model.SiteID) %>
         </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Product) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.Product) %>
+            <%: Html.ValidationMessageFor(model => model.Product) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.NewCategoryFullName)%>
+        </div>
+        <div class="editor-field">
+            <%: Html.EditorFor(model => model.NewCategoryFullName, "AutoCompleteCategory")%>
+        </div>
         <div>
             <% Html.RenderPartial("ManageContractDetailTimeline", Model); %>
         </div>

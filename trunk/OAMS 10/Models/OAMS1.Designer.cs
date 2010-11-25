@@ -3395,7 +3395,7 @@ namespace OAMS.Models
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Category1", "Category")]
-        public Category Category
+        public Category Category1
         {
             get
             {
@@ -3411,7 +3411,7 @@ namespace OAMS.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Category> CategoryReference
+        public EntityReference<Category> Category1Reference
         {
             get
             {
@@ -3433,7 +3433,7 @@ namespace OAMS.Models
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Category2", "Category")]
-        public Category Category1
+        public Category Category2
         {
             get
             {
@@ -3449,7 +3449,7 @@ namespace OAMS.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Category> Category1Reference
+        public EntityReference<Category> Category2Reference
         {
             get
             {
@@ -3471,7 +3471,7 @@ namespace OAMS.Models
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("OAMSModel", "FK_ContractDetail_Category3", "Category")]
-        public Category Category2
+        public Category Category3
         {
             get
             {
@@ -3487,7 +3487,7 @@ namespace OAMS.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Category> Category2Reference
+        public EntityReference<Category> Category3Reference
         {
             get
             {

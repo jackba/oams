@@ -15,18 +15,18 @@ namespace OAMS.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View(repo.Get(id));
+            ContractDetail e = repo.Get(id);
+            e.NewCategoryFullName = e.CategoryFullName;
+            return View(e);
         }
 
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+            repo.Update(id, UpdateModel);
             var v = repo.Get(id);
-
-            UpdateModel(v);
-
-            repo.Save();
-
+            //UpdateModel(v);
+            //repo.Save();
             return RedirectToAction("Edit", "Contract", new { id = v.ContractID });
         }
 
