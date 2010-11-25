@@ -134,6 +134,7 @@
     <Compile Include="Models\ContractRepository.cs" />
     <Compile Include="Models\ClientRepository.cs" />
     <Compile Include="Models\CategoryRepository.cs" />
+    <Compile Include="Models\Partial\ContractDetail.cs" />
     <Compile Include="Models\SiteDetailRepository.cs" />
     <Compile Include="Models\ITimeRange.cs" />
     <Compile Include="Models\MVCAuthorizationRepository.cs" />
