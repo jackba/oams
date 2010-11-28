@@ -99,5 +99,19 @@ namespace OAMS.Controllers
             return Json(result);
         }
 
+        [HttpPost]
+        public JsonResult ListProduct(string searchText, int maxResults)
+        {
+            OAMSEntities db = new OAMSEntities();
+            var result = db.Products
+                .Where(r => r.Name != null)
+                .ToList()
+                .Where(r => r.Name.ToLower().Contains(searchText.ToLower()) || r.Name.ToLower().RemoveDiacritics().Contains(searchText.ToLower()))
+                .Take(maxResults)
+                .Select(r => new { r.ID, r.Name })
+                .ToList();
+            return Json(result);
+        }
+
     }
 }

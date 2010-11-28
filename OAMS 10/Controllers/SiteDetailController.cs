@@ -19,7 +19,7 @@ namespace OAMS.Controllers
         public PartialViewResult Edit(int id)
         {
             var r = Repo.Get(id);
-            r.NewCategoryFullName = r.CategoryFullName;
+            //r.NewCategoryFullName = r.CategoryFullName;
             return PartialView("Edit", r);
         }
 

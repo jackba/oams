@@ -9,16 +9,17 @@
     <%: Html.CodeMasterDropDownListFor(r => r.Format)%>
 </td>
 <td>
-    <%: Html.EditorFor(model => model.CurrentClientName, "AutoCompleteClient")%>
+    <%--<%: Html.EditorFor(model => model.CurrentClientName, "AutoCompleteClient")%>
     <%: Html.ValidationMessageFor(r => r.CurrentClientName)%>
-    <%: Html.TextBoxFor(model => model.ClientID, new { @style = "visibility:collapse;" })%>
+    <%: Html.TextBoxFor(model => model.ClientID, new { @style = "visibility:collapse;" })%>--%>
 </td>
 <td>
-    <%: Html.TextBoxFor(model => model.Product) %>
-    <%: Html.ValidationMessageFor(model => model.Product) %>
+    <%: Html.EditorFor(model => model.CurrentProductName, "AutoCompleteProduct")%>
+    <%: Html.ValidationMessageFor(r => r.CurrentProductName)%>
+    <%: Html.TextBoxFor(model => model.ProductID, new { @style = "visibility:collapse;" })%>																
 </td>
 <td>
-    <%: Html.EditorFor(model => model.NewCategoryFullName, "AutoCompleteCategory")%>
+    <%--<%: Html.EditorFor(model => model.NewCategoryFullName, "AutoCompleteCategory")%>--%>
 </td>
 <td>
     <%: Html.ActionLink("Save", "Edit", "SiteDetail", new { href = string.Format("javascript:AjaxSave('{0}','{1}');", "divSiteDetail_" + Model.ID.ToString(), Url.Content("~/SiteDetail/Edit")) })%>

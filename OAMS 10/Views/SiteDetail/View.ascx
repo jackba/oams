@@ -10,13 +10,13 @@
         <%: Model.Format %>
     </td>
     <td>
-        <%: Model.CurrentClientName %>
+        <%: Model.Product == null ? "" : Model.Product.NewClientName %>
     </td>
     <td>
-        <%: Model.Product %>
+        <%: Model.Product == null ? "" : Model.Product.Name %>
     </td>
     <td>
-        <%: Model.CategoryFullName %>
+        <%: Model.Product == null ? "" : Model.Product.NewCategoryFullName %>
     </td>
     <td>
         <%: Html.ActionLink("Edit", "Edit", "SiteDetail", new { href = string.Format("javascript:AjaxEdit({0},'{1}','{2}');", Model.ID, "divSiteDetail_" + Model.ID.ToString(), Url.Content("~/SiteDetail/Edit")) })%>

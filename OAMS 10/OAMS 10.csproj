@@ -259,6 +259,7 @@
     <Content Include="Views\Shared\EditorTemplates\AutoCompleteGeo.ascx" />
     <Content Include="Views\Shared\EditorTemplates\AutoCompleteClient.ascx" />
     <Content Include="Views\Shared\EditorTemplates\AutoCompleteCategory.ascx" />
+    <Content Include="Views\Shared\EditorTemplates\AutoCompleteProduct.ascx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Content\Image\resize.png" />
     <Content Include="Views\ContractTimeline\View.ascx" />
