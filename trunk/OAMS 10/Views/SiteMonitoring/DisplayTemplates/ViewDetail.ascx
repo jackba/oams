@@ -35,7 +35,7 @@
                                         Site location:
                                     </td>
                                     <td>
-                                        <%: Model.ContractDetail.Site.AddressLine1 + " " + Model.ContractDetail.Site.AddressLine2 + " " + Model.ContractDetail.Site.Geo3.Name%>
+                                        <%: Model.ContractDetail.Site.AddressLine1 + " " + Model.ContractDetail.Site.AddressLine2 + " " + (Model.ContractDetail.Site.Geo3 == null ? "" : Model.ContractDetail.Site.Geo3.Name) %>
                                     </td>
                                     <td>
                                         Current Client:

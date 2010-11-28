@@ -107,6 +107,7 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContractTimelineController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SiteDetailController.cs" />
     <Compile Include="Controllers\SiteMonitoringController.cs" />
     <Compile Include="Controllers\FindSiteController.cs" />
@@ -134,6 +135,8 @@
     <Compile Include="Models\ContractRepository.cs" />
     <Compile Include="Models\ClientRepository.cs" />
     <Compile Include="Models\CategoryRepository.cs" />
+    <Compile Include="Models\Partial\Product.cs" />
+    <Compile Include="Models\ProductRepository.cs" />
     <Compile Include="Models\Partial\ContractDetail.cs" />
     <Compile Include="Models\SiteDetailRepository.cs" />
     <Compile Include="Models\ITimeRange.cs" />
@@ -249,6 +252,9 @@
     <Content Include="Views\Geo\Create.aspx" />
     <Content Include="Views\Geo\Edit.aspx" />
     <Content Include="Views\Geo\Index.aspx" />
+    <Content Include="Views\Product\Create.aspx" />
+    <Content Include="Views\Product\Edit.aspx" />
+    <Content Include="Views\Product\Index.aspx" />
     <Content Include="Views\Shared\EditorTemplates\AutoCompleteContractor.ascx" />
     <Content Include="Views\Shared\EditorTemplates\AutoCompleteGeo.ascx" />
     <Content Include="Views\Shared\EditorTemplates\AutoCompleteClient.ascx" />
