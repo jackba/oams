@@ -49,37 +49,38 @@ namespace OAMS.Models
 
         public bool Replace(int id, int replaceID)
         {
-            Product e = Get(id);
-            Product replaceClient = Get(replaceID);
+            //Product e = Get(id);
+            //Product replaceClient = Get(replaceID);
 
-            if (e == null || replaceClient == null)
-            {
-                return false;
-            }
-            else
-            {
-                var sL = DB.SiteDetails.Where(r => r.ClientID == replaceID);
-                IQueryable<Contract> cL = DB.Contracts.Where(r => r.ClientID == replaceID);
-                IQueryable<Campaign> caL = DB.Campaigns.Where(r => r.ClientID == replaceID);
-                foreach (var item in sL)
-                {
-                    item.ClientID = id;
-                }
-                foreach (var item in cL)
-                {
-                    item.ClientID = id;
-                }
-                foreach (var item in caL)
-                {
-                    item.ClientID = id;
-                }
+            //if (e == null || replaceClient == null)
+            //{
+            //    return false;
+            //}
+            //else
+            //{
+            //    var sL = DB.SiteDetails.Where(r => r.ClientID == replaceID);
+            //    IQueryable<Contract> cL = DB.Contracts.Where(r => r.ClientID == replaceID);
+            //    IQueryable<Campaign> caL = DB.Campaigns.Where(r => r.ClientID == replaceID);
+            //    foreach (var item in sL)
+            //    {
+            //        item.ClientID = id;
+            //    }
+            //    foreach (var item in cL)
+            //    {
+            //        item.ClientID = id;
+            //    }
+            //    foreach (var item in caL)
+            //    {
+            //        item.ClientID = id;
+            //    }
 
-                Save();
-                DB.Products.DeleteObject(replaceClient);
-                Save();
+            //    Save();
+            //    DB.Products.DeleteObject(replaceClient);
+            //    Save();
 
-                return true;
-            }
+            //    return true;
+            //}
+            return false;
         }
     }
 }

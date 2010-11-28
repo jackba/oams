@@ -12,11 +12,11 @@ namespace OAMS.Models
             return DB.SiteDetails;
         }
 
-        public void UpdateCategory(SiteDetail e)
-        {
-            CategoryRepository catRepository = new CategoryRepository();
-            catRepository.Set3LevelByFullname(e.NewCategoryFullName, e.UpdateCategory);
-        }
+        //public void UpdateCategory(SiteDetail e)
+        //{
+        //    CategoryRepository catRepository = new CategoryRepository();
+        //    catRepository.Set3LevelByFullname(e.NewCategoryFullName, e.UpdateCategory);
+        //}
 
 
 
@@ -42,7 +42,7 @@ namespace OAMS.Models
         public SiteDetail Update(SiteDetail e)
         {
             DB.SiteDetails.Attach(e);
-            UpdateCategory(e);
+            //UpdateCategory(e);
             DB.ObjectStateManager.ChangeObjectState(e, System.Data.EntityState.Modified);
             Save();
 

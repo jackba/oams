@@ -87,11 +87,11 @@
                     </td>
                     <td>
                         <%--<%: item.CurrentClientName %>--%>
-                        <%: string.Join(", ", item.SiteDetails.Select(r => r.CurrentClientName)) %>
+                        <%: string.Join(", ", item.SiteDetails.Where(r => r.Product != null).Select(r => r.Product.NewClientName)) %>
                     </td>
                     <td>
                         <%--<%: item.CurrentProduct %>--%>
-                        <%: string.Join(", ", item.SiteDetails.Select(r => r.Product)) %>
+                        <%: string.Join(", ", item.SiteDetails.Where(r => r.Product != null).Select(r => r.Product.Name)) %>
                     </td>
                     <td>
                         <%: item.Score %>

@@ -52,16 +52,16 @@
                 <%: item.Note %>
             </td>
             <td>
-                <%: item.CategoryID1 %>
+                <%: item.Category1 == null ? "" : item.Category1.Name %>
             </td>
             <td>
-                <%: item.CategoryID2 %>
+                <%: item.Category2 == null ? "" : item.Category2.Name %>
             </td>
             <td>
-                <%: item.CategoryID3 %>
+                <%: item.Category3 == null ? "" : item.Category3.Name %>
             </td>
             <td>
-                <%: item.ClientID %>
+                <%: item.Client == null ? "" :item.Client.Name %>
             </td>
         </tr>
     
