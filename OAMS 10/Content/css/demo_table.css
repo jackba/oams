@@ -55,14 +55,16 @@
 }
 
 .dataTables_length {
-	width: 40%;
+	/*width: 40%;*/
 	float: left;
 }
 
 .dataTables_filter {
-	width: 50%;
+	/*width: 50%;*/
+	width: 80%;
 	float: right;
-	text-align: right;
+	/*text-align: right;*/
+	text-align: left;
 }
 
 .dataTables_info {
