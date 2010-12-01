@@ -5,10 +5,19 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+    <script type="text/javascript" language="javascript">
+        //var oTable;
+        $(document).ready(function () {
+            //oTable = $('#tblResult').dataTable({ "aaSorting": [[1, "desc"]] });
+            var oTable = $('#tblResult').dataTable({ "aaSorting": [[1, "desc"]] });
+        });
+    </script>
     <h2>Index</h2>
-
-    <table>
+    <p>
+        <%: Html.ActionLink("Create New", "Create") %>
+    </p>
+    <table id="tblResult" class="display">
+        <thead>
         <tr>
             <th></th>
             <th>
@@ -33,7 +42,8 @@
                 ClientID
             </th>
         </tr>
-
+        </thead>
+        <tbody>
     <% foreach (var item in Model) { %>
     
         <tr>
@@ -66,7 +76,7 @@
         </tr>
     
     <% } %>
-
+    </tbody>
     </table>
 
     <p>
