@@ -60,15 +60,7 @@
         <div class="editor-field">
             <%: Html.TextBoxFor(model => model.Product) %>
             <%: Html.ValidationMessageFor(model => model.Product) %>
-        </div>
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.CurrentProductName)%>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.CurrentProductName, "AutoCompleteProduct")%>
-            <%: Html.ValidationMessageFor(r => r.CurrentProductName)%>
-            <%: Html.TextBoxFor(model => model.ProductID, new { @style = "visibility:collapse;" })%>
-        </div>
+        </div>    
         <div>
             <% Html.RenderPartial("ManageContractDetailTimeline", Model); %>
         </div>

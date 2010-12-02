@@ -7,10 +7,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OAMS.Models
 {
-    
+
     public partial class SiteMonitoring
     {
         public Site Site;
+        public string CurrentProductName
+        {
+            get
+            {
+                return Product != null ? Product.Name : "";
+            }
+        }
     }
 
     [AttributeUsage(AttributeTargets.Class,
