@@ -12,7 +12,10 @@ namespace OAMS.Models
     {
         public List<ContractDetail> Details
         {
-            get { return ContractDetails.ToList(); }
+            get
+            {
+                return ContractDetails.ToList();
+            }
         }
 
         public string ContractorName
