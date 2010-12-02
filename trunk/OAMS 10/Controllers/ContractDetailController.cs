@@ -16,7 +16,7 @@ namespace OAMS.Controllers
         public ActionResult Edit(int id)
         {
             ContractDetail e = repo.Get(id);
-            e.NewCategoryFullName = e.CategoryFullName;
+            //e.NewCategoryFullName = e.CategoryFullName;
             return View(e);
         }
 
