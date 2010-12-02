@@ -34,6 +34,12 @@ namespace OAMS.Models
         //    return 0;
         //}
 
-       
+        public string CurrentProductName
+        {
+            get
+            {
+                return Product != null ? Product.Name : "";
+            }
+        }
     }
 }
