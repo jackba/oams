@@ -74,6 +74,14 @@
                         <%: Html.EditorFor(model => model.Site.GeoFullName)%>
                     </div>
                     <div class="editor-label">
+                        <%: Html.LabelFor(model => model.CurrentProductName)%>
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.EditorFor(model => model.CurrentProductName, "AutoCompleteProduct")%>
+                        <%: Html.ValidationMessageFor(r => r.CurrentProductName)%>
+                        <%: Html.TextBoxFor(model => model.ProductID, new { @style = "visibility:collapse;" })%>
+                    </div>
+                    <div class="editor-label">
                         <%: Html.LabelFor(model => model.Working) %>
                     </div>
                     <div class="editor-field">
@@ -265,24 +273,24 @@
     </div>
     <script type="text/javascript">
 
-//        function addMoreFileInput() {
+        //        function addMoreFileInput() {
 
-//            var divAddMore = $('#divMoreFile');
+        //            var divAddMore = $('#divMoreFile');
 
-//            var lbl = document.createElement('label');
-//            lbl.innerHTML = 'Filename:';
+        //            var lbl = document.createElement('label');
+        //            lbl.innerHTML = 'Filename:';
 
-//            divAddMore.append(lbl);
+        //            divAddMore.append(lbl);
 
 
-//            var input = document.createElement('input');
-//            input.setAttribute('type', 'file');
-//            input.setAttribute('name', 'files');
-//            input.setAttribute('size', '65');
+        //            var input = document.createElement('input');
+        //            input.setAttribute('type', 'file');
+        //            input.setAttribute('name', 'files');
+        //            input.setAttribute('size', '65');
 
-//            divAddMore.append(input);
-//            divAddMore.append('<br />');
-//        }
+        //            divAddMore.append(input);
+        //            divAddMore.append('<br />');
+        //        }
 
         index = 4;
         function addMoreFileInput() {

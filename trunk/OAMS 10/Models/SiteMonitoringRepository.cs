@@ -41,6 +41,7 @@ namespace OAMS.Models
         {
             SiteMonitoring e = new SiteMonitoring();
             e.ContractDetailID = ContractDetailID;
+            
             e.Working = true;
             e.Clean = true;
             e.CreativeGoodConditon = true;
@@ -51,6 +52,8 @@ namespace OAMS.Models
             e.ContractDetail = cd;
             e.NoOfBullbs = cd.Site.FrontlitNumerOfLamps;
             e.Site = cd.Site;
+            e.ProductID = cd.ProductID;
+            e.Product = cd.Product;
             return e;
         }
 
