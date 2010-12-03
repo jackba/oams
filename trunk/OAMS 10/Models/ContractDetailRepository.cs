@@ -23,6 +23,18 @@ namespace OAMS.Models
 
             int? contractID = e.ContractID;
 
+            var l = e.SiteMonitorings.ToList();
+            foreach (var item in l)
+            {
+                DB.DeleteObject(item);
+            }
+
+            var l1 = e.ContractDetailTimelines.ToList();
+            foreach (var item in l1)
+            {
+                DB.DeleteObject(item);
+            }
+
             DB.DeleteObject(e);
             Save();
 

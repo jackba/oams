@@ -49,7 +49,33 @@ namespace OAMS.Models
             contractDetailRepository.CopyTimeline(e.ID);
         }
 
+        public void OverwriteTimelineForDetail(int ID)
+        {
+            var r = Get(ID);
+            if (r != null
+                && r.ContractTimelines.Count > 0)
+            {
+                foreach (var item in r.ContractDetails)
+                {
+                    var detailList = item.ContractDetailTimelines.ToList();
 
+                    foreach (var tl in detailList)
+                    {
+                        DB.DeleteObject(tl);                        
+                    }
 
+                    foreach (var tl in r.ContractTimelines)
+                    {
+                        ContractDetailTimeline contractDetailTimeline = new ContractDetailTimeline();
+                        contractDetailTimeline.FromDate = tl.FromDate;
+                        contractDetailTimeline.ToDate = tl.ToDate;
+                        contractDetailTimeline.Order = tl.Order;
+
+                        item.ContractDetailTimelines.Add(contractDetailTimeline);
+                    }
+                }
+                DB.SaveChanges();
+            }
+        }
     }
 }

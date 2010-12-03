@@ -13,7 +13,7 @@
     </script>
     <h2>
         Edit</h2>
-    View report sumary from 
+    View report sumary from
     <div class="editor-field">
         <input class="text-box single-line" id="dFrom" name="dFrom" type="text" value="<%: DateTime.Now.ToShortDateString() %>" />
         <script type="text/javascript">
@@ -21,7 +21,8 @@
                 $("#dFrom").datepicker({ showAnim: '' });
             });
         </script>
-    </div> to 
+    </div>
+    to
     <div class="editor-field">
         <input class="text-box single-line" id="dTo" name="dTo" type="text" value="<%: DateTime.Now.ToShortDateString() %>" />
         <script type="text/javascript">
@@ -30,7 +31,8 @@
             });
         </script>
     </div>
-    <button id="btnView" onclick="btnView_Click()">View</button>
+    <button id="btnView" onclick="btnView_Click()">
+        View</button>
     <%
         RouteValueDictionary dic = new RouteValueDictionary();
         dic.Add("ID", Model.ID);
@@ -40,7 +42,7 @@
     <script type="text/javascript">
         function btnView_Click() {
             url = '<%: Url.Action("ViewReport", "Contract", dic)%>';
-            url = url.replace("~~~", $("#dFrom").val()).replace("!!!", $("#dTo").val()).replace("amp;","");
+            url = url.replace("~~~", $("#dFrom").val()).replace("!!!", $("#dTo").val()).replace("amp;", "");
             window.open(url);
         }
     </script>
@@ -171,6 +173,10 @@
                         <div>
                             <% Html.RenderPartial("ManageContractTimeline", Model); %>
                         </div>
+                        <div>
+                            <br />
+                            <%: Html.ActionLink("Overwrite timelines to detail", "OverwriteTimelineForDetail", "Contract", new { href = string.Format("javascript:OverwriteTimelineForDetail({0})", Model.ID) })%>
+                        </div>
                         <p>
                             <input type="submit" value="Save" />
                         </p>
@@ -272,10 +278,9 @@
                                 <tr>
                                     <td>
                                         <%: Html.ActionLink("Edit", "Edit", "ContractDetail", new { id=item.ID }, null) %>
-                                        <%--<a href='javascript:EditDetail( <%: item.ID %> )'>Edit</a>--%>
                                         <br />
                                         <br />
-                                        <%: Html.ActionLink("Remove", "Delete", "ContractDetail", new { id=item.ID }, null) %>
+                                        <%: Html.ActionLink("Remove", "Delete", "ContractDetail", new { id=item.ID }, new { onclick="return confirm('Delete?');" }) %>
                                     </td>
                                     <td>
                                         <div style='float: left;'>
@@ -383,26 +388,28 @@
             $.ajax({
                 url: '<%= Url.Content("~/ContractDetail/Edit/") %>' + contractDetailID, type: "POST",
                 success: function (data) {
-                    //alert(data);
-                    //clearMarkers();
-
-
-                    //addResults(data);
-
-                    //                    $.map(data, function (item) {
-                    //                        var latlng = new google.maps.LatLng(item.Latitude, item.Longitude);
-                    //                        var marker = new google.maps.Marker({ position: latlng, map: map, title: item.Code });
-                    //                        bindInfoWindow(marker, map, infoWindow, item.Note);
-                    //                    })
-                    //var divEdit = $("#divEditDetail");
-                    //divEdit.innerHTML = data;
                     $("#divEditDetail").html(data).dialog({ modal: true });
-
-
 
                 }
             })
 
         };
+
+        function OverwriteTimelineForDetail(contractID) {
+
+            if (confirm('Overwrite all timeline details?')) {
+                $.ajax({
+                    url: '<%= Url.Content("~/Contract/OverwriteTimelineForDetail") %>', type: "POST",
+                    data: { id: contractID },
+                    success: function (data) {
+                        //$("#divManageContractTimeline").empty().append(data);
+                        alert('Overwrite done.');
+                    }
+
+                })
+            }
+
+        }
+
     </script>
 </asp:Content>

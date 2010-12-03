@@ -124,5 +124,12 @@ namespace OAMS.Controllers
             ViewData["dTo"] = dTo;
             return View(repo.Get(id));
         }
+
+        [HttpPost]
+        public JsonResult OverwriteTimelineForDetail(int id)
+        {
+            repo.OverwriteTimelineForDetail(id);
+            return Json(0);
+        }
     }
 }
