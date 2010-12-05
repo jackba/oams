@@ -118,11 +118,9 @@ namespace OAMS.Controllers
             return Json(0);
         }
 
-        public ActionResult ViewReport(int id, string dFrom, string dTo)
+        public ActionResult ViewReport(int id, DateTime? dFrom, DateTime? dTo)
         {
-            ViewData["dFrom"] = dFrom;
-            ViewData["dTo"] = dTo;
-            return View(repo.Get(id));
+            return View(repo.Report(id, dFrom, dTo));
         }
 
         [HttpPost]

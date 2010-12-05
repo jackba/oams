@@ -248,33 +248,29 @@ namespace OAMS
 
         #region DateTime
 
-        public static string ToStringVN(this DateTime dt)
+        //public static string ToStringVN(this DateTime dt)
+        //{
+        //    return dt.ToString("dd/MM/yyyy");
+        //}
+
+        //public static string ToStringVNLong(this DateTime dt)
+        //{
+        //    return dt.ToString("dd/MM/yyyy HH:mm:ss");
+        //}
+
+        public static string ToShortDateString(this DateTime? dt)
         {
-            return dt.ToString("dd/MM/yyyy");
+            return dt.HasValue ? dt.Value.ToShortDateString() : "";
         }
 
-        public static string ToStringVNLong(this DateTime dt)
-        {
-            return dt.ToString("dd/MM/yyyy HH:mm:ss");
-        }
-
-        public static string ToStringVN(this DateTime? dt)
-        {
-            if (dt.HasValue)
-            {
-                return dt.Value.ToString("dd/MM/yyyy");
-            }
-            return "";
-        }
-
-        public static string ToStringVN_Hour(this DateTime? dt)
-        {
-            if (dt.HasValue)
-            {
-                return dt.Value.ToString("dd/MM/yyyy HH:mm");
-            }
-            return "";
-        }
+        //public static string ToStringVN_Hour(this DateTime? dt)
+        //{
+        //    if (dt.HasValue)
+        //    {
+        //        return dt.Value.ToString("dd/MM/yyyy HH:mm");
+        //    }
+        //    return "";
+        //}
 
         public static DateTime AddMonthsAvoidWeekend(this DateTime dt, int months)
         {
@@ -354,7 +350,7 @@ namespace OAMS
             return i.HasValue ? i.Value.ToStringRemoveZero() : "";
         }
 
-        public static string ToStringOrDefault(this int? i,string nodata = "0")
+        public static string ToStringOrDefault(this int? i, string nodata = "0")
         {
             return i.HasValue ? i.Value.ToString() : nodata;
         }
@@ -367,7 +363,7 @@ namespace OAMS
             {
                 if (i > 100)
                 {
-                   
+
                 }
                 else if (i == 100)
                 {
@@ -697,6 +693,11 @@ namespace OAMS
                 && dFrom <= dTo
                 && timerange.FromDate >= dFrom
                 && timerange.ToDate <= dTo;
+        }
+
+        public static string ToCustomeString(this bool? value, string strTrue = "Yes", string strFalse = "No")
+        {
+            return value.HasValue ? (value.Value ? strTrue : strFalse) : "";
         }
     }
 

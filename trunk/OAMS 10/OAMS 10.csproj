@@ -137,6 +137,7 @@
     <Compile Include="Models\ContractRepository.cs" />
     <Compile Include="Models\ClientRepository.cs" />
     <Compile Include="Models\CategoryRepository.cs" />
+    <Compile Include="Models\Rpt01_Model_SiteMonitoring.cs" />
     <Compile Include="Models\SiteMonitoringPhotoRepository.cs" />
     <Compile Include="Models\Partial\Product.cs" />
     <Compile Include="Models\ProductRepository.cs" />
