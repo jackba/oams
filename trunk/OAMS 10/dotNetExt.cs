@@ -197,6 +197,11 @@ namespace OAMS
             return s.Substring(0, index) + c.ToString() + s.Substring(index + 1);
         }
 
+        public static string ToUrlPicasaPhotoResize(this string s, string strResize = "s320")
+        {
+            return s.Insert(s.LastIndexOf('/'), "/" + strResize);
+        }
+
         //public static bool IsValidProductCode(this string s)
         //{
         //    return BarcodeBLL.IsValidProductCode(s);
