@@ -19,7 +19,6 @@ namespace OAMS.Models
         public int TotalVandalism { get; set; }
         public int TotalRequiredFollowUp { get; set; }
         public int TotalNowFixed { get; set; }
-
     }
 
     public class Rpt01_Model_SiteMonitoringDetail

@@ -243,10 +243,12 @@
     <Content Include="Views\Contractor\Edit.aspx" />
     <Content Include="Views\Contractor\Index.aspx" />
     <Content Include="Views\ContractTimeline\Edit.ascx" />
+    <Content Include="Views\Contract\ViewReportDetail.aspx" />
     <Content Include="Views\Contract\Create.aspx" />
     <Content Include="Views\Category\Create.aspx" />
     <Content Include="Views\Category\Edit.aspx" />
     <Content Include="Views\Category\Index.aspx" />
+    <Content Include="Views\Contract\DisplayTemplates\RptDetail.ascx" />
     <Content Include="Views\Contract\DisplayTemplates\ViewReportSumary.ascx" />
     <Content Include="Views\Contract\Edit.aspx" />
     <Content Include="Views\Contract\Index.aspx" />

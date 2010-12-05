@@ -33,6 +33,9 @@
     </div>
     <button id="btnView" onclick="btnView_Click()">
         View</button>
+    |
+    <button id="btnViewDetail" onclick="btnViewDetail_Click()">
+        View detail</button>
     <%
         RouteValueDictionary dic = new RouteValueDictionary();
         dic.Add("ID", Model.ID);
@@ -42,6 +45,11 @@
     <script type="text/javascript">
         function btnView_Click() {
             url = '<%: Url.Action("ViewReport", "Contract", dic)%>';
+            url = url.replace("~~~", $("#dFrom").val()).replace("!!!", $("#dTo").val()).replace("amp;", "");
+            window.open(url);
+        }
+        function btnViewDetail_Click() {
+            url = '<%: Url.Action("ViewReportDetail", "Contract", dic)%>';
             url = url.replace("~~~", $("#dFrom").val()).replace("!!!", $("#dTo").val()).replace("amp;", "");
             window.open(url);
         }

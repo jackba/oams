@@ -80,6 +80,7 @@ namespace OAMS.Models
 
         public Rpt01_Model_SiteMonitoring Report(int contractID, DateTime? from, DateTime? to)
         {
+            SiteMonitoringRepository siteMonitoringRepository = new SiteMonitoringRepository();
             Rpt01_Model_SiteMonitoring rpt = new Rpt01_Model_SiteMonitoring();
             rpt.From = from;
             rpt.To = to;
@@ -95,22 +96,15 @@ namespace OAMS.Models
                     Rpt01_Model_SiteMonitoringDetail detail = new Rpt01_Model_SiteMonitoringDetail();
 
                     DateTime? lastDate = null;
-                    OAMS.Models.SiteMonitoring sm = new OAMS.Models.SiteMonitoring();
-                    List<SiteMonitoring> lst = cd.SiteMonitorings.Where(
-                        r =>
-                        r.ContractDetail.ContractDetailTimelines.Where(rr => rr.Order == r.Order).ToList().Count > 0 && r.ContractDetail.ContractDetailTimelines.Where(rr => rr.Order == r.Order).ToList()[0].IsIn(from, to)
-                    ).ToList();// OrderByDescending(item => item.Order).First();
-                    if (lst.Count > 0)
-                    {
-                        sm = lst.OrderByDescending(item => item.Order).First();
-                        foreach (OAMS.Models.SiteMonitoringPhoto item in sm.SiteMonitoringPhotoes)
-                        {
-                            if (item.TakenDate != null && (lastDate == null || lastDate < item.TakenDate))
-                            {
-                                lastDate = item.TakenDate;
-                            }
-                        }
-                    }
+
+                    SiteMonitoring sm = siteMonitoringRepository.Find(cd, from, to);
+                    sm = sm ?? new SiteMonitoring();
+
+                    lastDate = sm.SiteMonitoringPhotoes
+                        .OrderByDescending(r => r.TakenDate)
+                        .Select(r => r.TakenDate)
+                        .FirstOrDefault();
+
                     detail.ID = index;
                     detail.SiteCode = cd.Site.Code;
                     detail.Supplier = cd.Site.ContractorName;
@@ -118,7 +112,7 @@ namespace OAMS.Models
                     detail.District = cd.Site.Geo2 != null ? cd.Site.Geo2.Name : "";
                     detail.Street = cd.Site.Geo3 != null ? cd.Site.AddressLine1 + " " + cd.Site.AddressLine2 + " " + cd.Site.Geo3.Name : "";
                     detail.Size = string.Format("{0}m x {1}m", cd.Site.Width.ToString(), cd.Site.Height.ToString());
-                    detail.Product = cd.Product.Name;
+                    detail.Product = cd.Product == null ? "" : cd.Product.Name;
                     detail.SiteType = cd.Site.Type;
                     detail.SiteFormat = cd.Format;
                     detail.LastestPhotoDate = lastDate;
@@ -152,6 +146,26 @@ namespace OAMS.Models
             }
 
             return rpt;
+        }
+
+        public List<SiteMonitoring> ReportDetails(int contractID, DateTime? from, DateTime? to)
+        {
+            SiteMonitoringRepository siteMonitoringRepository = new SiteMonitoringRepository();
+            List<SiteMonitoring> details = new List<SiteMonitoring>();
+
+            var contract = Get(contractID);
+            if (contract != null)
+            {
+                foreach (OAMS.Models.ContractDetail cd in contract.ContractDetails)
+                {
+                    SiteMonitoring sm = siteMonitoringRepository.Find(cd, from, to);
+
+                    if (sm != null)
+                        details.Add(sm);
+                }
+            }
+
+            return details;
         }
     }
 }
