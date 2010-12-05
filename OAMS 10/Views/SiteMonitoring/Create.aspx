@@ -103,6 +103,13 @@
                         <%: Html.ValidationMessageFor(model => model.BullsWorking) %>
                     </div>
                     <div class="editor-label">
+                        <%: Html.LabelFor(model => model.IssuesCount) %>
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.TextBoxFor(model => model.IssuesCount)%>
+                        <%: Html.ValidationMessageFor(model => model.IssuesCount)%>
+                    </div>
+                    <div class="editor-label">
                         <%: Html.LabelFor(model => model.Issues) %>
                     </div>
                     <div class="editor-field">
@@ -263,7 +270,7 @@
                 <div id="divMoreFile">
                 </div>
                 <br />
-                <input type="button" value="Add more" onclick="addMoreFileInput()" />
+                <input type="button" value="Add more" onclick="addMoreFileInput('divMoreFile','files','noteList')" />
             </td>
         </tr>
     </table>
@@ -271,7 +278,7 @@
     <div>
         <%: Html.ActionLink("Back to List", "Index") %>
     </div>
-    <script type="text/javascript">
+    <%--<script type="text/javascript">
 
         //        function addMoreFileInput() {
 
@@ -312,9 +319,21 @@
 
             divAddMore.append(input);
 
+            divAddMore.append('<br />');
+
+            var inputNote = document.createElement('input');
+            inputNote.setAttribute('type', 'text');
+            inputNote.setAttribute('name', 'noteList');
+            inputNote.setAttribute('size', '65');
+            inputNote.setAttribute('id', 'note' + index);
+
+            divAddMore.append(inputNote);
+           
+
+
             var lnkDelete = document.createElement('a');
             lnkDelete.setAttribute('id', 'LnkDeleteFile' + index);
-            lnkDelete.setAttribute('onclick', "$('#lblfile" + index + "').remove();$('#file" + index + "').remove();$('#previewField" + index + "').remove();$('#LnkDeleteFile" + index + "').remove();");
+            lnkDelete.setAttribute('onclick', "$('#lblfile" + index + "').remove();$('#file" + index + "').remove();$('#note" + index + "').remove();$('#previewField" + index + "').remove();$('#LnkDeleteFile" + index + "').remove();");
             lnkDelete.innerHTML = 'X';
             lnkDelete.setAttribute('style', 'text-decoration:underline;cursor:pointer;');
             lnkDelete.setAttribute('title', 'Remove this Image');
@@ -330,5 +349,5 @@
             divAddMore.append('<br />');
             index = index + 1;
         }
-    </script>
+    </script>--%>
 </asp:Content>

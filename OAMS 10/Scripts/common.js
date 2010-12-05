@@ -130,3 +130,85 @@ function applyChanges(index) {
 }
 
 
+
+
+
+
+index = 4;
+function addMoreFileInput(divId, nameOfFileInput, nameOfNoteList) {
+
+    var divAddMore = $('#' + divId);
+
+    var lbl = document.createElement('label');
+    lbl.setAttribute('id', 'lblfile' + index);
+    lbl.innerHTML = 'Filename:';
+
+    divAddMore.append(lbl);
+
+    var input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('name', nameOfFileInput);
+    input.setAttribute('size', '65');
+    input.setAttribute('id', 'file' + index);
+    input.setAttribute('onchange', 'preview(this, ' + index + ')');
+
+    divAddMore.append(input);
+
+
+
+    var lnkDelete = document.createElement('a');
+    lnkDelete.setAttribute('id', 'LnkDeleteFile' + index);
+    lnkDelete.setAttribute('onclick', "$('#lblfile" + index + "').remove();$('#file" + index + "').remove();$('#previewField" + index + "').remove();$('#LnkDeleteFile" + index + "').remove();$('#note" + index + "').remove();");
+    lnkDelete.innerHTML = 'X';
+    lnkDelete.setAttribute('style', 'text-decoration:underline;cursor:pointer;');
+    lnkDelete.setAttribute('title', 'Remove this Image');
+    divAddMore.append(" ").append(lnkDelete);
+    divAddMore.append('<br />');
+
+    var inputNote = document.createElement('input');
+    inputNote.setAttribute('type', 'text');
+    inputNote.setAttribute('name', nameOfNoteList);
+    inputNote.setAttribute('size', '65');
+    inputNote.setAttribute('id', 'note' + index);
+
+    divAddMore.append(inputNote);
+    divAddMore.append('<br />');
+
+    var previewImg = document.createElement('img');
+    previewImg.setAttribute('id', 'previewField' + index + '');
+    previewImg.setAttribute('alt', 'Graphic will preview here');
+
+    divAddMore.append(previewImg);
+    divAddMore.append('<br />');
+    index = index + 1;
+}
+
+function deleteSitePhoto(btn, id) {
+    if (confirm('Delete photo?')) {
+
+        var input = document.createElement('input');
+        input.setAttribute('type', 'text');
+        input.setAttribute('name', 'DeletePhotoList');
+        input.setAttribute('value', id);
+        input.style.visibility = "hidden";
+
+        $('#divDeletePhotoList').append(input);
+
+        btn.style.visibility = "hidden";
+        $('#photo' + id).hide();
+    }
+}
+
+function UpdateSitePhotoNote(url, sitePhotoID, note) {
+    $.ajax({
+        url: url, type: "POST", dataType: "json",
+        data: { id: sitePhotoID, note: note }
+    })
+}
+
+function UpdateSiteMonitoringPhotoNote(url, siteMonitoringPhotoID, note) {
+    $.ajax({
+        url: url, type: "POST", dataType: "json",
+        data: { id: siteMonitoringPhotoID, note: note }
+    })
+}

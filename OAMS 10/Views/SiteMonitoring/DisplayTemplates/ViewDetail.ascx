@@ -24,7 +24,7 @@
                                         <%: Model.ContractDetail.Site.Code %>
                                     </td>
                                     <td>
-                                        Contractor:
+                                        Supplier:
                                     </td>
                                     <td>
                                         <%: Model.ContractDetail.Contract.ContractorName%>

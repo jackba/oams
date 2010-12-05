@@ -13,14 +13,14 @@ namespace OAMS.Models
             return DB.SiteMonitorings.Where(r => r.ID == id).SingleOrDefault();
         }
 
-        public SiteMonitoring Create(Action<SiteMonitoring> updateMethod, IEnumerable<HttpPostedFileBase> files, int? contractDetailID)
+        public SiteMonitoring Create(Action<SiteMonitoring> updateMethod, IEnumerable<HttpPostedFileBase> files, int? contractDetailID, string[] noteList)
         {
             var contractDetailRepository = new ContractDetailRepository() { DB = DB };
-            
+
             var contractDetail = contractDetailRepository.Get(contractDetailID.Value);
-            
+
             SiteMonitoring e = new SiteMonitoring();
-            
+
             updateMethod(e);
 
             e.ContractDetail = contractDetail;
@@ -30,7 +30,7 @@ namespace OAMS.Models
             PicasaRepository picasaRepository = new PicasaRepository();
             picasaRepository.DB = DB;
 
-            picasaRepository.UploadPhoto(e, files);
+            picasaRepository.UploadPhoto(e, files, noteList, false);
 
             Save();
 
@@ -41,7 +41,7 @@ namespace OAMS.Models
         {
             SiteMonitoring e = new SiteMonitoring();
             e.ContractDetailID = ContractDetailID;
-            
+
             e.Working = true;
             e.Clean = true;
             e.CreativeGoodConditon = true;
@@ -57,7 +57,7 @@ namespace OAMS.Models
             return e;
         }
 
-        public SiteMonitoring Update(int ID, Action<SiteMonitoring> updateMethod, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList, IEnumerable<HttpPostedFileBase> filesOfFixed)
+        public SiteMonitoring Update(int ID, Action<SiteMonitoring> updateMethod, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList, IEnumerable<HttpPostedFileBase> filesOfFixed, string[] noteList, string[] noteOfFixedList)
         {
             SiteMonitoring e = Get(ID);
 
@@ -68,8 +68,8 @@ namespace OAMS.Models
             PicasaRepository picasaRepository = new PicasaRepository();
             picasaRepository.DB = DB;
 
-            picasaRepository.UploadPhoto(e, files);
-            picasaRepository.UploadPhoto(e, filesOfFixed, false);
+            picasaRepository.UploadPhoto(e, files, noteList, false);
+            picasaRepository.UploadPhoto(e, filesOfFixed, noteOfFixedList, false);
 
             DeletePhoto(DeletePhotoList);
 
@@ -153,6 +153,20 @@ namespace OAMS.Models
             }
 
             return isValid;
+        }
+
+        public bool ValidateSiteMonitoringPhotoTakenDate(int siteMonitoringPhotoID)
+        {
+            bool result = false;
+            var photo = DB.SiteMonitoringPhotoes.Where(r => r.ID == siteMonitoringPhotoID).FirstOrDefault();
+
+            if (photo != null)
+            {
+                ContractDetailTimeline timeline = photo.SiteMonitoring.ContractDetail.ContractDetailTimelines.Where(r => r.Order == photo.SiteMonitoring.Order).FirstOrDefault();
+                result = timeline != null && photo.TakenDate.HasValue && timeline.Contains(photo.TakenDate);
+            }
+
+            return result;
         }
     }
 }

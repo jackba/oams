@@ -107,6 +107,7 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContractTimelineController.cs" />
+    <Compile Include="Controllers\SiteMonitoringPhotoController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SiteDetailController.cs" />
     <Compile Include="Controllers\SiteMonitoringController.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
+    <Compile Include="Controllers\SitePhotoController.cs" />
     <Compile Include="dotNetExt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -135,6 +137,7 @@
     <Compile Include="Models\ContractRepository.cs" />
     <Compile Include="Models\ClientRepository.cs" />
     <Compile Include="Models\CategoryRepository.cs" />
+    <Compile Include="Models\SiteMonitoringPhotoRepository.cs" />
     <Compile Include="Models\Partial\Product.cs" />
     <Compile Include="Models\ProductRepository.cs" />
     <Compile Include="Models\Partial\ContractDetail.cs" />
@@ -156,6 +159,7 @@
     <Compile Include="Models\FindSite.cs" />
     <Compile Include="Models\Partial\Geo.cs" />
     <Compile Include="Models\Partial\Site.cs" />
+    <Compile Include="Models\SitePhotoRepository.cs" />
     <Compile Include="Models\SiteRepository.cs" />
     <Compile Include="Models\GeoRepository.cs" />
     <Compile Include="Models\OAMS1.Designer.cs">
