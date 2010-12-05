@@ -56,7 +56,7 @@ namespace OAMS.Models
             PicasaEntry createdEntry = service.Insert(postUri, entry);
         }
 
-        public void UploadPhoto(Site e, IEnumerable<HttpPostedFileBase> files)
+        public void UploadPhoto(Site e, IEnumerable<HttpPostedFileBase> files, string[] noteList)
         {
 
             if (files == null
@@ -76,8 +76,10 @@ namespace OAMS.Models
 
             Uri postUri = new Uri(e.AlbumUrl.Replace("entry", "feed"));
 
-            foreach (var item in files)
+            for (int i = 0; i < files.Count(); i++)
             {
+                var item = files.ElementAt(i);
+
                 if (item != null)
                 {
                     DateTime? takenDate = GetMetadata_TakenDate(item);
@@ -95,6 +97,8 @@ namespace OAMS.Models
 
                     PicasaEntry entry = new PhotoEntry();
                     entry.MediaSource = new Google.GData.Client.MediaFileSource(mStream, Path.GetFileName(item.FileName), "image/jpeg");
+                    entry.Title = new AtomTextConstruct(AtomTextConstructElementType.Title, noteList[i]);
+                    entry.Summary = new AtomTextConstruct(AtomTextConstructElementType.Summary, noteList[i]);
 
                     //service.InsertAsync(postUri, entry, new { SiteID = e.ID, AM = asyncManager });
                     PicasaEntry createdEntry = service.Insert(postUri, entry);
@@ -106,7 +110,7 @@ namespace OAMS.Models
                         photo.Url = createdEntry.Media.Content.Url;
                         photo.AtomUrl = createdEntry.EditUri.Content;
                         photo.TakenDate = takenDate;
-
+                        photo.Note = noteList[i];
                         e.SitePhotoes.Add(photo);
                     }
                 }
@@ -172,7 +176,7 @@ namespace OAMS.Models
 
 
 
-        public void UploadPhoto(SiteMonitoring e, IEnumerable<HttpPostedFileBase> files, bool isCheckDate = true)
+        public void UploadPhoto(SiteMonitoring e, IEnumerable<HttpPostedFileBase> files, string[] noteList, bool isCheckDate = true)
         {
 
             if (files == null
@@ -191,8 +195,9 @@ namespace OAMS.Models
 
             Uri postUri = new Uri(e.AlbumUrl.Replace("entry", "feed"));
 
-            foreach (var item in files)
+            for (int i = 0; i < files.Count(); i++)
             {
+                var item = files.ElementAt(i);
                 if (item != null)
                 {
                     DateTime? takenDate = GetMetadata_TakenDate(item);
@@ -218,6 +223,8 @@ namespace OAMS.Models
 
                         PicasaEntry entry = new PhotoEntry();
                         entry.MediaSource = new Google.GData.Client.MediaFileSource(mStream, Path.GetFileName(item.FileName), "image/jpeg");
+                        entry.Title = new AtomTextConstruct(AtomTextConstructElementType.Title, noteList[i]);
+                        entry.Summary = new AtomTextConstruct(AtomTextConstructElementType.Summary, noteList[i]);
 
                         //service.InsertAsync(postUri, entry, new { SiteID = e.ID, AM = asyncManager });
                         PicasaEntry createdEntry = service.Insert(postUri, entry);
@@ -229,6 +236,7 @@ namespace OAMS.Models
                             photo.Url = createdEntry.Media.Content.Url;
                             photo.AtomUrl = createdEntry.EditUri.Content;
                             photo.TakenDate = takenDate;
+                            photo.Note = noteList[i];
                             e.SiteMonitoringPhotoes.Add(photo);
                         }
                     }
@@ -278,6 +286,8 @@ namespace OAMS.Models
 
             PicasaEntry createdEntry = service.Insert(postUri, entry);
         }
+
+
         //public void GetAlbumInfo()
         //{
         //    PicasaService service = InitPicasaService();

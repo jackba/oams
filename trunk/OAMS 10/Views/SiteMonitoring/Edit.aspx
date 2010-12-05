@@ -117,6 +117,13 @@
                         <%: Html.ValidationMessageFor(model => model.BullsWorking) %>
                     </div>
                     <div class="editor-label">
+                        <%: Html.LabelFor(model => model.IssuesCount) %>
+                    </div>
+                    <div class="editor-field">
+                        <%: Html.TextBoxFor(model => model.IssuesCount)%>
+                        <%: Html.ValidationMessageFor(model => model.IssuesCount)%>
+                    </div>
+                    <div class="editor-label">
                         <%: Html.LabelFor(model => model.Issues) %>
                     </div>
                     <div class="editor-field">
@@ -270,9 +277,20 @@
                 <div id="divDeletePhotoList" style="visibility: collapse;">
                     <%--<input type="text" id="Text1" name="DeletePhotoList" />--%>
                 </div>
-                <% foreach (var item in Model.SiteMonitoringPhotoes)
+                <% OAMS.Models.SiteMonitoringRepository siteMonitoringRepository = new OAMS.Models.SiteMonitoringRepository();
+
+                   foreach (var item in Model.SiteMonitoringPhotoes)
                    { %>
+                <br />
+                <input type="text" value='<%: item.Note %>' id='photoNote<%: item.ID %>' />
+                <input type="button" value="Save Note" onclick="UpdateSiteMonitoringPhotoNote('<%= Url.Content("~/SiteMonitoringPhoto/EditNote") %>','<%= item.ID %>',$('#photoNote<%: item.ID %>').val())" />
                 <input type="button" value="Delete this image" onclick="deleteSitePhoto(this,'<%= item.ID %>')" />
+                <br />
+                <% if (!siteMonitoringRepository.ValidateSiteMonitoringPhotoTakenDate(item.ID))
+                   {
+                %>
+                <span style="color: Red;">Wrong photo taken date.</span>
+                <%} %>
                 <br />
                 <img src='<%= item.Url %>' alt="" width="500" id='photo<%: item.ID %>' />
                 <br />
@@ -286,14 +304,14 @@
                 <div id="divMoreFile">
                 </div>
                 <br />
-                <input type="button" value="Add more" onclick="addMoreFileInput('divMoreFile','files')" />
+                <input type="button" value="Add more" onclick="addMoreFileInput('divMoreFile','files','noteList')" />
                 <br />
                 <fieldset>
                     <legend>Add fixed photos.</legend>
                     <div id="divMoreFileOfFixed">
                     </div>
                     <br />
-                    <input type="button" value="Add more" onclick="addMoreFileInput('divMoreFileOfFixed','filesOfFixed')" />
+                    <input type="button" value="Add more" onclick="addMoreFileInput('divMoreFileOfFixed','filesOfFixed','noteOfFixedList')" />
                 </fieldset>
             </td>
         </tr>
@@ -302,59 +320,4 @@
     <div>
         <%: Html.ActionLink("Back to List", "Index") %>
     </div>
-    <script type="text/javascript">
-        index = 4;
-        function addMoreFileInput(divId, nameOfFileInput) {
-
-            var divAddMore = $('#' + divId);
-
-            var lbl = document.createElement('label');
-            lbl.setAttribute('id', 'lblfile' + index);
-            lbl.innerHTML = 'Filename:';
-
-            divAddMore.append(lbl);
-
-            var input = document.createElement('input');
-            input.setAttribute('type', 'file');
-            input.setAttribute('name', nameOfFileInput);
-            input.setAttribute('size', '65');
-            input.setAttribute('id', 'file' + index);
-            input.setAttribute('onchange', 'preview(this, ' + index + ')');
-
-            divAddMore.append(input);
-
-            var lnkDelete = document.createElement('a');
-            lnkDelete.setAttribute('id', 'LnkDeleteFile' + index);
-            lnkDelete.setAttribute('onclick', "$('#lblfile" + index + "').remove();$('#file" + index + "').remove();$('#previewField" + index + "').remove();$('#LnkDeleteFile" + index + "').remove();");
-            lnkDelete.innerHTML = 'X';
-            lnkDelete.setAttribute('style', 'text-decoration:underline;cursor:pointer;');
-            lnkDelete.setAttribute('title', 'Remove this Image');
-            divAddMore.append(" ").append(lnkDelete);
-
-            divAddMore.append('<br />');
-
-            var previewImg = document.createElement('img');
-            previewImg.setAttribute('id', 'previewField' + index + '');
-            previewImg.setAttribute('alt', 'Graphic will preview here');
-
-            divAddMore.append(previewImg);
-            divAddMore.append('<br />');
-            index = index + 1;
-        }
-
-        function deleteSitePhoto(btn, id) {
-
-            var input = document.createElement('input');
-            input.setAttribute('type', 'text');
-            input.setAttribute('name', 'DeletePhotoList');
-            input.setAttribute('value', id);
-            input.style.visibility = "hidden";
-
-            $('#divDeletePhotoList').append(input);
-
-            btn.style.visibility = "hidden";
-            $('#photo' + id).hide();
-
-        }
-    </script>
 </asp:Content>

@@ -78,59 +78,59 @@
         //            divAddMore.append('<br />');
         //        }
 
-        index = 4;
-        function addMoreFileInput() {
+        //        index = 4;
+        //        function addMoreFileInput() {
 
-            var divAddMore = $('#divMoreFile');
+        //            var divAddMore = $('#divMoreFile');
 
-            var lbl = document.createElement('label');
-            lbl.setAttribute('id', 'lblfile' + index);
-            lbl.innerHTML = 'Filename:';
+        //            var lbl = document.createElement('label');
+        //            lbl.setAttribute('id', 'lblfile' + index);
+        //            lbl.innerHTML = 'Filename:';
 
-            divAddMore.append(lbl);
+        //            divAddMore.append(lbl);
 
-            var input = document.createElement('input');
-            input.setAttribute('type', 'file');
-            input.setAttribute('name', 'files');
-            input.setAttribute('size', '65');
-            input.setAttribute('id', 'file' + index);
-            input.setAttribute('onchange', 'preview(this, ' + index + ')');
+        //            var input = document.createElement('input');
+        //            input.setAttribute('type', 'file');
+        //            input.setAttribute('name', 'files');
+        //            input.setAttribute('size', '65');
+        //            input.setAttribute('id', 'file' + index);
+        //            input.setAttribute('onchange', 'preview(this, ' + index + ')');
 
-            divAddMore.append(input);
+        //            divAddMore.append(input);
 
-            var lnkDelete = document.createElement('a');
-            lnkDelete.setAttribute('id', 'LnkDeleteFile' + index);
-            lnkDelete.setAttribute('onclick', "$('#lblfile" + index + "').remove();$('#file" + index + "').remove();$('#previewField" + index + "').remove();$('#LnkDeleteFile" + index + "').remove();");
-            lnkDelete.innerHTML = 'X';
-            lnkDelete.setAttribute('style', 'text-decoration:underline;cursor:pointer;');
-            lnkDelete.setAttribute('title', 'Remove this Image');
-            divAddMore.append(" ").append(lnkDelete);
+        //            var lnkDelete = document.createElement('a');
+        //            lnkDelete.setAttribute('id', 'LnkDeleteFile' + index);
+        //            lnkDelete.setAttribute('onclick', "$('#lblfile" + index + "').remove();$('#file" + index + "').remove();$('#previewField" + index + "').remove();$('#LnkDeleteFile" + index + "').remove();");
+        //            lnkDelete.innerHTML = 'X';
+        //            lnkDelete.setAttribute('style', 'text-decoration:underline;cursor:pointer;');
+        //            lnkDelete.setAttribute('title', 'Remove this Image');
+        //            divAddMore.append(" ").append(lnkDelete);
 
-            divAddMore.append('<br />');
+        //            divAddMore.append('<br />');
 
-            var previewImg = document.createElement('img');
-            previewImg.setAttribute('id', 'previewField' + index + '');
-            previewImg.setAttribute('alt', 'Graphic will preview here');
+        //            var previewImg = document.createElement('img');
+        //            previewImg.setAttribute('id', 'previewField' + index + '');
+        //            previewImg.setAttribute('alt', 'Graphic will preview here');
 
-            divAddMore.append(previewImg);
-            divAddMore.append('<br />');
-            index = index + 1;
-        }
+        //            divAddMore.append(previewImg);
+        //            divAddMore.append('<br />');
+        //            index = index + 1;
+        //        }
 
-        function deleteSitePhoto(btn, id) {
+        //        function deleteSitePhoto(btn, id) {
 
-            var input = document.createElement('input');
-            input.setAttribute('type', 'text');
-            input.setAttribute('name', 'DeletePhotoList');
-            input.setAttribute('value', id);
-            input.style.visibility = "hidden";
+        //            var input = document.createElement('input');
+        //            input.setAttribute('type', 'text');
+        //            input.setAttribute('name', 'DeletePhotoList');
+        //            input.setAttribute('value', id);
+        //            input.style.visibility = "hidden";
 
-            $('#divDeletePhotoList').append(input);
+        //            $('#divDeletePhotoList').append(input);
 
-            btn.style.visibility = "hidden";
-            $('#photo' + id).hide();
+        //            btn.style.visibility = "hidden";
+        //            $('#photo' + id).hide();
 
-        }
+        //        }
 
         var map;
         var marker;
@@ -321,7 +321,7 @@
                         <%: Html.EditorFor(r => r.Competition)%>
                         <%: Html.ValidationMessageFor(model => model.Competition)%>
                     </div>
-                 <%--   <div class="editor-label">
+                    <%--   <div class="editor-label">
                         <%: Html.LabelFor(model => model.NewCategoryFullName)%>
                     </div>
                     <div class="editor-field">
@@ -657,6 +657,9 @@
                 </div>
                 <% foreach (var item in Model.SitePhotoes)
                    { %>
+                <br />
+                <input type="text" value='<%: item.Note %>' id='photoNote<%: item.ID %>' />
+                <input type="button" value="Save Note" onclick="UpdateSitePhotoNote('<%= Url.Content("~/SitePhoto/EditNote") %>','<%= item.ID %>',$('#photoNote<%: item.ID %>').val())" />
                 <input type="button" value="Delete this image" onclick="deleteSitePhoto(this,'<%= item.ID %>')" />
                 <br />
                 <img src='<%= item.Url %>' alt="" width="500" id='photo<%: item.ID %>' />
@@ -670,7 +673,7 @@
                 <div id="divMoreFile">
                 </div>
                 <br />
-                <input type="button" value="Add more" onclick="addMoreFileInput()" />
+                <input type="button" value="Add more" onclick="addMoreFileInput('divMoreFile','files','noteList')" />
             </td>
         </tr>
     </table>

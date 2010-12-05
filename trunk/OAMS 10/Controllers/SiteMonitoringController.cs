@@ -41,9 +41,9 @@ namespace OAMS.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(int? contractDetailID, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Create(int? contractDetailID, IEnumerable<HttpPostedFileBase> files, string[] noteList)
         {
-            repo.Create(UpdateModel, files, contractDetailID);
+            //repo.Create(UpdateModel, files, contractDetailID);
 
             ContractDetailRepository contractDetailRepository = new ContractDetailRepository();
 
@@ -68,9 +68,9 @@ namespace OAMS.Controllers
         // POST: /Site/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList, SiteMonitoring siteMonitoring, IEnumerable<HttpPostedFileBase> filesOfFixed)
+        public ActionResult Edit(int id, FormCollection collection, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList, SiteMonitoring siteMonitoring, IEnumerable<HttpPostedFileBase> filesOfFixed, string[] noteList, string[] noteOfFixedList)
         {
-            SiteMonitoring e = repo.Update(id, UpdateModel, files, DeletePhotoList, filesOfFixed);
+            SiteMonitoring e = repo.Update(id, UpdateModel, files, DeletePhotoList, filesOfFixed, noteList, noteOfFixedList);
             return RedirectToAction("Edit", "Contract", new { id = e.ContractDetail.ContractID });
         }
 

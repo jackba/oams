@@ -47,9 +47,9 @@ namespace OAMS.Controllers
 
         [HttpPost]
         //public ActionResult Create(IEnumerable<HttpPostedFileBase> files)
-        public ActionResult Create(int? contractID, IEnumerable<HttpPostedFileBase> files, bool? IsFirstSave)
+        public ActionResult Create(int? contractID, IEnumerable<HttpPostedFileBase> files, string[] noteList, bool? IsFirstSave)
         {
-            var site = repo.Add(UpdateModel, files);
+            var site = repo.Add(UpdateModel, files, noteList);
 
             if (IsFirstSave.HasValue && IsFirstSave.Value)
             {
@@ -76,10 +76,10 @@ namespace OAMS.Controllers
         // POST: /Site/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList)
+        public ActionResult Edit(int id, FormCollection collection, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList, string[] noteList)
         {
             // TODO: Add update logic here
-            repo.Update(id, UpdateModel, files, DeletePhotoList);
+            repo.Update(id, UpdateModel, files, DeletePhotoList, noteList);
 
             //return View(e);
             return RedirectToAction("Index");

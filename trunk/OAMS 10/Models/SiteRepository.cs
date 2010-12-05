@@ -18,30 +18,30 @@ namespace OAMS.Models
 
         }
 
-        public Site Add(Action<Site> updateMethod, IEnumerable<HttpPostedFileBase> files)
+        public Site Add(Action<Site> updateMethod, IEnumerable<HttpPostedFileBase> files, string[] noteList)
         {
             Site e = new Site();
             updateMethod(e);
-            
+
             UpdateFrontBackLit(e);
             UpdateGeo(e);
             //UpdateCategory(e);
 
             DB.Sites.AddObject(e);
-            
+
             Save();
 
             PicasaRepository picasaRepository = new PicasaRepository();
             picasaRepository.DB = DB;
 
-            picasaRepository.UploadPhoto(e, files);
+            picasaRepository.UploadPhoto(e, files, noteList);
 
             Save();
 
             return e;
         }
 
-        public void Update(int ID, Action<Site> updateMethod, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList)
+        public void Update(int ID, Action<Site> updateMethod, IEnumerable<HttpPostedFileBase> files, List<int> DeletePhotoList, string[] noteList)
         {
             Site e = Get(ID);
 
@@ -58,7 +58,7 @@ namespace OAMS.Models
             PicasaRepository picasaRepository = new PicasaRepository();
             picasaRepository.DB = DB;
 
-            picasaRepository.UploadPhoto(e, files);
+            picasaRepository.UploadPhoto(e, files, noteList);
 
             DeletePhoto(DeletePhotoList);
 
@@ -67,7 +67,7 @@ namespace OAMS.Models
 
         public void UpdateContractor(Site e)
         {
- 
+
         }
 
         public void UpdateGeo(Site e)
@@ -76,7 +76,7 @@ namespace OAMS.Models
             geoRepository.Set3LevelByFullname(e.NewGeoFullName, e.UpdateGeo);
         }
 
-        
+
 
         public void UpdateFrontBackLit(Site e)
         {
@@ -145,7 +145,7 @@ namespace OAMS.Models
             Site s = Get(ID);
 
             List<SitePhoto> l = s.SitePhotoes.ToList();
-            
+
             foreach (var item in l)
             {
                 DB.SitePhotoes.DeleteObject(item);
@@ -203,7 +203,7 @@ namespace OAMS.Models
             //    }
 
             //    item.Client = e;
-                
+
             //    //To eleminated duplicated client
             //    Save();
             //}
