@@ -69,6 +69,8 @@ namespace OAMS.Models
             Save();
         }
 
+
+
         //public void UpdateCategory(ContractDetail e)
         //{
         //    CategoryRepository catRepository = new CategoryRepository();

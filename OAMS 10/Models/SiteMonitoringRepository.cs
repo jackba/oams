@@ -168,5 +168,22 @@ namespace OAMS.Models
 
             return result;
         }
+
+        public SiteMonitoring Find(ContractDetail contractDetail, DateTime? from, DateTime? to)
+        {
+            SiteMonitoring sm = null;
+
+            List<SiteMonitoring> lst = contractDetail.SiteMonitorings.Where(
+                r =>
+                r.ContractDetail.ContractDetailTimelines.Where(rr => rr.Order == r.Order).ToList().Count > 0 && r.ContractDetail.ContractDetailTimelines.Where(rr => rr.Order == r.Order).ToList()[0].IsIn(from, to)
+            ).ToList();// OrderByDescending(item => item.Order).First();
+
+            if (lst.Count > 0)
+            {
+                sm = lst.OrderByDescending(item => item.Order).First();
+            }
+
+            return sm;
+        }
     }
 }

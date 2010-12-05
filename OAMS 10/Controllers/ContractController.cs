@@ -123,6 +123,12 @@ namespace OAMS.Controllers
             return View(repo.Report(id, dFrom, dTo));
         }
 
+        public ActionResult ViewReportDetail(int id, DateTime? dFrom, DateTime? dTo)
+        {
+            //return View(repo.ReportDetails(id, dFrom, dTo).Take(3).ToList());
+            return View(repo.ReportDetails(id, dFrom, dTo));
+        }
+
         [HttpPost]
         public JsonResult OverwriteTimelineForDetail(int id)
         {
