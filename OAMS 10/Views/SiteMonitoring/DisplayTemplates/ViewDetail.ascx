@@ -139,7 +139,7 @@
                                         { 
                                     %>
                                     <td valign="top">
-                                        <img src='<%= item.Url %>' alt="" width="300" height="225" />
+                                        <img src='<%= item.Url.ToUrlPicasaPhotoResize() %>' alt="" width="300" height="225" />
                                     </td>
                                 </tr>
                                 <%
@@ -150,7 +150,7 @@
                                 %>
                                 <tr>
                                     <td valign="top">
-                                        <img src='<%= item.Url %>' alt="" width="300" height="225" />
+                                        <img src='<%= item.Url.ToUrlPicasaPhotoResize() %>' alt="" width="300" height="225" />
                                     </td>
                                     <% 
 hasCloseTr = false;
