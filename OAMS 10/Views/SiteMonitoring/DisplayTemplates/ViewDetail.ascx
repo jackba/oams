@@ -229,7 +229,7 @@ hasCloseTr = false;
                             Latest Site Inspection:
                         </td>
                         <td>
-                            <%: Model.LastUpdatedDate.ToStringVN() %>
+                            <%: Model.LastUpdatedDate %>
                         </td>
                     </tr>
                     <tr>
@@ -249,7 +249,7 @@ hasCloseTr = false;
                                 if (lastDate != null)
                                 { 
                             %>
-                            <%: lastDate.ToStringVN()%>
+                            <%: lastDate.ToShortDateString() %>
                             <%
 }
                             %>
@@ -275,7 +275,7 @@ hasCloseTr = false;
                             Working:
                         </td>
                         <td>
-                            <%: (Model.Working != null && (bool)Model.Working)?"Yes":"No" %>
+                            <%: Model.Working.ToCustomeString() %>
                         </td>
                     </tr>
                     <tr>
@@ -314,7 +314,7 @@ hasCloseTr = false;
                             Clean:
                         </td>
                         <td>
-                            <%: (Model.Clean != null && (bool)Model.Clean)?"Yes":"No"%>
+                            <%: Model.Clean.ToCustomeString() %>
                         </td>
                     </tr>
                     <tr>
@@ -322,7 +322,7 @@ hasCloseTr = false;
                             Creative Good Condition:
                         </td>
                         <td>
-                            <%: (Model.CreativeGoodConditon != null && (bool)Model.CreativeGoodConditon)?"Yes":"No"%>
+                            <%: Model.CreativeGoodConditon.ToCustomeString() %>
                         </td>
                     </tr>
                     <tr>
@@ -330,7 +330,7 @@ hasCloseTr = false;
                             External Interference:
                         </td>
                         <td>
-                            <%: (Model.ExternalInterference != null && (bool)Model.ExternalInterference)?"Yes":"No"%>
+                            <%: Model.ExternalInterference.ToCustomeString() %>
                         </td>
                     </tr>
                     <tr>
@@ -338,7 +338,7 @@ hasCloseTr = false;
                             Vandalism:
                         </td>
                         <td>
-                            <%: (Model.Vandalism != null && (bool)Model.Vandalism)?"Yes":"No"%>
+                            <%: Model.Vandalism.ToCustomeString() %>
                         </td>
                     </tr>
                     <tr>
@@ -361,7 +361,7 @@ hasCloseTr = false;
                             Required:
                         </td>
                         <td>
-                            <%: (Model.RequiredFollowUp != null && (bool)Model.RequiredFollowUp)?"Yes":"No"%>
+                            <%: Model.RequiredFollowUp.ToCustomeString() %>
                         </td>
                     </tr>
                     <tr>
@@ -377,7 +377,7 @@ hasCloseTr = false;
                             Date of problem:
                         </td>
                         <td>
-                            <%: Model.DateOfProblem.ToStringVN()%>
+                            <%: Model.DateOfProblem.ToShortDateString() %>
                         </td>
                     </tr>
                     <tr>
@@ -385,7 +385,7 @@ hasCloseTr = false;
                             Now fixed:
                         </td>
                         <td>
-                            <%: (Model.NowFixed!=null && (bool)Model.NowFixed)?"Yes":"No"%>
+                            <%: Model.NowFixed.ToCustomeString() %>
                         </td>
                     </tr>
                     <tr>
@@ -393,7 +393,7 @@ hasCloseTr = false;
                             Date fixed:
                         </td>
                         <td>
-                            <%: Model.DateFixed.ToStringVN()%>
+                            <%: Model.DateFixed.ToShortDateString() %>
                         </td>
                     </tr>
                 </table>
