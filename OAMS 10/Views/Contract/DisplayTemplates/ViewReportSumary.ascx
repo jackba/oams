@@ -204,6 +204,7 @@
                             <%: cd.Size%>
                         </td>
                         <td>
+                            <%: cd.Client%>
                         </td>
                         <td>
                             <%: cd.Product%>

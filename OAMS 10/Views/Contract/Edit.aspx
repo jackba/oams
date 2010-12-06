@@ -13,47 +13,43 @@
     </script>
     <h2>
         Edit</h2>
-    View report sumary from
-    <div class="editor-field">
-        <input class="text-box single-line" id="dFrom" name="dFrom" type="text" value="<%: DateTime.Now.ToShortDateString() %>" />
+    <fieldset>
+        <legend>View report summary</legend>
+        <div id="divSummary">
+            from
+            <input class="text-box single-line" id="dFrom" name="dFrom" type="text" value="<%: DateTime.Now.ToShortDateString() %>" />
+            <script type="text/javascript">
+                $(function () {
+                    $("#dFrom").datepicker({ showAnim: '' });
+                });
+            </script>
+            to
+            <input class="text-box single-line" id="dTo" name="dTo" type="text" value="<%: DateTime.Now.ToShortDateString() %>" />
+            <script type="text/javascript">
+                $(function () {
+                    $("#dTo").datepicker({ showAnim: '' });
+                });
+            </script>
+            of
+            <button id="btnView" onclick="btnView_Click()">
+                View</button>
+            |
+            <button id="btnViewDetail" onclick="btnViewDetail_Click()">
+                View detail</button>
+        </div>
+        <% string urlRptSum = Url.Action("ViewReport", "Contract", new { id = Model.ID });
+           string urlRptDetail = Url.Action("ViewReportDetail", "Contract", new { id = Model.ID });%>
         <script type="text/javascript">
-            $(function () {
-                $("#dFrom").datepicker({ showAnim: '' });
-            });
+            function btnView_Click() {
+                var url = '<%: urlRptSum %>' + "?" + $('#divSummary input').serialize();
+                window.open(url);
+            }
+            function btnViewDetail_Click() {
+                var url = '<%: urlRptDetail %>' + "?" + $('#divSummary input').serialize();
+                window.open(url);
+            }
         </script>
-    </div>
-    to
-    <div class="editor-field">
-        <input class="text-box single-line" id="dTo" name="dTo" type="text" value="<%: DateTime.Now.ToShortDateString() %>" />
-        <script type="text/javascript">
-            $(function () {
-                $("#dTo").datepicker({ showAnim: '' });
-            });
-        </script>
-    </div>
-    <button id="btnView" onclick="btnView_Click()">
-        View</button>
-    |
-    <button id="btnViewDetail" onclick="btnViewDetail_Click()">
-        View detail</button>
-    <%
-        RouteValueDictionary dic = new RouteValueDictionary();
-        dic.Add("ID", Model.ID);
-        dic.Add("dFrom", "~~~");
-        dic.Add("dTo", "!!!");
-    %>
-    <script type="text/javascript">
-        function btnView_Click() {
-            url = '<%: Url.Action("ViewReport", "Contract", dic)%>';
-            url = url.replace("~~~", $("#dFrom").val()).replace("!!!", $("#dTo").val()).replace("amp;", "");
-            window.open(url);
-        }
-        function btnViewDetail_Click() {
-            url = '<%: Url.Action("ViewReportDetail", "Contract", dic)%>';
-            url = url.replace("~~~", $("#dFrom").val()).replace("!!!", $("#dTo").val()).replace("amp;", "");
-            window.open(url);
-        }
-    </script>
+    </fieldset>
     <% using (Html.BeginForm())
        {%>
     <%: Html.ValidationSummary(true) %>

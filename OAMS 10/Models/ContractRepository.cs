@@ -91,7 +91,7 @@ namespace OAMS.Models
             {
                 int index = 1;
 
-                foreach (OAMS.Models.ContractDetail cd in contract.ContractDetails)
+                foreach (OAMS.Models.ContractDetail cd in contract.ContractDetails.OrderBy(r => r.Site.Type))
                 {
                     Rpt01_Model_SiteMonitoringDetail detail = new Rpt01_Model_SiteMonitoringDetail();
 
@@ -110,9 +110,10 @@ namespace OAMS.Models
                     detail.Supplier = cd.Site.ContractorName;
                     detail.Province = cd.Site.Geo1 != null ? cd.Site.Geo1.FullName : "";
                     detail.District = cd.Site.Geo2 != null ? cd.Site.Geo2.Name : "";
-                    detail.Street = cd.Site.Geo3 != null ? cd.Site.AddressLine1 + " " + cd.Site.AddressLine2 + " " + cd.Site.Geo3.Name : "";
+                    detail.Street = string.Format("{0} {1} {2}", cd.Site.AddressLine1, cd.Site.AddressLine2, cd.Site.Geo3 == null ? "" : cd.Site.Geo3.Name);
                     detail.Size = string.Format("{0}m x {1}m", cd.Site.Width.ToString(), cd.Site.Height.ToString());
-                    detail.Product = cd.Product == null ? "" : cd.Product.Name;
+                    detail.Product = sm.Product == null ? "" : sm.Product.Name;
+                    detail.Client = sm.Product == null ? "" : sm.Product.NewClientName;
                     detail.SiteType = cd.Site.Type;
                     detail.SiteFormat = cd.Format;
                     detail.LastestPhotoDate = lastDate;
@@ -156,7 +157,7 @@ namespace OAMS.Models
             var contract = Get(contractID);
             if (contract != null)
             {
-                foreach (OAMS.Models.ContractDetail cd in contract.ContractDetails)
+                foreach (OAMS.Models.ContractDetail cd in contract.ContractDetails.OrderBy(r => r.Site.Type))
                 {
                     SiteMonitoring sm = siteMonitoringRepository.Find(cd, from, to);
 
