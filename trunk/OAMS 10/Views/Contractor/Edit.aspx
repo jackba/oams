@@ -9,6 +9,7 @@
     <% using (Html.BeginForm())
        {%>
     <%: Html.ValidationSummary(true) %>
+<div style="float:left;width:25%;margin-right:10px;">
     <fieldset>
         <legend>Fields</legend>
         <%: Html.HiddenFor(model => model.ID) %>
@@ -83,4 +84,10 @@
         }
 
     </script>
+</div>
+<div style="float:left;width:73%;">
+    <br />
+    <div style="clear:both;"><b>Contractor Contacts:</b></div>
+    <% Html.RenderPartial("ManageContractorContact", Model); %>
+</div>
 </asp:Content>
