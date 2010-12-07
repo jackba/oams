@@ -21,6 +21,18 @@ namespace OAMS.Models
         //        ).SingleOrDefault();
         //}
 
+        public static string HCMC_Name
+        {
+            get
+            {
+                OAMS.Models.GeoRepository geoRepository = new OAMS.Models.GeoRepository();
+                var hcmc = geoRepository.Get(OAMSSetting.HCMC_ID);
+                string name = hcmc == null ? "" : hcmc.Name;
+
+                return name;
+            }
+        }
+
         public Geo GetByFullname(string fullname)
         {
             return (from e in DB.Geos
@@ -70,24 +82,47 @@ namespace OAMS.Models
         //    return geo;
         //}
 
-        public Geo Add(Geo e)
+        public Geo Add(Action<Geo> updateMethod)
         {
+            Geo e = new Geo();
+
             e.ID = Guid.NewGuid();
+            updateMethod(e);
 
             DB.Geos.AddObject(e);
 
             e.Level = e.Parent == null ? 1 : e.Parent.Level + 1;
-            //SetFullname(e);
-            //e.FullNameNoDiacritics = e.FullName.RemoveDiacritics();
-            UpdateFullname(e);
+            
+            UpdateFullnameRecursive(e);
+
+            Save();
 
             return e;
         }
 
-        public void UpdateFullname(Geo e)
+        public Geo Update(Guid ID, Action<Geo> updateMethod)
+        {
+            var v = Get(ID);
+
+            updateMethod(v);
+
+            UpdateFullnameRecursive(v);
+
+            Save();
+
+            return v;
+        }
+
+
+        public void UpdateFullnameRecursive(Geo e)
         {
             SetFullname(e);
             e.FullNameNoDiacritics = e.FullName.RemoveDiacritics();
+
+            foreach (var item in e.Children)
+            {
+                UpdateFullnameRecursive(item);
+            }
         }
 
         public void Delete(Geo e)

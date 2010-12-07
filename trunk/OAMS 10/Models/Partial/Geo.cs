@@ -7,4 +7,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OAMS.Models
 {
+    public partial class Geo
+    {
+        
+    }
 }
