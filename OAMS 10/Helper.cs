@@ -68,6 +68,14 @@ namespace OAMS
             }
         }
 
+        public static Guid HCMC_ID
+        {
+            get
+            {
+                return Guid.Parse(ConfigurationManager.AppSettings["HCMC_ID"]);
+            }
+        }
+
 
     }
 

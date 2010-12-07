@@ -8,19 +8,17 @@ using OAMS.Models;
 namespace OAMS.Controllers
 {
     [CustomAuthorize]
-    public class GeoController : Controller
+    public class GeoController : BaseController<GeoRepository>
     {
-        GeoRepository repo = new GeoRepository();
-
         public ActionResult Index(Guid? parentID = null)
         {
-            var v = repo.GetByParentID(parentID).ToList();
+            var v = Repo.GetByParentID(parentID).ToList();
             return View(v);
         }
 
         public ActionResult IndexParent(Guid? parentID = null)
         {
-            var v = repo.Get(parentID);
+            var v = Repo.Get(parentID);
             if (v == null || v.Parent == null)
             {
                 return RedirectToAction("Index");
@@ -51,25 +49,19 @@ namespace OAMS.Controllers
         // POST: /Geo/Create
 
         [HttpPost]
-        public ActionResult Create(Guid? parentID, FormCollection collection)
+        public ActionResult Create(Guid? parentID, string name)
         {
-            // TODO: Add insert logic here
-            Geo e = new Geo();
-
-            UpdateModel(e);
-
-            repo.Add(e);
-
-            repo.Save();
+            var e = Repo.Add(UpdateModel);
 
             return RedirectToAction("Index", new { parentID = e.ParentID });
         }
 
         //
         // GET: /Geo/Edit/5
+        [HttpGet]
         public ActionResult Edit(Guid ID)
         {
-            var v = repo.Get(ID);
+            var v = Repo.Get(ID);
             return View(v);
         }
 
@@ -77,17 +69,9 @@ namespace OAMS.Controllers
         // POST: /Geo/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(Guid id, FormCollection collection)
+        public ActionResult Edit(Guid id, string name)
         {
-            var v = repo.Get(id);
-
-            UpdateModel(v);
-
-            repo.UpdateFullname(v);
-
-            repo.Save();
-
-            // TODO: Add update logic here
+            var v = Repo.Update(id, UpdateModel);
 
             return RedirectToAction("Index", new { parentID = v.ParentID });
         }
@@ -97,15 +81,15 @@ namespace OAMS.Controllers
 
         public ActionResult Delete(Guid id)
         {
-            Geo e = repo.Get(id);
+            Geo e = Repo.Get(id);
 
             Guid? parentID = e.ParentID;
-            
-            repo.Delete(e);
 
-            repo.Save();
+            Repo.Delete(e);
 
-            
+            Repo.Save();
+
+
             return RedirectToAction("Index", new { parentID = parentID });
         }
 

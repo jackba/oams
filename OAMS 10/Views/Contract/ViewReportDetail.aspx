@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/SiteFull.Master" Inherits="System.Web.Mvc.ViewPage<List<OAMS.Models.SiteMonitoring>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/SiteRpt.Master" Inherits="System.Web.Mvc.ViewPage<List<OAMS.Models.SiteMonitoring>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 </asp:Content>

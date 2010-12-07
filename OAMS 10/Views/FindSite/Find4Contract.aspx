@@ -401,11 +401,10 @@
     </table>
     <% } %>
     <script type="text/javascript">
-        //showGeo2('Hồ Chí Minh City', false, 'dis. 1, Hồ Chí Minh City');
 
-        
-        $('#Geo1FullName').val('Hồ Chí Minh City');
-        showGeo2('Hồ Chí Minh City');
+        $('#Geo1FullName').val('<%= OAMS.Models.GeoRepository.HCMC_Name %>');
+        showGeo2('<%= OAMS.Models.GeoRepository.HCMC_Name %>');
+
         //$('#Geo2List1').setAttribute('checked', 'checked');
 
 
