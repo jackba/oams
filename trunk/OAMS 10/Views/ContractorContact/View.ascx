@@ -1,12 +1,12 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<OAMS.Models.ContractorContact>" %>
 <div id='<%= "divContractorContact_" + Model.ID.ToString() %>' style="float:left;">
-    <div style="width:120px;float:left;border:1px solid #000000;margin-right:2px;padding:2px;">
+    <div style="width:120px;float:left;border:1px solid #000000;margin-right:2px;padding:2px;word-wrap:break-word;">
         <%: Model.Tittle!=null?Model.Tittle:"_"%>
     </div>
-    <div style="width:200px;float:left;border:1px solid #000000;margin-right:2px;padding:2px;">
+    <div style="width:200px;float:left;border:1px solid #000000;margin-right:2px;padding:2px;word-wrap:break-word;">
         <%: Model.Name!=null?Model.Name:"_"%>
     </div>
-    <div style="width:150px;float:left;border:1px solid #000000;margin-right:2px;padding:2px;">
+    <div style="width:150px;float:left;border:1px solid #000000;margin-right:2px;padding:2px;word-wrap:break-word;">
         <%: Model.Note!=null?Model.Note:"_"%>
     </div>
     <div style="width:150px;float:left;border:1px solid #000000;margin-right:2px;padding:2px;">
