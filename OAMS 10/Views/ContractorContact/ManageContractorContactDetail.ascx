@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<OAMS.Models.ContractorContact>" %>
-<div id="divManageContractorContactDetail">
-    <div id="divManageContractorContactDetailList">
+<div id='<%= "divManageContractorContactDetail" + Model.ID.ToString()%>'>
+    <div id='<%= "divManageContractorContactDetailList" + Model.ID.ToString()%>'>
         <div style="float:left;">
             <div style="width:120px;float:left;border:1px solid #000000;margin-right:2px;padding:2px;">
                 <b>Contact Type</b>

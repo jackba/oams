@@ -5,7 +5,7 @@
             url: '<%= Url.Content("~/ContractorContactDetail/Add") %>', type: "GET",
             data: { contractorContactID: contractorContactID },
             success: function (data) {
-                $("#divManageContractorContactDetailList").append(data);
+                $("#divManageContractorContactDetailList" + contractorContactID).append(data);
             }
         });
     }
