@@ -71,7 +71,20 @@ function AjaxDelete(ID, divID, editUrl) {
     }
 }
 
+function AjaxDelete2(ID, divID, editUrl, divID2) {
+    if (confirm('Delete?')) {
+        $.ajax({
+            url: editUrl, type: "POST",
+            data: { id: ID },
+            success: function (data) {
+                //$('#' + divID).empty().append(data);
+                $('#' + divID).remove();
+                $('#' + divID2).remove();
+            }
 
+        })
+    }
+}
 
 //Begin Preview image on client drive
 /***** CUSTOMIZE THESE VARIABLES *****/
