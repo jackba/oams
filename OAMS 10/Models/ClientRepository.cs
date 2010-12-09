@@ -48,22 +48,36 @@ namespace OAMS.Models
             else
             {
                 var sL = DB.Products.Where(r => r.ClientID == replaceID);
-                IQueryable<Contract> cL = DB.Contracts.Where(r => r.ClientID == replaceID);
-                IQueryable<Campaign> caL = DB.Campaigns.Where(r => r.ClientID == replaceID);
                 foreach (var item in sL)
                 {
                     item.ClientID = id;
                 }
+
+                var cL = DB.Contracts.Where(r => r.ClientID == replaceID);
                 foreach (var item in cL)
                 {
                     item.ClientID = id;
                 }
+                
+                var caL = DB.Campaigns.Where(r => r.ClientID == replaceID);
                 foreach (var item in caL)
                 {
                     item.ClientID = id;
                 }
 
                 Save();
+                
+                var contactL = replaceClient.ClientContacts.ToList();
+                foreach (var item in contactL)
+                {
+                    var contactDetailL = item.ClientContactDetails.ToList();
+                    foreach (var itemDetail in contactDetailL)
+                    {
+                        DB.ClientContactDetails.DeleteObject(itemDetail);
+                    }
+                    DB.ClientContacts.DeleteObject(item);
+                }
+
                 DB.Clients.DeleteObject(replaceClient);
                 Save();
 

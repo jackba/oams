@@ -107,7 +107,7 @@ namespace OAMS.Models
 
                     detail.ID = index;
                     detail.SiteCode = cd.Site.Code;
-                    detail.Supplier = cd.Site.ContractorName;
+                    detail.Supplier = contract.Contractor != null ? contract.ContractorName : cd.Site.ContractorName;
                     detail.Province = cd.Site.Geo1 != null ? cd.Site.Geo1.FullName : "";
                     detail.District = cd.Site.Geo2 != null ? cd.Site.Geo2.Name : "";
                     detail.Street = string.Format("{0} {1} {2}", cd.Site.AddressLine1, cd.Site.AddressLine2, cd.Site.Geo3 == null ? "" : cd.Site.Geo3.Name);

@@ -24,7 +24,7 @@ namespace OAMS.Models
         public List<int?> ControllerActionIDList { get; set; }
     }
 
-    
+
 
     [PropertiesMustMatch("NewPassword", "ConfirmPassword", ErrorMessage = "The new password and confirmation password do not match.")]
     public class ChangePasswordModel
@@ -342,23 +342,18 @@ namespace OAMS.Models
 
             if (httpContext.User.Identity.IsAuthenticated)
             {
-                if (!AuthorizedRoles.Contains(ProjectRoles.Admin))
-                {
-                    AuthorizedRoles = AuthorizedRoles.Add(ProjectRoles.Admin);
-                }
+                //if (!AuthorizedRoles.Contains(ProjectRoles.Admin))
+                //{
+                //    AuthorizedRoles = AuthorizedRoles.Add(ProjectRoles.Admin);
+                //}
 
-                //Bypass role check if user is Admin, prevents having to add Admin role across the whole project.
-                if (httpContext.User.IsInRole(ProjectRoles.Admin)
-                    || AuthorizedUsers.Contains(httpContext.User.Identity.Name)
+                if (
+                    //httpContext.User.IsInRole(ProjectRoles.Admin) || 
+                    AuthorizedUsers.Contains(httpContext.User.Identity.Name)
                     || AuthorizedRoles.Any(httpContext.User.IsInRole))
                 {
                     r = true;
                 }
-                //If no roles are supplied to the attribute just check that the user is logged in.
-                //if (AuthorizedRoles.Length == 0)
-                //    return false;
-
-                //Check to see if any of the authorized roles fits into any assigned roles only if roles have been supplied.
             }
 
             return r;
