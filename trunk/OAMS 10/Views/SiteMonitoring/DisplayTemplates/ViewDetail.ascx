@@ -26,7 +26,7 @@
                                     Supplier:
                                 </td>
                                 <td>
-                                    <%: Model.ContractDetail.Contract.ContractorName%>
+                                    <%: Model.ContractDetail.Contract != null ? Model.ContractDetail.Contract.ContractorName : Model.Site.ContractorName %>
                                 </td>
                             </tr>
                             <tr>

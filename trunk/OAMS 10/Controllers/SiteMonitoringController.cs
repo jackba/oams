@@ -43,7 +43,7 @@ namespace OAMS.Controllers
         [HttpPost]
         public ActionResult Create(int? contractDetailID, IEnumerable<HttpPostedFileBase> files, string[] noteList)
         {
-            //repo.Create(UpdateModel, files, contractDetailID);
+            repo.Create(UpdateModel, files, contractDetailID, noteList);
 
             ContractDetailRepository contractDetailRepository = new ContractDetailRepository();
 

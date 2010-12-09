@@ -48,17 +48,30 @@ namespace OAMS.Models
             else
             {
                 IQueryable<Site> sL = DB.Sites.Where(r => r.ContractorID == replaceID);
-                IQueryable<Contract> cL = DB.Contracts.Where(r => r.ContractorID == replaceID);
                 foreach (var item in sL)
                 {
-                    item.ContractorID = id;                    
+                    item.ContractorID = id;
                 }
+
+                IQueryable<Contract> cL = DB.Contracts.Where(r => r.ContractorID == replaceID);
                 foreach (var item in cL)
                 {
                     item.ContractorID = id;
                 }
 
                 Save();
+
+                var contactL = replaceContractor.ContractorContacts.ToList();
+                foreach (var item in contactL)
+                {
+                    var contactDetailL = item.ContractorContactDetails.ToList();
+                    foreach (var itemDetail in contactDetailL)
+                    {
+                        DB.ContractorContactDetails.DeleteObject(itemDetail);                        
+                    }
+                    DB.ContractorContacts.DeleteObject(item);
+                }
+
                 DB.Contractors.DeleteObject(replaceContractor);
                 Save();
 

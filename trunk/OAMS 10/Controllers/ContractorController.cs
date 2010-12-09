@@ -93,16 +93,15 @@ namespace OAMS.Controllers
         }
 
         [HttpPost]
-        public JsonResult Replace(int id,int replaceID)
+        public JsonResult Replace(int id, int replaceID)
         {
             bool r = repo.Replace(id, replaceID);
             string str = "";
-            if(r)
+            if (r)
                 str = "Replace Done.";
             else
                 str = "Replace Fail.";
             return Json(str);
         }
-
     }
 }
