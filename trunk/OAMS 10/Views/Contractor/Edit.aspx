@@ -9,16 +9,30 @@
     <% using (Html.BeginForm())
        {%>
     <%: Html.ValidationSummary(true) %>
-<div style="float:left;width:25%;margin-right:10px;">
-    <fieldset>
-        <legend>Fields</legend>
-        <%: Html.HiddenFor(model => model.ID) %>
-        <div class="editor-label">
+    <div style="float: left; width: 25%; margin-right: 10px;">
+        <fieldset>
+            <legend>Fields</legend>
+            <%: Html.HiddenFor(model => model.ID) %>
+            <div class="editor-label">
             <%: Html.LabelFor(model => model.Name) %>
         </div>
         <div class="editor-field">
             <%: Html.TextBoxFor(model => model.Name) %>
             <%: Html.ValidationMessageFor(model => model.Name) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Fullname_En) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.Fullname_En)%>
+            <%: Html.ValidationMessageFor(model => model.Fullname_En)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Fullname_Vi) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.Fullname_Vi)%>
+            <%: Html.ValidationMessageFor(model => model.Fullname_Vi)%>
         </div>
         <div class="editor-label">
             <%: Html.LabelFor(model => model.Address) %>
@@ -27,67 +41,68 @@
             <%: Html.TextBoxFor(model => model.Address) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Telephone) %>
+            <%: Html.LabelFor(model => model.Phone) %>
         </div>
         <div class="editor-field">
-            <%: Html.TextBoxFor(model => model.Telephone) %>
+            <%: Html.TextBoxFor(model => model.Phone) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.ContactName) %>
+            <%: Html.LabelFor(model => model.Fax) %>
         </div>
         <div class="editor-field">
-            <%: Html.TextBoxFor(model => model.ContactName) %>
+            <%: Html.TextBoxFor(model => model.Fax) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.ContactPhone) %>
+            <%: Html.LabelFor(model => model.Email) %>
         </div>
         <div class="editor-field">
-            <%: Html.TextBoxFor(model => model.ContactPhone) %>
+            <%: Html.TextBoxFor(model => model.Email) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.ContactEmail) %>
+            <%: Html.LabelFor(model => model.Note) %>
         </div>
         <div class="editor-field">
-            <%: Html.TextBoxFor(model => model.ContactEmail) %>
+            <%: Html.TextBoxFor(model => model.Note) %>
         </div>
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-    <% } %>
-    <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+        <% } %>
+        <div>
+            <%: Html.ActionLink("Back to List", "Index") %>
+        </div>
+        <br />
+        <div>
+            Replace:
+            <%: Html.EditorFor(model => model.ReplaceFor, "AutoCompleteContractor")%>
+            <%--<%: Html.ActionLink("Replace", "Replace")%>--%>
+            <input type="button" id="btnReplace" value="Replace" onclick="replace();" />
+            <input id="ContractorID" name="ContractorID" style="visibility: collapse;" type="text"
+                value="" />
+        </div>
+        <script type="text/javascript">
+
+            function replace() {
+
+                var id = $("#ID").val();
+                var replaceID = $("#ContractorID").val();
+
+                $.ajax({
+                    url: '<%= Url.Content("~/Contractor/Replace") %>', type: "POST", dataType: "json",
+                    data: { "id": id, "replaceID": replaceID },
+                    success: function (data) {
+                        alert(data);
+                    }
+                });
+            }
+
+        </script>
     </div>
-    <br />
-    <div>
-        Replace:
-        <%: Html.EditorFor(model => model.ReplaceFor, "AutoCompleteContractor")%>
-        <%--<%: Html.ActionLink("Replace", "Replace")%>--%>
-        <input type="button" id="btnReplace" value="Replace" onclick="replace();" />
-        <input id="ContractorID" name="ContractorID" style="visibility: collapse;" type="text"
-            value="" />
+    <div style="float: left; width: 73%;">
+        <br />
+        <div style="clear: both;">
+            <b>Contractor Contacts:</b></div>
+        <% Html.RenderPartial("ManageContractorContact", Model); %>
     </div>
-    <script type="text/javascript">
-
-        function replace() {
-
-            var id = $("#ID").val();
-            var replaceID = $("#ContractorID").val();
-
-            $.ajax({
-                url: '<%= Url.Content("~/Contractor/Replace") %>', type: "POST", dataType: "json",
-                data: { "id": id, "replaceID": replaceID },
-                success: function (data) {
-                    alert(data);
-                }
-            });
-        }
-
-    </script>
-</div>
-<div style="float:left;width:73%;">
-    <br />
-    <div style="clear:both;"><b>Contractor Contacts:</b></div>
-    <% Html.RenderPartial("ManageContractorContact", Model); %>
-</div>
 </asp:Content>

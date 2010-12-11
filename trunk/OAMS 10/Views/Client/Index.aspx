@@ -17,10 +17,25 @@
                     <th>
                     </th>
                     <th>
-                        ID
+                        Name
                     </th>
                     <th>
-                        Name
+                        Fullname En
+                    </th>
+                    <th>
+                        Fullname Vi
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Phone
+                    </th>
+                    <th>
+                        Fax
+                    </th>
+                    <th>
+                        Email
                     </th>
                     <th>
                         Note
@@ -33,14 +48,29 @@
                 <tr>
                     <td>
                         <%: Html.ActionLink("Edit", "Edit", new { id=item.ID }) %>
-                        |
-                        <%: Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { onclick="return confirm('Delete?');" })%>
-                    </td>
-                    <td>
-                        <%: item.ID %>
+                        <%--|--%>
+                        <%--<%: Html.ActionLink("Delete", "Delete", new { id=item.ID })%>--%>
                     </td>
                     <td>
                         <%: item.Name %>
+                    </td>
+                    <td>
+                        <%: item.Fullname_En %>
+                    </td>
+                    <td>
+                        <%: item.Fullname_Vi %>
+                    </td>
+                    <td>
+                        <%: item.Address %>
+                    </td>
+                    <td>
+                        <%: item.Phone %>
+                    </td>
+                    <td>
+                        <%: item.Fax %>
+                    </td>
+                    <td>
+                        <%: item.Email %>
                     </td>
                     <td>
                         <%: item.Note %>
@@ -50,6 +80,16 @@
             </tbody>
             <tfoot>
                 <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
                     <th>
                     </th>
                     <th>

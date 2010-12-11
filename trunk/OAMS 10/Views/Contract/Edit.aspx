@@ -7,7 +7,7 @@
     <script type="text/javascript" language="javascript">
         var oTable;
         $(document).ready(function () {
-            oTable = $('#tblResult').dataTable({ "aaSorting": [[1, "desc"]] });
+            oTable = $('#tblResult').dataTable({ "aaSorting": [[0, "desc"]] });
             ShowHideCols();
         });
     </script>
@@ -228,6 +228,9 @@
                             <thead>
                                 <tr>
                                     <th>
+                                        ID
+                                    </th>
+                                    <th>
                                     </th>
                                     <th>
                                         Monitoring
@@ -277,9 +280,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <% foreach (var item in Model.ContractDetails)
-                                   { %>
+                                <% 
+                                    foreach (var item in Model.ContractDetails)
+                                    { %>
                                 <tr>
+                                    <td>
+                                        <%:item.ID %>
+                                    </td>
                                     <td>
                                         <%: Html.ActionLink("Edit", "Edit", "ContractDetail", new { id=item.ID }, null) %>
                                         <br />
@@ -290,20 +297,30 @@
                                         <div style='float: left;'>
                                             <%: Html.ActionLink("New", "Create", "SiteMonitoring",  new { ContractDetailID=item.ID },null) %>
                                             <% 
-                                                int i = 0;
                                                 foreach (var sm in item.SiteMonitorings)
                                                 {
-                                                    i++;
                                             %>
                                             <%: "|" %>
-                                            <%--<%: Html.ActionLink(i.ToString(), "Edit", "SiteMonitoring", new { id = sm.ID }, null)%>--%>
+                                            <% if (!string.IsNullOrEmpty(sm.Issues) || sm.IssuesCount.HasValue)
+                                               {%>
+                                            <%: Html.ActionLink(sm.Order.ToStringOrDefault(), "Edit", "SiteMonitoring", new { id = sm.ID }, new { style="color:Red;" })%>
+                                            <% }
+                                               else
+                                               {%>
                                             <%: Html.ActionLink(sm.Order.ToStringOrDefault(), "Edit", "SiteMonitoring", new { id = sm.ID }, null)%>
+                                            <%} %>
                                             <% if (sm.SiteMonitoringPhotoes.Count > 0)
                                                {%>
-                                            <%: "(" + sm.SiteMonitoringPhotoes.Count.ToString() + ")"  %>
+                                            <% if (sm.HasInvalidPhoto)
+                                               { %>
+                                            <span style="color: Red;">
+                                                <%: "(" + sm.SiteMonitoringPhotoes.Count.ToString() + ")"%>
+                                            </span>
+                                            <% }
+                                               else
+                                               { %>
+                                            <%: "(" + sm.SiteMonitoringPhotoes.Count.ToString() + ")"%>
                                             <% } %>
-                                            <% if (sm.Issues != "" && sm.Issues != null)
-                                               {%>
                                             <% } %>
                                             <% if (sm.RequiredFollowUp != null && sm.RequiredFollowUp.Value)
                                                { %>
@@ -371,20 +388,20 @@
     </div>
     <script type="text/javascript" language="javascript">
         function ShowHideCols() {
-            oTable.fnSetColumnVis(2, $('#chkColID').attr('checked'));
-            oTable.fnSetColumnVis(3, $('#chkColPrice').attr('checked'));
-            oTable.fnSetColumnVis(4, $('#chkColProductionPrice').attr('checked'));
-            oTable.fnSetColumnVis(5, $('#chkColEffectiveDate').attr('checked'));
-            oTable.fnSetColumnVis(6, $('#chkColTermDate').attr('checked'));
-            oTable.fnSetColumnVis(7, $('#chkColGeoFullName').attr('checked'));
-            oTable.fnSetColumnVis(8, $('#chkColAddressLine1').attr('checked'));
-            oTable.fnSetColumnVis(9, $('#chkColAddressLine2').attr('checked'));
-            oTable.fnSetColumnVis(10, $('#chkColType').attr('checked'));
-            oTable.fnSetColumnVis(11, $('#chkColFormat').attr('checked'));
-            oTable.fnSetColumnVis(12, $('#chkColCurrentClient').attr('checked'));
-            oTable.fnSetColumnVis(13, $('#chkColCurrentProduct').attr('checked'));
-            oTable.fnSetColumnVis(14, $('#chkColContractor').attr('checked'));
-            oTable.fnSetColumnVis(15, $('#chkColPhotoCount').attr('checked'));
+            oTable.fnSetColumnVis(3, $('#chkColID').attr('checked'));
+            oTable.fnSetColumnVis(4, $('#chkColPrice').attr('checked'));
+            oTable.fnSetColumnVis(5, $('#chkColProductionPrice').attr('checked'));
+            oTable.fnSetColumnVis(6, $('#chkColEffectiveDate').attr('checked'));
+            oTable.fnSetColumnVis(7, $('#chkColTermDate').attr('checked'));
+            oTable.fnSetColumnVis(8, $('#chkColGeoFullName').attr('checked'));
+            oTable.fnSetColumnVis(9, $('#chkColAddressLine1').attr('checked'));
+            oTable.fnSetColumnVis(10, $('#chkColAddressLine2').attr('checked'));
+            oTable.fnSetColumnVis(11, $('#chkColType').attr('checked'));
+            oTable.fnSetColumnVis(12, $('#chkColFormat').attr('checked'));
+            oTable.fnSetColumnVis(13, $('#chkColCurrentClient').attr('checked'));
+            oTable.fnSetColumnVis(14, $('#chkColCurrentProduct').attr('checked'));
+            oTable.fnSetColumnVis(15, $('#chkColContractor').attr('checked'));
+            oTable.fnSetColumnVis(16, $('#chkColPhotoCount').attr('checked'));
         }
 
         function EditDetail(contractDetailID) {

@@ -277,16 +277,15 @@
                 <div id="divDeletePhotoList" style="visibility: collapse;">
                     <%--<input type="text" id="Text1" name="DeletePhotoList" />--%>
                 </div>
-                <% OAMS.Models.SiteMonitoringRepository siteMonitoringRepository = new OAMS.Models.SiteMonitoringRepository();
-
-                   foreach (var item in Model.SiteMonitoringPhotoes)
-                   { %>
+                <% 
+                    foreach (var item in Model.SiteMonitoringPhotoes)
+                    { %>
                 <br />
                 <input type="text" value='<%: item.Note %>' id='photoNote<%: item.ID %>' />
                 <input type="button" value="Save Note" onclick="UpdateSiteMonitoringPhotoNote('<%= Url.Content("~/SiteMonitoringPhoto/EditNote") %>','<%= item.ID %>',$('#photoNote<%: item.ID %>').val())" />
                 <input type="button" value="Delete this image" onclick="deleteSitePhoto(this,'<%= item.ID %>')" />
                 <br />
-                <% if (!siteMonitoringRepository.ValidateSiteMonitoringPhotoTakenDate(item.ID))
+                <% if (!item.IsValidTakenDate)
                    {
                 %>
                 <span style="color: Red;">Wrong photo taken date.</span>

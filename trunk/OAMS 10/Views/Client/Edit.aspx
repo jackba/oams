@@ -21,6 +21,44 @@
             <%: Html.ValidationMessageFor(model => model.Name) %>
         </div>
         <div class="editor-label">
+            <%: Html.LabelFor(model => model.Fullname_En) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.Fullname_En)%>
+            <%: Html.ValidationMessageFor(model => model.Fullname_En)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Fullname_Vi) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.Fullname_Vi)%>
+            <%: Html.ValidationMessageFor(model => model.Fullname_Vi)%>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Address) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.Address) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Phone) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.Phone) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Fax) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.Fax) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Email) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.Email) %>
+        </div>
+        <div class="editor-label">
             <%: Html.LabelFor(model => model.Note) %>
         </div>
         <div class="editor-field">

@@ -69,7 +69,7 @@ namespace OAMS.Models
             picasaRepository.DB = DB;
 
             picasaRepository.UploadPhoto(e, files, noteList, false);
-            picasaRepository.UploadPhoto(e, filesOfFixed, noteOfFixedList, false);
+            picasaRepository.UploadPhoto(e, filesOfFixed, noteOfFixedList, false, true);
 
             DeletePhoto(DeletePhotoList);
 
@@ -153,20 +153,6 @@ namespace OAMS.Models
             }
 
             return isValid;
-        }
-
-        public bool ValidateSiteMonitoringPhotoTakenDate(int siteMonitoringPhotoID)
-        {
-            bool result = false;
-            var photo = DB.SiteMonitoringPhotoes.Where(r => r.ID == siteMonitoringPhotoID).FirstOrDefault();
-
-            if (photo != null)
-            {
-                ContractDetailTimeline timeline = photo.SiteMonitoring.ContractDetail.ContractDetailTimelines.Where(r => r.Order == photo.SiteMonitoring.Order).FirstOrDefault();
-                result = timeline != null && photo.TakenDate.HasValue && timeline.Contains(photo.TakenDate);
-            }
-
-            return result;
         }
 
         public SiteMonitoring Find(ContractDetail contractDetail, DateTime? from, DateTime? to)

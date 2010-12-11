@@ -17,6 +17,20 @@
                         <table width="100%">
                             <tr>
                                 <td>
+                                    Site ID:
+                                </td>
+                                <td>
+                                    <%: Model.ContractDetail.Site.ID %>
+                                </td>
+                                <td>
+                                    Site Monitoring ID:
+                                </td>
+                                <td>
+                                    <%: Model.ID %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     Site code:
                                 </td>
                                 <td>
