@@ -145,6 +145,7 @@
     <Compile Include="Models\ContractRepository.cs" />
     <Compile Include="Models\ClientRepository.cs" />
     <Compile Include="Models\CategoryRepository.cs" />
+    <Compile Include="Models\Partial\SiteMonitoringPhoto.cs" />
     <Compile Include="Models\Rpt01_Model_SiteMonitoring.cs" />
     <Compile Include="Models\SiteMonitoringPhotoRepository.cs" />
     <Compile Include="Models\Partial\Product.cs" />
@@ -258,7 +259,6 @@
     <Content Include="Views\ContractorContact\ManageContractorContactDetail.ascx" />
     <Content Include="Views\ContractorContact\View.ascx" />
     <Content Include="Views\Contractor\Create.aspx" />
-    <Content Include="Views\Contractor\Details.aspx" />
     <Content Include="Views\Contractor\Edit.aspx" />
     <Content Include="Views\Contractor\Index.aspx" />
     <Content Include="Views\Contractor\ManageContractorContact.ascx" />

@@ -18,6 +18,14 @@ namespace OAMS.Models
                 return Product != null ? Product.Name : "";
             }
         }
+
+        public bool HasInvalidPhoto
+        {
+            get
+            {
+                return SiteMonitoringPhotoes.Where(r => !r.IsValidTakenDate).Count() > 0;
+            }
+        }
     }
 
     [AttributeUsage(AttributeTargets.Class,

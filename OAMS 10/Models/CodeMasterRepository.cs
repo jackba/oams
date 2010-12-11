@@ -44,5 +44,6 @@ namespace OAMS.Models
         public string DurationOfView { get; set; }
         public string AngleOfVision { get; set; }
         public string VisualClutter { get; set; }
+
     }
 }

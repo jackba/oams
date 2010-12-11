@@ -176,7 +176,7 @@ namespace OAMS.Models
 
 
 
-        public void UploadPhoto(SiteMonitoring e, IEnumerable<HttpPostedFileBase> files, string[] noteList, bool isCheckDate = true)
+        public void UploadPhoto(SiteMonitoring e, IEnumerable<HttpPostedFileBase> files, string[] noteList, bool isCheckDate = true, bool? IsReview = null)
         {
 
             if (files == null
@@ -237,6 +237,8 @@ namespace OAMS.Models
                             photo.AtomUrl = createdEntry.EditUri.Content;
                             photo.TakenDate = takenDate;
                             photo.Note = noteList[i];
+                            photo.IsReview = IsReview;
+
                             e.SiteMonitoringPhotoes.Add(photo);
                         }
                     }
