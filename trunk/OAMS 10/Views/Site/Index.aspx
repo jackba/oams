@@ -9,129 +9,124 @@
     <p>
         <%: Html.ActionLink("Create New", "Create") %>
     </p>
-    <div>
-        PhotoCount
-    </div>
-    <div style="overflow: auto;">
-        <table id="tblResult" class="display">
-            <thead>
-                <tr>
-                    <th>
-                    </th>
-                    <th>
-                        ID
-                    </th>
-                    <th>
-                        Code
-                    </th>
-                    <th>
-                        Geo
-                    </th>
-                    <th>
-                        Address Line 1
-                    </th>
-                    <th>
-                        Address Line 2
-                    </th>
-                    <th>
-                        Type
-                    </th>
-                    <th>
-                        Format
-                    </th>
-                    <th>
-                        Current Client
-                    </th>
-                    <th>
-                        Current Product
-                    </th>
-                    <th>
-                        Total
-                    </th>
-                    <th>
-                        Photo Count
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <% foreach (var item in Model)
-                   { %>
-                <tr>
-                    <td>
-                        <%: Html.ActionLink("Edit", "Edit", new { id=item.ID }) %>
-                        <br />
-                        <br />
-                        <%: Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { onclick="return confirm('Delete?');" })%>
-                    </td>
-                    <td>
-                        <%: item.ID %>
-                    </td>
-                    <td>
-                        <%: item.Code %>
-                    </td>
-                    <td>
-                        <%: item.GeoFullName %>
-                    </td>
-                    <td>
-                        <%: item.AddressLine1 %>
-                    </td>
-                    <td>
-                        <%: item.AddressLine2 %>
-                    </td>
-                    <td>
-                        <%: item.Type %>
-                    </td>
-                    <td>
-                        <%--<%: item.Format %>--%>
-                        <%: string.Join(", ", item.SiteDetails.Select(r => r.Format)) %>
-                    </td>
-                    <td>
-                        <%--<%: item.CurrentClientName %>--%>
-                        <%: string.Join(", ", item.SiteDetails.Where(r => r.Product != null).Select(r => r.Product.NewClientName)) %>
-                    </td>
-                    <td>
-                        <%--<%: item.CurrentProduct %>--%>
-                        <%: string.Join(", ", item.SiteDetails.Where(r => r.Product != null).Select(r => r.Product.Name)) %>
-                    </td>
-                    <td>
-                        <%: item.Score %>
-                    </td>
-                    <td>
-                        <%: item.SitePhotoes.Count() %>
-                    </td>
-                </tr>
-                <% } %>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+    <table id="tblResult" class="display">
+        <thead>
+            <tr>
+                <th>
+                </th>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Code
+                </th>
+                <th>
+                    Geo
+                </th>
+                <th>
+                    Address Line 1
+                </th>
+                <th>
+                    Address Line 2
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Format
+                </th>
+                <th>
+                    Current Client
+                </th>
+                <th>
+                    Current Product
+                </th>
+                <th>
+                    Total
+                </th>
+                <th>
+                    Photo Count
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% foreach (var item in Model)
+               { %>
+            <tr>
+                <td>
+                    <%: Html.ActionLink("Edit", "Edit", new { id=item.ID }) %>
+                    <br />
+                    <br />
+                    <%: Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { onclick="return confirm('Delete?');" })%>
+                </td>
+                <td>
+                    <%: item.ID %>
+                </td>
+                <td>
+                    <%: item.Code %>
+                </td>
+                <td>
+                    <%: item.GeoFullName %>
+                </td>
+                <td>
+                    <%: item.AddressLine1 %>
+                </td>
+                <td>
+                    <%: item.AddressLine2 %>
+                </td>
+                <td>
+                    <%: item.Type %>
+                </td>
+                <td>
+                    <%--<%: item.Format %>--%>
+                    <%: string.Join(", ", item.SiteDetails.Select(r => r.Format)) %>
+                </td>
+                <td>
+                    <%--<%: item.CurrentClientName %>--%>
+                    <%: string.Join(", ", item.SiteDetails.Where(r => r.Product != null).Select(r => r.Product.NewClientName)) %>
+                </td>
+                <td>
+                    <%--<%: item.CurrentProduct %>--%>
+                    <%: string.Join(", ", item.SiteDetails.Where(r => r.Product != null).Select(r => r.Product.Name)) %>
+                </td>
+                <td>
+                    <%: item.Score %>
+                </td>
+                <td>
+                    <%: item.SitePhotoes.Count() %>
+                </td>
+            </tr>
+            <% } %>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+            </tr>
+        </tfoot>
+    </table>
     <br />
     <p>
         <%: Html.ActionLink("Create New", "Create") %>
