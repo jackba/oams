@@ -232,8 +232,11 @@
     <Content Include="Scripts\jquery-ui-1.8.1.custom.min.js" />
     <Content Include="Scripts\jquery.dataTables.js" />
     <Content Include="Scripts\superfish.js" />
+    <Content Include="Views\Account\EditAccountInRole.aspx" />
+    <Content Include="Views\Account\CreateRole.aspx" />
     <Content Include="Views\Account\Edit.aspx" />
     <Content Include="Views\Account\EditRoleAuthentication.aspx" />
+    <Content Include="Views\Account\GetAllRoles.aspx" />
     <Content Include="Views\Account\Guest.aspx" />
     <Content Include="Views\Account\Index.aspx" />
     <Content Include="Views\Account\NoRight.aspx" />
