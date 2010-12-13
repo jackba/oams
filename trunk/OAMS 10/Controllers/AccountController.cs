@@ -192,7 +192,9 @@ namespace OAMS.Controllers
         {
             MVCAuthorizationRepository _MVCAuthorizationRepository = new MVCAuthorizationRepository();
 
-            _MVCAuthorizationRepository.SetRoleAuthorization(roleName, ControllerActionIDList.ToList());
+            List<int?> list = ControllerActionIDList == null ? new List<int?>() : ControllerActionIDList.ToList();
+
+            _MVCAuthorizationRepository.SetRoleAuthorization(roleName, list);
 
             return View(repo.GetRole(roleName));
         }
@@ -408,6 +410,21 @@ namespace OAMS.Controllers
             }
 
             return RedirectToAction("GetAllRoles");
+        }
+
+        public ActionResult EditAccountInRole(string rolename)
+        {
+            object o = rolename;
+            return View(o);
+        }
+
+        [HttpPost]
+        public ActionResult EditAccountInRole(string rolename, string[] UserList)
+        {
+            RoleRepository roleRepo = new RoleRepository();
+            roleRepo.SetUsersToRole(rolename, UserList);
+
+            return View((object)rolename);
         }
     }
 }

@@ -11,7 +11,13 @@
     <%: Html.ValidationSummary(true) %>
     <fieldset>
         <legend>Fields</legend>
-        <%: Html.DisplayFor(model => model.RoleName) %>
+        
+        
+
+        <%: Html.DisplayFor(model => model.RoleName) %> <input type="button" value="Clear" onclick="Clear();" />
+        <br />
+
+
         <%
             List<OAMS.Models.ControllerAction> fullList = (new OAMS.Models.ControllerActionRepository()).GetAll4Authorization();
             foreach (var item in fullList)
@@ -45,4 +51,9 @@
     <div>
         <%: Html.ActionLink("Back to List", "Index") %>
     </div>
+    <script type="text/javascript">
+        function Clear() { 
+        $('input:checkbox').attr('checked','');
+        }
+    </script>
 </asp:Content>
