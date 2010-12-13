@@ -63,5 +63,24 @@ namespace OAMS.Models
             if (addList.Count() > 0)
                 Roles.AddUserToRoles(username, addList);
         }
+
+        public void SetUsersToRole(string rolename, string[] userList)
+        {
+            if (userList == null)
+            {
+                userList = new string[] { };
+            }
+
+            string[] existUsers = Roles.GetUsersInRole(rolename);
+
+            string[] removeList = existUsers.Except(userList).ToArray();
+            if (removeList.Count() > 0)
+                Roles.RemoveUsersFromRole(removeList.ToArray(), rolename);
+
+            string[] addList = userList.Except(existUsers).ToArray();
+
+            if (addList.Count() > 0)
+                Roles.AddUsersToRole(addList, rolename);
+        }
     }
 }

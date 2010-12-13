@@ -28,6 +28,8 @@
                     <%: Html.ActionLink("Delete", "DeleteRole", "Account", new { id = item }, new { onclick="javascript:return confirm('Delete?');" })%>
                     |
                     <%: Html.ActionLink("Edit Authentication", "EditRoleAuthentication", "Account", new { roleName = item }, null)%>
+                    |
+                    <%: Html.ActionLink("Edit Users In Role", "EditAccountInRole", "Account", new { roleName = item }, null)%>
                 </td>
             </tr>
             <%} %>

@@ -12,27 +12,29 @@
     <fieldset>
         <legend>Fields</legend>
         <%: Html.DisplayFor(model => model) %>
+        <input type="text" readonly="readonly" value='<%: Model %>' name="roleName" />
         <div class="editor-label">
-            Account List
+            User List
         </div>
         <%
             foreach (MembershipUser item in Membership.GetAllUsers())
             {
-                
-                string strChecked = Roles.IsUserInRole(item.UserName, Model) ? "checked" : string.Empty;
+                string username = item.UserName;
+                string strChecked = Roles.IsUserInRole(username, Model) ? "checked" : string.Empty;
         %>
         <div>
             <% if (Roles.IsUserInRole(item.UserName, Model))
                {
             %>
-            <input type="checkbox" name="UserList" value="<%= item.UserName %>" checked="checked" id='chk_<%= item %>' />
+            <input type="checkbox" name="UserList" value="<%= username %>" checked="checked"
+                id='chk_<%= username %>' />
             <% }
                else
                {%>
-            <input type="checkbox" name="UserList" value="<%= item %>" id='Checkbox1' />
+            <input type="checkbox" name="UserList" value="<%= username %>" id='Checkbox1' />
             <%} %>
-            <label for='chk_<%= item %>'>
-                <%: item %>
+            <label for='chk_<%= username %>'>
+                <%: username %>
             </label>
         </div>
         <%
@@ -44,6 +46,6 @@
     </fieldset>
     <% } %>
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%: Html.ActionLink("Back to List", "GetAllRoles") %>
     </div>
 </asp:Content>
