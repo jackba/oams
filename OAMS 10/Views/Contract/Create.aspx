@@ -129,11 +129,13 @@
             <%: Html.ValidationMessageFor(model => model.Email2) %>
         </div>
         <p>
-            <input type="submit" value="Create" />
+            <%--<input type="submit" value="Create" />--%>
+            <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractController>("Create", r => r.Create(null), null, null, true)%>
         </p>
     </fieldset>
     <% } %>
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%--<%: Html.ActionLink("Back to List", "Index") %>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractController>("Back to List", r => r.Index(), null, null, false)%>
     </div>
 </asp:Content>

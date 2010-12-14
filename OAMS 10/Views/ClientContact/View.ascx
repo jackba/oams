@@ -13,9 +13,12 @@
         <%: Model.Note!=null?Model.Note:"_"%>
     </td>
     <td>
-        <%: Html.ActionLink("Edit", "Edit", "ClientContact", new { href = string.Format("javascript:AjaxEdit({0},'{1}','{2}');", Model.ID, "divClientContact_" + Model.ID.ToString(), Url.Content("~/ClientContact/Edit")) })%>
+        <%--<%: Html.ActionLink("Edit", "Edit", "ClientContact", new { href = string.Format("javascript:AjaxEdit({0},'{1}','{2}');", Model.ID, "divClientContact_" + Model.ID.ToString(), Url.Content("~/ClientContact/Edit")) })%>
         |
-        <%: Html.ActionLink("Delete", "Delete", "ClientContact", new { href = string.Format("javascript:AjaxDelete2({0},'{1}','{2}','{3}');", Model.ID, "divClientContact_" + Model.ID.ToString(), Url.Content("~/ClientContact/Delete"), "divSubClientContact_" + Model.ID.ToString()) })%>
+        <%: Html.ActionLink("Delete", "Delete", "ClientContact", new { href = string.Format("javascript:AjaxDelete2({0},'{1}','{2}','{3}');", Model.ID, "divClientContact_" + Model.ID.ToString(), Url.Content("~/ClientContact/Delete"), "divSubClientContact_" + Model.ID.ToString()) })%>--%>
+        <%: MvcHtmlString.Create(Session["ClientContactEditTemplate"].ToString().Replace("clientContactID", Model.ID.ToString()))%>
+        |
+        <%: MvcHtmlString.Create(Session["ClientContactDeleteTemplate"].ToString().Replace("clientContactID", Model.ID.ToString()))%>
     </td>
     <% if (Request.HttpMethod == "GET")
        { %>

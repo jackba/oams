@@ -29,6 +29,12 @@
             </tr>
         </thead>
         <tbody id="divManageClientContactList">
+            <% 
+                Session["ClientContactEditTemplate"] = Html.ActionLinkWithRoles<OAMS.Controllers.ClientContactController>("Edit", r => r.Edit(0), null, new Dictionary<string, object>() { { "href", string.Format("javascript:AjaxEdit(clientContactID,'divClientContact_clientContactID','{0}');", Url.Content("~/ClientContact/Edit")) } }, false);
+                Session["ClientContactDeleteTemplate"] = Html.ActionLinkWithRoles<OAMS.Controllers.ClientContactController>("Delete", r => r.Delete(0), null, new Dictionary<string, object>() { { "href", string.Format("javascript:AjaxDelete2(clientContactID,'divClientContact_clientContactID','{0}','divSubClientContact_clientContactID');", Url.Content("~/ClientContact/Delete")) } }, true);
+                Session["ClientContactSaveTemplate"] = Html.ActionLinkWithRoles<OAMS.Controllers.ClientContactController>("Save", r => r.Edit(0), null, new Dictionary<string, object>() { { "href", string.Format("javascript:AjaxSave('divClientContact_clientContactID','{0}');", Url.Content("~/ClientContact/Edit")) } }, true);
+                Session["ClientContactCancelTemplate"] = Html.ActionLinkWithRoles<OAMS.Controllers.ClientContactController>("Cancel", r => r.View(0), null, new Dictionary<string, object>() { { "href", string.Format("javascript:AjaxView(clientContactID,'divClientContact_clientContactID','{0}');", Url.Content("~/ClientContact/View")) } }, false);
+            %>
             <% foreach (var item in Model.ClientContacts)
                { %>
             <% Html.RenderPartial("~/Views/ClientContact/View.ascx", item); %>
@@ -36,7 +42,8 @@
         </tbody>
     </table>
     <div>
-        <%: Html.ActionLink("Add", "Add", "ClientContact", new { href = string.Format("javascript:AddClientContact({0})", Model.ID) })%>
+        <%--<%: Html.ActionLink("Add", "Add", "ClientContact", new { href = string.Format("javascript:AddClientContact({0})", Model.ID) })%>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.ClientContactController>("Add", r => r.Add(0), null, new Dictionary<string, object>() { { "href", string.Format("javascript:AddClientContact({0})", Model.ID) } }, false)%>
     </div>
     <script type="text/javascript" language="javascript">
         function AddClientContact(clientID) {

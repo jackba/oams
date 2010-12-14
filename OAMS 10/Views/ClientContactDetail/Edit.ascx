@@ -12,7 +12,10 @@
     <%: Html.TextBoxFor(model => model.Note)%>
 </td>
 <td>
-    <%: Html.ActionLink("Save", "Edit", "ClientContactDetail", new { href = string.Format("javascript:AjaxSave('{0}','{1}');", "divClientContactDetail_" + Model.ID.ToString(), Url.Content("~/ClientContactDetail/Edit")) })%>
+    <%--<%: Html.ActionLink("Save", "Edit", "ClientContactDetail", new { href = string.Format("javascript:AjaxSave('{0}','{1}');", "divClientContactDetail_" + Model.ID.ToString(), Url.Content("~/ClientContactDetail/Edit")) })%>
     |
-    <%: Html.ActionLink("Cancel", "View", "ClientContactDetail", new { href = string.Format("javascript:AjaxView({0},'{1}','{2}');", Model.ID, "divClientContactDetail_" + Model.ID.ToString(), Url.Content("~/ClientContactDetail/View")) })%>
+    <%: Html.ActionLink("Cancel", "View", "ClientContactDetail", new { href = string.Format("javascript:AjaxView({0},'{1}','{2}');", Model.ID, "divClientContactDetail_" + Model.ID.ToString(), Url.Content("~/ClientContactDetail/View")) })%>--%>
+    <%: MvcHtmlString.Create(Session["ClientContactDetailSaveTemplate"].ToString().Replace("clientContactDetailID", Model.ID.ToString()))%>
+    |
+    <%: MvcHtmlString.Create(Session["ClientContactDetailCancelTemplate"].ToString().Replace("clientContactDetailID", Model.ID.ToString()))%>
 </td>

@@ -38,11 +38,13 @@
             }
         %>
         <p>
-            <input type="submit" value="Save" />
+            <!--<input type="submit" value="Save" />-->
+            <%: Html.ActionLinkWithRoles<OAMS.Controllers.AccountController>("Save", r => r.Edit(""), null, null, true)%>
         </p>
     </fieldset>
     <% } %>
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%--<%: Html.ActionLink("Back to List", "Index") %>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.AccountController>("Back to List", r => r.Index(), null, null, false)%>
     </div>
 </asp:Content>

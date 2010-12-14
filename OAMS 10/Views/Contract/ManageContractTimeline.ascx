@@ -9,13 +9,16 @@
     <div>
         <input id="txtManageContractTimeline_day" type="text" style="width: 50px;" />
         day(s)
-        <%: Html.ActionLink("Add", "Add", "ContractTimeline", new { href = string.Format("javascript:AddContractTimeline({0},'{1}')",Model.ID,"day")  })%>
+        <%--<%: Html.ActionLink("Add", "Add", "ContractTimeline", new { href = string.Format("javascript:AddContractTimeline({0},'{1}')",Model.ID,"day")  })%>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractTimelineController>("Add", r => r.Add(0, 0, ""), null, new Dictionary<string, object>() { { "href", string.Format("javascript:AddContractTimeline({0},'{1}')", Model.ID, "day") } }, true)%>
         <br />
         <input id="txtManageContractTimeline_month" type="text" style="width: 50px;" />
         month(s)
-        <%: Html.ActionLink("Add", "Add", "ContractTimeline", new { href = string.Format("javascript:AddContractTimeline({0},'{1}')",Model.ID,"month")  })%>
+        <%--<%: Html.ActionLink("Add", "Add", "ContractTimeline", new { href = string.Format("javascript:AddContractTimeline({0},'{1}')",Model.ID,"month")  })%>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractTimelineController>("Add", r => r.Add(0, 0, ""), null, new Dictionary<string, object>() { { "href", string.Format("javascript:AddContractTimeline({0},'{1}')", Model.ID, "month") } }, true)%>
         <br />
-        <%: Html.ActionLink("Delete last timeline", "DeleteTheLastTimeline", "ContractTimeline", new { href = "javascript:DeleteTheLastTimeline(" + Model.ID + ");" })%>
+        <%--<%: Html.ActionLink("Delete last timeline", "DeleteTheLastTimeline", "ContractTimeline", new { href = "javascript:DeleteTheLastTimeline(" + Model.ID + ");" })%>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractTimelineController>("Delete last timeline", r => r.DeleteTheLastTimeline(0), null, new Dictionary<string, object>() { { "href", "javascript:DeleteTheLastTimeline(" + Model.ID + ");" } }, true)%>
         <script type="text/javascript" language="javascript">
 
             function AddContractTimeline(contractID, timeUnit) {

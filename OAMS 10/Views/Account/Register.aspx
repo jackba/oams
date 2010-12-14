@@ -52,7 +52,8 @@
                 </div>
                 
                 <p>
-                    <input type="submit" value="Register" />
+                    <%--<input type="submit" value="Register" />--%>
+                    <%: Html.ActionLinkWithRoles<OAMS.Controllers.AccountController>("Register", r => r.Register(), null, null, true)%>
                 </p>
             </fieldset>
         </div>
