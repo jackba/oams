@@ -81,5 +81,21 @@ namespace OAMS.Models
                 && (string.IsNullOrEmpty(r.HttpVerb) || r.HttpVerb.Contains(httpGetVerb))).FirstOrDefault();
 
         }
+
+        public ControllerAction GetAction(string controllerName, string actionName, bool isPost)
+        {
+            string httpVerb = isPost?typeof(HttpPostAttribute).Name:typeof(HttpGetAttribute).Name;
+            if (isPost)
+            {
+                return DB.ControllerActions.Where(r => r.Controller == controllerName && r.Action == actionName
+                    && (r.HttpVerb.Contains(httpVerb))).FirstOrDefault();
+            }
+            else
+            {
+                return DB.ControllerActions.Where(r => r.Controller == controllerName && r.Action == actionName
+                    && (string.IsNullOrEmpty(r.HttpVerb) || r.HttpVerb.Contains(httpVerb))).FirstOrDefault();
+            }
+
+        }
     }
 }

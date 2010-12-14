@@ -20,6 +20,7 @@ using OAMS.Models;
 using System.Web.Mvc.Html;
 using System.Security.Principal;
 using OAMS.Controllers;
+using System.Web.Routing;
 
 
 namespace OAMS
@@ -555,7 +556,46 @@ namespace OAMS
             return htmlHelper.DropDownListFor(expression, geoRepository.GetByParentID().ToSelectListItem(), OAMSSetting.messageL.SelectNone);
         }
 
-        public static MvcHtmlString ActionLinkWithRoles<T>(this HtmlHelper html, string linkText, Expression<Func<T, ActionResult>> action) where T : Controller
+        public static MvcHtmlString ActionLinkWithRoles<T>(this HtmlHelper html, string linkText, Expression<Func<T, ActionResult>> action, RouteValueDictionary routeValues, IDictionary<string, object> htmlAttributes, bool isPost) where T : Controller
+        {
+            
+            ControllerActionRepository actionAuthorizationRepo = new ControllerActionRepository();
+            actionAuthorizationRepo.UpdateActionList();
+
+            MvcHtmlString htmlStr = MvcHtmlString.Create("");
+
+            ReflectedControllerDescriptor controllerDes = new ReflectedControllerDescriptor(typeof(T));
+            string controllerName = controllerDes.ControllerName;
+
+            MethodCallExpression methodExp = action.Body as MethodCallExpression;
+            if (methodExp != null)
+            {
+                string actionName = methodExp.Method.Name;
+                ControllerActionRepository controllerActionRepository = new ControllerActionRepository();
+                ControllerAction controllerAction = controllerActionRepository.GetAction(controllerName, actionName, isPost);
+                if (controllerAction != null)
+                {
+                    MVCAuthorizationRepository mvcAuthorizationRepository = new MVCAuthorizationRepository();
+                    List<string> roles = mvcAuthorizationRepository.GetRolesByControllerAction(controllerAction);
+
+                    CustomAuthorize customAuthorize = new CustomAuthorize() { AuthorizedRoles = roles.ToArray() };
+                    if (customAuthorize.Authorize(html.ViewContext.HttpContext))
+                    {
+                        if (isPost && htmlAttributes == null)
+                        {
+                            htmlStr = MvcHtmlString.Create("<input type='submit' value='" + linkText + "' />");
+                        }
+                        else
+                        {
+                            htmlStr = html.ActionLink(linkText, actionName, controllerName, routeValues, htmlAttributes);
+                        }
+                    }
+                }
+            }
+            return htmlStr;
+        }
+
+        public static MvcHtmlString ActionLinkWithRoles_Old<T>(this HtmlHelper html, string linkText, Expression<Func<T, ActionResult>> action) where T : Controller
         {
             ControllerActionRepository actionAuthorizationRepo = new ControllerActionRepository();
             actionAuthorizationRepo.UpdateActionList();

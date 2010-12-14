@@ -44,7 +44,8 @@
                 </div>
                 
                 <p>
-                    <input type="submit" value="Change Password" />
+                    <!--<input type="submit" value="Change Password" />-->
+                    <%: Html.ActionLinkWithRoles<OAMS.Controllers.AccountController>("Change Password", r => r.ChangePassword(), null, null, true)%>
                 </p>
             </fieldset>
         </div>

@@ -20,11 +20,13 @@
             <%: Html.ValidationMessageFor(model => model.Name) %>
         </div>
         <p>
-            <input type="submit" value="Save" />
+            <%--<input type="submit" value="Save" />--%>
+            <%: Html.ActionLinkWithRoles<OAMS.Controllers.CategoryController>("Save", r => r.Edit(new Guid()), null, null, true)%>
         </p>
     </fieldset>
     <% } %>
     <div>
-        <%: Html.ActionLink("Back to List", "Index", new {parentID = Model.ParentID })%>
+        <%--<%: Html.ActionLink("Back to List", "Index", new {parentID = Model.ParentID })%>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.CategoryController>("Back to List", r => r.Index(null), new RouteValueDictionary(new { parentID = Model.ParentID }), null, false)%>
     </div>
 </asp:Content>

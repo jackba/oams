@@ -31,11 +31,14 @@
                 });
             </script>
             of
-            <button id="btnView" onclick="btnView_Click()">
+            <%--<button id="btnView" onclick="btnView_Click()">
                 View</button>
             |
             <button id="btnViewDetail" onclick="btnViewDetail_Click()">
-                View detail</button>
+                View detail</button>--%>
+            <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractController>("View", r => r.ViewReport(0, null, null), null, new Dictionary<string, object>() { { "href", "javascript:btnView_Click();" } }, false)%>
+            |
+            <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractController>("View detail", r => r.ViewReportDetail(0, null, null), null, new Dictionary<string, object>() { { "href", "javascript:btnViewDetail_Click();" } }, false)%>
         </div>
         <% string urlRptSum = Url.Action("ViewReport", "Contract", new { id = Model.ID });
            string urlRptDetail = Url.Action("ViewReportDetail", "Contract", new { id = Model.ID });%>
@@ -179,15 +182,18 @@
                         </div>
                         <div>
                             <br />
-                            <%: Html.ActionLink("Overwrite timelines to detail", "OverwriteTimelineForDetail", "Contract", new { href = string.Format("javascript:OverwriteTimelineForDetail({0})", Model.ID) })%>
+                            <%--<%: Html.ActionLink("Overwrite timelines to detail", "OverwriteTimelineForDetail", "Contract", new { href = string.Format("javascript:OverwriteTimelineForDetail({0})", Model.ID) })%>--%>
+                            <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractController>("Overwrite timelines to detail", r => r.OverwriteTimelineForDetail(0), null, new Dictionary<string, object>() { { "href", string.Format("javascript:OverwriteTimelineForDetail({0})", Model.ID) } }, true)%>
                         </div>
                         <p>
-                            <input type="submit" value="Save" />
+                            <%--<input type="submit" value="Save" />--%>
+                            <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractController>("Save", r => r.Edit(0), null, null, true)%>
                         </p>
                     </fieldset>
                 </td>
                 <td>
-                    <%: Html.ActionLink("Add Sites", "Find4Contract", "FindSite", new { ContractID = Model.ID},null)%>
+                    <%--<%: Html.ActionLink("Add Sites", "Find4Contract", "FindSite", new { ContractID = Model.ID},null)%>--%>
+                    <%: Html.ActionLinkWithRoles<OAMS.Controllers.FindSiteController>("Add Sites", r => r.Find4Contract(0), new RouteValueDictionary(new { ContractID = Model.ID }), null, false)%>
                     <div id="divCol" style="overflow: auto;">
                         Display columns:
                         <input type="checkbox" id="chkColID" checked="checked" />
@@ -281,6 +287,10 @@
                             </thead>
                             <tbody>
                                 <% 
+                                    var editTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.ContractDetailController>("Edit", r => r.Edit(0), new RouteValueDictionary(new { id = "contractDetailID" }), null, false);
+                                    var removeTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.ContractDetailController>("Remove", r => r.Delete(0), new RouteValueDictionary(new { id = "contractDetailID" }), new Dictionary<string, object>() { { "onclick", "return confirm('Delete?');" } }, false);
+                                %>
+                                <% 
                                     foreach (var item in Model.ContractDetails)
                                     { %>
                                 <tr>
@@ -288,14 +298,23 @@
                                         <%:item.ID %>
                                     </td>
                                     <td>
-                                        <%: Html.ActionLink("Edit", "Edit", "ContractDetail", new { id=item.ID }, null) %>
+                                        <%--<%: Html.ActionLink("Edit", "Edit", "ContractDetail", new { id=item.ID }, null) %>
                                         <br />
                                         <br />
-                                        <%: Html.ActionLink("Remove", "Delete", "ContractDetail", new { id=item.ID }, new { onclick="return confirm('Delete?');" }) %>
+                                        <%: Html.ActionLink("Remove", "Delete", "ContractDetail", new { id=item.ID }, new { onclick="return confirm('Delete?');" }) %>--%>
+                                        <%: MvcHtmlString.Create(editTemplate.ToString().Replace("contractDetailID", item.ID.ToString()))%>
+                                        <br />
+                                        <br />
+                                        <%: MvcHtmlString.Create(removeTemplate.ToString().Replace("contractDetailID", item.ID.ToString()))%>
                                     </td>
                                     <td>
                                         <div style='float: left;'>
-                                            <%: Html.ActionLink("New", "Create", "SiteMonitoring",  new { ContractDetailID=item.ID },null) %>
+                                            <%--<%: Html.ActionLink("New", "Create", "SiteMonitoring",  new { ContractDetailID=item.ID },null) %>--%>
+                                            <%: Html.ActionLinkWithRoles<OAMS.Controllers.SiteMonitoringController>("New", r => r.Create(0), new RouteValueDictionary(new { ContractDetailID = item.ID }), null, false)%>
+                                            <% 
+                                                var smEditTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.SiteMonitoringController>("order", r => r.Edit(0), new RouteValueDictionary(new { id = "siteMonitoringID" }), null, false);
+                                                var smRedEditTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.SiteMonitoringController>("order", r => r.Edit(0), new RouteValueDictionary(new { id = "siteMonitoringID" }), new Dictionary<string, object>() { { "style", "color:Red;" } }, false);
+                                            %>
                                             <% 
                                                 foreach (var sm in item.SiteMonitorings)
                                                 {
@@ -303,11 +322,13 @@
                                             <%: "|" %>
                                             <% if (!string.IsNullOrEmpty(sm.Issues) || sm.IssuesCount.HasValue)
                                                {%>
-                                            <%: Html.ActionLink(sm.Order.ToStringOrDefault(), "Edit", "SiteMonitoring", new { id = sm.ID }, new { style="color:Red;" })%>
+                                            <%--<%: Html.ActionLink(sm.Order.ToStringOrDefault(), "Edit", "SiteMonitoring", new { id = sm.ID }, new { style="color:Red;" })%>--%>
+                                            <%: MvcHtmlString.Create(smRedEditTemplate.ToString().Replace("siteMonitoringID", sm.ID.ToString()).Replace("order", sm.Order.ToStringOrDefault()))%>
                                             <% }
                                                else
                                                {%>
-                                            <%: Html.ActionLink(sm.Order.ToStringOrDefault(), "Edit", "SiteMonitoring", new { id = sm.ID }, null)%>
+                                            <%--<%: Html.ActionLink(sm.Order.ToStringOrDefault(), "Edit", "SiteMonitoring", new { id = sm.ID }, null)%>--%>
+                                            <%: MvcHtmlString.Create(smEditTemplate.ToString().Replace("siteMonitoringID", sm.ID.ToString()).Replace("order", sm.Order.ToStringOrDefault()))%>
                                             <%} %>
                                             <% if (sm.SiteMonitoringPhotoes.Count > 0)
                                                {%>
@@ -384,7 +405,8 @@
     </div>
     <% } %>
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%--<%: Html.ActionLink("Back to List", "Index") %>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractController>("Back to List", r => r.Index(), null, null, false)%>
     </div>
     <script type="text/javascript" language="javascript">
         function ShowHideCols() {

@@ -145,6 +145,11 @@
     <Compile Include="Models\ContractRepository.cs" />
     <Compile Include="Models\ClientRepository.cs" />
     <Compile Include="Models\CategoryRepository.cs" />
+    <Compile Include="Models\OAMS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OAMS.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Partial\SiteMonitoringPhoto.cs" />
     <Compile Include="Models\Rpt01_Model_SiteMonitoring.cs" />
     <Compile Include="Models\SiteMonitoringPhotoRepository.cs" />
@@ -172,11 +177,6 @@
     <Compile Include="Models\SitePhotoRepository.cs" />
     <Compile Include="Models\SiteRepository.cs" />
     <Compile Include="Models\GeoRepository.cs" />
-    <Compile Include="Models\OAMS1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OAMS.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\CustomeValidationAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -346,11 +346,9 @@
     <None Include="Content\smoothness\images\Thumbs.db" />
     <None Include="GNKey.pfx" />
     <Content Include="Views\Shared\SiteRpt.Master" />
-  </ItemGroup>
-  <ItemGroup>
     <EntityDeploy Include="Models\OAMS.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OAMS1.Designer.cs</LastGenOutput>
+      <LastGenOutput>OAMS.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>

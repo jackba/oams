@@ -44,12 +44,14 @@
 }
         %>
         <p>
-            <input type="submit" value="Save" />
+            <!--<input type="submit" value="Save" />-->
+            <%: Html.ActionLinkWithRoles<OAMS.Controllers.AccountController>("Save", r => r.EditRoleAuthentication(null), null, null, true)%>
         </p>
     </fieldset>
     <% } %>
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%--<%: Html.ActionLink("Back to List", "Index") %>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.AccountController>("Back to List", r => r.Index(), null, null, false)%>
     </div>
     <script type="text/javascript">
         function Clear() { 

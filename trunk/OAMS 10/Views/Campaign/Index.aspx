@@ -36,14 +36,17 @@
                 ProductionCost
             </th>
         </tr>
-
+    <% 
+        var editTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.CampaignController>("Edit", r => r.Edit(0), new RouteValueDictionary(new { id = "campaignID" }), null, false);
+    %>
     <% foreach (var item in Model) { %>
     
         <tr>
             <td>
-                <%: Html.ActionLink("Edit", "Edit", new { id=item.ID }) %> |
+                <%--<%: Html.ActionLink("Edit", "Edit", new { id=item.ID }) %> |
                 <%: Html.ActionLink("Details", "Details", new { id=item.ID })%> |
-                <%: Html.ActionLink("Delete", "Delete", new { id=item.ID })%>
+                <%: Html.ActionLink("Delete", "Delete", new { id=item.ID })%>--%>
+                <%: MvcHtmlString.Create(editTemplate.ToString().Replace("campaignID", item.ID.ToString()))%>
             </td>
             <td>
                 <%: item.ID %>
@@ -76,7 +79,8 @@
     </table>
 
     <p>
-        <%: Html.ActionLink("Create New", "Create") %>
+        <%--<%: Html.ActionLink("Create New", "Create") %>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.CampaignController>("Create New", r => r.Create(), null, null, false)%>
     </p>
 
 </asp:Content>

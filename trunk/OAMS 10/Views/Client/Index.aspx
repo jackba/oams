@@ -8,7 +8,7 @@
         Client List</h2>
     <p>
         <%--<%: Html.ActionLink("Create New", "Create") %>--%>
-        <%: Html.ActionLinkWithRoles<OAMS.Controllers.ClientController>("Create New", r => r.Create())%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.ClientController>("Create New", r => r.Create(), null, null, false)%>
     </p>
     <div>
         <table id="tblResult" class="display">
@@ -43,13 +43,17 @@
                 </tr>
             </thead>
             <tbody>
+                <% 
+                    var editTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.ClientController>("Edit", r => r.Edit(0), new RouteValueDictionary(new { id = "clientID" }), null, false);
+                    var deleteTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.ClientController>("Delete", r => r.Delete(0), new RouteValueDictionary(new { id = "clientID" }), new Dictionary<string,object> (){{"onclick","return confirm('Delete?');"}}, false);
+                %>
                 <% foreach (var item in Model)
                    { %>
                 <tr>
                     <td>
-                        <%: Html.ActionLink("Edit", "Edit", new { id=item.ID }) %>
-                        <%--|--%>
-                        <%--<%: Html.ActionLink("Delete", "Delete", new { id=item.ID })%>--%>
+                        <%: MvcHtmlString.Create(editTemplate.ToString().Replace("clientID", item.ID.ToString()))%>
+                        |
+                        <%: MvcHtmlString.Create(deleteTemplate.ToString().Replace("clientID", item.ID.ToString()))%>
                     </td>
                     <td>
                         <%: item.Name %>
@@ -104,7 +108,8 @@
     </div>
     <br />
     <p>
-        <%: Html.ActionLink("Create New", "Create") %>
+        <%--<%: Html.ActionLink("Create New", "Create") %>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.ClientController>("Create New", r => r.Create(), null, null, false)%>
     </p>
     <script type="text/javascript">
         $(document).ready(function () {
