@@ -9,18 +9,18 @@ namespace OAMS.Models
     public static class ProjectRoles
     {
         //now constants for the attribute values
-        public const string Account = "Account";
-        public const string Admin = "Admin";
-        public const string SiteSupervisor = "SiteSupervisor";
-        public const string SiteMonitoring = "SiteMonitoring";
-        public const string Sale = "Sale";
-        public const string Makerting = "Makerting";
+        //public const string Account = "Account";
+        //public const string Admin = "Admin";
+        //public const string SiteSupervisor = "SiteSupervisor";
+        //public const string SiteMonitoring = "SiteMonitoring";
+        //public const string Sale = "Sale";
+        //public const string Makerting = "Makerting";
         //and roles continue
 
-        public static string[] All
-        {
-            get { return new string[] { Account, Admin, SiteSupervisor, SiteMonitoring, Sale, Makerting }; }
-        }
+        //public static string[] All
+        //{
+        //    get { return new string[] { Account, Admin, SiteSupervisor, SiteMonitoring, Sale, Makerting }; }
+        //}
     }
 
     public class RoleRepository : BaseRepository
@@ -32,13 +32,13 @@ namespace OAMS.Models
 
         public void InitRole()
         {
-            foreach (var item in ProjectRoles.All)
-            {
-                if (!Roles.RoleExists(item))
-                {
-                    Roles.CreateRole(item);
-                }
-            }
+            //foreach (var item in ProjectRoles.All)
+            //{
+            //    if (!Roles.RoleExists(item))
+            //    {
+            //        Roles.CreateRole(item);
+            //    }
+            //}
         }
 
         public string GetRolesList(string username)

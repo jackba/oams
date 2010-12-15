@@ -17,8 +17,8 @@ using System.Web.Profile;
 
 namespace OAMS.Controllers
 {
-
     [HandleError]
+    
     public class AccountController : Controller
     {
         AccountRepository repo = new AccountRepository();
@@ -34,42 +34,7 @@ namespace OAMS.Controllers
             base.Initialize(requestContext);
         }
 
-        // **************************************
-        // URL: /Account/LogOn
-        // **************************************
-
-
-
-        //[HttpPost]
-        //public ActionResult LogOn(LogOnModel model, string returnUrl)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (MembershipService.ValidateUser(model.UserName, model.Password))
-        //        {
-        //            FormsService.SignIn(model.UserName, model.RememberMe);
-        //            if (!String.IsNullOrEmpty(returnUrl))
-        //            {
-        //                return Redirect(returnUrl);
-        //            }
-        //            else
-        //            {
-        //                return RedirectToAction("Index", "Home");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("", "The user name or password provided is incorrect.");
-        //        }
-        //    }
-
-        //    // If we got this far, something failed, redisplay form
-        //    return View(model);
-        //}
-
-        // **************************************
-        // URL: /Account/LogOff
-        // **************************************
+       
 
         public ActionResult LogOff()
         {
@@ -78,81 +43,8 @@ namespace OAMS.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // **************************************
-        // URL: /Account/Register
-        // **************************************
 
-        public ActionResult Register()
-        {
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Register(RegisterModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
-
-                if (createStatus == MembershipCreateStatus.Success)
-                {
-                    FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-            return View(model);
-        }
-
-        // **************************************
-        // URL: /Account/ChangePassword
-        // **************************************
-
-        [Authorize]
-        public ActionResult ChangePassword()
-        {
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-            return View();
-        }
-
-        [Authorize]
-        [HttpPost]
-        public ActionResult ChangePassword(ChangePasswordModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                if (MembershipService.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword))
-                {
-                    return RedirectToAction("ChangePasswordSuccess");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-            return View(model);
-        }
-
-        // **************************************
-        // URL: /Account/ChangePasswordSuccess
-        // **************************************
-
-        public ActionResult ChangePasswordSuccess()
-        {
-            return View();
-        }
-
+        [CustomAuthorize]
         public ActionResult Index()
         {
             return View(repo.GetAll());
@@ -163,17 +55,20 @@ namespace OAMS.Controllers
             return View();
         }
 
+        
         public ActionResult NoRight()
         {
             return View();
         }
-
+        
+        [CustomAuthorize]
         public ActionResult Edit(string id)
         {
             return View(new UserModel() { Username = id });
         }
 
         [HttpPost]
+        [CustomAuthorize]
         public ActionResult Edit(string id, string[] RoleList)
         {
             RoleRepository roleRepo = new RoleRepository();
@@ -182,12 +77,14 @@ namespace OAMS.Controllers
             return View(new UserModel() { Username = id });
         }
 
+        [CustomAuthorize]
         public ActionResult EditRoleAuthentication(string roleName)
         {
             return View(repo.GetRole(roleName));
         }
 
         [HttpPost]
+        [CustomAuthorize]
         public ActionResult EditRoleAuthentication(string roleName, int?[] ControllerActionIDList)
         {
             MVCAuthorizationRepository _MVCAuthorizationRepository = new MVCAuthorizationRepository();
@@ -366,6 +263,7 @@ namespace OAMS.Controllers
             HttpContext.Response.Cookies.Add(cookie);
         }
 
+        [CustomAuthorize]
         public ActionResult UpdateControllerAction()
         {
             RoleRepository repo = new RoleRepository();
@@ -377,18 +275,21 @@ namespace OAMS.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [CustomAuthorize]
         public ActionResult GetAllRoles()
         {
             return View(Roles.GetAllRoles().ToList());
         }
 
         [HttpGet]
+        [CustomAuthorize]
         public ActionResult CreateRole()
         {
             return View();
         }
 
         [HttpPost]
+        [CustomAuthorize]
         public ActionResult CreateRole(string roleName)
         {
             if (!Roles.RoleExists(roleName))
@@ -400,6 +301,7 @@ namespace OAMS.Controllers
                 return View();
         }
 
+        [CustomAuthorize]
         public ActionResult DeleteRole(string id)
         {
             if (id == "Admin" || id == "Account")
@@ -412,6 +314,7 @@ namespace OAMS.Controllers
             return RedirectToAction("GetAllRoles");
         }
 
+        [CustomAuthorize]
         public ActionResult EditAccountInRole(string rolename)
         {
             object o = rolename;
@@ -419,6 +322,7 @@ namespace OAMS.Controllers
         }
 
         [HttpPost]
+        [CustomAuthorize]
         public ActionResult EditAccountInRole(string rolename, string[] UserList)
         {
             RoleRepository roleRepo = new RoleRepository();
