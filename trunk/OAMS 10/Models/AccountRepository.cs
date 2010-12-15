@@ -41,7 +41,7 @@ namespace OAMS.Models
 
             try
             {
-                Roles.AddUserToRole(username, ProjectRoles.Admin);
+                //Roles.AddUserToRole(username, ProjectRoles.Admin);
             }
             catch (Exception)
             {

@@ -16,7 +16,7 @@
             <%: Html.LabelFor(model => model.RolesList) %>
         </div>
         <%
-            foreach (var item in OAMS.Models.ProjectRoles.All)
+            foreach (var item in Roles.GetAllRoles().ToList())
             {
                 string strChecked = Roles.IsUserInRole(Model.Username, item) ? "checked" : string.Empty;
         %>

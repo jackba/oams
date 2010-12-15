@@ -333,6 +333,7 @@ namespace OAMS.Models
             base.HandleUnauthorizedRequest(filterContext);
             filterContext.Result = new RedirectResult("~/Account/NoRight");
         }
+
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             if (httpContext == null)

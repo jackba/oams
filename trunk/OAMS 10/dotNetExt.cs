@@ -558,10 +558,6 @@ namespace OAMS
 
         public static MvcHtmlString ActionLinkWithRoles<T>(this HtmlHelper html, string linkText, Expression<Func<T, ActionResult>> action, RouteValueDictionary routeValues, IDictionary<string, object> htmlAttributes, bool isPost) where T : Controller
         {
-            
-            ControllerActionRepository actionAuthorizationRepo = new ControllerActionRepository();
-            actionAuthorizationRepo.UpdateActionList();
-
             MvcHtmlString htmlStr = MvcHtmlString.Create("");
 
             ReflectedControllerDescriptor controllerDes = new ReflectedControllerDescriptor(typeof(T));
@@ -750,12 +746,12 @@ namespace OAMS
     {
         public static bool HasAnyRole(this IPrincipal user, params string[] roles)
         {
-            if (!roles.Contains(ProjectRoles.Admin))
-            {
-                List<string> rL = roles.ToList();
-                rL.Add(ProjectRoles.Admin);
-                roles = rL.ToArray();
-            }
+            //if (!roles.Contains(ProjectRoles.Admin))
+            //{
+            //    List<string> rL = roles.ToList();
+            //    rL.Add(ProjectRoles.Admin);
+            //    roles = rL.ToArray();
+            //}
 
             return roles.Any(user.IsInRole);
         }

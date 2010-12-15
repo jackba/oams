@@ -7,7 +7,6 @@ using OAMS.Models;
 
 namespace OAMS.Controllers
 {
-
     [CustomAuthorize]
     public class ClientController : Controller
     {
