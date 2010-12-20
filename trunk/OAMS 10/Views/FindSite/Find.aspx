@@ -15,24 +15,22 @@
                 <%: Html.EditorFor(model => model.Geo1FullName, "AutoCompleteGeo", new { level = 1 }) %>
                 <br />
                 <br />
-                Geo2: <a id="A1" href="javascript:checkAll(document.forms[0].Geo2List, true);ShowAll(document.forms[0].Geo2List,'Geo2ListMore');">
-                    All</a>&nbsp;/&nbsp;<a id="A2" href="javascript:checkAll(document.forms[0].Geo2List, false);">Clear</a>
+                Geo2: <a id="A1" href="javascript:checkAll('geo2List', true);ShowAll(document.forms[0].Geo2List,'Geo2ListMore');">
+                    All</a>&nbsp;/&nbsp;<a id="A2" href="javascript:checkAll('geo2List', false);">Clear</a>
                 <div id="geo2List">
                 </div>
                 <a id="Geo2ListMore" href="javascript:ShowAll(document.forms[0].Geo2List,'Geo2ListMore');"
                     style="display: none;">More...</a>
                 <br />
                 <br />
-                Style List: <a id="lnkCheckAllStyle" href="javascript:checkAll(document.forms[0].StyleList, true);">
-                    All</a>&nbsp;/&nbsp;<a id="lnkUnCheckAllStyle" href="javascript:checkAll(document.forms[0].StyleList, false);">Clear</a>
-                <%--  <input type="checkbox" name="StyleList" value="All" onclick="checkAll(document.forms[0].StyleList)"
-                    style="display: none;" checked="checked" />--%>
+                Style List: <a id="lnkCheckAllStyle" href="javascript:checkAll('StyleList', true);">
+                    All</a>&nbsp;/&nbsp;<a id="lnkUnCheckAllStyle" href="javascript:checkAll('StyleList', false);">Clear</a>
                 <br />
-                <%
-                    foreach (var category in (new OAMS.Models.CodeMasterRepository()).Get((new OAMS.Models.CodeMasterType()).Type))
-                    {
-                %>
-                <div>
+                <div id="StyleList">
+                    <%
+                        foreach (var category in (new OAMS.Models.CodeMasterRepository()).Get((new OAMS.Models.CodeMasterType()).Type))
+                        {
+                    %>
                     <input type="checkbox" name="StyleList" value="<%= category.Code %>" checked="checked"
                         id='StyleItem<%= category.ID %>' />
                     <label for='StyleItem<%= category.ID %>'>
@@ -77,10 +75,12 @@
                             profileImageUrl = Url.Content("~/Content/Image/other.png");
                         }
                     %>
-                    <img alt="" border="0" src="<%= profileImageUrl %>" width="20" id="ImgStyleItem<%= category.ID%>" /></div>
-                <%
-                    }
-                %>
+                    <img alt="" border="0" src="<%= profileImageUrl %>" width="20" id="ImgStyleItem<%= category.ID%>" />
+                    <br />
+                    <%
+                        }
+                    %>
+                </div>
                 <a id="StyleListMore" href="javascript:ShowAllStyle(document.forms[0].StyleList,'StyleListMore');"
                     style="display: none;">More...</a>
                 <br />
@@ -467,7 +467,6 @@
         </table>
     </div>
     </script>
-
     <script type="text/javascript">
         //showGeo2('Hồ Chí Minh City', false, 'dis. 1, Hồ Chí Minh City');
 
@@ -693,9 +692,13 @@
                     });
 
 
-                    if (VietnamBounds.contains(marker.position)) {
+                    if (VietnamBounds.contains(marker.position)
+                    || IndoBounds.contains(marker.position)) 
+                    {
                         bounds.extend(marker.position);
                     }
+
+                    bounds.extend(marker.position);
 
                     profileMarkers.push(marker);
                     var html = "";
@@ -926,6 +929,8 @@
         var infoWindow = new google.maps.InfoWindow;
 
         var VietnamBounds = new google.maps.LatLngBounds(new google.maps.LatLng(6, 100), new google.maps.LatLng(24, 109));
+        var IndoBounds = new google.maps.LatLngBounds(new google.maps.LatLng(-6, 117), new google.maps.LatLng(5, 135));
+
         function init() {
             var mapDiv = document.getElementById('map');
             map = new google.maps.Map(mapDiv, {
@@ -1514,31 +1519,10 @@
             return d;
         };
 
-        //        function checkAll_Org(lst) {
-        //            if (lst[0].checked) {
-        //                for (i = 1; i < lst.length; i++) {
-        //                    lst[i].checked = false;
-        //                    lst[i].disabled = true;
-        //                }
-        //            }
-        //            else {
-        //                for (i = 1; i < lst.length; i++) {
-        //                    lst[i].disabled = false;
-        //                }
-        //            }
-        //        }
 
-        function checkAll(lst, checked) {
-            for (i = 0; i < lst.length; i++) {
-                lst[i].checked = checked;
-            }
+        function checkAll(divID, checked) {
+            $('#' + divID + ' :input').each(function (i) { this.checked = checked; });
         }
-
-        //        function unCheck(lst) {
-        //            if (!this.checked) {
-        //                lst[0].checked = false;
-        //            }
-        //        }
 
         function toggleSearchPane() {
             var opt = {};
