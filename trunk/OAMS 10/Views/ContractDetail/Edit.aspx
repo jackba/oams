@@ -66,7 +66,8 @@
             <% Html.RenderPartial("ManageContractDetailTimeline", Model); %>
         </div>
         <p>
-            <input type="submit" value="Save" />
+            <%--<input type="submit" value="Save" />--%>
+            <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractDetailController>("Save", r => r.Edit(0), null, null, true)%>
         </p>
     </fieldset>
     <% } %>

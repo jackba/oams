@@ -24,8 +24,11 @@
         <%: Html.ValidationMessageFor(model => model.ToDate) %>
     </div>
     <p>
-        <%: Html.ActionLink("Save", "Edit", "ContractDetailTimeline", new { href = string.Format("javascript:AjaxSave('{0}','{1}');", "divContractDetailTimeline_" + Model.ID.ToString(), Url.Content("~/ContractDetailTimeLine/Edit")) })%>
+        <%--<%: Html.ActionLink("Save", "Edit", "ContractDetailTimeline", new { href = string.Format("javascript:AjaxSave('{0}','{1}');", "divContractDetailTimeline_" + Model.ID.ToString(), Url.Content("~/ContractDetailTimeLine/Edit")) })%>
         |
-        <%: Html.ActionLink("Cancel", "View", "ContractDetailTimeline", new { href = string.Format("javascript:AjaxView({0},'{1}','{2}');", Model.ID, "divContractDetailTimeline_" + Model.ID.ToString(), Url.Content("~/ContractDetailTimeLine/View")) })%>
+        <%: Html.ActionLink("Cancel", "View", "ContractDetailTimeline", new { href = string.Format("javascript:AjaxView({0},'{1}','{2}');", Model.ID, "divContractDetailTimeline_" + Model.ID.ToString(), Url.Content("~/ContractDetailTimeLine/View")) })%>--%>
+        <%: MvcHtmlString.Create(Session["ContractDetailTimelineSaveTemplate"].ToString().Replace("contractDetailTimelineID", Model.ID.ToString()))%>
+        |
+        <%: MvcHtmlString.Create(Session["ContractDetailTimelineCancelTemplate"].ToString().Replace("contractDetailTimelineID", Model.ID.ToString()))%>
     </p>
 </fieldset>

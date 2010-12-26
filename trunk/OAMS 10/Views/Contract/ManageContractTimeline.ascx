@@ -1,6 +1,11 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<OAMS.Models.Contract>" %>
 <div id="divManageContractTimeline">
     <div id="divManageContractTimelineList">
+        <% 
+            Session["ContractTimelineEditTemplate"] = Html.ActionLinkWithRoles<OAMS.Controllers.ContractTimelineController>("Edit", r => r.Edit(0), null, new Dictionary<string, object>() { { "href", string.Format("javascript:AjaxEdit(contractTimelineID,'divContractTimeline_contractTimelineID','{0}');", Url.Content("~/ContractTimeline/Edit")) } }, false);
+            Session["ContractTimelineSaveTemplate"] = Html.ActionLinkWithRoles<OAMS.Controllers.ContractTimelineController>("Save", r => r.Edit(0), null, new Dictionary<string, object>() { { "href", string.Format("javascript:AjaxSave('divContractTimeline_contractTimelineID','{0}');", Url.Content("~/ContractTimeline/Edit")) } }, true);
+            Session["ContractTimelineCancelTemplate"] = Html.ActionLinkWithRoles<OAMS.Controllers.ContractTimelineController>("Cancel", r => r.View(0), null, new Dictionary<string, object>() { { "href", string.Format("javascript:AjaxView(contractTimelineID,'divContractTimeline_contractTimelineID','{0}');", Url.Content("~/ContractTimeline/View")) } }, false);
+        %>
         <% foreach (var item in Model.ContractTimelines)
            { %>
         <% Html.RenderPartial("~/Views/ContractTimeline/View.ascx", item); %>

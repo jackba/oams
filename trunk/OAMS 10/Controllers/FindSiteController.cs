@@ -96,6 +96,7 @@ namespace OAMS.Controllers
                 && (string.IsNullOrEmpty(e.CompetitiveProductSigns) || r.Site.CompetitiveProductSigns == e.CompetitiveProductSigns.ToInt())
                         //&& (e.ProductList == null || e.ProductList.Match(r.Product))
                 && (e.ProductList == null || e.ProductList.Match(r.Product == null ? "" : r.Product.Name))
+                && (r.Site.Score.ToInt() >= e.ScoreFrom.ToInt() && r.Site.Score.ToInt() <= e.ScoreTo.ToInt())
                 && (string.IsNullOrEmpty(e.Geo1FullName) || (r.Site.Geo1 != null && r.Site.Geo1.FullName == e.Geo1FullName))
                 && ((string.IsNullOrEmpty(e.Geo1FullName) && e.Geo2List == null)
                     || (e.Geo2List != null && (e.Geo2List.FirstOrDefault() == null || (r.Site.Geo2 != null && e.Geo2List.Contains(r.Site.Geo2.FullName)))))

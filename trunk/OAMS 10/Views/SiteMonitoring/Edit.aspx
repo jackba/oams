@@ -12,7 +12,8 @@
     <table>
         <tr valign="top">
             <td>
-                <%: Html.ActionLink("View Report", "View", new { id = Model.ID })%>
+                <%--<%: Html.ActionLink("View Report", "View", new { id = Model.ID })%>--%>
+                <%: Html.ActionLinkWithRoles<OAMS.Controllers.SiteMonitoringController>("View Report", r => r.View(0), new RouteValueDictionary(new { id = Model.ID }), null, false)%>
                 <fieldset>
                     <legend>Fields</legend>
                     <%: Html.HiddenFor(model => model.ID) %>
@@ -259,8 +260,10 @@
                         <%: Html.DisplayFor(model => model.Site.Width)%>
                     </div>
                     <p>
-                        <input type="submit" value="Save" />
-                        <%: Html.ActionLink("View Report", "View", new { id = Model.ID })%>
+                        <%--<input type="submit" value="Save" />--%>
+                        <%: Html.ActionLinkWithRoles<OAMS.Controllers.SiteMonitoringController>("Save", r => r.Edit(0), null, null, true)%>
+                        <%--<%: Html.ActionLink("View Report", "View", new { id = Model.ID })%>--%>
+                        <%: Html.ActionLinkWithRoles<OAMS.Controllers.SiteMonitoringController>("View Report", r => r.View(0), new RouteValueDictionary(new { id = Model.ID }), null, false)%>
                     </p>
                 </fieldset>
             </td>
@@ -317,6 +320,7 @@
     </table>
     <% } %>
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%--<%: Html.ActionLink("Back to List", "Index") %>--%>
+        <%--<%: Html.ActionLinkWithRoles<OAMS.Controllers.SiteMonitoringController>("Back to List", r => r.Index(), null, null, false)%>--%>
     </div>
 </asp:Content>

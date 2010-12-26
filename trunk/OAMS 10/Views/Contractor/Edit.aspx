@@ -65,19 +65,22 @@
             <%: Html.TextBoxFor(model => model.Note) %>
         </div>
             <p>
-                <input type="submit" value="Save" />
+                <%--<input type="submit" value="Save" />--%>
+                <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractorController>("Save", r => r.Edit(0), null, null, true)%>
             </p>
         </fieldset>
         <% } %>
         <div>
-            <%: Html.ActionLink("Back to List", "Index") %>
+            <%--<%: Html.ActionLink("Back to List", "Index") %>--%>
+            <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractorController>("Back to List", r => r.Index(), null, null, false)%>
         </div>
         <br />
         <div>
             Replace:
             <%: Html.EditorFor(model => model.ReplaceFor, "AutoCompleteContractor")%>
             <%--<%: Html.ActionLink("Replace", "Replace")%>--%>
-            <input type="button" id="btnReplace" value="Replace" onclick="replace();" />
+            <%--<input type="button" id="btnReplace" value="Replace" onclick="replace();" />--%>
+            <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractorController>("Replace", r => r.Replace(0, 0), null, new Dictionary<string, object>() { { "href", "javascript:replace();" } }, true)%>
             <input id="ContractorID" name="ContractorID" style="visibility: collapse;" type="text"
                 value="" />
         </div>

@@ -249,7 +249,8 @@
                         <%: Html.ValidationMessageFor(model => model.Site.Width)%>
                     </div>
                     <p>
-                        <input type="submit" value="Create" />
+                        <%--<input type="submit" value="Create" />--%>
+                        <%: Html.ActionLinkWithRoles<OAMS.Controllers.SiteMonitoringController>("Create", r => r.Create(null), null, null, true)%>
                     </p>
                 </fieldset>
             </td>
@@ -276,7 +277,8 @@
     </table>
     <% } %>
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%--<%: Html.ActionLink("Back to List", "Index") %>--%>
+        <%--<%: Html.ActionLinkWithRoles<OAMS.Controllers.SiteMonitoringController>("Back to List", r => r.), null, null, false)%>--%>
     </div>
     <%--<script type="text/javascript">
 
