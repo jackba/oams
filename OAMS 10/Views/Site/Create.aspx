@@ -587,7 +587,8 @@
         </tr>
     </table>
     <p>
-        <input type="submit" value="Create" />
+        <%--<input type="submit" value="Create" />--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.SiteController>("Create", r => r.Create(null), null, null, true)%>
     </p>
     <% } %>
    <%-- <div>

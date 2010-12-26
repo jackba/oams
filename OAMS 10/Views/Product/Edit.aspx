@@ -41,11 +41,13 @@
             <%: Html.TextBoxFor(model => model.ClientID, new { @style = "visibility:collapse;" })%>
         </div>
         <p>
-            <input type="submit" value="Save" />
+            <%--<input type="submit" value="Save" />--%>
+            <%: Html.ActionLinkWithRoles<OAMS.Controllers.ProductController>("Save", r => r.Edit(null), null, null, true)%>
         </p>
     </fieldset>
     <% } %>
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%--<%: Html.ActionLink("Back to List", "Index") %>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.ProductController>("Back to List", r => r.Index(), null, null, false)%>
     </div>
 </asp:Content>

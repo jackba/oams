@@ -7,7 +7,8 @@
     <h2>
         Index</h2>
     <p>
-        <%: Html.ActionLink("Create New", "Create") %>
+        <%--<%: Html.ActionLink("Create New", "Create") %>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.SiteController>("Create New", r => r.Create(null), null, null, false)%>
     </p>
     <table id="tblResult" class="display">
         <thead>
@@ -50,14 +51,22 @@
             </tr>
         </thead>
         <tbody>
+            <% 
+                var editTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.SiteController>("Edit", r => r.Edit(0), new RouteValueDictionary(new { id = "siteID" }), null, false);
+                var deleteTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.SiteController>("Delete", r => r.Delete(0), new RouteValueDictionary(new { id = "siteID" }), new Dictionary<string,object> (){{"onclick","return confirm('Delete?');"}}, false);
+            %>
             <% foreach (var item in Model)
                { %>
             <tr>
                 <td>
-                    <%: Html.ActionLink("Edit", "Edit", new { id=item.ID }) %>
+                    <%--<%: Html.ActionLink("Edit", "Edit", new { id=item.ID }) %>
                     <br />
                     <br />
-                    <%: Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { onclick="return confirm('Delete?');" })%>
+                    <%: Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { onclick="return confirm('Delete?');" })%>--%>
+                    <%: MvcHtmlString.Create(editTemplate.ToString().Replace("siteID", item.ID.ToString()))%>
+                    <br />
+                    <br />
+                    <%: MvcHtmlString.Create(deleteTemplate.ToString().Replace("siteID", item.ID.ToString()))%>
                 </td>
                 <td>
                     <%: item.ID %>
@@ -129,7 +138,8 @@
     </table>
     <br />
     <p>
-        <%: Html.ActionLink("Create New", "Create") %>
+        <%--<%: Html.ActionLink("Create New", "Create") %>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.SiteController>("Create New", r => r.Create(null), null, null, false)%>
     </p>
     <script type="text/javascript">
 

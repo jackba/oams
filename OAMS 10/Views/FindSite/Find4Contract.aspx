@@ -315,7 +315,8 @@
                 <a id="addCat" href="javascript:addMoreCat();">More...</a>
             </td>
             <td valign="top">
-                <input type="button" onclick="search(this)" value="Find" />
+                <%--<input type="button" onclick="search(this)" value="Find" />--%>
+                <%: Html.ActionLinkWithRoles<OAMS.Controllers.FindSiteController>("Find", r => r.FindJson4Contract(null,0), null, new Dictionary<string, object>() { { "href", "javascript:search(this);" } }, true)%>
                 <input id="btnToggleSearchPane" type="button" onclick="toggleSearchPane()" value="Hide Search Criteria" />
                 <table width="100%">
                     <tr>
@@ -581,6 +582,7 @@
 
             if (json.length) {
                 var profileImageUrl;
+                var addTemplate = '<%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractController>("Add to Contract", r => r.AddSite(0,0), null, new Dictionary<string,object> (){{"href","javascript:Add2Contract(linkAdd2Cam, contractID, siteDetailID);"},{"id","aAdd2Cam"}},true) %>';
                 for (var i = 0, site; site = json[i]; i++) {
                     if (site.CodeType == 'WMB') {
                         profileImageUrl = '<%= Url.Content("~/Content/Image/wallmountedbannee.png") %>';
@@ -762,17 +764,22 @@
                         aAdd2Cam.onclick = null;
                     }
                     else {
-                        aAdd2Cam.innerHTML = 'Add to Contract';
-                        //aAdd2Cam.onclick = Add2Contract(aAdd2Cam, contractID, siteID);
-                        aAdd2Cam.onclick = Add2Contract(aAdd2Cam, contractID, siteDetailID);
+                        if (addTemplate != null && addTemplate != '') {
+                            aAdd2Cam.innerHTML = 'Add to Contract';
+                            ////aAdd2Cam.onclick = Add2Contract(aAdd2Cam, contractID, siteID);
+                            aAdd2Cam.onclick = Add2Contract(aAdd2Cam, contractID, siteDetailID);
+                        }
+                        //aAdd2Cam.innerHTML = addTemplate.replace('contractID', contractID).replace('siteDetailID', siteDetailID);
                     }
 
                     cStyle10.appendChild(aAdd2Cam);
 
-
-
-
-
+//                    if (site.Added) {
+//                        cStyle10.innerHTML = "<a href='javascript:void(0);'>Added</a>";
+//                    }
+//                    else {
+//                        cStyle10.innerHTML = addTemplate.replace('contractID', contractID).replace('siteDetailID', siteDetailID).replace('aAdd2Cam', 'a' + siteDetailID).replace("linkAdd2Cam", "$(#a" + siteDetailID + ")");
+//                    }
                 }
                 //$('#example').dataTable();
                 //                $('#tblResult').dataTable({
@@ -820,20 +827,19 @@
         }
 
         function Add2Contract(link, contractID, siteDetailID) {
-        //function Add2Contract(link, contractID, siteID) {
-
+            //function Add2Contract(link, contractID, siteID) {
+            //alert(link.innerHTML);
             var url = '<%= Url.Content("~/Contract/AddSite?ContractID=") %>' + contractID + '&SiteDetailID=' + siteDetailID;
-
             return function () {
-                $.ajax({
-                    url: url, type: "POST", dataType: "json",
-                    success: function (data) {
-
-                        link.innerHTML = 'Added';
-                        link.href = "javascript:void(0);";
-                        link.onclick = null;
-                    }
-                });
+            $.ajax({
+                url: url, type: "POST", dataType: "json",
+                success: function (data) {
+                    //alert(link.innerHTML);
+                    link.innerHTML = 'Added';
+                    link.href = "javascript:void(0);";
+                    link.onclick = null;
+                }
+            });
             };
         }
 

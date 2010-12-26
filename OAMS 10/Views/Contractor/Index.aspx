@@ -7,7 +7,8 @@
     <h2>
         Contractor List</h2>
     <p>
-        <%: Html.ActionLink("Create New", "Create") %>
+        <%--<%: Html.ActionLink("Create New", "Create") %>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractorController>("Create New", r => r.Create(), null, null, false)%>
     </p>
     <div>
         <table id="tblResult" class="display">
@@ -42,13 +43,20 @@
                 </tr>
             </thead>
             <tbody>
+                <% 
+                    var editTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.ContractorController>("Edit", r => r.Edit(0), new RouteValueDictionary(new { id = "contractorID" }), null, false);
+                    var deleteTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.ContractorController>("Delete", r => r.Delete(0), new RouteValueDictionary(new { id = "contractorID" }), new Dictionary<string, object>() { { "onclick", "return confirm('Delete?');" } }, false);
+                %>
                 <% foreach (var item in Model)
                    { %>
                 <tr>
                     <td>
-                        <%: Html.ActionLink("Edit", "Edit", new { id=item.ID }) %>
+                        <%--<%: Html.ActionLink("Edit", "Edit", new { id=item.ID }) %>--%>
                         <%--|--%>
                         <%--<%: Html.ActionLink("Delete", "Delete", new { id=item.ID })%>--%>
+                        <%: MvcHtmlString.Create(editTemplate.ToString().Replace("contractorID", item.ID.ToString()))%>
+                        |
+                        <%: MvcHtmlString.Create(deleteTemplate.ToString().Replace("contractorID", item.ID.ToString()))%>
                     </td>
                     <td>
                         <%: item.Name %>
@@ -103,7 +111,8 @@
     </div>
     <br />
     <p>
-        <%: Html.ActionLink("Create New", "Create") %>
+        <%--<%: Html.ActionLink("Create New", "Create") %>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.ContractorController>("Create New", r => r.Create(), null, null, false)%>
     </p>
     <script type="text/javascript">
         $(document).ready(function () {

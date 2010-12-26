@@ -13,9 +13,12 @@
         <%: Model.Note != null ? Model.Note : "_"%>
     </td>
     <td>
-        <%: Html.ActionLink("Edit", "Edit", "ContractorContactDetail", new { href = string.Format("javascript:AjaxEdit({0},'{1}','{2}');", Model.ID, "divContractorContactDetail_" + Model.ID.ToString(), Url.Content("~/ContractorContactDetail/Edit")) })%>
+        <%--<%: Html.ActionLink("Edit", "Edit", "ContractorContactDetail", new { href = string.Format("javascript:AjaxEdit({0},'{1}','{2}');", Model.ID, "divContractorContactDetail_" + Model.ID.ToString(), Url.Content("~/ContractorContactDetail/Edit")) })%>
         |
-        <%: Html.ActionLink("Delete", "Delete", "ContractorContactDetail", new { href = string.Format("javascript:AjaxDelete({0},'{1}','{2}');", Model.ID, "divContractorContactDetail_" + Model.ID.ToString(), Url.Content("~/ContractorContactDetail/Delete")) })%>
+        <%: Html.ActionLink("Delete", "Delete", "ContractorContactDetail", new { href = string.Format("javascript:AjaxDelete({0},'{1}','{2}');", Model.ID, "divContractorContactDetail_" + Model.ID.ToString(), Url.Content("~/ContractorContactDetail/Delete")) })%>--%>
+        <%: MvcHtmlString.Create(Session["ContractorContactDetailEditTemplate"].ToString().Replace("contractorContactDetailID", Model.ID.ToString()))%>
+        |
+        <%: MvcHtmlString.Create(Session["ContractorContactDetailDeleteTemplate"].ToString().Replace("contractorContactDetailID", Model.ID.ToString()))%>
     </td>
     <% if (Request.HttpMethod == "GET")
        { %>

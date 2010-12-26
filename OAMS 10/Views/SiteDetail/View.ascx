@@ -19,9 +19,12 @@
         <%: Model.Product == null ? "" : Model.Product.NewCategoryFullName %>
     </td>
     <td>
-        <%: Html.ActionLink("Edit", "Edit", "SiteDetail", new { href = string.Format("javascript:AjaxEdit({0},'{1}','{2}');", Model.ID, "divSiteDetail_" + Model.ID.ToString(), Url.Content("~/SiteDetail/Edit")) })%>
+        <%--<%: Html.ActionLink("Edit", "Edit", "SiteDetail", new { href = string.Format("javascript:AjaxEdit({0},'{1}','{2}');", Model.ID, "divSiteDetail_" + Model.ID.ToString(), Url.Content("~/SiteDetail/Edit")) })%>
         |
-        <%: Html.ActionLink("Delete", "Delete", "SiteDetail", new { href = string.Format("javascript:AjaxDelete({0},'{1}','{2}');", Model.ID, "divSiteDetail_" + Model.ID.ToString(), Url.Content("~/SiteDetail/Delete")) })%>
+        <%: Html.ActionLink("Delete", "Delete", "SiteDetail", new { href = string.Format("javascript:AjaxDelete({0},'{1}','{2}');", Model.ID, "divSiteDetail_" + Model.ID.ToString(), Url.Content("~/SiteDetail/Delete")) })%>--%>
+        <%: MvcHtmlString.Create(Session["SiteDetailEditTemplate"].ToString().Replace("siteDetailID", Model.ID.ToString()))%>
+        |
+        <%: MvcHtmlString.Create(Session["SiteDetailDeleteTemplate"].ToString().Replace("siteDetailID", Model.ID.ToString()))%>
     </td>
     <% if (Request.HttpMethod == "GET")
        { %>

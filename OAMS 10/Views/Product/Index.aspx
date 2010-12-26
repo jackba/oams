@@ -44,13 +44,20 @@
         </tr>
         </thead>
         <tbody>
+    <% 
+        var editTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.ProductController>("Edit", r => r.Edit(0), new RouteValueDictionary(new { id = "productID" }), null, false);
+        var deleteTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.ProductController>("Delete", r => r.Delete(0), new RouteValueDictionary(new { id = "productID" }), new Dictionary<string, object>() { { "onclick", "return confirm('Delete?');" } }, false);
+        var detailTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.ProductController>("Details", r => r.Details(0), new RouteValueDictionary(new { id = "productID" }), null, false);
+    %>
     <% foreach (var item in Model) { %>
-    
         <tr>
             <td>
-                <%: Html.ActionLink("Edit", "Edit", new { id=item.ID }) %> |
+                <%--<%: Html.ActionLink("Edit", "Edit", new { id=item.ID }) %> |
                 <%: Html.ActionLink("Details", "Details", new { id=item.ID })%> |
-                <%: Html.ActionLink("Delete", "Delete", new { id=item.ID })%>
+                <%: Html.ActionLink("Delete", "Delete", new { id=item.ID })%>--%>
+                <%: MvcHtmlString.Create(editTemplate.ToString().Replace("productID", item.ID.ToString()))%> |
+                <%: MvcHtmlString.Create(detailTemplate.ToString().Replace("productID", item.ID.ToString()))%> |
+                <%: MvcHtmlString.Create(deleteTemplate.ToString().Replace("productID", item.ID.ToString()))%>
             </td>
             <td>
                 <%: item.ID %>
@@ -80,7 +87,8 @@
     </table>
 
     <p>
-        <%: Html.ActionLink("Create New", "Create") %>
+        <%--<%: Html.ActionLink("Create New", "Create") %>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.ProductController>("Create New", r => r.Create(), null, null, false)%>
     </p>
 
 </asp:Content>

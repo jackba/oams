@@ -85,6 +85,10 @@
                     style="display: none;">More...</a>
                 <br />
                 <br />
+                InstallationPosition 1
+                <br />
+                <%: Html.CodeMasterDropDownListFor(r => r.InstallationPosition1, false)%>
+                <br />
                 <%: Html.LabelFor(r => r.Format) %>
                 <br />
                 <%: Html.CodeMasterDropDownListFor(r => r.Format, false)%>
@@ -313,9 +317,16 @@
                     Category<br />
                 </div>
                 <a id="addCat" href="javascript:addMoreCat();">More...</a>
+                <br />
+                <br />
+                Score from
+                <input type="text" id="ScoreFrom" name="ScoreFrom" value="0" style="width:30px;"/>
+                to
+                <input type="text" id="ScoreTo" name="ScoreTo" value="100" style="width:30px;"/>
             </td>
             <td valign="top">
-                <input type="button" onclick="search(this)" value="Find" />
+                <%--<input type="button" onclick="search(this)" value="Find" />--%>
+                <%: Html.ActionLinkWithRoles<OAMS.Controllers.FindSiteController>("Find", r => r.FindJson(null), null, new Dictionary<string, object>() { { "href", "javascript:search(this);" } }, true)%>
                 <input id="btnToggleSearchPane" type="button" onclick="toggleSearchPane()" value="Hide Search Criteria" />
                 <table width="100%">
                     <tr>
@@ -645,6 +656,7 @@
 
             if (json.length) {
                 var profileImageUrl;
+                var editTemplate = '<%: Html.ActionLinkWithRoles<OAMS.Controllers.SiteController>("Edit", r => r.Edit(0), new RouteValueDictionary(new { id = "siteID" }), null,false) %>';
                 for (var i = 0, site; site = json[i]; i++) {
                     if (site.CodeType == 'WMB') {
                         profileImageUrl = '<%= Url.Content("~/Content/Image/wallmountedbannee.png") %>';
@@ -837,8 +849,9 @@
 
                     //Edit
                     var cEdit = document.createElement('td');
-                    cEdit.innerHTML = '<%: Html.ActionLink("Edit", "Edit", "Site", new {id=-1},null) %>';
-                    cEdit.innerHTML = cEdit.innerHTML.replace('-1', site.ID);
+                    //cEdit.innerHTML = '<%: Html.ActionLink("Edit", "Edit", "Site", new {id=-1},null) %>';
+                    //cEdit.innerHTML = cEdit.innerHTML.replace('siteID', site.ID);
+                    cEdit.innerHTML = editTemplate.replace('siteID', site.ID);
                     rSel.appendChild(cEdit);
 
                     //Add2Campaign

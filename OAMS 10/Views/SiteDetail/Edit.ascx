@@ -22,9 +22,12 @@
     <%--<%: Html.EditorFor(model => model.NewCategoryFullName, "AutoCompleteCategory")%>--%>
 </td>
 <td>
-    <%: Html.ActionLink("Save", "Edit", "SiteDetail", new { href = string.Format("javascript:AjaxSave('{0}','{1}');", "divSiteDetail_" + Model.ID.ToString(), Url.Content("~/SiteDetail/Edit")) })%>
+    <%--<%: Html.ActionLink("Save", "Edit", "SiteDetail", new { href = string.Format("javascript:AjaxSave('{0}','{1}');", "divSiteDetail_" + Model.ID.ToString(), Url.Content("~/SiteDetail/Edit")) })%>
     |
-    <%: Html.ActionLink("Cancel", "View", "SiteDetail", new { href = string.Format("javascript:AjaxView({0},'{1}','{2}');", Model.ID, "divSiteDetail_" + Model.ID.ToString(), Url.Content("~/SiteDetail/View")) })%>
+    <%: Html.ActionLink("Cancel", "View", "SiteDetail", new { href = string.Format("javascript:AjaxView({0},'{1}','{2}');", Model.ID, "divSiteDetail_" + Model.ID.ToString(), Url.Content("~/SiteDetail/View")) })%>--%>
+    <%: MvcHtmlString.Create(Session["SiteDetailSaveTemplate"].ToString().Replace("siteDetailID", Model.ID.ToString()))%>
+    |
+    <%: MvcHtmlString.Create(Session["SiteDetailCancelTemplate"].ToString().Replace("siteDetailID", Model.ID.ToString()))%>
 </td>
 <%--<%: Html.ValidationSummary(true) %>
 <fieldset>

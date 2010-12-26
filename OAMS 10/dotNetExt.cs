@@ -556,7 +556,7 @@ namespace OAMS
             return htmlHelper.DropDownListFor(expression, geoRepository.GetByParentID().ToSelectListItem(), OAMSSetting.messageL.SelectNone);
         }
 
-        public static MvcHtmlString ActionLinkWithRoles<T>(this HtmlHelper html, string linkText, Expression<Func<T, ActionResult>> action, RouteValueDictionary routeValues, IDictionary<string, object> htmlAttributes, bool isPost) where T : Controller
+        public static MvcHtmlString ActionLinkWithRoles<T>(this HtmlHelper html, string linkText, Expression<Func<T, ActionResult>> action, RouteValueDictionary routeValues = null, IDictionary<string, object> htmlAttributes = null, bool isPost= false) where T : Controller
         {
             MvcHtmlString htmlStr = MvcHtmlString.Create("");
 

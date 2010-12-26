@@ -679,10 +679,12 @@
     </table>
     <%--<% Html.RenderPartial("GMap"); %>--%>
     <p>
-        <input type="submit" value="Save" />
+        <%--<input type="submit" value="Save" />--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.SiteController>("Save", r => r.Edit(0), null, null, true)%>
     </p>
     <% } %>
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%--<%: Html.ActionLink("Back to List", "Index") %>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.SiteController>("Back to List", r => r.Index(), null, null, false)%>
     </div>
 </asp:Content>

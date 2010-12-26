@@ -23,6 +23,12 @@
             </tr>
         </thead>
         <tbody id="divManageSiteDetailList">
+            <% 
+                Session["SiteDetailEditTemplate"] = Html.ActionLinkWithRoles<OAMS.Controllers.SiteDetailController>("Edit", r => r.Edit(0), null, new Dictionary<string, object>() { { "href", string.Format("javascript:AjaxEdit(siteDetailID,'divSiteDetail_siteDetailID','{0}');", Url.Content("~/SiteDetail/Edit")) } }, false);
+                Session["SiteDetailDeleteTemplate"] = Html.ActionLinkWithRoles<OAMS.Controllers.SiteDetailController>("Delete", r => r.Delete(0), null, new Dictionary<string, object>() { { "href", string.Format("javascript:AjaxDelete(siteDetailID,'divSiteDetail_siteDetailID','{0}');", Url.Content("~/SiteDetail/Delete")) } }, true);
+                Session["SiteDetailSaveTemplate"] = Html.ActionLinkWithRoles<OAMS.Controllers.SiteDetailController>("Save", r => r.Edit(0), null, new Dictionary<string, object>() { { "href", string.Format("javascript:AjaxSave('divSiteDetail_siteDetailID','{0}');", Url.Content("~/SiteDetail/Edit")) } }, true);
+                Session["SiteDetailCancelTemplate"] = Html.ActionLinkWithRoles<OAMS.Controllers.SiteDetailController>("Cancel", r => r.View(0), null, new Dictionary<string, object>() { { "href", string.Format("javascript:AjaxView(siteDetailID,'divSiteDetail_siteDetailID','{0}');", Url.Content("~/SiteDetail/View")) } }, false);
+            %>
             <% foreach (var item in Model.SiteDetails)
                { %>
             <% Html.RenderPartial("~/Views/SiteDetail/View.ascx", item); %>
@@ -30,7 +36,8 @@
         </tbody>
     </table>
     <div>
-        <%: Html.ActionLink("Add", "Add", "SiteDetail", new { href = string.Format("javascript:AddSiteDetail({0})", Model.ID) })%>
+        <%--<%: Html.ActionLink("Add", "Add", "SiteDetail", new { href = string.Format("javascript:AddSiteDetail({0})", Model.ID) })%>--%>
+        <%: Html.ActionLinkWithRoles<OAMS.Controllers.SiteDetailController>("Add", r => r.Add(0), null, new Dictionary<string, object>() { { "href", string.Format("javascript:AddSiteDetail({0})", Model.ID) } }, false)%>
         <script type="text/javascript" language="javascript">
             function AddSiteDetail(siteID) {
                 $.ajax({
