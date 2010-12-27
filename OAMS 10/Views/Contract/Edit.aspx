@@ -7,7 +7,7 @@
     <script type="text/javascript" language="javascript">
         var oTable;
         $(document).ready(function () {
-            oTable = $('#tblResult').dataTable({ "aaSorting": [[0, "desc"]] });
+            oTable = $('#tblResult').dataTable({ "aaSorting": [[0, "desc"]], "iDisplayLength": 20 });
             ShowHideCols();
         });
     </script>

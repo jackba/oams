@@ -16,7 +16,7 @@
         <%: Model.Product == null ? "" : Model.Product.Name %>
     </td>
     <td>
-        <%: Model.Product == null ? "" : Model.Product.NewCategoryFullName %>
+        <%: Model.Product == null ? "" : Model.Product.CategoryFullName%>
     </td>
     <td>
         <%--<%: Html.ActionLink("Edit", "Edit", "SiteDetail", new { href = string.Format("javascript:AjaxEdit({0},'{1}','{2}');", Model.ID, "divSiteDetail_" + Model.ID.ToString(), Url.Content("~/SiteDetail/Edit")) })%>

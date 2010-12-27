@@ -116,7 +116,7 @@
     </p>
     <script type="text/javascript">
         $(document).ready(function () {
-            var oTable = $('#tblResult').dataTable({ "aaSorting": [[1, "asc"]] });
+            var oTable = $('#tblResult').dataTable({ "aaSorting": [[1, "asc"]], "iDisplayLength": 20 });
         });
     </script>
 </asp:Content>
