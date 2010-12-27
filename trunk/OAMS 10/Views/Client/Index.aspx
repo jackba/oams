@@ -45,7 +45,7 @@
             <tbody>
                 <% 
                     var editTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.ClientController>("Edit", r => r.Edit(0), new RouteValueDictionary(new { id = "clientID" }), null, false);
-                    var deleteTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.ClientController>("Delete", r => r.Delete(0), new RouteValueDictionary(new { id = "clientID" }), new Dictionary<string,object> (){{"onclick","return confirm('Delete?');"}}, false);
+                    var deleteTemplate = Html.ActionLinkWithRoles<OAMS.Controllers.ClientController>("Delete", r => r.Delete(0), new RouteValueDictionary(new { id = "clientID" }), new Dictionary<string, object>() { { "onclick", "return confirm('Delete?');" } }, false);
                 %>
                 <% foreach (var item in Model)
                    { %>
@@ -113,7 +113,7 @@
     </p>
     <script type="text/javascript">
         $(document).ready(function () {
-            var oTable = $('#tblResult').dataTable({ "aaSorting": [[1, "desc"]] });
+            var oTable = $('#tblResult').dataTable({ "aaSorting": [[1, "desc"]], "iDisplayLength": 20 });
         });
     </script>
 </asp:Content>
