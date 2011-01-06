@@ -10,6 +10,7 @@ namespace OAMS.Controllers
     [CustomAuthorize]
     public class ContractTimelineController : BaseController<ContractTimelineRepository>
     {
+        [HttpPost]
         public PartialViewResult Add(int contractID, int timeCount, string timeUnit)
         {
             ContractTimeline r = Repo.Add(contractID, timeCount, timeUnit);
