@@ -325,9 +325,15 @@
                 <input type="text" id="ScoreTo" name="ScoreTo" value="100" style="width:30px;"/>
             </td>
             <td valign="top">
-                <%--<input type="button" onclick="search(this)" value="Find" />--%>
-                <%: Html.ActionLinkWithRoles<OAMS.Controllers.FindSiteController>("Find", r => r.FindJson(null), null, new Dictionary<string, object>() { { "href", "javascript:search(this);" } }, true)%>
-                <input id="btnToggleSearchPane" type="button" onclick="toggleSearchPane()" value="Hide Search Criteria" />
+                
+                
+                <%--<%: Html.ActionLinkWithRoles<OAMS.Controllers.FindSiteController>("Find", r => r.FindJson(null), null, new Dictionary<string, object>() { { "href", "javascript:search(this);" } }, true)%>--%>
+                
+
+                <input id="btnFind" type="button" onclick="search(this);" value="Find" />
+                
+                <a href="javascript:toggleSearchPane();">Show/Hide Search Criteria</a>
+
                 <table width="100%">
                     <tr>
                         <td>
